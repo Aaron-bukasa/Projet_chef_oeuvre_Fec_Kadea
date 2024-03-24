@@ -5,7 +5,7 @@
 2. Makeda banza
 
 ## Objectif du projet
-Développement d’une plateforme de demande d’adhésion à la FEC
+Développement d’une plateforme de demande d’adhésion à la FEC :
 *notre objectif est de créer une plateforme conviviale qui permettra de gérer les demandes d’adhésion des membres à la FEC.*
 
 ## Fonctionnalités et contenus
