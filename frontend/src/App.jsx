@@ -9,6 +9,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
+  
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content]">
       <Navbar />

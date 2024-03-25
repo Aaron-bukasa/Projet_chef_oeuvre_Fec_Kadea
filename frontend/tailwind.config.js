@@ -9,7 +9,7 @@ export default {
       colors: {
         'primary-blue': '#051433',
         'secondary-blue': '#00194C',
-        'sky-blue': '0055ff',
+        'sky-blue': '#0055ff',
       },
       screens : {
         "sm": "640px",
