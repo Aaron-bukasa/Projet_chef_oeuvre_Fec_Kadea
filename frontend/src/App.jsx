@@ -1,13 +1,29 @@
-import './App.css'
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import FormulaireDmd from "./components/FormulaireDmd";
+import SuiviDmd from "./components/SuiviDmd";
+import Footer from "./components/Footer";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  
-
   return (
-    <>
-      <h1 className='text-blue-900 flex justify-center my-[50%] text-3xl font-bold'>Plateforme de demande d’adhésion (FEC)</h1>
-    </>
-  )
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content]">
+      <Navbar />
+      <div className="max-w-[1280px]">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/formulaireDmd" element={<FormulaireDmd />} />
+          <Route path="/suiviDmd" element={<SuiviDmd />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
