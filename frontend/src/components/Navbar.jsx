@@ -19,28 +19,28 @@ export default function Navbar() {
 
     return(
         <div className={`${isClick && 'h-screen'} grid auto-rows-max grid-rows-[75px auto 75px]  bg-secondary-blue text-lg sm:text-xl lg:block lg:bg-white`}>
-            <div className='col-start-1 col-end-2 row-start-1 row-end-3 p-6 lg:flex lg:items-center lg:justify-between lg:bg-secondary-blue'>
+            <div className='col-start-1 col-end-2 row-start-1 row-end-3 p-6 lg:flex lg:items-center lg:justify-between lg:bg-secondary-blue 2xl:px-24'>
                 <div onClick={handleClickLink} className={`${isClick && 'mb-24'} `}>
                     <Link to="/">
                         <img src={logoFec} alt="Logo de la fédération des entreprises" className='w-20' />
                     </Link>
                 </div>
-                <div className={`${!isClick ? 'hidden' : 'pl-[30%] flex flex-col gap-y-6'} lg:flex lg:gap-x-6`}>
-                    <ul className='flex flex-col gap-y-6 lg:flex-row lg:gap-x-6'>
-                        <li onClick={handleClickLink}><Link to="/" className='text-white'>Accueil</Link></li>
-                        <li onClick={handleClickLink}><Link to="#avantages" className='text-white'>Avantages</Link></li>
-                        <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-white'>Adhésion</Link></li>
-                        <li onClick={handleClickLink}><Link to="#contact" className='text-white'>Contact</Link></li>
+                <div className={`${!isClick ? 'hidden' : 'pl-[30%] flex flex-col gap-y-6'} tracking-wider  max-w-[1284px] justify-between lg:flex lg:gap-x-6 2xl:w-[60%]`}>
+                    <ul className='flex flex-col gap-y-6 lg:flex-row lg:gap-x-6  xl:justify-between 2xl:w-[60%]'>
+                        <li onClick={handleClickLink}><Link to="/" className='text-gray-400 hover:text-[#4885ff]'>Accueil</Link></li>
+                        <li onClick={handleClickLink}><Link to="#avantages" className='text-gray-400 hover:text-[#4885ff]'>Avantages</Link></li>
+                        <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-gray-400 hover:text-[#4885ff]'>Adhésion</Link></li>
+                        <li onClick={handleClickLink}><Link to="#contact" className='text-gray-400 hover:text-[#4885ff]'>Contact</Link></li>
                     </ul>
-                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-500 lg:pl-5">
-                        <li onClick={handleClickLink}><Link to="login" className='text-white'>Se connecter</Link></li>
-                        <li onClick={handleClickLink}><Link to="signup" className='text-white'>S'inscrire</Link></li>
+                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12">
+                        <li onClick={handleClickLink}><Link to="login" className='text-gray-400 hover:text-[#4885ff]'>Se connecter</Link></li>
+                        <li onClick={handleClickLink}><Link to="signup" className='text-gray-400 hover:text-[#4885ff]'>S'inscrire</Link></li>
                     </ul>
                 </div>
             </div>
-            <ul className={`${!isClick && 'hidden'} col-start-1 col-end-2 row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-6 p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6`}>
-                <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-white lg:text-primary-blue'>Adhérer maintenant</Link></li>
-                <li onClick={handleClickLink}><Link to="suiviDmd" className='text-white lg:text-primary-blue'>Suivi de la demande</Link></li>
+            <ul className={`${!isClick && 'hidden'} col-start-1 col-end-2 row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-6 p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6 2xl:px-24`}>
+                <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-white font-bold bg-sky-blue p-3 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></li>
+                <li onClick={handleClickLink}><Link to="suiviDmd" className='text-white font-bold text-primary-blue border-2 border-primary-blue p-3 rounded-xl hover:bg-gray-100'>Suivi de la demande</Link></li>
                 <li onClick={handleClickLink}>
                     <Link to="#faq" className='flex items-center gap-x-2'>
                         <svg className='stroke-white' width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
