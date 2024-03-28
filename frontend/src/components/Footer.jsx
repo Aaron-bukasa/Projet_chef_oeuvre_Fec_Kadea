@@ -6,7 +6,7 @@ import imgTwitter from "../assets/images/twitter.svg";
 
 export default function Footer() {
   return (
-    <div className="bg-primary-blue text-white p-6 grid grid-cols-3 [max-content,max-content,max-xontent,max-content] md:grid-cols-2 md:grid-rows-[max-content,max-content,max-xontent] md:text-lg xl:grid-cols-3 xl:grid-rows-[max-content,max-content] 2xl:px-24">
+    <div className="max-w-screen bg-primary-blue text-white p-6 grid grid-cols-3 [max-content,max-content,max-xontent,max-content] md:grid-cols-2 md:grid-rows-[max-content,max-content,max-xontent] md:text-lg xl:grid-cols-3 xl:grid-rows-[max-content,max-content] 2xl:px-24">
       <div className="col-start-1 col-end-4 row-start-1 row-end-2 md:col-end-2 md:mr-2">
         <h2 className="font-bold text-xl mb-4 lg:text-2xl">
           Fédération des entreprises
