@@ -40,7 +40,7 @@ export default function Login() {
         <button
           type="button"
           onclick="window.location.href='/cancel'"
-          className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80"
+          className="bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80"
         >
           Se connecter
         </button>

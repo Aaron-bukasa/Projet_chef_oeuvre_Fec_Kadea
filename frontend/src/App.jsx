@@ -11,7 +11,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   
   return (
-    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] scroll-smooth overflow-x-hidden">
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden">
       <Navbar />
       <div className="max-w-screen">
         <Routes>
