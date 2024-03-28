@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="leading-6 lg:leading-8">
       <Bannere />
-      <div className="w-screen xl:max-w-[1536px] mx-auto">
+      <div className="w-screen mx-auto">
         <DevenirMembre />
         <Avantages />
         <Temoignages />
@@ -132,12 +132,13 @@ function DevenirMembre() {
   }, []);
 
   return (
-    <div
+    <div className="bg-bg_banner" >
+      <div
       id="devenir_membre"
-      className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12"
+      className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1536px] mx-auto"
     >
       <div className="lg:col-start-1 lg:col-end-2">
-        <h2 className="font-bold text-primary-blue text-2xl mb-4 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
+        <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
           Devenez membre de la fédération des entreprises
         </h2>
         <p className="md:text-lg 2xl:text-xl">
@@ -178,8 +179,8 @@ function DevenirMembre() {
       <div
         ref={intersectionRef}
         className={`${
-          isVisible && "opacity-100"
-        } transition-all duration-1000 ease-in-out lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center`}
+          isVisible && "animated-visible"
+        } opacity-0 lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center`}
       >
         <img
           src={imgMembre}
@@ -187,6 +188,7 @@ function DevenirMembre() {
           className="mx-auto sm:w-[80%] lg:w-full lg:object-cover"
         />
       </div>
+    </div>
     </div>
   );
 }
@@ -225,90 +227,102 @@ function Avantages() {
   };
 
   return (
-    <div className="bg-red-600 ">
-      <Slider {...avantagesSlides}>
-        <div className="relative h-[480px] max-w-[420px]">
-          <img
-            src={imgAvantage01}
-            alt="Réseau"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
-            <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-              Réseau de contacts professionnels
-            </h3>
-            <p>
-              Développez votre réseau et rencontrez de nouveaux clients et
-              partenaires.
-            </p>
+    <div id="avantages" className="mx-6 xl:max-w-[1536px] xl:mx-auto xl:pb-24 xl:pt-12">
+      <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">Les avantages de l'adhésion</h2>
+      <div className="relative">
+        <Slider {...avantagesSlides}>
+          <div className="relative h-[480px] max-w-[420px]">
+            <img
+              src={imgAvantage01}
+              alt="Réseau"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
+                Réseau de contacts professionnels
+              </h3>
+              <p>
+                Développez votre réseau et rencontrez de nouveaux clients et
+                partenaires.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="relative h-[480px] max-w-[420px]">
-          <img
-            src={imgAvantage02}
-            alt="Formation"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
-            <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-              Formations et ateliers exclusifs
-            </h3>
-            <p>
-              Bénéficiez de formations et d'ateliers sur des thématiques qui
-              vous concernent.
-            </p>
+          <div className="relative h-[480px] max-w-[420px]">
+            <img
+              src={imgAvantage02}
+              alt="Formation"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
+                Formations et ateliers exclusifs
+              </h3>
+              <p>
+                Bénéficiez de formations et d'ateliers sur des thématiques qui
+                vous concernent.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="relative h-[480px] max-w-[420px]">
-          <img
-            src={imgAvantage03}
-            alt="Ressources"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
-            <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-              Accès à des ressources et des services
-            </h3>
-            <p>
-              Profitez d'un large éventail de ressources et de services pour
-              vous aider à développer votre entreprise.
-            </p>
+          <div className="relative h-[480px] max-w-[420px]">
+            <img
+              src={imgAvantage03}
+              alt="Ressources"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
+                Accès à des ressources et des services
+              </h3>
+              <p>
+                Profitez d'un large éventail de ressources et de services pour
+                vous aider à développer votre entreprise.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="relative h-[480px] max-w-[420px]">
-          <img
-            src={imgAvantage02}
-            alt="Soutien"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
-            <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-              Soutien et représentation
-            </h3>
-            <p>
-              Bénéficiez d'un soutien et d'une représentation auprès des
-              pouvoirs publics.
-            </p>
+          <div className="relative h-[480px] max-w-[420px]">
+            <img
+              src={imgAvantage02}
+              alt="Soutien"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
+                Soutien et représentation
+              </h3>
+              <p>
+                Bénéficiez d'un soutien et d'une représentation auprès des
+                pouvoirs publics.
+              </p>
+            </div>
           </div>
-        </div>
-      </Slider>
-      <button
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-l-md"
-        onClick={() => sliderRef.current.slickPrev()}
-      >
-        Précédent
-      </button>
-      <button
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-r-md"
-        onClick={() => sliderRef.current.slickNext()}
-      >
-        Suivant
-      </button>
+        </Slider>
+        <button
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-l-md"
+          onClick={() => sliderRef.current.slickPrev()}
+        >
+          Précédent
+        </button>
+        <button
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-r-md"
+          onClick={() => sliderRef.current.slickNext()}
+        >
+          Suivant
+        </button>
+      </div>
     </div>
   );
 }
 
 function Temoignages() {
+  const faqAutoplay = {
+    dots: true,
+    className: "center",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+  };
+
   const partenaires = {
     dots: false,
     infinite: true,
@@ -365,80 +379,86 @@ function Temoignages() {
 
   return (
     <div id="Temoignages" className="">
-      <div className="bg-[url('/src/assets/images/bg_temoignages.jpg')] px-6 py-12">
-        <h2 className="font-bold text-white text-2xl mb-4 pt-12 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
-          Ce qu’ils disent de nous
-        </h2>
-        <ul className="text-white p-6 flex flex-col gap-y-12 md:flex-row md:tracking-wider">
-          <li className="w-[80%] mx-auto md:w-[580px]">
-            <blockquote
-              className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
+      <div className="bg-bg_temoignages">
+        <div className=" px-6 py-12 xl:max-w-[1536px]">
+          <h2 className="font-bold text-center text-white text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
+            Ce qu’ils disent de nous
+          </h2>
+          <div className="text-white md:tracking-wider max-w-[380px] mx-auto">
+            <Slider {...faqAutoplay}>
+              <div className="w-[80%] md:max-w-[35%]">
+                <blockquote
+                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
-            >
-              Avant d'être membre a la FEC, je travaillais avec des micros et
-              des petites entreprises. Aujourd'hui, ça fait 26 ans que je suis à
-              la FEC, j'ai comme clients des moyennes et des grandes
-              entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
-              <span className="inline-block ml-3 text-xl">❞</span>
-            </blockquote>
-            <p className="text-center ml-auto mr-0 w-[250px] md:mt-12">
-              Eliane MUNKENI{" "}
-              <span className="block">Vice Présidente Nationale, FEC</span>
-            </p>
-          </li>
-          <li className="w-[75%] mx-auto md:hidden">
-            <blockquote
-              className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl'
-            >
-              La FEC est comme un employé en plus dans votre société. Elle vous
-              donne le meilleur d'elle-même. Elle résout vos problèmes sans être
-              présente dans vos locaux ou bureaux. Il faut juste la contacter.
-              Elle vous défend et fait votre marketing. Il
-              faut&nbsp;en&nbsp;être&nbsp;membre
-              <span className="inline-block ml-3 text-xl">❞</span>
-            </blockquote>
-            <p className="text-center ml-auto mr-0 w-[250px]">
-              Eric MONGA,{" "}
-              <span className="block">Vice Président Nationale, FEC</span>
-            </p>
-          </li>
-          <li className="w-[75%] mx-auto md:hidden">
-            <blockquote
-              className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl'
-            >
-              Avant d'être membre a la FEC, je travaillais avec des micros et
-              des petites entreprises. Aujourd'hui, ça fait 26 ans que je suis à
-              la FEC, j'ai comme clients des moyennes et des grandes
-              entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
-              <span className="inline-block ml-3 text-xl">❞</span>
-            </blockquote>
-            <p className="text-center ml-auto mr-0 w-[250px]">
-              Eliane MUNKENI,{" "}
-              <span className="block">Présidente Nationale</span>
-            </p>
-          </li>
-          <li className="w-[75%] mx-auto md:hidden">
-            <blockquote
-              className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl'
-            >
-              J&#32;'ai la vision d'un Congo fort et prospère. Je reste
-              convaincu que si chacun d'entre nous, à son niveau, met le
-              professionnalisme et le sérieux dans ce qu'il a à faire, nous
-              réussirons à redevenir&nbsp;ce&nbsp;grand Congo
-              <span className="inline-block ml-3 text-xl">❞</span>
-            </blockquote>
-            <p className="text-center ml-auto mr-0 w-[250px]">
-              Yvonne KUSUAMINA DG, <span className="block">Pay Network</span>
-            </p>
-          </li>
-        </ul>
+                >
+                  Avant d'être membre a la FEC, je travaillais avec des micros
+                  et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
+                  suis à la FEC, j'ai comme clients des moyennes et des grandes
+                  entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
+                  <span className="inline-block ml-3 text-xl">❞</span>
+                </blockquote>
+                <p className="text-center ml-auto mr-0 w-[250px] md:mt-12">
+                  Eliane MUNKENI{" "}
+                  <span className="block">Vice Présidente Nationale, FEC</span>
+                </p>
+              </div>
+              <div className="w-[80%] mx-auto md:max-w-[35%]">
+                <blockquote
+                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
+                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
+                >
+                  La FEC est comme un employé en plus dans votre société. Elle
+                  vous donne le meilleur d'elle-même. Elle résout vos problèmes
+                  sans être présente dans vos locaux ou bureaux. Il faut juste
+                  la contacter. Elle vous défend et fait votre marketing. Il
+                  faut&nbsp;en&nbsp;être&nbsp;membre
+                  <span className="inline-block ml-3 text-xl">❞</span>
+                </blockquote>
+                <p className="text-center ml-auto mr-0 w-[250px]">
+                  Eric MONGA,{" "}
+                  <span className="block">Vice Président Nationale, FEC</span>
+                </p>
+              </div>
+              <div className="w-[80%] mx-auto md:max-w-[35%]">
+                <blockquote
+                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
+                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
+                >
+                  Avant d'être membre a la FEC, je travaillais avec des micros
+                  et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
+                  suis à la FEC, j'ai comme clients des moyennes et des grandes
+                  entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
+                  <span className="inline-block ml-3 text-xl">❞</span>
+                </blockquote>
+                <p className="text-center ml-auto mr-0 w-[250px]">
+                  Eliane MUNKENI,{" "}
+                  <span className="block">Présidente Nationale</span>
+                </p>
+              </div>
+              <div className="w-[80%] mx-automd:max-w-[35%]">
+                <blockquote
+                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
+                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
+                >
+                  J&#32;'ai la vision d'un Congo fort et prospère. Je reste
+                  convaincu que si chacun d'entre nous, à son niveau, met le
+                  professionnalisme et le sérieux dans ce qu'il a à faire, nous
+                  réussirons à redevenir&nbsp;ce&nbsp;grand Congo
+                  <span className="inline-block ml-3 text-xl">❞</span>
+                </blockquote>
+                <p className="text-center ml-auto mr-0 w-[250px]">
+                  Yvonne KUSUAMINA DG,{" "}
+                  <span className="block">Pay Network</span>
+                </p>
+              </div>
+            </Slider>
+          </div>
+        </div>
       </div>
 
-      <div className="my-12 max-w-ful">
-        <Slider {...partenaires} className="max-w-full">
+      <div className="my-12">
+        <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">Ils nous accompagnent</h2>
+        <Slider {...partenaires} className="w-full">
           <div className="w-28 h-28">
             <img src={logoMember001} alt="membre 1" />
           </div>
@@ -529,12 +549,13 @@ function Temoignages() {
 
 function Faq() {
   return (
-    <div id="faq" className="p-6 md:text-lg 2xl:text-xl flex flex-col">
-      <h2 className="font-bold text-primary-blue text-2xl mb-4 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
+    <div id="faq" className="p-6 md:text-lg 2xl:text-xl flex flex-col bg-bg_blog xl:pb-12">
+      <div className="xl:max-w-[1536px] mx-auto">
+      <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
         Foire aux questions
       </h2>
       <ul>
-        <li className="border-4 border-secondary-blue p-3 rounded-xl my-4">
+        <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
           <h3 className="font-bold text-xl mb-3">
             Qu'est-ce que la fédération des entreprises ?
           </h3>
@@ -543,7 +564,7 @@ function Faq() {
             représente les entreprises de tous les secteurs d'activité.
           </p>
         </li>
-        <li className="border-4 border-secondary-blue p-3 rounded-xl my-4">
+        <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
           <h3 className="font-bold text-xl mb-3">
             Quels sont les avantages de l'adhésion ?
           </h3>
@@ -560,7 +581,7 @@ function Faq() {
             </li>
           </ul>
         </li>
-        <li className="border-4 border-secondary-blue p-3 rounded-xl my-4">
+        <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
           <h3 className="font-bold text-xl mb-3">
             Comment puis-je adhérer à la fédération ?
           </h3>
@@ -569,7 +590,7 @@ function Faq() {
             demande d'adhésion disponible sur notre site web.
           </p>
         </li>
-        <li className="border-4 border-secondary-blue p-3 rounded-xl my-4">
+        <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
           <h3 className="font-bold text-xl mb-3">Combien coûte l'adhésion ?</h3>
           <p>
             Le coût de l'adhésion dépend de la taille de votre entreprise.
@@ -577,6 +598,7 @@ function Faq() {
           </p>
         </li>
       </ul>
+      </div>
     </div>
   );
 }

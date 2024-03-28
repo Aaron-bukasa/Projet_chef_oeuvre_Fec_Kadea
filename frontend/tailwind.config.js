@@ -20,6 +20,8 @@ export default {
       },
       backgroundImage: {
         'bg_temoignages': "url('/src/assets/images/bg_temoignages.jpg')",
+        'bg_blog': "url('/src/assets/images/bg_blog.jpg')",
+        'bg_banner': "url('/src/assets/images/bg_banner.jpg')",
       },
       fontFamily: {
         // 'lora': 'Lora, serif',

@@ -110,7 +110,6 @@ export default function FormulaireDmd() {
             ></textarea>
           </div>
         </div>
-
         <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
           Fichiers joints
         </h2>
@@ -132,7 +131,6 @@ export default function FormulaireDmd() {
             />
           </div>
         </div>
-
         <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
           Déclaration
         </h2>
@@ -156,7 +154,6 @@ export default function FormulaireDmd() {
             </label>
           </div>
         </div>
-
         <div>
           <input
             type="submit"
