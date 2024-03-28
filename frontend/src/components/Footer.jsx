@@ -11,14 +11,14 @@ export default function Footer() {
         <h2 className="font-bold text-xl mb-4 lg:text-2xl">
           Fédération des entreprises
         </h2>
-        <p>
+        <p className="text-gray-300">
           10 Av des aviateurs, Gombe,
           <br />
           Kinshasa, RDC
         </p>
-        <p>Téléphone: +243825505783</p>
-        <p>Email: contact@federation-entreprises-congo.fr</p>
-        <p>
+        <p className="text-gray-300">Téléphone: +243825505783</p>
+        <p className="text-gray-300">Email: contact@federation-entreprises-congo.fr</p>
+        <p className="text-gray-300">
           Lundi – Vendredi: 8h00 – 16h00,
           <br />
           Samedi - Dimanche: Fermé.
@@ -61,7 +61,7 @@ export default function Footer() {
             <img src={imgTwitter} alt="twitter" className="w-5" />
           </Link>
         </div>
-        <Link to="adhesion.html" className="text-white font-bold bg-sky-blue inline-block p-3 rounded-xl my-3 hover:opacity-80">
+        <Link to="formulaireDmd" className="text-white font-bold bg-sky-blue inline-block p-3 rounded-xl my-3 hover:opacity-80">
           Adhérez à la fédération
         </Link>
       </div>
@@ -71,7 +71,7 @@ export default function Footer() {
           alt="Logo de la fédération"
           className="w-20 -ml-2 mb-2"
         />
-        <div className="copyright">
+        <div className="text-gray-300">
           &copy; 2024 - Fédération des Entreprises du Congo. Tous droits réservés
         </div>
       </div>
