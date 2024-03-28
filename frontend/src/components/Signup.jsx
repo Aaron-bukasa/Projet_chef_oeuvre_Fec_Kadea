@@ -56,7 +56,7 @@ export default function Signup() {
         <button
           type="button"
           onclick="window.location.href='/cancel'"
-          className="bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
+          className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
         >
           S'inscrire
         </button>
