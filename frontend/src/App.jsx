@@ -11,9 +11,9 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   
   return (
-    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content]">
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] ">
       <Navbar />
-      <div className="max-w-[1280px]">
+      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />

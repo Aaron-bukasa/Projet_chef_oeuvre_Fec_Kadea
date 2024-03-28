@@ -18,6 +18,9 @@ export default {
         "xl": "1280px",
         "2xl": "1536px"
       },
+      backgroundImage: {
+        'bg_temoignages': "url('/src/assets/images/bg_temoignages.jpg')",
+      },
       fontFamily: {
         // 'lora': 'Lora, serif',
         // 'roboto': 'Roboto, sans-serif'
