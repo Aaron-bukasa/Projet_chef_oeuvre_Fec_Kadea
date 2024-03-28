@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -35,7 +36,12 @@ export default function Login() {
               className="border-2 h-10 rounded-lg text-black p-3"
             />
           </div>
-          <Link to='/signup' className=" block text-blue-400 text-lg text-right mr-3 tracking-wider">Créer un compte</Link>
+          <Link
+            to="/signup"
+            className=" block text-blue-400 text-lg text-right mr-3 tracking-wider"
+          >
+            Créer un compte
+          </Link>
         </div>
         <button
           type="button"
