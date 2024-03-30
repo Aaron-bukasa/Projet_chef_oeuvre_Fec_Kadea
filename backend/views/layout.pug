@@ -2,6 +2,40 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/layout.css')
+    script(src="/javascripts/navbar.js", defer)
   body
-    block content
+    div(id='container')
+      div(class="navbar__top")
+        div(class="navbar__top-top") 
+          div(class="logo")
+            img(src="/images/logoFec.svg" alt="logo de la fec")
+          div(class='login') Connecté         
+        div(class="navbar__top-bottom")
+          a(href="/" class="navLink") Tableau de bord
+      div(class="navbar__left")
+        div
+          h2  
+            span Menu 
+            div(class="menu-button") 
+              img(src="/images/expand_circle_right.svg")
+              img(src="/images/close.svg")
+
+          a(href="/demandes")
+            img(src="/images/data_thresholding.svg")
+            span Démandes
+          a(href="/users") 
+            img(src="/images/users.svg")
+            span Utilisateurs
+          a(href="/statistic") 
+            img(src="/images/monitoring.svg")
+            span Statistiques
+          a(href="/parametres") 
+            img(src="/images/settings.svg")
+            span Paramètres
+      div(class="footer") 
+        div
+          img(src="/images/logoFec.svg" alt="logo de la féderation des entreprises")
+        div &copy; 2024 - Fédération des Entreprises du Congo. Tous droits réservés
+      div(class='main')
+        block content
