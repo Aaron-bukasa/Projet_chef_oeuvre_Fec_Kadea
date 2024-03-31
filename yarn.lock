@@ -5302,6 +5302,11 @@ __metadata:
   languageName: node
   linkType: hard
 
+workerpool@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.npmjs.org/workerpool/-/workerpool-6.2.1.tgz"
+  integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
+
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version: 7.0.0
   resolution: "wrap-ansi@npm:7.0.0"

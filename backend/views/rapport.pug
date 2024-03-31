@@ -1,0 +1,32 @@
+extends layout
+  
+block content
+    h1 Génération de rapports - Demandes d'adhésion
+    section.rapport
+        form(action="#", method="POST")
+            p Veuillez sélectionner les options de votre rapport :
+            div 
+                label(for="periode") Période
+                select#periode(name="periode")
+                    option(value="") Toutes les périodes
+                    option(value="aujourd'hui") Aujourd'hui
+                    option(value="cette_semaine") Cette semaine
+                    option(value="ce_mois") Ce mois
+                    option(value="cette_annee") Cette année
+                    option(value="periode_personnalisee") Période personnalisée
+            div
+                label(for="date_debut") Date de début
+                input(type="date", id="date_debut", name="date_debut")
+            div
+                label(for="date_fin") Date de fin
+                input(type="date", id="date_fin", name="date_fin")
+            div
+                label(for="format") Format du rapport
+                select#format(name="format")
+                    option(value="pdf") PDF
+                    option(value="csv") CSV
+                    option(value="xlsx") Excel
+            button.navLink(type="submit") Générer le rapport
+
+    link(rel="stylesheet", href="/stylesheets/rapport.css")
+
