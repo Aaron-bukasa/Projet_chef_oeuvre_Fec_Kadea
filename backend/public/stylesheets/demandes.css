@@ -1,0 +1,69 @@
+.demandes {
+    width: 100%;
+}
+h1 {
+    text-align: center;
+    color: var(--secondary-blue);
+    margin-bottom: 25px;
+}
+.filtres {
+    border: 2px solid var(--primary-blue);
+    padding: 25px;
+}
+h2 {
+    margin-bottom: 12px;
+}
+form div {
+    margin-block: 12px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    margin-left: 25px;
+    padding: 5px;
+    font-weight: 600;
+    padding-inline: 12px;
+}
+.liste-demandes {
+    margin-top: 50px;
+}
+table {
+    width: 100%;
+}
+thead {
+    background-color: #ccc;
+    padding: 5px;
+}
+th, td {
+    text-align: center;
+}
+td a {
+    padding-inline: 3px;
+}
+
+.statistic {
+    margin-block: 50px;
+}
+.btns {
+    display: flex;
+    column-gap: 25px;
+    margin-block: 25px;
+}
+
+@media screen and (min-width: 648px) {
+   .demandes {
+    font-size: 18px;
+   }
+}

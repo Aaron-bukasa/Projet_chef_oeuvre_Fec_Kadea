@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+    color: var(--secondary-blue);
+    margin-bottom: 25px;
+}
+
+.rapport {
+    border: 2px solid var(--primary-blue);
+    padding: 25px;
+}
+
+form div {
+    margin-block: 12px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    margin-left: 10%;
+    border: none;
+}
+
+@media screen and (min-width: 648px) {
+    .rapport {
+     font-size: 18px;
+    }
+ }
