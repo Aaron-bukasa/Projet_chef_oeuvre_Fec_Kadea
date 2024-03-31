@@ -1,4 +1,23 @@
 extends layout
   
 block content
-    h1 Utilisateur
+    h1= 'Utilisateur ' + user.nom
+    div
+        form(action="#")
+            p Identification : #{user.id}
+            p Nom : #{user.nom}
+            p Email : #{user.email}
+            p Role : #{user.role}
+            p Statut : #{user.statut}
+            p Date de création : #{user.date_inscription}
+            hr
+            label(for="validation") Validation
+            select(id="validation", name="validation")
+                option(value="") Choisir
+                option(value="valider") Bloquer
+                option(value="refuser") Supprimer
+            br
+            label(for="commentaire") Commentaire (facultatif)
+            textarea(id="commentaire", name="commentaire", rows="5", cols="50")
+            br
+            button(type="submit") Valider

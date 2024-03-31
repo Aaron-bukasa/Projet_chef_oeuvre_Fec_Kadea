@@ -58,24 +58,23 @@ block content
                     th Nom complet
                     th Role 
                     th Email
-                    th Télephone
+                    th Status
                     th Actions
             tbody
-                tr
-                    td 
-                    td 
-                    td 
-                    td 
-                    td 
-                    td
-                        a(href="#") Voir
-                        a(href="#") Modifier
-                        a(href="#") Annuler
+                each user in users
+                    tr
+                        td= user.id
+                        td= user.nom
+                        td= user.role
+                        td= user.email
+                        td= user.statut
+                        td 
+                            a(href="/users/id") Voir
+                            a(href="/users/id") Modifier
         ul.statistic 
-            li Nombre total comptes: !{0}
-            li Nombre de compte utilisateurs: !{0}
-            li Nombre de compte administrateur: !{0}
-            li Nombre de demandes annulé: !{0}
+            li Nombre total comptes: !{users.length}
+            li Nombre de compte utilisateurs: !{users.filter(user => user.role === 'utilisateur').length}
+            li Nombre de compte administrateur: !{users.filter(user => user.role === 'administrateur').length}
             li.btns 
                 div.navLink  Exporter les données
                 div.navLink  Actualiser la page
