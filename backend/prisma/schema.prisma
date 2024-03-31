@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Définition des modèles
+
+model Demande {
+  id                Int         @id @default(autoincrement())
+  nom               String
+  email             String
+  organisation      String
+  statut            String      @default("en attente")  // en attente, validée, rejetée
+  date_soumission   DateTime
+  fichiers_joints   Fichier[]
+}
+
+model Utilisateur {
+  id                  Int         @id @default(autoincrement())
+  nom                 String
+  email               String
+  mot_de_passe        String
+  role                String      @default("utilisateur")  // administrateur, utilisateur
+  statut              String      @default("actif")  // actif, inactif
+  date_inscription    DateTime
+}
+
+model Rapport {
+  id                  Int         @id @default(autoincrement())
+  type                String      // adhésions, demandes, etc.
+  date_generation     DateTime
+  contenu             String
+}
+
+model Fichier {
+  id                  Int         @id @default(autoincrement())
+  nom                 String
+  type                String
+  taille              Int
+  contenu             Bytes
+  demande             Demande?    @relation(fields: [demandeId], references: [id])
+  demandeId           Int?
+}
+
+model Paiement {
+  id                  Int         @id @default(autoincrement())
+  montant             Float
+  devise              String
+  statut              String      @default("en attente")  // en attente, validé, rejeté
+  date_paiement       DateTime
+}

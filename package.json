@@ -5,5 +5,8 @@
   "workspaces": [
     "frontend",
     "backend"
-  ]
+  ],
+  "devDependencies": {
+    "mocha": "^10.4.0"
+  }
 }

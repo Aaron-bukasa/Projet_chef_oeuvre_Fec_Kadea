@@ -1,0 +1,83 @@
+extends layout
+  
+block content
+    h1 Gestion des comptes utilisateurs
+    div.form
+        form(action="#", method="POST")
+            div 
+                label(for="nom") Nom
+                input(type="text", id="nom", name="nom")
+            div
+                label(for="prenom") Prénom
+                input(type="text", id="prenom", name="prenom")
+            div
+                label(for="email") Email
+                input(type="email", id="email", name="email")
+            div
+                label(for="telephone") Téléphone
+                input(type="tel", id="telephone", name="telephone")
+            div
+                label(for="role") Rôle
+                select(id="role", name="role")
+                    option(value="") Choisir un rôle
+                    option(value="administrateur") Administrateur
+                    option(value="utilisateur") Utilisateur
+            button.navLink(type="submit") Créer le compte
+        form(action="#", method="POST")
+            div 
+                label(for="utilisateur") Utilisateur
+                select(id="utilisateur", name="utilisateur")
+                    option(value="") Choisir un utilisateur
+                    option(value="1") Jean Dupont
+                    option(value="2") Marie Durand
+                    option(value="3") Pierre Martin
+            div
+                label(for="nom") Nom
+                input(type="text", id="nom", name="nom")
+            div
+                label(for="prenom") Prénom
+                input(type="text", id="prenom", name="prenom")
+            div
+                label(for="email") Email
+                input(type="email", id="email", name="email")
+            div
+                label(for="telephone") Téléphone
+                input(type="tel", id="telephone", name="telephone")
+            div
+                label(for="role") Rôle
+                select(id="role", name="role")
+                    option(value="") Choisir un rôle
+                    option(value="administrateur") Administrateur
+                    option(value="utilisateur") Utilisateur
+            button.navLink(type="submit") Modifier le compte
+    section.liste-users
+        table
+            thead
+                tr
+                    th ID
+                    th Nom complet
+                    th Role 
+                    th Email
+                    th Télephone
+                    th Actions
+            tbody
+                tr
+                    td 
+                    td 
+                    td 
+                    td 
+                    td 
+                    td
+                        a(href="#") Voir
+                        a(href="#") Modifier
+                        a(href="#") Annuler
+        ul.statistic 
+            li Nombre total comptes: !{0}
+            li Nombre de compte utilisateurs: !{0}
+            li Nombre de compte administrateur: !{0}
+            li Nombre de demandes annulé: !{0}
+            li.btns 
+                div.navLink  Exporter les données
+                div.navLink  Actualiser la page
+
+    link(rel="stylesheet", href="/stylesheets/users.css")

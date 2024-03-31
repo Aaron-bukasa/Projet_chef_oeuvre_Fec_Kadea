@@ -1,0 +1,53 @@
+extends layout
+  
+block content
+    div(class="demandes")
+        h1 Liste des demandes d'adhésion
+        section.filtres
+            h2 Filtres
+            form(action="#", method="GET")
+                div
+                    label(for="etat") État
+                    select#etat(name="etat")
+                        option(value="") Tous
+                        option(value="En cours") En cours
+                        option(value="Terminé") Terminé
+                        option(value="Annulé") Annulé
+                div
+                    label(for="date-debut") Date de début
+                    input(type="date", id="date-debut", name="date-debut")
+                div
+                    label(for="date-fin") Date de fin
+                    input(type="date", id="date-fin", name="date-fin")
+                    button(type="submit") Filtrer
+        section.liste-demandes
+            table
+                thead
+                    tr
+                        th Numéro
+                        th Date
+                        th État
+                        th Demandeur
+                        th Titre
+                        th Actions
+                tbody
+                    tr
+                        td 1234
+                        td 2023-03-23
+                        td En cours
+                        td Jean Dupont
+                        td Demande de subvention
+                        td
+                            a(href="/demandes/id") Voir
+                            a(href="#") Valider
+                            a(href="#") Refuser
+        ul.statistic 
+            li Nombre total de demandes: !{0}
+            li Nombre de demandes en attente: !{0}
+            li Nombre de demandes validées: !{0}
+            li Nombre de demandes annulé: !{0}
+            li.btns 
+                div.navLink  Exporter les données
+                div.navLink  Actualiser la page
+
+    link(rel="stylesheet", href="/stylesheets/demandes.css")
