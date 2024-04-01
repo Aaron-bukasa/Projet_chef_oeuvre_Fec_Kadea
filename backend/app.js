@@ -1,15 +1,17 @@
+require('dotenv').config({ path: '.envSecret' });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const cors = require('cors');
 const dashboardRouter = require('./routes/dashboard');
 const demandesRouter = require('./routes/demandes');
 const usersRouter = require('./routes/users');
 const rapportRouter = require('./routes/rapport');
 
 const app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

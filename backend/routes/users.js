@@ -7,5 +7,6 @@ router.post('/login', ctr_users.login)
 router.get('/', ctr_users.usersGet);
 router.get('/:id', ctr_users.userGet)
 router.put('/:id', ctr_users.userPut)
+router.delete('/:id', ctr_users.userDelete);
 
 module.exports = router;

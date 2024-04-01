@@ -6,7 +6,7 @@ export default function Signup() {
       <form
         action="/submit"
         method="POST"
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
         className="bg-secondary-blue tracking-wider text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
       >
         <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
@@ -14,7 +14,7 @@ export default function Signup() {
         </h1>
         <div className="pb-3">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="nom">Nom</label>
+            <label htmlFor="nom">Nom</label>
             <input
               type="text"
               id="nom"
@@ -25,7 +25,7 @@ export default function Signup() {
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="email">Adresse email</label>
+            <label htmlFor="email">Adresse email</label>
             <input
               type="email"
               id="email"
@@ -36,7 +36,7 @@ export default function Signup() {
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="password">Mot de passe</label>
+            <label htmlFor="password">Mot de passe</label>
             <input
               type="password"
               id="password"
@@ -55,7 +55,6 @@ export default function Signup() {
         </div>
         <button
           type="button"
-          onclick="window.location.href='/cancel'"
           className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
         >
           S'inscrire

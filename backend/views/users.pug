@@ -3,7 +3,7 @@ extends layout
 block content
     h1 Gestion des comptes utilisateurs
     div.form
-        form(action="#", method="POST")
+        form.signup(action="#", method="POST")
             div 
                 label(for="nom") Nom
                 input(type="text", id="nom", name="nom")
@@ -23,14 +23,13 @@ block content
                     option(value="administrateur") Administrateur
                     option(value="utilisateur") Utilisateur
             button.navLink(type="submit") Créer le compte
-        form(action="#", method="POST")
+        form.putUser(action="#", method="POST")
             div 
                 label(for="utilisateur") Utilisateur
                 select(id="utilisateur", name="utilisateur")
                     option(value="") Choisir un utilisateur
-                    option(value="1") Jean Dupont
-                    option(value="2") Marie Durand
-                    option(value="3") Pierre Martin
+                    each user in users
+                        option(value=user)= user.nom
             div
                 label(for="nom") Nom
                 input(type="text", id="nom", name="nom")
@@ -58,7 +57,7 @@ block content
                     th Nom complet
                     th Role 
                     th Email
-                    th Status
+                    th Télephone
                     th Actions
             tbody
                 each user in users
@@ -67,16 +66,16 @@ block content
                         td= user.nom
                         td= user.role
                         td= user.email
-                        td= user.statut
+                        td= user.telephone
                         td 
-                            a(href="/users/id") Voir
-                            a(href="/users/id") Modifier
+                            a(href=`/users/${user.id}`) Voir
+                            a(href=`/users/${user.id}`) Modifier
         ul.statistic 
             li Nombre total comptes: !{users.length}
             li Nombre de compte utilisateurs: !{users.filter(user => user.role === 'utilisateur').length}
             li Nombre de compte administrateur: !{users.filter(user => user.role === 'administrateur').length}
             li.btns 
-                div.navLink  Exporter les données
-                div.navLink  Actualiser la page
+                a.navLink  Exporter les données
+                a.navLink(href="/users")  Actualiser la page
 
     link(rel="stylesheet", href="/stylesheets/users.css")
