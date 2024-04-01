@@ -9,15 +9,15 @@ function generateAuthToken(user) {
       email: user.email,
       role: user.role
     };
-  
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
+    const secretKey = process.env.RANDOM_TOKEN_SECRET;
+    const token = jwt.sign(payload, secretKey, { expiresIn: '2h' });
   
     return token;
 }
 
 exports.signup = async(req, res) => {
     try {
-        const { nom, email, mot_de_passe, role } = req.body;
+        const { nom, email, telephone, mot_de_passe, role } = req.body;
     
         const motDePasseHash = bcrypt.hashSync(mot_de_passe, 10);
     
@@ -25,6 +25,7 @@ exports.signup = async(req, res) => {
           data: {
             nom,
             email,
+            telephone,
             mot_de_passe: motDePasseHash,
             role,
             statut: 'actif',
@@ -51,8 +52,8 @@ exports.login = async(req, res) => {
         if (!motDePasseValide) {
           return res.status(401).json({ message: 'Mot de passe incorrect' });
         }
-    
-        const token = generateAuthToken(utilisateur);
+        
+        const token = generateAuthToken(utilisateur)
     
         res.status(200).json({ token });
       } catch (error) {
@@ -63,8 +64,8 @@ exports.login = async(req, res) => {
 
 exports.userPut = async(req, res) => {
     try {
-        const userId = req.user.userId;
-        const { nom, email } = req.body;
+        const userId = req.body.id;
+        const { nom, email, telephone, role } = req.body;
     
         const utilisateur = await prisma.utilisateur.findUnique({ where: { id: userId } });
         if (!utilisateur) {
@@ -75,7 +76,9 @@ exports.userPut = async(req, res) => {
           where: { id: userId },
           data: {
             nom: nom || utilisateur.nom,
-            email: email || utilisateur.email
+            email: email || utilisateur.email,
+            telephone: telephone || utilisateur.telephone,
+            role: role || utilisateur.role
           }
         });
     
@@ -114,4 +117,19 @@ exports.userGet = async(req, res) => {
         console.error(error);
         res.status(500).json({ message: "Erreur lors de la récupération de l'utilisateur" });
       }
+}
+
+exports.userDelete = async(req, res) => {
+  try {
+      const { id } = req.params;
+  
+      await prisma.utilisateur.delete({
+        where: { id: parseInt(id) }
+      });
+  
+      res.status(200).json({ message: 'Utilisateur supprimé avec succès' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la suppression de l\'utilisateur' });
+    }
 }

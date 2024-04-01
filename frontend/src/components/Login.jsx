@@ -1,13 +1,43 @@
-
+import axios from "axios";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+
+  // window.location.href='/cancel'
+
+  const emailLoginRef = useRef();
+  const passwordLoginRef = useRef();
+
+  const handleLogin = async (event) => {
+    try {
+      event.preventDefault();
+      const emailValue = emailLoginRef.current.value;
+      const passwordValue = passwordLoginRef.current.value;
+
+      const response = await axios.post('http://localhost:3000/users/login', {
+        email: emailValue,
+        password: passwordValue,
+      });
+
+      if (response.status === 200) {
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        console.log(response);
+      } else {
+        console.error('Authentication failed');
+      }
+    } catch (error) {
+      console.error('Axios error:', error);
+    }
+  };
+
   return (
     <div className="mx-6 my-12 md:my-24">
       <form
         action="/submit"
         method="POST"
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
         className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
       >
         <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
@@ -15,8 +45,9 @@ export default function Login() {
         </h1>
         <div className="pb-3">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="email">Adresse email</label>
+            <label htmlFor="email">Adresse email</label>
             <input
+              ref={emailLoginRef}
               type="email"
               id="email"
               name="email"
@@ -26,8 +57,9 @@ export default function Login() {
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="password">Mot de passe</label>
+            <label htmlFor="password">Mot de passe</label>
             <input
+              ref={passwordLoginRef}
               type="password"
               id="password"
               name="password"
@@ -45,7 +77,7 @@ export default function Login() {
         </div>
         <button
           type="button"
-          onclick="window.location.href='/cancel'"
+          onClick={handleLogin}
           className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80"
         >
           Se connecter

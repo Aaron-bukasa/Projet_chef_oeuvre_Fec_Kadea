@@ -1,13 +1,15 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 exports.demandesGet = async(req, res) => {
 
-    try {
-        const demandes = await prisma.demande.findMany();
-    
-        res.status(200).render('demandes', {demandes});
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de la récupération des demandes' });
-      }
+  try {
+      const demandes = await prisma.demande.findMany();
+      res.status(200).render('demandes', {demandes});
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la récupération des demandes' });
+    }
 }
 
 exports.demandeGet = async(req, res) => {
@@ -39,8 +41,7 @@ exports.demandePost = async(req, res) => {
             email,
             organisation,
             statut: 'en attente',
-            date_soumission: new Date(),
-            fichiers_joints
+            date_soumission: new Date()
           }
         });
     

@@ -12,7 +12,7 @@ datasource db {
 model Demande {
   id                Int         @id @default(autoincrement())
   nom               String
-  email             String
+  email             String      @unique
   organisation      String
   statut            String      @default("en attente")  // en attente, validée, rejetée
   date_soumission   DateTime
@@ -22,7 +22,8 @@ model Demande {
 model Utilisateur {
   id                  Int         @id @default(autoincrement())
   nom                 String
-  email               String
+  email               String      @unique
+  telephone           String      @unique
   mot_de_passe        String
   role                String      @default("utilisateur")  // administrateur, utilisateur
   statut              String      @default("actif")  // actif, inactif

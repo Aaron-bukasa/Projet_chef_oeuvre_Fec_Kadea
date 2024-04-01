@@ -6,6 +6,9 @@
     "frontend",
     "backend"
   ],
+  "scripts": {
+    "start-all": "npm run dev --prefix frontend & npm run devstart --prefix backend"
+  },   
   "devDependencies": {
     "mocha": "^10.4.0"
   }
