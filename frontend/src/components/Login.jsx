@@ -1,29 +1,34 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import Home from "./Home"
 
 export default function Login() {
 
-  // window.location.href='/cancel'
-
   const emailLoginRef = useRef();
   const passwordLoginRef = useRef();
+  const [isUser, setIsUser] = useState(false);
 
   const handleLogin = async (event) => {
     try {
       event.preventDefault();
-      const emailValue = emailLoginRef.current.value;
-      const passwordValue = passwordLoginRef.current.value;
-
       const response = await axios.post('http://localhost:3000/users/login', {
-        email: emailValue,
-        password: passwordValue,
+        email: emailLoginRef.current.value,
+        mot_de_passe: passwordLoginRef.current.value
       });
 
       if (response.status === 200) {
         const { token } = response.data;
         localStorage.setItem('token', token);
-        console.log(response);
+        const decoded = jwtDecode(token);
+        const userRole = decoded.role;
+        
+        if(userRole === 'utilisateur') {
+          setIsUser(true)
+        } else if(userRole === 'administrateur') {
+          window.location.href = "http://localhost:3000/"
+        }
       } else {
         console.error('Authentication failed');
       }
@@ -31,6 +36,10 @@ export default function Login() {
       console.error('Axios error:', error);
     }
   };
+
+  if(isUser) {
+    return <Home />;
+  }
 
   return (
     <div className="mx-6 my-12 md:my-24">

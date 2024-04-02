@@ -1,6 +1,3 @@
-
-
-
 /* BAR DE NAVIGATION */
 const handleNavbarServer = () => {
     const menuButtonServer = document.querySelector('.menu-button');
@@ -63,11 +60,10 @@ const createUser = () => {
             if(!response.ok) {
                 throw new Error('Erreur lors de la requête : ' + response.statusText);
             }
-            window.location.href = "/users"
             return response.json();
 
         } catch (error) {
-            
+          console.error(error);  
         }
 
         nom.value = '';
