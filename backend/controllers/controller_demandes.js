@@ -33,14 +33,18 @@ exports.demandeGet = async(req, res) => {
 
 exports.demandePost = async(req, res) => {
     try {
-        const { nom, email, organisation, fichiers_joints } = req.body;
+        const { nom, email, telephone, organisation, role_ds_entreprise, motivation, objectifs /*fichiers_joints*/ } = req.body;
         
         const nouvelleDemande = await prisma.demande.create({
           data: {
             nom,
             email,
+            telephone,
             organisation,
-            statut: 'en attente',
+            role_ds_entreprise,
+            motivation,
+            objectifs,
+            // fichiers_joints,
             date_soumission: new Date()
           }
         });

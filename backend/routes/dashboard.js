@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctr_dashboard = require('../controllers/controller_dashboard')
+const ctr_dashboard = require('../controllers/controller_dashboard');
+const middlewareAuth = require("../middleware/auth")
 
 
 /* GET home page. */

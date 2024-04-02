@@ -1,13 +1,62 @@
+import axios from "axios";
+import { useRef, useState } from "react";
+import ConfirmationDmd from "./ConfirmationDmd";
+
 export default function FormulaireDmd() {
+
+  const [isSend, setIsSend] = useState(false);
+
+  const nomRef = useRef();
+  const emailRef = useRef();
+  const telephoneRef = useRef();
+  const organisationRef = useRef();
+  const role_ds_entrepriseRef = useRef();
+  const motivationRef = useRef();
+  const objectifsRef = useRef();
+  const cvRef = useRef();
+  const lettre_motivationRef = useRef();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+
+      const response = await axios.post('http://localhost:3000/demandes', {
+        nom: nomRef.current.value,
+        email: emailRef.current.value,
+        telephone: telephoneRef.current.value,
+        organisation: organisationRef.current.value,
+        role_ds_entreprise: role_ds_entrepriseRef.current.value,
+        motivation: motivationRef.current.value,
+        objectifs: objectifsRef.current.value,
+        // cv: cv.current.value,
+        // lettre_motivationRef: lettre_motivationRef.current.value
+        
+      });
+
+      if (response.status === 200) {
+        setIsSend(true);
+      } else {
+        console.error('Inscription échouée');
+      }
+    } catch (error) {
+      console.error('Erreur Axios:', error);
+    }
+  };
+
+  if(isSend) {
+    return <ConfirmationDmd />
+  }
+
   return (
     <div className="m-6">
       <form
-        action="/submit"
+        onSubmit={handleSubmit}
+        action=""
         method="POST"
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
         className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 max-w-[768px] md:mx-auto"
       >
-        <h1 className="font-bold text-2xl text-center text-secondary-blue p-6 sm:text-3xl md:text-4xl xl:text-5xl">
+        <h1 className="font-bold text-xl text-center p-6 sm:text-2xl md:text-3xl xl:text-4xl xl:mb-6">
           Formulaire de Demande d'Adhésion
         </h1>
         <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
@@ -15,36 +64,39 @@ export default function FormulaireDmd() {
         </h2>
         <div className="pb-6">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="nom_complet">Nom complet</label>
+            <label htmlFor="nom_complet">Nom complet</label>
             <input
+              ref={nomRef}
               type="text"
               id="nom_complet"
               name="nom_complet"
               placeholder="Nom complet"
               required
-              className="border-2 h-10 rounded-lg text-black p-3 sm:w-[50%]"
+              className="border-2 h-10 rounded-lg text-black p-3"
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="email">Adresse email</label>
+            <label htmlFor="email">Adresse email</label>
             <input
+              ref={emailRef}
               type="email"
               id="email"
               name="email"
               placeholder="Adresse email"
               required
-              className="border-2 h-10 rounded-lg text-black p-3 sm:w-[60%]"
+              className="border-2 h-10 rounded-lg text-black p-3"
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="telephone">Numéro de téléphone</label>
+            <label htmlFor="telephone">Numéro de téléphone</label>
             <input
+              ref={telephoneRef}
               type="tel"
               id="telephone"
               name="telephone"
               placeholder="Numéro de téléphone"
               required
-              className="border-2 h-10 rounded-lg text-black p-3 sm:w-[70%]"
+              className="border-2 h-10 rounded-lg text-black p-3"
             />
           </div>
         </div>
@@ -54,8 +106,9 @@ export default function FormulaireDmd() {
         </h2>
         <div className="pb-6">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="nom_org">Nom de l'organisation</label>
+            <label htmlFor="nom_org">Nom de l'organisation</label>
             <input
+              ref={organisationRef}
               type="text"
               id="nom_org"
               name="nom_org"
@@ -65,8 +118,9 @@ export default function FormulaireDmd() {
             />
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="role_org">Votre rôle dans l'organisation</label>
+            <label htmlFor="role_org">Votre rôle dans l'organisation</label>
             <input
+              ref={role_ds_entrepriseRef}
               type="text"
               id="role_org"
               name="role_org"
@@ -82,10 +136,11 @@ export default function FormulaireDmd() {
         </h2>
         <div className="pb-6">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="motivation">
+            <label htmlFor="motivation">
               Pourquoi souhaitez-vous adhérer à notre organisation?
             </label>
             <textarea
+              ref={motivationRef}
               id="motivation"
               name="motivation"
               rows="4"
@@ -96,10 +151,11 @@ export default function FormulaireDmd() {
             ></textarea>
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="objectifs">
+            <label htmlFor="objectifs">
               Quels sont vos objectifs en tant que membre?
             </label>
             <textarea
+              ref={objectifsRef}
               id="objectifs"
               name="objectifs"
               rows="4"
@@ -115,19 +171,20 @@ export default function FormulaireDmd() {
         </h2>
         <div className="pb-6">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label for="cv">Veuillez joindre votre CV (format PDF):</label>
-            <input type="file" id="cv" name="cv" accept=".pdf" required />
+            <label htmlFor="cv">Veuillez joindre votre CV (format PDF):</label>
+            <input ref={cvRef} type="file" id="cv" name="cv" accept=".pdf" /*required*/ />
           </div>
-          <div lassName="flex flex-col gap-y-1 mb-4">
-            <label for="lettre_motivation">
+          <div className="flex flex-col gap-y-1 mb-4">
+            <label htmlFor="lettre_motivation">
               Veuillez joindre une lettre de motivation (format PDF):
             </label>
             <input
+              ref={lettre_motivationRef}
               type="file"
               id="lettre_motivation"
               name="lettre_motivation"
               accept=".pdf"
-              required
+              // required
             />
           </div>
         </div>
@@ -142,14 +199,14 @@ export default function FormulaireDmd() {
               name="declaration"
               required
             />
-            <label for="declaration">
+            <label htmlFor="declaration">
               Je certifie que les informations fournies sont exactes et
               complètes.
             </label>
           </div>
           <div className="flex gap-x-3 items-center mb-4">
             <input type="checkbox" id="conditions" name="conditions" required />
-            <label for="conditions">
+            <label htmlFor="conditions">
               J'accepte les conditions générales d'adhésion.
             </label>
           </div>
@@ -161,8 +218,7 @@ export default function FormulaireDmd() {
             className="text-white font-bold bg-sky-blue p-3 rounded-xl hover:opacity-80 cursor-pointer"
           />
           <button
-            type="button"
-            onclick="window.location.href='/cancel'"
+            type="submit"
             className="ml-6 bg-[#dc3545] text-white font-bold bg-sky-blue p-3 rounded-xl hover:opacity-80"
           >
             Annuler

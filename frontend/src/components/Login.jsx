@@ -23,11 +23,17 @@ export default function Login() {
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
-        
+
+        const requestOptions = {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        };
         if(userRole === 'utilisateur') {
           setIsUser(true)
         } else if(userRole === 'administrateur') {
-          window.location.href = "http://localhost:3000/"
+          // const response = await axios.get('http://localhost:3000/', requestOptions);
+         window.location.href = "http://localhost:3000/";
         }
       } else {
         console.error('Authentication failed');

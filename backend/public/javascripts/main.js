@@ -60,7 +60,7 @@ const createUser = () => {
             if(!response.ok) {
                 throw new Error('Erreur lors de la requête : ' + response.statusText);
             }
-            return response.json();
+            window.location.href = "/users";
 
         } catch (error) {
           console.error(error);  

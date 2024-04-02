@@ -31,23 +31,24 @@ block content
                         th Titre
                         th Actions
                 tbody
-                    tr
-                        td 1234
-                        td 2023-03-23
-                        td En cours
-                        td Jean Dupont
-                        td Demande de subvention
-                        td
-                            a(href="/demandes/id") Voir
-                            a(href="#") Valider
-                            a(href="#") Refuser
+                    each demande in demandes
+                        tr
+                            td= demande.id
+                            td= demande.date_soumission
+                            td= demande.statut
+                            td= demande.organisation
+                            td= demande.nom
+                            td
+                                a(href="/demandes/id") Voir
+                                a(href="#") Valider
+                                a(href="#") Refuser
         ul.statistic 
-            li Nombre total de demandes: !{0}
-            li Nombre de demandes en attente: !{0}
-            li Nombre de demandes validées: !{0}
-            li Nombre de demandes annulé: !{0}
+            li Nombre total de demandes: !{demandes.length}
+            li Nombre de demandes en attente: !{demandes.filter(demande => demande.statut === 'en attente').length}
+            li Nombre de demandes validées: !{demandes.filter(demande => demande.statut === 'validé').length}
+            li Nombre de demandes annulé: !{demandes.filter(demande => demande.status === 'annulé').length}
             li.btns 
-                div.navLink  Exporter les données
-                div.navLink  Actualiser la page
+                a.navLink  Exporter les données
+                a.navLink(href="/demandes")  Actualiser la page
 
     link(rel="stylesheet", href="/stylesheets/demandes.css")
