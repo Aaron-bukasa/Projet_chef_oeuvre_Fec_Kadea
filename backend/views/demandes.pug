@@ -34,7 +34,7 @@ block content
                     each demande in demandes
                         tr
                             td= demande.id
-                            td= demande.date_soumission
+                            td= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
                             td= demande.statut
                             td= demande.organisation
                             td= demande.nom
@@ -45,8 +45,8 @@ block content
         ul.statistic 
             li Nombre total de demandes: !{demandes.length}
             li Nombre de demandes en attente: !{demandes.filter(demande => demande.statut === 'en attente').length}
-            li Nombre de demandes validées: !{demandes.filter(demande => demande.statut === 'validé').length}
-            li Nombre de demandes annulé: !{demandes.filter(demande => demande.status === 'annulé').length}
+            li Nombre de demandes validées: !{demandes.filter(demande => demande.statut === 'validée').length}
+            li Nombre de demandes annulé: !{demandes.filter(demande => demande.statut === 'rejetée').length}
             li.btns 
                 a.navLink  Exporter les données
                 a.navLink(href="/demandes")  Actualiser la page
