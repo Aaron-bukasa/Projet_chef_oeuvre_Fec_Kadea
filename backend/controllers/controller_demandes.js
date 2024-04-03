@@ -66,15 +66,12 @@ exports.demandePost = async(req, res) => {
 exports.demandePut = async(req, res) => {
     try {
         const { id } = req.params;
-        const { nom, email, organisation, fichiers_joints } = req.body;
+        const { statut } = req.body;
     
         const demandeModifiee = await prisma.demande.update({
           where: { id: parseInt(id) },
           data: {
-            nom,
-            email,
-            organisation,
-            fichiers_joints
+            statut: statut
           }
         });
     

@@ -17,17 +17,17 @@ block content
             p Lettre de motivation : #{demande.lettre_motivation}
         hr
         form.createSuiviDmd(action="#", method="POST")
-            h4 Veuillez valider la demande :
             p #{demande.id}
             div 
-                label(for="validation") Validation
-                select(id="validation", name="validation")
-                    option(value="") Choisir
-                    option(value="valider") Valider
-                    option(value="refuser") Refuser
-            div
-                label(for="commentaire") Commentaire (facultatif)
-                textarea(id="commentaire", name="commentaire", rows="5", cols="50")
+                if demande.suivi_demande.length <= 1
+                    label(for="validation") Veuillez valider la demande :
+                    select(id="validation", name="validation")
+                        option(value="") Choisir
+                        option(value="valider") Valider
+                        option(value="rejeter") Refuser
+                else 
+                    label(for="commentaire") Ajouter un évenement
+                    textarea(id="commentaire", name="commentaire", rows="5", cols="50")
             button(type="submit") Valider
         hr
         div 
@@ -42,7 +42,7 @@ block content
                     each suivi in demande.suivi_demande
                         tr
                             td= suivi.id
-                            td= suivi.date
+                            td= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
                             td= suivi.evenement
                             td
                                 a(href="#")  modifier

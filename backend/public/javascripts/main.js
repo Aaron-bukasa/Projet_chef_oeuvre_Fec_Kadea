@@ -60,7 +60,6 @@ const createUser = () => {
             if(!response.ok) {
                 throw new Error('Erreur lors de la requête : ' + response.statusText);
             }
-            window.location.href = "/users";
 
         } catch (error) {
           console.error(error);  
@@ -150,36 +149,80 @@ const SuiviDmd = () => {
     const formSuiviDmd = document.querySelector('.createSuiviDmd');
     const id = document.querySelector('.createSuiviDmd p');
     const commentaire = document.querySelector('#commentaire');
+    const validation = document.querySelector('#validation');
     
-    formSuiviDmd?.addEventListener('submit', async(e) => {
-        try {
-            e.preventDefault();
+    formSuiviDmd?.addEventListener('submit', (e) => {
+    
+        e.preventDefault();
+        const demandeId = Number(id.textContent);
 
-            const postData = {
-                demandeId: Number(id.textContent),
-                evenement: commentaire.value
-            };
-        
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postData)
-            };
+        if(validation) {
+            return suivi(validation)
+        } else {
+            const comment = suivi(commentaire);
+            commentaire.value = '';
+            return  comment;
+        }
 
-            const response =  await fetch('/suivi_demande', requestOptions);
+        async function suivi(evenement) {
+            try {
+                if(evenement.value === "") {
+                    return console.error("veiullez choisir une option");
+                }
+                const postData = {
+                    demandeId: demandeId,
+                    evenement: evenement.value === "valider" ? "Votre demande a été validée; vous pouvez suivre son évolution sur notre plateforme" : evenement.value === "rejeter" ? "Votre demande a été rejetée; vous pouvez nous contacter pour plus informations" : evenement.value,
+                };
+            
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                };
+    
+                const response =  await fetch('/suivi_demande', requestOptions);
+    
+                if(!response.ok) {
+                    throw new Error('Erreur lors de la requête : ' + response.statusText);
+                }
 
-            if(!response.ok) {
-                throw new Error('Erreur lors de la requête : ' + response.statusText);
+                if(evenement.value === "rejeter") {
+                    demandeStatut('rejetée')
+                } else if(evenement.value === "valider") {
+                    demandeStatut('validéé')
+                }
+
+                function demandeStatut(statut) {
+                    try {
+                        const postData = {
+                            statut: statut
+                        };
+                      
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(postData)
+                        };
+            
+                        const response = fetch(`/demandes/${demandeId}`, requestOptions);
+            
+                        if(!response.ok) {
+                            throw new Error('Erreur lors de la requête : ' + response.statusText);
+                        }  
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+                return response.json();
+            } catch (error) {
+                console.error(error)
             }
-            return response.json();
-
-        } catch (error) {
-        console.error(error);
         }
     })
 
-    commentaire.value = '';
 }
 SuiviDmd()
