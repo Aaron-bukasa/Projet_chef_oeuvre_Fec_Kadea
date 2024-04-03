@@ -13,22 +13,25 @@ exports.demandesGet = async(req, res) => {
 }
 
 exports.demandeGet = async(req, res) => {
-    try {
-        const { id } = req.params;
-    
-        const demande = await prisma.demande.findUnique({
-          where: { id: parseInt(id) }
-        });
-    
-        if (!demande) {
-          return res.status(404).json({ message: 'Demande non trouvée' });
+  try {
+      const { id } = req.params;
+  
+      const demande = await prisma.demande.findUnique({
+        where: { id: parseInt(id) },
+        include: {
+          suivi_demande: true
         }
-    
-        res.status(200).render('demande', {demande});
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
+      });
+  
+      if (!demande) {
+        return res.status(404).json({ message: 'Demande non trouvée' });
       }
+      console.log(demande);
+      res.status(200).render('demande', {demande});
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
+    }
 }
 
 exports.demandePost = async(req, res) => {
@@ -45,10 +48,14 @@ exports.demandePost = async(req, res) => {
             motivation,
             objectifs,
             // fichiers_joints,
-            date_soumission: new Date()
+            date_soumission: new Date(),
+            suivi_demande: {
+              create: [
+                { evenement: "Démande d'adhésion en attente" },
+              ]
+            }
           }
         });
-    
         res.status(200).json({ message: 'Demande soumise avec succès', demande: nouvelleDemande });
     } catch (error) {
         console.error(error);
@@ -77,7 +84,7 @@ exports.demandePut = async(req, res) => {
         res.status(500).json({ message: 'Erreur lors de la modification de la demande' });
       }
 }
-
+/*
 exports.demandeDelete = async(req, res) => {
     try {
         const { id } = req.params;
@@ -91,4 +98,29 @@ exports.demandeDelete = async(req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Erreur lors de l\'annulation de la demande' });
       }
+}
+*/
+exports.demandeDelete = async(req, res) => {
+  try {
+      const { id } = req.params;
+  
+      const suivisDemande = await prisma.suiviDemande.findMany({
+        where: { demandeId: parseInt(id) }
+      });
+
+      for (const suivi of suivisDemande) {
+        await prisma.suiviDemande.delete({
+          where: { id: suivi.id }
+        });
+      }
+  
+      await prisma.demande.delete({
+        where: { id: parseInt(id) }
+      });
+  
+      res.status(200).json({ message: 'Demande annulée avec succès' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de l\'annulation de la demande' });
+    }
 }

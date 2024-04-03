@@ -3,14 +3,23 @@ extends layout
 block content
     h1 Validation de la demande
     div.validation-demande
-        form(action="#", method="POST")
-            p Demande de : strong Jean Dupont
-            p Titre de la demande : strong Demande de subvention
-            p Date de la demande : strong 2023-03-23
-            p État de la demande : strong En cours de validation
-            hr
-            p Veuillez valider la demande :
-            div
+        div
+            p Identification : #{demande.id}
+            p Nom : #{demande.nom}
+            p Email : #{demande.email}
+            p Telephone : #{demande.telephone}
+            p Organisation : #{demande.organisation}
+            p Role dans l'entreprise : #{demande.role_ds_entreprise}
+            p Motivation : #{demande.motivation}
+            p Objectifs : #{demande.objectifs}
+            p Date de création : #{demande.date_soumission}
+             p Curriculum vitae : #{demande.cv}
+            p Lettre de motivation : #{demande.lettre_motivation}
+        hr
+        form.createSuiviDmd(action="#", method="POST")
+            h4 Veuillez valider la demande :
+            p #{demande.id}
+            div 
                 label(for="validation") Validation
                 select(id="validation", name="validation")
                     option(value="") Choisir
@@ -20,5 +29,26 @@ block content
                 label(for="commentaire") Commentaire (facultatif)
                 textarea(id="commentaire", name="commentaire", rows="5", cols="50")
             button(type="submit") Valider
+        hr
+        div 
+            table
+                thead
+                    tr
+                        th Id
+                        th Date
+                        th Evénement
+                        th Actions
+                tbody
+                    each suivi in demande.suivi_demande
+                        tr
+                            td= suivi.id
+                            td= suivi.date
+                            td= suivi.evenement
+                            td
+                                a(href="#")  modifier
+                                a(href="#") Valider
+                                a(href="#") Delete
+        
 
-    link(rel="stylesheet", href="/stylesheets/dmde.css")
+
+    link(rel="stylesheet", href="/stylesheets/demande.css")
