@@ -12,7 +12,7 @@ block content
             p Role dans l'entreprise : #{demande.role_ds_entreprise}
             p Motivation : #{demande.motivation}
             p Objectifs : #{demande.objectifs}
-            p Date de création : #{demande.date_soumission}
+            p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
              p Curriculum vitae : #{demande.cv}
             p Lettre de motivation : #{demande.lettre_motivation}
         hr
@@ -28,7 +28,7 @@ block content
                 else 
                     label(for="commentaire") Ajouter un évenement
                     textarea(id="commentaire", name="commentaire", rows="5", cols="50")
-            button(type="submit") Valider
+                button.navLink(type="submit") Valider
         hr
         div 
             table

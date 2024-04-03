@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; 
+import Home from "./Home";
 
-export default function Signup() {
+export default function Signup({login, setIsName}) {
   const [isLogin, setIsLogin] = useState(false);
 
   const nomRef = useRef();
@@ -27,7 +28,9 @@ export default function Signup() {
         mot_de_passe
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
+        login(true);
+        setIsName(nom);
         setIsLogin(true);
       } else {
         console.error('Inscription échouée');
@@ -38,7 +41,7 @@ export default function Signup() {
   };
 
   if (isLogin) {
-    return <Redirect to="/home" />;
+    return <Home />
   }
 
   return (
