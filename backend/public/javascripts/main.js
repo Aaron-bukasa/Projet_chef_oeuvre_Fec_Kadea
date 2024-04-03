@@ -33,7 +33,7 @@ const createUser = () => {
     const telephone = document.querySelector('.signup #telephone');
     const role = document.querySelector('.signup #role');
 
-    signup.addEventListener('submit', signupUser)
+    signup?.addEventListener('submit', signupUser)
 
     async function signupUser(e) {
         try {
@@ -89,7 +89,7 @@ const putUser = () => {
     let user;
     let id;
 
-    selectUser.addEventListener('change', (event) => {
+    selectUser?.addEventListener('change', (event) => {
         user = event.target.value;
 
         const newUser = user.split(',')
@@ -102,7 +102,7 @@ const putUser = () => {
         role.value = newUser[5].match(/(?<=:").+(?=")/);
     })
 
-    putUser.addEventListener('submit', async(e) => {
+    putUser?.addEventListener('submit', async(e) => {
         try {
             e.preventDefault();
 
@@ -131,7 +131,7 @@ const putUser = () => {
             return response.json();
 
         } catch (error) {
-            
+            console.error(error);
         }
         selectUser.value = "";
         nom.value = '';
@@ -146,26 +146,40 @@ const putUser = () => {
 putUser()
 
 
-// const inputNom = document.getElementById('nom');
-// const inputPrenom = document.getElementById('prenom');
-// const inputEmail = document.getElementById('email');
-// const inputTelephone = document.getElementById('telephone');
-// const selectRole = document.getElementById('role');
+const SuiviDmd = () => {
+    const formSuiviDmd = document.querySelector('.createSuiviDmd');
+    const id = document.querySelector('.createSuiviDmd p');
+    const commentaire = document.querySelector('#commentaire');
+    
+    formSuiviDmd?.addEventListener('submit', async(e) => {
+        try {
+            e.preventDefault();
 
-// selectUtilisateur.addEventListener('change', (event) => {
-//     const selectedUserId = event.target.value;
-//     const selectedUser = users.find(user => user.id === selectedUserId);
-//     if (selectedUser) {
-//         inputNom.value = selectedUser.nom;
-//         inputPrenom.value = selectedUser.prenom;
-//         inputEmail.value = selectedUser.email;
-//         inputTelephone.value = selectedUser.telephone;
-//         selectRole.value = selectedUser.role;
-//     } else {
-//         inputNom.value = '';
-//         inputPrenom.value = '';
-//         inputEmail.value = '';
-//         inputTelephone.value = '';
-//         selectRole.value = '';
-//     }
-// });
+            const postData = {
+                demandeId: Number(id.textContent),
+                evenement: commentaire.value
+            };
+        
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            };
+
+            const response =  await fetch('/suivi_demande', requestOptions);
+
+            if(!response.ok) {
+                throw new Error('Erreur lors de la requête : ' + response.statusText);
+            }
+            return response.json();
+
+        } catch (error) {
+        console.error(error);
+        }
+    })
+
+    commentaire.value = '';
+}
+SuiviDmd()

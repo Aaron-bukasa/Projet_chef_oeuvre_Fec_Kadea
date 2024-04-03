@@ -21,7 +21,17 @@ model Demande {
   statut            String      @default("en attente")  // en attente, validée, rejetée
   date_soumission   DateTime
   //fichiers_joints   Fichier[]
+  suivi_demande  SuiviDemande[]
 }
+
+model SuiviDemande {
+  id          Int       @id @default(autoincrement())
+  evenement   String
+  date        DateTime  @default(now())
+  demande     Demande   @relation(fields: [demandeId], references: [id])
+  demandeId   Int
+}
+
 
 model Utilisateur {
   id                  Int         @id @default(autoincrement())
