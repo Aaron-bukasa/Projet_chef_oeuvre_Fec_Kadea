@@ -2,9 +2,9 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import Home from "./Home"
+import Home from "./Home";
 
-export default function Login() {
+export default function Login({login, setIsName}) {
 
   const emailLoginRef = useRef();
   const passwordLoginRef = useRef();
@@ -23,6 +23,7 @@ export default function Login() {
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
+        const userName = decoded.nom
 
         const requestOptions = {
           headers: {
@@ -30,7 +31,9 @@ export default function Login() {
           }
         };
         if(userRole === 'utilisateur') {
-          setIsUser(true)
+          login(true);
+          setIsUser(true);
+          setIsName(userName.match(/[a-zA-Z]+/));
         } else if(userRole === 'administrateur') {
           // const response = await axios.get('http://localhost:3000/', requestOptions);
          window.location.href = "http://localhost:3000/";

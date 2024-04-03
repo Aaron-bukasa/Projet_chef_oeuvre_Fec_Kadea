@@ -7,7 +7,8 @@ function generateAuthToken(user) {
     const payload = {
       userId: user.id,
       email: user.email,
-      role: user.role
+      role: user.role,
+      nom: user.nom
     };
     const secretKey = process.env.RANDOM_TOKEN_SECRET;
     const token = jwt.sign(payload, secretKey, { expiresIn: '2h' });

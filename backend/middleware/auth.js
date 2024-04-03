@@ -7,9 +7,9 @@ function auth(req, res, next) {
     const token = authHeader && authHeader.split(' ')[1];
     if (!token) return res.sendStatus(401);
 
-    jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, utilisateur) => {
+    jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
-        req.utilisateur = utilisateur;
+        req.user = utilisateur;
         next();
     });
 }

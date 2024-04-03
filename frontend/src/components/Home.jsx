@@ -28,6 +28,9 @@ import bgTemoignages from "../assets/images/bg_temoignages.jpg";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+
+  console.log(localStorage.getItem('token'));
+
   return (
     <div className="leading-6 lg:leading-8">
       <Bannere />

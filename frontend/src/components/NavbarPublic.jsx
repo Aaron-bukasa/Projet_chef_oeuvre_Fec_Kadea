@@ -5,7 +5,7 @@ import imgMenu from '../assets/images/menu.svg'
 import imgClose from '../assets/images/close.svg'
 import { useState } from 'react'
 
-export default function Navbar() {
+export default function NavbarPublic() {
 
     const [isClick, setIsClick] = useState(false);
 
