@@ -29,7 +29,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
 
-  console.log(localStorage.getItem('token'));
+  localStorage.getItem('token');
 
   return (
     <div className="leading-6 lg:leading-8">

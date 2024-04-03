@@ -23,7 +23,7 @@ function App() {
       <div className="max-w-screen">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup login={setIsLogin} setIsName={setIsName}/>} />
           <Route path="/login" element={<Login login={setIsLogin} setIsName={setIsName}/>} />
           <Route path="/formulaireDmd" element={<FormulaireDmd />} />
           <Route path="/suiviDmd" element={<SuiviDmd />} />

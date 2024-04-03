@@ -81,22 +81,6 @@ exports.demandePut = async(req, res) => {
         res.status(500).json({ message: 'Erreur lors de la modification de la demande' });
       }
 }
-/*
-exports.demandeDelete = async(req, res) => {
-    try {
-        const { id } = req.params;
-    
-        await prisma.demande.delete({
-          where: { id: parseInt(id) }
-        });
-    
-        res.status(200).json({ message: 'Demande annulée avec succès' });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de l\'annulation de la demande' });
-      }
-}
-*/
 exports.demandeDelete = async(req, res) => {
   try {
       const { id } = req.params;

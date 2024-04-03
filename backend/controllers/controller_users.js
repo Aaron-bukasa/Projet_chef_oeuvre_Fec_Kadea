@@ -30,7 +30,12 @@ exports.signup = async(req, res) => {
             mot_de_passe: motDePasseHash,
             role,
             statut: 'actif',
-            date_inscription: new Date()
+            date_inscription: new Date(),
+            suivi_utilisateur: {
+              create: [
+                { notifications: "Bienvenue sur votre compte utilisateur" },
+              ]
+            }
           }
         });
     
@@ -40,6 +45,7 @@ exports.signup = async(req, res) => {
         res.status(500).json({ message: 'Erreur lors de l\'inscription' });
       }
 }
+
 exports.login = async(req, res) => {
     try {
         const { email, mot_de_passe } = req.body;
@@ -106,7 +112,10 @@ exports.userGet = async(req, res) => {
         const { id } = req.params;
     
         const user = await prisma.utilisateur.findUnique({
-          where: { id: parseInt(id) }
+          where: { id: parseInt(id) },
+          include: {
+            suivi_utilisateur: true
+          }
         });
     
         if (!user) {

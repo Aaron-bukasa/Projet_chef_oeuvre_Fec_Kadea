@@ -42,7 +42,17 @@ model Utilisateur {
   role                String      @default("utilisateur")  // administrateur, utilisateur
   statut              String      @default("actif")  // actif, inactif
   date_inscription    DateTime
+  suivi_utilisateur  SuiviUtilisateur[]
 }
+
+model SuiviUtilisateur {
+  id          Int       @id @default(autoincrement())
+  notifications   String
+  date        DateTime  @default(now())
+  utilisateur     Utilisateur   @relation(fields: [utilisateurId ], references: [id])
+  utilisateurId   Int
+}
+
 
 model Rapport {
   id                  Int         @id @default(autoincrement())
