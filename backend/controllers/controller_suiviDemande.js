@@ -21,7 +21,6 @@ exports.suiviDemandePost = async (req, res) => {
 exports.suviDemandeGet = async(req, res) => {
   try {
       const { id } = req.params;
-      console.log(req.body);
       const demande = await prisma.demande.findUnique({
         where: { id: parseInt(id) },
         include: {
@@ -37,44 +36,10 @@ exports.suviDemandeGet = async(req, res) => {
         }
 
         const suiviDemande = demande.suivi_demande;
-        console.log(suiviDemande);
-        res.status(200).json({suivi_demande: suiviDemande});
+        res.status(200).json(suiviDemande);
       }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
     }
 }
-/*
-exports.suiviDemandesGet = async(req, res) => {
-
-  try {
-      const demandes = await prisma.suiviDemande.findMany();
-      res.status(200).render('demandes', {demandes});
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur lors de la récupération des demandes' });
-    }
-}
-*/
-/*
-exports.demandeGet = async(req, res) => {
-    try {
-        const { id } = req.params;
-    
-        const demande = await prisma.demande.findUnique({
-          where: { id: parseInt(id) }
-        });
-    
-        if (!demande) {
-          return res.status(404).json({ message: 'Demande non trouvée' });
-        }
-    
-        res.status(200).render('demande', {demande});
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
-      }
-}
-
-*/

@@ -14,17 +14,16 @@ import { useState } from "react";
 function App() {
 
   const [isLogin, setIsLogin] = useState(false)
-  const [isname, setIsName] = useState(null);
-
+  const [isUser, setIsUser] = useState([]);
   
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden">
-      {!isLogin ? <NavbarPublic /> : <NavbarUtilisateur name={isname}/>}
+      {!isLogin ? <NavbarPublic /> : <NavbarUtilisateur user={isUser}/>}
       <div className="max-w-screen">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup login={setIsLogin} setIsName={setIsName}/>} />
-          <Route path="/login" element={<Login login={setIsLogin} setIsName={setIsName}/>} />
+          <Route path="/signup" element={<Signup login={setIsLogin} userInfo={setIsUser}/>} />
+          <Route path="/login" element={<Login login={setIsLogin} userInfo={setIsUser}/>} />
           <Route path="/formulaireDmd" element={<FormulaireDmd />} />
           <Route path="/suiviDmd" element={<SuiviDmd />} />
           <Route path="/notifications" element={<Notifications />} />
