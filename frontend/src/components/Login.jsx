@@ -36,7 +36,6 @@ export default function Login({login, setIsName}) {
           setIsName(userName.match(/[a-zA-Z]+/));
         } else if(userRole === 'administrateur') {
           // const response = await axios.get('http://localhost:3000/', requestOptions);
-         window.location.href = "http://localhost:3000/";
         }
       } else {
         console.error('Authentication failed');
