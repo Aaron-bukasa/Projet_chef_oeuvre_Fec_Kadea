@@ -5,6 +5,7 @@ import ConfirmationDmd from "./ConfirmationDmd";
 export default function FormulaireDmd() {
 
   const [isSend, setIsSend] = useState(false);
+  const [numero, setNumero] = useState(null)
 
   const nomRef = useRef();
   const emailRef = useRef();
@@ -34,6 +35,7 @@ export default function FormulaireDmd() {
       });
 
       if (response.status === 200) {
+        setNumero(response.data.numero);
         setIsSend(true);
       } else {
         console.error('Inscription échouée');
@@ -44,7 +46,7 @@ export default function FormulaireDmd() {
   };
 
   if(isSend) {
-    return <ConfirmationDmd />
+    return <ConfirmationDmd numero={numero}/>
   }
 
   return (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"; 
 import Home from "./Home";
 
-export default function Signup({login, setIsName}) {
+export default function Signup({login, userInfo}) {
   const [isLogin, setIsLogin] = useState(false);
 
   const nomRef = useRef();
@@ -29,9 +29,10 @@ export default function Signup({login, setIsName}) {
       });
 
       if (response.status === 201) {
+        const userId = response.data.utilisateur.id;
         login(true);
-        setIsName(nom);
         setIsLogin(true);
+        userInfo(nom, email, userId)
       } else {
         console.error('Inscription échouée');
       }

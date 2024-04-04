@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Home from "./Home";
 
-export default function Login({login, setIsName}) {
+export default function Login({login, userInfo}) {
 
   const emailLoginRef = useRef();
   const passwordLoginRef = useRef();
@@ -13,9 +13,11 @@ export default function Login({login, setIsName}) {
   const handleLogin = async (event) => {
     try {
       event.preventDefault();
+      const email = emailLoginRef.current.value;
+
       const response = await axios.post('http://localhost:3000/users/login', {
-        email: emailLoginRef.current.value,
-        mot_de_passe: passwordLoginRef.current.value
+        email : emailLoginRef.current.value,
+        mot_de_passe : passwordLoginRef.current.value
       });
 
       if (response.status === 200) {
@@ -23,8 +25,9 @@ export default function Login({login, setIsName}) {
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
-        const userName = decoded.nom
-
+        const userName = decoded.nom;
+        const userId = decoded.userId;
+      
         const requestOptions = {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -33,7 +36,7 @@ export default function Login({login, setIsName}) {
         if(userRole === 'utilisateur') {
           login(true);
           setIsUser(true);
-          setIsName(userName.match(/[a-zA-Z]+/));
+          userInfo([userName.match(/[a-zA-Z]+/)[0], email, userId])
         } else if(userRole === 'administrateur') {
           // const response = await axios.get('http://localhost:3000/', requestOptions);
         }

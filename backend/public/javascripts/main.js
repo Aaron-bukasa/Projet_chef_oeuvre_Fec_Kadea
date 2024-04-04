@@ -145,7 +145,7 @@ const putUser = () => {
 putUser()
 
 
-const SuiviDmd = () => {
+const suiviDmd = () => {
     const formSuiviDmd = document.querySelector('.createSuiviDmd');
     const id = document.querySelector('.createSuiviDmd p');
     const commentaire = document.querySelector('#commentaire');
@@ -225,4 +225,4 @@ const SuiviDmd = () => {
     })
 
 }
-SuiviDmd()
+suiviDmd()

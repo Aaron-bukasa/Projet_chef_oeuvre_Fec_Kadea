@@ -4,7 +4,7 @@ import axios from "axios";
 function SuiviDmd() {
   const nomRef = useRef();
   const idRef = useRef();
-  const [isNotifications, setIsNotifications] = useState();
+  const [isNotifications, setIsNotifications] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -12,8 +12,6 @@ function SuiviDmd() {
     try {
       const id = idRef.current.value;
       const nom = nomRef.current.value;
-
-      console.log(id, nom);
 
       const response = await axios.post(`http://localhost:3000/suivi_demande/${id}`, {
         nom: nom
@@ -27,6 +25,9 @@ function SuiviDmd() {
     } catch (error) {
       console.error("Axios error:", error);
     }
+
+    idRef.current.value = '';
+    nomRef.current.value = '';
   };
 
   return (
@@ -73,9 +74,9 @@ function SuiviDmd() {
       </form>
       <div className="font-bold text-lg italic p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto border-4">
         <ul>
-        {Array.isArray(isNotifications) && isNotifications.map((notification) => (
-          <li key={notification.id}>
-            <p>{notification.date}</p>
+        {isNotifications && isNotifications.map((notification) => (
+          <li key={notification.id} className="flex gap-x-6 p-3 border-bottom-2">
+            <p>{new Date(notification.date).toLocaleString('en-GB', { timeZone: 'UTC' })}</p>
             <p>{notification.evenement}</p>
           </li>
         ))}

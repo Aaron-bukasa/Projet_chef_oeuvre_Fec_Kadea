@@ -56,7 +56,7 @@ exports.demandePost = async(req, res) => {
             }
           }
         });
-        res.status(200).json({ message: 'Demande soumise avec succès', demande: nouvelleDemande });
+        res.status(200).json({ message: 'Demande soumise avec succès', numero: nouvelleDemande.id });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Erreur lors de la soumission de la demande' });
