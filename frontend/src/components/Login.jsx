@@ -2,13 +2,11 @@ import axios from "axios";
 import {  useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import Home from "./Home";
 
-export default function Login({login, userInfo}) {
+export default function Login() {
 
   const emailLoginRef = useRef();
   const passwordLoginRef = useRef();
-  const [isUser, setIsUser] = useState(false);
 
   const handleLogin = async (event) => {
     try {
@@ -25,8 +23,6 @@ export default function Login({login, userInfo}) {
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
-        const userName = decoded.nom;
-        const userId = decoded.userId;
       
         const requestOptions = {
           headers: {
@@ -34,9 +30,7 @@ export default function Login({login, userInfo}) {
           }
         };
         if(userRole === 'utilisateur') {
-          login(true);
-          setIsUser(true);
-          userInfo([userName.match(/[a-zA-Z]+/)[0], email, userId])
+          window.location.href = '/'
         } else if(userRole === 'administrateur') {
           // const response = await axios.get('http://localhost:3000/', requestOptions);
         }
@@ -47,10 +41,6 @@ export default function Login({login, userInfo}) {
       console.error('Axios error:', error);
     }
   };
-
-  if(isUser) {
-    return <Home />;
-  }
 
   return (
     <div className="mx-6 my-12 md:my-24">
