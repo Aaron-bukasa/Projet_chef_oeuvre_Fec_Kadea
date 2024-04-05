@@ -8,5 +8,6 @@ router.get('/', ctr_users.usersGet);
 router.get('/:id', ctr_users.userGet)
 router.put('/:id', ctr_users.userPut)
 router.delete('/:id', ctr_users.userDelete);
+router.post('/logout', ctr_users.userLogout);
 
 module.exports = router;

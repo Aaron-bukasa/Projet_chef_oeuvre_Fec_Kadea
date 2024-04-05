@@ -4,17 +4,22 @@ const prisma = new PrismaClient();
 exports.suiviUserPost = async (req, res) => {
   try {
     const { utilisateurId, notifications } = req.body;
+    console.log(utilisateurId, notifications);
     const nouveauSuiviUtilisateur = await prisma.suiviUtilisateur.create({
       data: {
-        utilisateur: { connect: { id: utilisateurId } },
-        notifications,
-      },
+        utilisateur: {
+          connect: {
+            id: utilisateurId
+          }
+        },
+        notifications: notifications 
+      }
     });
-
-    res.status(201).json({ message: 'Suivi de demande créé avec succès', suivi: nouveauSuiviUtilisateur });
+    console.log(nouveauSuiviUtilisateur);
+    res.status(201).json(nouveauSuiviUtilisateur);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Erreur lors de la création du suivi de demande' });
+    res.status(500).json({ message: "Une erreur s'est produite lors de la création du suivi utilisateur." });
   }
 };
 
@@ -35,7 +40,6 @@ exports.suviUserGet = async(req, res) => {
         if(utilisateur.email !== req.body.email) {
           return res.status(404).json({ message: "le nom ou l'email incorrect"})
         }
-        console.log(utilisateur);
         const suiviUtilisateur = utilisateur.suivi_utilisateur;
         res.status(200).json(suiviUtilisateur);
       }

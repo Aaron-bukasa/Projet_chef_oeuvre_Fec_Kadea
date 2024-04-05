@@ -11,7 +11,7 @@ block content
             p Statut : #{user.statut}
             p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
         hr
-        form.suiviUtilisateur(action="#", method="POST")
+        form.suiviUtilisateur(action="/suivi_utilisateur", method="POST")
             p #{user.id}
             div
                 label(for="action") Actions

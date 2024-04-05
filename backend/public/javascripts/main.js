@@ -145,7 +145,7 @@ const putUser = () => {
 putUser()
 
 
-const suiviDmd = () => {
+const SuiviDmd = () => {
     const formSuiviDmd = document.querySelector('.createSuiviDmd');
     const id = document.querySelector('.createSuiviDmd p');
     const commentaire = document.querySelector('#commentaire');
@@ -225,4 +225,51 @@ const suiviDmd = () => {
     })
 
 }
-suiviDmd()
+SuiviDmd()
+
+
+const suiviUtilisateur = () => {
+    const formSuivi = document.querySelector('.suiviUtilisateur');
+    const id = document.querySelector('.suiviUtilisateur p');
+    const commentaire = document.querySelector('#commentaire');
+    
+    formSuivi.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const utilisateurId = Number(id.textContent);
+
+            try {
+                if(commentaire.value === "") {
+                    return console.error("votre message ne contient aucun contenu");
+                }
+                console.log(utilisateurId, commentaire.value);
+                const postData = {
+                    utilisateurId: utilisateurId,
+                    notifications: commentaire.value,
+                };
+            
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                };
+    
+                const response =  await fetch('/suivi_utilisateur', requestOptions);
+    
+                if(!response.ok) {
+                    return console.error('Erreur lors de la requête : ' + response.statusText);
+                }
+
+                return response.json();
+
+            } catch (error) {
+                console.error(error)
+            }
+    })
+}
+
+suiviUtilisateur();
+
+
+
