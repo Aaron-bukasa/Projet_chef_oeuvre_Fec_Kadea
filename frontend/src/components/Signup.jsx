@@ -1,10 +1,8 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; 
-import Home from "./Home";
 
-export default function Signup({login, userInfo}) {
-  const [isLogin, setIsLogin] = useState(false);
+export default function Signup() {
 
   const nomRef = useRef();
   const prenomRef = useRef();
@@ -14,6 +12,8 @@ export default function Signup({login, userInfo}) {
 
   const handleSignup = async (event) => {
     event.preventDefault();
+    localStorage.removeItem("token");
+
     try {
       const nom = nomRef.current.value;
       const prenom = prenomRef.current.value;
@@ -29,13 +29,9 @@ export default function Signup({login, userInfo}) {
       });
 
       if (response.status === 201) {
-        login(true);
-        setIsLogin(true);
-        userInfo([
-          response.data.utilisateur.nom.match(/(?<= )[a-zA-Z]+/),
-          response.data.utilisateur.email,
-          response.data.utilisateur.id
-        ])
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        window.location.href = '/'
   
       } else {
         console.error('Inscription échouée');
@@ -44,10 +40,6 @@ export default function Signup({login, userInfo}) {
       console.error('Erreur Axios:', error);
     }
   };
-
-  if (isLogin) {
-    return <Home />
-  }
 
   return (
     <div className="mx-6 my-12 md:my-24">
@@ -135,12 +127,6 @@ export default function Signup({login, userInfo}) {
         >
           S'inscrire
         </button>
-        <Link
-          to="/login"
-          className="block text-blue-400 text-lg text-right mr-3 tracking-wider"
-        >
-          Se connecter
-        </Link>
       </form>
     </div>
   );

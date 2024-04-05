@@ -5,14 +5,19 @@ import imgMenu from '../assets/images/menu.svg'
 import imgClose from '../assets/images/close.svg'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import { jwtDecode } from "jwt-decode";
+
 import Notifications from './Notifications'
 
-export default function NavbarUtilisateur({user}) {
+export default function NavbarUtilisateur() {
     
     const [isClick, setIsClick] = useState(false);
     const [isHover, setIsHover] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const [isHovered, setIsHovered] = useState(false);
+
+    const token = localStorage.getItem('token')
+    const decoded = jwtDecode(token);
 
     const handleMouseEnter = () => {
       setIsHovered(true);
@@ -23,10 +28,9 @@ export default function NavbarUtilisateur({user}) {
     };
     if(isHovered) {
         const fetchNotification = async () => {
-            try {
-                console.log(user[2]);
-                const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${user[2]}`, {
-                    email: user[1]
+            try {                
+                const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
+                    email: decoded.email
                 });
                 if(response.status === 200) {
                     setNotifications(response.data);
@@ -48,8 +52,15 @@ export default function NavbarUtilisateur({user}) {
 
     const logout = async() => {
         try {
-            await axios.post('/users/logout');
-            window.location.href = "/login";
+            const response = await axios.post('http://localhost:3000/users/logout');
+            if(response.status === 200) {
+                console.log("au revoir");
+                localStorage.removeItem('token');
+                // document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                window.location.href = "/login";
+            } else {
+                console.error("Erreur de la déconnection");
+            }
         } catch (error) {
             console.error('Erreur lors de la déconnexion :', error);
         }
@@ -92,7 +103,7 @@ export default function NavbarUtilisateur({user}) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className={`${isHover ? 'fill-[#4885ff]' : 'fill-gray-400'}`} height="24" viewBox="0 -960 960 960" width="24">
                                     <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
                                 </svg>
-                                <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{user[0]}</div>
+                                <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{decoded.nom.match(/[a-zA-Z]+/)[0]}</div>
                             </Link>
                         </li>
                         <li onClick={logout}>

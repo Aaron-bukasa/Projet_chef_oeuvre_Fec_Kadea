@@ -39,8 +39,8 @@ exports.signup = async(req, res) => {
             }
           }
         });
-    
-        res.status(201).json({ message: 'Inscription réussie', utilisateur: nouvelUtilisateur });
+        const token = generateAuthToken(nouvelUtilisateur)
+        res.status(201).json({ token });
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Erreur lors de l\'inscription' });
@@ -147,8 +147,8 @@ exports.userDelete = async(req, res) => {
 
 exports.userLogout = async(req, res) => {
   try {
-    req.session.destroy()
-    res.sendStatus(200)
+    res.clearCookie('jwtToken');
+    res.status(200).json({ message: 'La déconnection réussi avec succès' });
   } catch (error) {
    console.error(error); 
   };
