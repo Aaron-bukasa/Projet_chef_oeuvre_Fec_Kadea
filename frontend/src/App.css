@@ -23,3 +23,9 @@
       opacity: 1;
     }
   }
+.notifications ul {
+  display: none;
+}
+.notifications:hover ul {
+  display: block;
+}

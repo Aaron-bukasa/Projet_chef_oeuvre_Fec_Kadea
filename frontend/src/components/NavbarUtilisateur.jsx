@@ -1,47 +1,49 @@
 import { Link } from 'react-router-dom'
 import logoFec from '../assets/images/logoFec.svg'
-import imgFaq from '../assets/images/faq.svg'
 import imgMenu from '../assets/images/menu.svg'
 import imgClose from '../assets/images/close.svg'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { jwtDecode } from "jwt-decode";
 
-import Notifications from './Notifications'
-
 export default function NavbarUtilisateur() {
     
     const [isClick, setIsClick] = useState(false);
     const [isHover, setIsHover] = useState(false);
-    const [notifications, setNotifications] = useState([]);
-    const [isHovered, setIsHovered] = useState(false);
+
+    const [ancienNotifications, setAncienNotifications] = useState([]);
+    const [nouveauNotifications, setNouveauNotifications] = useState([]);
+    const [nombreNouvNotif, setNombreNouvNotif] = useState();
 
     const token = localStorage.getItem('token')
     const decoded = jwtDecode(token);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
+                email: decoded.email
+            });
+
+            if(response.status === 200) {
+                setNouveauNotifications(response.data);
+            }
+        };
+    
+        fetchData();
+      }, []);
+    
+      useEffect(() => {
+        if (ancienNotifications.length < nouveauNotifications.length) {
+          setNombreNouvNotif(nouveauNotifications.length - ancienNotifications.length)
+        }
+    
+        setAncienNotifications(nouveauNotifications);
+      }, [nouveauNotifications]);
 
     const handleMouseEnter = () => {
       setIsHovered(true);
     };
   
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
-    if(isHovered) {
-        const fetchNotification = async () => {
-            try {                
-                const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
-                    email: decoded.email
-                });
-                if(response.status === 200) {
-                    setNotifications(response.data);
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchNotification()
-    }
-
     const handleClickMenu = () => {
         isClick ? setIsClick(false) : setIsClick(true);
     }
@@ -56,7 +58,6 @@ export default function NavbarUtilisateur() {
             if(response.status === 200) {
                 console.log("au revoir");
                 localStorage.removeItem('token');
-                // document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
                 window.location.href = "/login";
             } else {
                 console.error("Erreur de la déconnection");
@@ -66,7 +67,7 @@ export default function NavbarUtilisateur() {
         }
     }
 
-    const sliceNotif = notifications.slice(0, 4)
+    const sliceNotif = nouveauNotifications.slice(0, 4)
 
     return(
         <div className={`${isClick && 'h-screen'} w-screen grid auto-rows-max grid-rows-[75px auto 75px]  bg-secondary-blue text-lg sm:text-xl lg:block lg:bg-white`}>
@@ -83,13 +84,15 @@ export default function NavbarUtilisateur() {
                         <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-gray-400 hover:text-[#4885ff]'>Adhésion</Link></li>
                         <li onClick={handleClickLink}><a href="#contact" className='text-gray-400 hover:text-[#4885ff]'>Contact</a></li>
                     </ul>
-                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12">
-                        <Link to='notifications' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='relative'>
-                            
-                                <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
-                                    <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
-                                </svg>
-                                <ul className={`${!isHovered ? 'hidden' : 'absolute text-gray-400 bg-primary-blue py-3 z-[999] -left-[100%] text-[12px] w-[320px]'}`}>
+                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12 relative">
+                        <Link to='notifications' className='notifications'>
+                                <div className='relative'>
+                                     <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
+                                        <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
+                                    </svg>
+                                    <span className='absolute -top-2 -right-2 bg-red-500 rounded-full text-[12px] w-[18px] h-[18px] flex justify-center items-center text-white'>{nombreNouvNotif}</span>
+                                </div>
+                                <ul className='absolute text-gray-400 bg-primary-blue py-3 z-[999] -left-[100%] text-[12px] w-[320px]'>
                                     {sliceNotif && sliceNotif.map((notification) => (
                                         <li key={notification.id} className='flex flex-nowrap hover:bg-gray-400 hover:text-secondary-blue px-3 hover:cursor-pointer'>
                                             <p>{new Date(notification.date).toLocaleString('en-GB', { timeZone: 'UTC' })}</p>
@@ -99,11 +102,11 @@ export default function NavbarUtilisateur() {
                                 </ul>
                         </Link>
                         <li onClick={handleClickLink} onMouseOver={() => isHover ? setIsHover(false) : setIsHover(true)}>
-                            <Link to="login" className='text-gray-400 flex items-center gax-x-6 login'>
+                            <Link to="profil" className='text-gray-400 flex items-center gax-x-6 login'>
                                 <svg xmlns="http://www.w3.org/2000/svg" className={`${isHover ? 'fill-[#4885ff]' : 'fill-gray-400'}`} height="24" viewBox="0 -960 960 960" width="24">
                                     <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
                                 </svg>
-                                <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{decoded.nom.match(/[a-zA-Z]+/)[0]}</div>
+                                <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{decoded.nom && decoded.nom.match(/[a-zA-Z]+/)[0]}</div>
                             </Link>
                         </li>
                         <li onClick={logout}>

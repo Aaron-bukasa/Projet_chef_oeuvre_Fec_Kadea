@@ -1,4 +1,30 @@
+import { useState, useEffect } from "react";
+import axios from 'axios'
+import { jwtDecode } from "jwt-decode";
+
 export default function Profil() {
+
+  const [user, setUser] = useState();
+
+  const token = localStorage.getItem('token')
+  const decoded = jwtDecode(token);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        const response = await axios.get(`http://localhost:3000/users/font/${decoded.userId}`);
+        if(response.status === 200) {
+            setUser(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(user);
+
   return (
     <div className="m-6">
       <div className="max-w-[1024px] mx-auto">
@@ -28,19 +54,19 @@ export default function Profil() {
             <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold text-secondary-blue">Informations personnelles</h3>
             <div className="my-3">
               <label htmlFor="nom">Nom</label>
-              <input type="text" id="nom" name="nom" value="Dupont" className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]"/>
+              <input type="text" id="nom" name="nom" value={user?.nom.match(/[a-zA-Z]+/)?.[0] || ''} className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]" />
             </div>
             <div className="my-3">
               <label htmlFor="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" value="Jean" className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]" />
+              <input type="text" id="prenom" name="prenom" value={user?.nom.match(/[a-zA-Z]+/)?.[0] || ''} className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]" />
             </div>
-            <div> className="my-3"
+            <div className="my-3">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                value="jean.dupont@email.com"
+                value={user?.email || ''}
                 className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]"
               />
             </div>
@@ -50,7 +76,7 @@ export default function Profil() {
                 type="tel"
                 id="telephone"
                 name="telephone"
-                value="01 23 45 67 89"
+                value={user?.telephone || ''}
                 className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]"
               />
             </div>
@@ -60,13 +86,14 @@ export default function Profil() {
                 type="text"
                 id="adresse"
                 name="adresse"
-                value="1 rue de la Paix, 75000 Paris"
-                className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]"
+                value=''
+                disabled
+                className="rounded-lg h-10 block p-3 mt-1 outline-none w-[70%] bg-red-100"
               />
             </div>
             <div className="my-3">
               <label htmlFor="ville">Ville</label>
-              <input type="text" id="ville" name="ville" value="Paris" className="border-2 border-primary-blue rounded-lg h-10 block p-3 mt-1 outline-none w-[70%]" />
+              <input type="text" id="ville" name="ville" value='' disabled className="rounded-lg h-10 block p-3 mt-1 outline-none w-[70%] bg-red-100" />
             </div>
             <button type="submit" className="bg-sky-blue p-3 rounded-lg text-white font-semibold">Modifier mon profil</button>
           </div>
