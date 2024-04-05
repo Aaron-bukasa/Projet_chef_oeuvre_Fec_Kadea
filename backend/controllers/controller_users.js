@@ -130,6 +130,28 @@ exports.userGet = async(req, res) => {
       }
 }
 
+exports.userGetFront = async(req, res) => {
+  try {
+      const { id } = req.params;
+  
+      const user = await prisma.utilisateur.findUnique({
+        where: { id: parseInt(id) },
+        include: {
+          suivi_utilisateur: true
+        }
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'Utilisateur non trouvée' });
+      }
+  
+      res.status(200).json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur lors de la récupération de l'utilisateur" });
+    }
+}
+
 exports.userDelete = async(req, res) => {
   try {
       const { id } = req.params;
