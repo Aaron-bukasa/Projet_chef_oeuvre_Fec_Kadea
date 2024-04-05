@@ -5,9 +5,12 @@ import imgMenu from '../assets/images/menu.svg'
 import imgClose from '../assets/images/close.svg'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import Notifications from './Notifications'
 
 export default function NavbarUtilisateur({user}) {
     
+    const [isClick, setIsClick] = useState(false);
+    const [isHover, setIsHover] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -18,15 +21,15 @@ export default function NavbarUtilisateur({user}) {
     const handleMouseLeave = () => {
       setIsHovered(false);
     };
-    
     if(isHovered) {
         const fetchNotification = async () => {
             try {
+                console.log(user[2]);
                 const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${user[2]}`, {
                     email: user[1]
                 });
                 if(response.status === 200) {
-                setNotifications(response.data);
+                    setNotifications(response.data);
                 }
             } catch (error) {
                 console.error(error);
@@ -35,11 +38,6 @@ export default function NavbarUtilisateur({user}) {
         fetchNotification()
     }
 
-    const sliceNotif = notifications.slice(0, 4)
-
-    const [isClick, setIsClick] = useState(false);
-    const [isHover, setIsHover] = useState(false);
-
     const handleClickMenu = () => {
         isClick ? setIsClick(false) : setIsClick(true);
     }
@@ -47,6 +45,17 @@ export default function NavbarUtilisateur({user}) {
     const handleClickLink = () => {
         isClick && setIsClick(false)
     }
+
+    const logout = async() => {
+        try {
+            await axios.post('/users/logout');
+            window.location.href = "/login";
+        } catch (error) {
+            console.error('Erreur lors de la déconnexion :', error);
+        }
+    }
+
+    const sliceNotif = notifications.slice(0, 4)
 
     return(
         <div className={`${isClick && 'h-screen'} w-screen grid auto-rows-max grid-rows-[75px auto 75px]  bg-secondary-blue text-lg sm:text-xl lg:block lg:bg-white`}>
@@ -64,7 +73,7 @@ export default function NavbarUtilisateur({user}) {
                         <li onClick={handleClickLink}><a href="#contact" className='text-gray-400 hover:text-[#4885ff]'>Contact</a></li>
                     </ul>
                     <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12">
-                        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='relative'>
+                        <Link to='notifications' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='relative'>
                             
                                 <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
                                     <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
@@ -77,7 +86,7 @@ export default function NavbarUtilisateur({user}) {
                                         </li>
                                     ))}
                                 </ul>
-                        </li>
+                        </Link>
                         <li onClick={handleClickLink} onMouseOver={() => isHover ? setIsHover(false) : setIsHover(true)}>
                             <Link to="login" className='text-gray-400 flex items-center gax-x-6 login'>
                                 <svg xmlns="http://www.w3.org/2000/svg" className={`${isHover ? 'fill-[#4885ff]' : 'fill-gray-400'}`} height="24" viewBox="0 -960 960 960" width="24">
@@ -86,7 +95,7 @@ export default function NavbarUtilisateur({user}) {
                                 <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{user[0]}</div>
                             </Link>
                         </li>
-                        <li onClick={handleClickLink}>
+                        <li onClick={logout}>
                             <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
                                 <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
                             </svg>

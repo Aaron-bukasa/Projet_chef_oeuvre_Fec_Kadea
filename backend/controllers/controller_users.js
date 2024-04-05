@@ -19,6 +19,7 @@ function generateAuthToken(user) {
 exports.signup = async(req, res) => {
     try {
         const { nom, email, telephone, mot_de_passe, role } = req.body;
+        console.log(nom);
     
         const motDePasseHash = bcrypt.hashSync(mot_de_passe, 10);
     
@@ -143,3 +144,12 @@ exports.userDelete = async(req, res) => {
       res.status(500).json({ message: 'Erreur lors de la suppression de l\'utilisateur' });
     }
 }
+
+exports.userLogout = async(req, res) => {
+  try {
+    req.session.destroy()
+    res.sendStatus(200)
+  } catch (error) {
+   console.error(error); 
+  };
+};

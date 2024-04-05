@@ -15,7 +15,6 @@ function App() {
 
   const [isLogin, setIsLogin] = useState(false)
   const [isUser, setIsUser] = useState([]);
-  
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden">
       {!isLogin ? <NavbarPublic /> : <NavbarUtilisateur user={isUser}/>}
@@ -26,7 +25,7 @@ function App() {
           <Route path="/login" element={<Login login={setIsLogin} userInfo={setIsUser}/>} />
           <Route path="/formulaireDmd" element={<FormulaireDmd />} />
           <Route path="/suiviDmd" element={<SuiviDmd />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/notifications" element={<Notifications user={isUser}/>} />
         </Routes>
       </div>
       <Footer />

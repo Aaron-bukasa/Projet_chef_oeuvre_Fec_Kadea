@@ -29,10 +29,14 @@ export default function Signup({login, userInfo}) {
       });
 
       if (response.status === 201) {
-        const userId = response.data.utilisateur.id;
         login(true);
         setIsLogin(true);
-        userInfo(nom, email, userId)
+        userInfo([
+          response.data.utilisateur.nom.match(/(?<= )[a-zA-Z]+/),
+          response.data.utilisateur.email,
+          response.data.utilisateur.id
+        ])
+  
       } else {
         console.error('Inscription échouée');
       }
