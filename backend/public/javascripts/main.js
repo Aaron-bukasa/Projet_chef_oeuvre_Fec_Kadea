@@ -157,7 +157,12 @@ const SuiviDmd = () => {
         const demandeId = Number(id.textContent);
 
         if(validation) {
-            return suivi(validation)
+            const valid = suivi(validation);
+            const divValid = document.querySelector('.valid');
+            const selectBtn = document.querySelector('.selectBtn');
+            divValid.setAttribute("disabled", "");
+            selectBtn.setAttribute("disabled", "");
+            return valid;
         } else {
             const comment = suivi(commentaire);
             commentaire.value = '';

@@ -45,7 +45,7 @@ La plateforme de demande d’adhésion sera développée en utilisant les techno
 1. Accédez au dossier parent du projet cloné.
 2. Tapez la commande suivante pour installer les dépendances :
 
-    npm install
+    npm install ou yarn install
 
 ### Étape 3 : Configuration du backend
 

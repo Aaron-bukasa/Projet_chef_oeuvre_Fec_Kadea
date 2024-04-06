@@ -1,199 +1,188 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import ConfirmationDmd from "./ConfirmationDmd";
+import { useState } from "react";
 
 export default function FormulaireDmd() {
-
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const [isSend, setIsSend] = useState(false);
-  const [numero, setNumero] = useState(null)
+  const [numero, setNumero] = useState(null);
 
-  const nomRef = useRef();
-  const emailRef = useRef();
-  const telephoneRef = useRef();
-  const organisationRef = useRef();
-  const role_ds_entrepriseRef = useRef();
-  const motivationRef = useRef();
-  const objectifsRef = useRef();
-  const cvRef = useRef();
-  const lettre_motivationRef = useRef();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onSubmit = async (data) => {
     try {
-
-      const response = await axios.post('http://localhost:3000/demandes', {
-        nom: nomRef.current.value,
-        email: emailRef.current.value,
-        telephone: telephoneRef.current.value,
-        organisation: organisationRef.current.value,
-        role_ds_entreprise: role_ds_entrepriseRef.current.value,
-        motivation: motivationRef.current.value,
-        objectifs: objectifsRef.current.value,
-        // cv: cv.current.value,
-        // lettre_motivationRef: lettre_motivationRef.current.value
-        
-      });
+      const response = await axios.post("http://localhost:3000/demandes", data);
 
       if (response.status === 200) {
         setNumero(response.data.numero);
         setIsSend(true);
       } else {
-        console.error('Inscription échouée');
+        console.error("Inscription échouée");
       }
     } catch (error) {
-      console.error('Erreur Axios:', error);
+      console.error("Erreur Axios:", error);
     }
   };
 
-  if(isSend) {
-    return <ConfirmationDmd numero={numero}/>
+  if (isSend) {
+    return <ConfirmationDmd numero={numero} />;
   }
 
   return (
-    <div className="m-6">
+    <div className="m-6 my-12">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         action=""
         method="POST"
         encType="multipart/form-data"
-        className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 max-w-[768px] md:mx-auto"
+        className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12"
       >
         <h1 className="font-bold text-xl text-center p-6 sm:text-2xl md:text-3xl xl:text-4xl xl:mb-6">
           Formulaire de Demande d'Adhésion
         </h1>
-        <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
-          Informations personnelles
-        </h2>
-        <div className="pb-6">
-          <div className="flex flex-col gap-y-1 mb-4">
+        <div>
+          <h2 className="font-medium text-xl mb-4  lg:text-2xl 2xl:text-2xl font-bold">
+            Informations personnelles
+          </h2>
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="nom_complet">Nom complet</label>
             <input
-              ref={nomRef}
+              {...register("nom", { required: true })}
               type="text"
-              id="nom_complet"
-              name="nom_complet"
               placeholder="Nom complet"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.nom && <p className="text-red-500">Nom requis</p>}
           </div>
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="email">Adresse email</label>
             <input
-              ref={emailRef}
+              {...register("email", { required: true })}
               type="email"
-              id="email"
-              name="email"
               placeholder="Adresse email"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.email && <p className="text-red-500">Email requis</p>}
           </div>
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="telephone">Numéro de téléphone</label>
             <input
-              ref={telephoneRef}
+              {...register("telephone", { required: true })}
               type="tel"
-              id="telephone"
-              name="telephone"
               placeholder="Numéro de téléphone"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.telephone && (
+              <p className="text-red-500">Numéro de téléphone requis</p>
+            )}
           </div>
         </div>
-
-        <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
-          Informations sur l'organisation
-        </h2>
-        <div className="pb-6">
-          <div className="flex flex-col gap-y-1 mb-4">
+        <div>
+          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
+            Informations sur l'organisation
+          </h2>
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="nom_org">Nom de l'organisation</label>
             <input
-              ref={organisationRef}
+              {...register("organisation", { required: true })}
               type="text"
-              id="nom_org"
-              name="nom_org"
               placeholder="Nom de l'organisation"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.organisation && (
+              <p className="text-red-500">Nom de l'organisation requis</p>
+            )}
           </div>
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="role_org">Votre rôle dans l'organisation</label>
             <input
-              ref={role_ds_entrepriseRef}
+              {...register("role_ds_entreprise", { required: true })}
               type="text"
-              id="role_org"
-              name="role_org"
               placeholder="Votre rôle dans l'organisation"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.role_ds_entreprise && (
+              <p className="text-red-500">Rôle dans l'organisation requis</p>
+            )}
           </div>
         </div>
-
-        <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
-          Motivation
-        </h2>
-        <div className="pb-6">
-          <div className="flex flex-col gap-y-1 mb-4">
+        <div>
+          <h2 className="font-medium text-xl mb-4  lg:text-2xl 2xl:text-2xl font-bold">
+            Motivations
+          </h2>
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="motivation">
               Pourquoi souhaitez-vous adhérer à notre organisation?
             </label>
-            <textarea
-              ref={motivationRef}
-              id="motivation"
-              name="motivation"
-              rows="4"
-              cols="50"
-              placeholder="Pourquoi souhaitez-vous adhérer à notre organisation?"
-              required
-              className="w-full border-2 rounded-lg text-black p-3"
-            ></textarea>
+            <input
+              {...register("motivation", { required: true })}
+              type="text"
+              placeholder="Motivation"
+              className="border-2 h-10 rounded-lg text-black p-3"
+            />
+            {errors.motivation && (
+              <p className="text-red-500">Motivation requis</p>
+            )}
           </div>
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="objectifs">
               Quels sont vos objectifs en tant que membre?
             </label>
             <textarea
-              ref={objectifsRef}
-              id="objectifs"
-              name="objectifs"
+              {...register("objectifs", { required: true })}
               rows="4"
               cols="50"
-              placeholder=" Quels sont vos objectifs en tant que membre?"
-              required
+              placeholder="Objectifs en tant que membre"
               className="w-full border-2 rounded-lg text-black p-3"
-            ></textarea>
+            />
+            {errors.objectifs && (
+              <p className="text-red-500">Objectifs requis</p>
+            )}
           </div>
         </div>
-        <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
-          Fichiers joints
-        </h2>
-        <div className="pb-6">
-          <div className="flex flex-col gap-y-1 mb-4">
+        <div>
+          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
+            Fichiers joints
+          </h2>
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="cv">Veuillez joindre votre CV (format PDF):</label>
-            <input ref={cvRef} type="file" id="cv" name="cv" accept=".pdf" /*required*/ />
+            <input
+              {...register("cv" /*{ required: true }*/)}
+              type="file"
+              accept=".pdf"
+              disabled
+              // id="cv"
+              // name="cv"
+              // required
+            />
+            {errors.cv && <p className="text-red-500">CV requis</p>}
           </div>
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-2 mb-3">
             <label htmlFor="lettre_motivation">
               Veuillez joindre une lettre de motivation (format PDF):
             </label>
             <input
-              ref={lettre_motivationRef}
+              {...register("lettre_motivation" /*{ required: true }*/)}
               type="file"
-              id="lettre_motivation"
-              name="lettre_motivation"
               accept=".pdf"
+              disabled
+              // id="lettre_motivation"
+              // name="lettre_motivation"
               // required
             />
+            {errors.lettre_motivation && (
+              <p className="text-red-500">Lettre de motivation requise</p>
+            )}
           </div>
         </div>
-        <h2 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-bold">
-          Déclaration
-        </h2>
-        <div className="pb-6">
+        <div>
+          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
+            Déclaration
+          </h2>
           <div className="flex gap-x-3 items-center mb-4">
             <input
               type="checkbox"

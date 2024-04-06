@@ -154,21 +154,21 @@ function DevenirMembre() {
         </p>
         <ul className="list-disc ml-6 py-2 md:text-lg 2xl:text-xl">
           <li>
-            <strong className="font-normal">Une assistance</strong>
+            <strong className="font-normal">Une Assistance</strong>
           </li>
           <li>
             <strong className="font-normal">
-              Une représentation auprès des pouvoirs publics
+              Une Défense
             </strong>
           </li>
           <li>
             <strong className="font-normal">
-              Un soutien auprès des pouvoirs publics
+              Une Réprésentation
             </strong>
           </li>
           <li>
             <strong className="font-normal">
-              Des formations et des ateliers exclusifs
+            Un Appui aux Entreprises
             </strong>
           </li>
         </ul>
@@ -199,36 +199,6 @@ function DevenirMembre() {
 function Avantages() {
   const sliderRef = useRef(null);
 
-  const avantagesSlides = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    centerMode: true,
-    centerPadding: "0px",
-    responsive: [
-      {
-        breakpoint: 786,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "50px",
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "100px",
-        },
-      },
-    ],
-  };
-
   return (
     <div id="avantages" className="mx-6 xl:max-w-[1536px] xl:mx-auto xl:pb-24 xl:pt-12">
       <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">Les avantages de l'adhésion</h2>
@@ -242,11 +212,10 @@ function Avantages() {
             />
             <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-                Réseau de contacts professionnels
+              Une Assistance
               </h3>
               <p>
-                Développez votre réseau et rencontrez de nouveaux clients et
-                partenaires.
+              L’assistance en matière d'interprétation des textes légaux et règlementaires.
               </p>
             </div>
           </div>
@@ -258,11 +227,10 @@ function Avantages() {
             />
             <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-                Formations et ateliers exclusifs
+              Une Défense
               </h3>
               <p>
-                Bénéficiez de formations et d'ateliers sur des thématiques qui
-                vous concernent.
+              La défense des intérêts des membres en cas de conflit collectif du travail.
               </p>
             </div>
           </div>
@@ -274,11 +242,11 @@ function Avantages() {
             />
             <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-                Accès à des ressources et des services
+              Une Réprésentation
               </h3>
               <p>
-                Profitez d'un large éventail de ressources et de services pour
-                vous aider à développer votre entreprise.
+              La représentation des membres dans les réunions, commissions,
+Organismes nationaux et internationaux.
               </p>
             </div>
           </div>
@@ -290,11 +258,11 @@ function Avantages() {
             />
             <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
-                Soutien et représentation
+              Un Appui aux Entreprises
               </h3>
               <p>
-                Bénéficiez d'un soutien et d'une représentation auprès des
-                pouvoirs publics.
+              L’appui des entreprises auprès des administrations sur toute question à
+caractère juridique, social et fiscal.
               </p>
             </div>
           </div>

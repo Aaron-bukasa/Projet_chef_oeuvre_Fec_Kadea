@@ -1,38 +1,26 @@
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"; 
+import axios from "axios";
+import { useForm } from "react-hook-form";
 
 export default function Signup() {
 
-  const nomRef = useRef();
-  const prenomRef = useRef();
-  const telephoneRef = useRef();
-  const emailRef = useRef();
-  const mot_de_passeRef = useRef();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleSignup = async (event) => {
-    event.preventDefault();
+  const onSubmit = async (data) => {
     localStorage.removeItem("token");
 
     try {
-      const nom = nomRef.current.value;
-      const prenom = prenomRef.current.value;
-      const telephone = telephoneRef.current.value;
-      const email = emailRef.current.value;
-      const mot_de_passe = mot_de_passeRef.current.value;
-
       const response = await axios.post('http://localhost:3000/users/signup', {
-        nom: `${prenom} ${nom}`,
-        email,
-        telephone,
-        mot_de_passe
+        nom: `${data.prenom} ${data.nom}`,
+        email: data.email,
+        telephone: data.telephone,
+        mot_de_passe: data.password
       });
 
       if (response.status === 201) {
         const { token } = response.data;
         localStorage.setItem('token', token);
         window.location.href = '/'
-  
       } else {
         console.error('Inscription échouée');
       }
@@ -44,9 +32,7 @@ export default function Signup() {
   return (
     <div className="mx-6 my-12 md:my-24">
       <form
-        action="/submit"
-        method="POST"
-        encType="multipart/form-data"
+        onSubmit={handleSubmit(onSubmit)}
         className="bg-secondary-blue tracking-wider text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
       >
         <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
@@ -56,62 +42,62 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="nom">Nom</label>
             <input
-              ref={nomRef}
+              {...register("nom", { required: true })}
               type="text"
               id="nom"
               name="nom"
               placeholder="Nom"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.nom && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="prenom">Prénom</label>
             <input
-              ref={prenomRef}
+              {...register("prenom", { required: true })}
               type="text"
               id="prenom"
               name="prenom"
-              placeholder="Prenom"
-              required
+              placeholder="Prénom"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.prenom && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="email">Adresse email</label>
             <input
-              ref={emailRef}
+              {...register("email", { required: true })}
               type="email"
               id="email"
               name="email"
               placeholder="Adresse email"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.email && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="email">Numéro de téleohone</label>
+            <label htmlFor="telephone">Numéro de téléphone</label>
             <input
-              ref={telephoneRef}
+              {...register("telephone", { required: true })}
               type="tel"
-              id="tel"
-              name="tel"
-              placeholder="Numéro de télephone"
-              required
+              id="telephone"
+              name="telephone"
+              placeholder="Numéro de téléphone"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.telephone && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="password">Mot de passe</label>
             <input
-              ref={mot_de_passeRef}
+              {...register("password", { required: true })}
               type="password"
               id="password"
               name="password"
               placeholder="Mot de passe"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.mot_de_passe && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <Link
             to="/login"
@@ -121,9 +107,8 @@ export default function Signup() {
           </Link>
         </div>
         <button
-          onClick={handleSignup}
-          type="button"
-          className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
+          type="submit"
+          className="ml-6 bg-sky-blue text-white font-bold py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
         >
           S'inscrire
         </button>
@@ -131,4 +116,3 @@ export default function Signup() {
     </div>
   );
 }
-
