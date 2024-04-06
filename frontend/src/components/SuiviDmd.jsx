@@ -1,39 +1,34 @@
-import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 function SuiviDmd() {
-  const nomRef = useRef();
-  const idRef = useRef();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isNotifications, setIsNotifications] = useState([]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (data) => {
+    console.log(data.number);
     try {
-      const id = idRef.current.value;
-      const nom = nomRef.current.value;
-
-      const response = await axios.post(`http://localhost:3000/suivi_demande/${id}`, {
-        nom: nom
+      const response = await axios.post(`http://localhost:3000/suivi_demande/${data.number}`, {
+        nom: data.nom
       });
 
       if (response.status === 200) {
         setIsNotifications(response.data);
       } else {
-        console.error("erreur d'envoi");
+        console.error("Erreur d'envoi");
       }
     } catch (error) {
       console.error("Axios error:", error);
     }
 
-    idRef.current.value = '';
-    nomRef.current.value = '';
+    reset();
   };
 
   return (
     <div className="mx-6 my-12 md:my-24">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
       >
         <h1 className="font-bold text-xl text-center text-white p-6 sm:text-2xl md:text-3xl xl:text-4xl">
@@ -43,26 +38,26 @@ function SuiviDmd() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="nom">Prénom et Nom</label>
             <input
-              ref={nomRef}
+              {...register("nom", { required: true })}
               type="text"
               id="nom"
               name="nom"
               placeholder="Entrer votre prénom et nom"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.nom && <p className="text-red-500">Prénom et Nom requis</p>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="number">Numéro de la demande</label>
             <input
-              ref={idRef}
+              {...register("number", { required: true })}
               type="number"
               id="number"
               name="number"
               placeholder="Entrer le numéro de votre demande"
-              required
               className="border-2 h-10 rounded-lg text-black p-3"
             />
+            {errors.number && <p className="text-red-500">Numéro de la demande requis</p>}
           </div>
         </div>
         <button

@@ -1,37 +1,33 @@
 import axios from "axios";
-import {  useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const emailLoginRef = useRef();
-  const passwordLoginRef = useRef();
-
-  const handleLogin = async (event) => {
+  const onSubmit = async (data) => {
     try {
-      event.preventDefault();
-      const email = emailLoginRef.current.value;
-
       const response = await axios.post('http://localhost:3000/users/login', {
-        email : emailLoginRef.current.value,
-        mot_de_passe : passwordLoginRef.current.value
+        email: data.email,
+        mot_de_passe: data.password
       });
 
       if (response.status === 200) {
         const { token } = response.data;
+        console.log(response);
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
-      
+
         const requestOptions = {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         };
-        if(userRole === 'utilisateur') {
-          window.location.href = '/'
-        } else if(userRole === 'administrateur') {
+        if (userRole === 'utilisateur') {
+          window.location.href = '/';
+        } else if (userRole === 'administrateur') {
           // const response = await axios.get('http://localhost:3000/', requestOptions);
         }
       } else {
@@ -45,9 +41,7 @@ export default function Login() {
   return (
     <div className="mx-6 my-12 md:my-24">
       <form
-        action="/submit"
-        method="POST"
-        encType="multipart/form-data"
+        onSubmit={handleSubmit(onSubmit)}
         className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
       >
         <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
@@ -57,26 +51,26 @@ export default function Login() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="email">Adresse email</label>
             <input
-              ref={emailLoginRef}
+              {...register("email", { required: true })}
               type="email"
               id="email"
               name="email"
               placeholder="Adresse email"
-              required
-              className="border-2 h-10 rounded-lg text-black p-3"
+              className={`border-2 h-10 rounded-lg text-black p-3 ${errors.email ? 'border-red-500' : ''}`}
             />
+            {errors.email && <p className="text-red-500">Adresse email requise</p>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="password">Mot de passe</label>
             <input
-              ref={passwordLoginRef}
+              {...register("password", { required: true })}
               type="password"
               id="password"
               name="password"
               placeholder="Mot de passe"
-              required
-              className="border-2 h-10 rounded-lg text-black p-3"
+              className={`border-2 h-10 rounded-lg text-black p-3 ${errors.password ? 'border-red-500' : ''}`}
             />
+            {errors.password && <p className="text-red-500">Mot de passe requis</p>}
           </div>
           <Link
             to="/signup"
@@ -86,8 +80,7 @@ export default function Login() {
           </Link>
         </div>
         <button
-          type="button"
-          onClick={handleLogin}
+          type="submit"
           className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80"
         >
           Se connecter

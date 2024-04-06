@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [token, setToken] = useState(window.localStorage.getItem("token") || null);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -30,7 +30,7 @@ function App() {
   
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden">
-      {!token ? <NavbarPublic /> : <NavbarUtilisateur />}
+      {token === 'undefined' || token === null ? <NavbarPublic /> : <NavbarUtilisateur />}
       <div className="max-w-screen">
         <Routes>
           <Route path="/" element={<Home />} />

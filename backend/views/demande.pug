@@ -20,15 +20,18 @@ block content
             p #{demande.id}
             div 
                 if demande.suivi_demande.length <= 1
-                    label(for="validation") Veuillez valider la demande :
-                    select(id="validation", name="validation")
-                        option(value="") Choisir
-                        option(value="valider") Valider
-                        option(value="rejeter") Refuser
+                    div.valid
+                        label(for="validation") Veuillez valider la demande :
+                        select(id="validation", name="validation")
+                            option(value="") Choisir
+                            option(value="valider") Valider
+                            option(value="rejeter") Refuser
+                        button(type="submit" class="navLink selectBtn") Valider
                 else 
-                    label(for="commentaire") Ajouter un évenement
-                    textarea(id="commentaire", name="commentaire", rows="5", cols="50")
-                button.navLink(type="submit") Valider
+                    div.comment
+                        label(for="commentaire") Ajouter un évenement
+                        textarea(id="commentaire", name="commentaire", rows="5", cols="50")
+                    button.navLink(type="submit") Valider
         hr
         div 
             table

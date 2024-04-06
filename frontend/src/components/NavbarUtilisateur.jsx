@@ -84,15 +84,15 @@ export default function NavbarUtilisateur() {
                         <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-gray-400 hover:text-[#4885ff]'>Adhésion</Link></li>
                         <li onClick={handleClickLink}><a href="#contact" className='text-gray-400 hover:text-[#4885ff]'>Contact</a></li>
                     </ul>
-                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12 relative">
-                        <Link to='notifications' className='notifications'>
+                    <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:border-l-4 lg:border-gray-800 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[40%] 2xl:pl-20 2xl:ml-12">
+                        <Link to='notifications' className='notifications relative'>
                                 <div className='relative'>
                                      <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
                                         <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
                                     </svg>
                                     <span className='absolute -top-2 -right-2 bg-red-500 rounded-full text-[12px] w-[18px] h-[18px] flex justify-center items-center text-white'>{nombreNouvNotif}</span>
                                 </div>
-                                <ul className='absolute text-gray-400 bg-primary-blue py-3 z-[999] -left-[100%] text-[12px] w-[320px]'>
+                                <ul className='absolute text-gray-400 bg-primary-blue py-3 z-[999] -left-[120px] text-[12px] w-[320px]'>
                                     {sliceNotif && sliceNotif.map((notification) => (
                                         <li key={notification.id} className='flex flex-nowrap hover:bg-gray-400 hover:text-secondary-blue px-3 hover:cursor-pointer'>
                                             <p>{new Date(notification.date).toLocaleString('en-GB', { timeZone: 'UTC' })}</p>

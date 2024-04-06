@@ -26,7 +26,6 @@ exports.demandeGet = async(req, res) => {
       if (!demande) {
         return res.status(404).json({ message: 'Demande non trouvée' });
       }
-      console.log(demande);
       res.status(200).render('demande', {demande});
     } catch (error) {
       console.error(error);
