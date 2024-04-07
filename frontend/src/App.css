@@ -29,3 +29,7 @@
 .notifications:hover ul {
   display: block;
 }
+.bg_services01 {
+  background-image: url('./assets/images/bg_services.png');
+  background-repeat: no-repeat;
+}

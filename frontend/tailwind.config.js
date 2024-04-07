@@ -22,6 +22,10 @@ export default {
         'bg_temoignages': "url('/src/assets/images/bg_temoignages.jpg')",
         'bg_blog': "url('/src/assets/images/bg_blog.jpg')",
         'bg_banner': "url('/src/assets/images/bg_banner.jpg')",
+        'bg_services': "url('src/assets/images/bg_services.png')"
+      },
+      boxShadow: {
+        'lg': '0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)',
       },
       fontFamily: {
         // 'lora': 'Lora, serif',
