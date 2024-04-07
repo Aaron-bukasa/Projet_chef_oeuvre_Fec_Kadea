@@ -38,9 +38,9 @@ export default function NavbarPublic() {
                     </ul>
                 </div>
             </div>
-            <ul className={`${!isClick && 'hidden'} col-start-1 col-end-2 row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-6 p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6 2xl:px-24`}>
+            <ul className={`${!isClick && 'hidden'} col-start-1 col-end-3 bg-primary-blue row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-8 items-start p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6 2xl:px-24`}>
                 <li onClick={handleClickLink}><Link to="formulaireDmd" className='text-white font-bold bg-sky-blue p-3 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></li>
-                <li onClick={handleClickLink}><Link to="suiviDmd" className='text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-3 rounded-xl hover:bg-gray-100'>Suivi de la demande</Link></li>
+                <li onClick={handleClickLink}><Link to="suiviDmd" className='text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-3 bg-white rounded-xl hover:bg-gray-100'>Suivi de la demande</Link></li>
                 <li onClick={handleClickLink}>
                     <a href="#faq" className='flex items-center gap-x-2'>
                         <svg className='stroke-white' width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
