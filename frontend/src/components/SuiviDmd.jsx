@@ -38,26 +38,26 @@ function SuiviDmd() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="nom">Prénom et Nom</label>
             <input
-              {...register("nom", { required: true })}
+              {...register("nom", { required: true, pattern: /^[a-zA-Z]+ [a-zA-Z]+$/ })}
               type="text"
               id="nom"
               name="nom"
               placeholder="Entrer votre prénom et nom"
-              className="border-2 h-10 rounded-lg text-black p-3"
+              className={`border-2 h-10 rounded-lg text-black p-3 ${errors.nom ? 'border-red-500' : ''}`}
             />
-            {errors.nom && <p className="text-red-500">Prénom et Nom requis</p>}
+            {errors.nom && <p className="text-red-500">Prénom et Nom requis et ne doit contenir que des lettres.</p>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="number">Numéro de la demande</label>
             <input
-              {...register("number", { required: true })}
-              type="number"
+              {...register("number", { required: true, pattern: /^[0-9]+$/ })}
+              type="text"
               id="number"
               name="number"
               placeholder="Entrer le numéro de votre demande"
-              className="border-2 h-10 rounded-lg text-black p-3"
+              className={`border-2 h-10 rounded-lg text-black p-3 ${errors.number ? 'border-red-500' : ''}`}
             />
-            {errors.number && <p className="text-red-500">Numéro de la demande requis</p>}
+            {errors.number && <p className="text-red-500">Numéro de la demande requis et ne doit contenir que des chiffres.</p>}
           </div>
         </div>
         <button

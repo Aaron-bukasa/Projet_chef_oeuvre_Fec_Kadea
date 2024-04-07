@@ -6,9 +6,10 @@ import imgFec01 from "../assets/images/fec001.png";
 import imgFec02 from "../assets/images/fec002.jpg";
 import imgMembre from "../assets/images/membre01.png";
 import iconArrow from "../assets/images/arrow_downward.svg";
-import imgAvantage01 from "../assets/images/avantage01.jpg";
+import imgAvantage01 from "../assets/images/assistance.jpg";
 import imgAvantage02 from "../assets/images/avantage02.jpg";
-import imgAvantage03 from "../assets/images/avantage03.jpg";
+import imgAvantage03 from "../assets/images/representation.jpg";
+import imgAvantage04 from "../assets/images/appui.jpg";
 import logoMember001 from "../assets/images/member001.png";
 import logoMember002 from "../assets/images/member002.png";
 import logoMember003 from "../assets/images/member003.png";
@@ -22,9 +23,11 @@ import logoMember010 from "../assets/images/member010.png";
 import logoMember011 from "../assets/images/member011.png";
 import logoMember012 from "../assets/images/member012.png";
 import logoMember013 from "../assets/images/member013.png";
-import bgTemoignages from "../assets/images/bg_temoignages.jpg";
+import imgTesti_01 from "../assets/images/testi_avatar01.png";
+import imgTesti_02 from "../assets/images/testi_avatar02.png";
+import imgTesti_03 from "../assets/images/testi_avatar03.jpg";
 
-// import imgAvantage04 from "../assets/images/fec001.png";
+
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
@@ -200,17 +203,18 @@ function Avantages() {
   const sliderRef = useRef(null);
 
   return (
-    <div id="avantages" className="mx-6 xl:max-w-[1536px] xl:mx-auto xl:pb-24 xl:pt-12">
+    <div id="avantages" className="mx-6 max-w-[1536px] xl:mx-auto xl:pb-24 xl:pt-12">
       <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">Les avantages de l'adhésion</h2>
-      <div className="relative">
-        <Slider {...avantagesSlides}>
-          <div className="relative h-[480px] max-w-[420px]">
-            <img
-              src={imgAvantage01}
-              alt="Réseau"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+      <div className="grid grid-col-2 grid-row-4 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
+          <div className="max-w-[450px] col-start-1 col-end-3 row-start-1 row-end-2 lg:col-start-1 lg:col-end-2 p-3 border-2">
+            <div className="mb-3 h-[200px]">
+              <img
+                src={imgAvantage01}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
               Une Assistance
               </h3>
@@ -219,13 +223,15 @@ function Avantages() {
               </p>
             </div>
           </div>
-          <div className="relative h-[480px] max-w-[420px]">
-            <img
-              src={imgAvantage02}
-              alt="Formation"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+          <div className="max-w-[450px] col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2 lg:col-end-3 p-3 lg:row-start-1 lg:row-end-2">
+          <div className="mb-3 h-[200px]">
+              <img
+                src={imgAvantage02}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
               Une Défense
               </h3>
@@ -234,13 +240,15 @@ function Avantages() {
               </p>
             </div>
           </div>
-          <div className="relative h-[480px] max-w-[420px]">
-            <img
-              src={imgAvantage03}
-              alt="Ressources"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+          <div className="max-w-[450px] col-start-1 col-end-3 row-start-3 row-end-4 lg:col-start-1 lg:col-end-2 p-3 lg:row-start-2 lg:row-end-3">
+          <div className="mb-3 h-[200px]">
+              <img
+                src={imgAvantage03}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
               Une Réprésentation
               </h3>
@@ -250,13 +258,15 @@ Organismes nationaux et internationaux.
               </p>
             </div>
           </div>
-          <div className="relative h-[480px] max-w-[420px]">
-            <img
-              src={imgAvantage02}
-              alt="Soutien"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-0 p-3 bg-[#00194cc2] text-white">
+          <div className="max-w-[450px] col-start-1 col-end-3 row-start-4 row-end-5 lg:col-start-2 lg:col-end-3 p-3 lg:row-start-2 lg:row-end-3">
+          <div className="mb-3 h-[200px]">
+              <img
+                src={imgAvantage04}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3 bg-[#00194cc2] text-white">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-center lg:text-2xl 2xl:text-2xl font-bold">
               Un Appui aux Entreprises
               </h3>
@@ -266,32 +276,35 @@ caractère juridique, social et fiscal.
               </p>
             </div>
           </div>
-        </Slider>
-        <button
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-l-md"
-          onClick={() => sliderRef.current.slickPrev()}
-        >
-          Précédent
-        </button>
-        <button
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white rounded-r-md"
-          onClick={() => sliderRef.current.slickNext()}
-        >
-          Suivant
-        </button>
       </div>
     </div>
   );
 }
 
 function Temoignages() {
+
   const faqAutoplay = {
-    dots: true,
-    className: "center",
-    slidesToShow: 1,
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const partenaires = {
@@ -355,72 +368,70 @@ function Temoignages() {
           <h2 className="font-bold text-center text-white text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
             Ce qu’ils disent de nous
           </h2>
-          <div className="text-white md:tracking-wider max-w-[380px] mx-auto">
+          <div className="text-white md:tracking-wider mx-auto">
             <Slider {...faqAutoplay}>
-              <div className="w-[80%] md:max-w-[35%]">
+              <div className="w-[420px] text-black p-6 bg-gray-100 rounded-xl">
                 <blockquote
-                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
+                  className='mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
                 >
                   Avant d'être membre a la FEC, je travaillais avec des micros
                   et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
                   suis à la FEC, j'ai comme clients des moyennes et des grandes
                   entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
-                  <span className="inline-block ml-3 text-xl">❞</span>
                 </blockquote>
-                <p className="text-center ml-auto mr-0 w-[250px] md:mt-12">
-                  Eliane MUNKENI{" "}
-                  <span className="block">Vice Présidente Nationale, FEC</span>
-                </p>
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                  <div>
+                    <img src={imgTesti_01} alt="" />
+                  </div>
+                  <div>
+                    <h4 className="text-secondary-blue font-bold text-lg">Eliane MUNKENI</h4>
+                    <p className="text-sm">Présidente Nationale, FEC</p>
+                  </div>
+                </div>
+                
               </div>
-              <div className="w-[80%] mx-auto md:max-w-[35%]">
+              <div className="w-[420px] text-black p-6 bg-gray-100 rounded-xl">
                 <blockquote
-                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
+                  className='mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
                 >
                   La FEC est comme un employé en plus dans votre société. Elle
                   vous donne le meilleur d'elle-même. Elle résout vos problèmes
                   sans être présente dans vos locaux ou bureaux. Il faut juste
-                  la contacter. Elle vous défend et fait votre marketing. Il
-                  faut&nbsp;en&nbsp;être&nbsp;membre
-                  <span className="inline-block ml-3 text-xl">❞</span>
+                  la contacter. Elle vous défend et fait votre marketing. Il faut&nbsp;en&nbsp;être&nbsp;membre
                 </blockquote>
-                <p className="text-center ml-auto mr-0 w-[250px]">
-                  Eric MONGA,{" "}
-                  <span className="block">Vice Président Nationale, FEC</span>
-                </p>
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                  <div>
+                    <img src={imgTesti_02} alt="" />
+                  </div>
+                  <div>
+                    <h4 className="text-secondary-blue font-bold text-lg">Eric MONGA</h4>
+                    <p className="text-sm">Vice Président Nationale, FEC</p>
+                  </div>
+                </div>
+                
               </div>
-              <div className="w-[80%] mx-auto md:max-w-[35%]">
+              <div className="w-[420px] text-black p-6 bg-gray-100 rounded-xl">
                 <blockquote
-                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
-                >
-                  Avant d'être membre a la FEC, je travaillais avec des micros
-                  et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
-                  suis à la FEC, j'ai comme clients des moyennes et des grandes
-                  entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
-                  <span className="inline-block ml-3 text-xl">❞</span>
-                </blockquote>
-                <p className="text-center ml-auto mr-0 w-[250px]">
-                  Eliane MUNKENI,{" "}
-                  <span className="block">Présidente Nationale</span>
-                </p>
-              </div>
-              <div className="w-[80%] mx-automd:max-w-[35%]">
-                <blockquote
-                  className='mb-3 italic relative before:content-["❝"] before:absolute before:-left-3 first-letter:font-bold first-letter:text-3xl first-letter:text-redColor
-                first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
+                  className='mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:w-[380px]'
                 >
                   J&#32;'ai la vision d'un Congo fort et prospère. Je reste
                   convaincu que si chacun d'entre nous, à son niveau, met le
                   professionnalisme et le sérieux dans ce qu'il a à faire, nous
                   réussirons à redevenir&nbsp;ce&nbsp;grand Congo
-                  <span className="inline-block ml-3 text-xl">❞</span>
                 </blockquote>
-                <p className="text-center ml-auto mr-0 w-[250px]">
-                  Yvonne KUSUAMINA DG,{" "}
-                  <span className="block">Pay Network</span>
-                </p>
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                  <div>
+                    <img src={imgTesti_03} alt="" />
+                  </div>
+                  <div>
+                    <h4 className="text-secondary-blue font-bold text-lg">Yvonne KUSUAMINA</h4>
+                    <p className="text-sm">DG Pay Network</p>
+                  </div>
+                </div>
+                
               </div>
             </Slider>
           </div>
