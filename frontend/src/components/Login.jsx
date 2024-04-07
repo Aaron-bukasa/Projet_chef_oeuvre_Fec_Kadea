@@ -15,7 +15,6 @@ export default function Login() {
 
       if (response.status === 200) {
         const { token } = response.data;
-        console.log(response);
         localStorage.setItem('token', token);
         const decoded = jwtDecode(token);
         const userRole = decoded.role;
@@ -51,26 +50,32 @@ export default function Login() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="email">Adresse email</label>
             <input
-              {...register("email", { required: true })}
-              type="email"
+              {...register("email", {
+                required: 'Adresse email requise',
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: 'Adresse email invalide'
+                }
+              })}
+              type="text"
               id="email"
               name="email"
               placeholder="Adresse email"
               className={`border-2 h-10 rounded-lg text-black p-3 ${errors.email ? 'border-red-500' : ''}`}
             />
-            {errors.email && <p className="text-red-500">Adresse email requise</p>}
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="password">Mot de passe</label>
             <input
-              {...register("password", { required: true })}
+              {...register("password", { required: 'Mot de passe requis' })}
               type="password"
               id="password"
               name="password"
               placeholder="Mot de passe"
               className={`border-2 h-10 rounded-lg text-black p-3 ${errors.password ? 'border-red-500' : ''}`}
             />
-            {errors.password && <p className="text-red-500">Mot de passe requis</p>}
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
           </div>
           <Link
             to="/signup"

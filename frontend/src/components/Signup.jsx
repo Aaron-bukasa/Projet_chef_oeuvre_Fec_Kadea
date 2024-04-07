@@ -42,50 +42,50 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="nom">Nom</label>
             <input
-              {...register("nom", { required: true })}
+              {...register("nom", { required: true, pattern: /^[a-zA-Z]*$/ })}
               type="text"
               id="nom"
               name="nom"
               placeholder="Nom"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
-            {errors.nom && <span className="text-red-500">Ce champ est requis</span>}
+            {errors.nom && <span className="text-red-500">Ce champ est requis et doit contenir uniquement des lettres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="prenom">Prénom</label>
             <input
-              {...register("prenom", { required: true })}
+              {...register("prenom", { required: true, pattern: /^[a-zA-Z]*$/ })}
               type="text"
               id="prenom"
               name="prenom"
               placeholder="Prénom"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
-            {errors.prenom && <span className="text-red-500">Ce champ est requis</span>}
+            {errors.prenom && <span className="text-red-500">Ce champ est requis et doit contenir uniquement des lettres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="email">Adresse email</label>
             <input
-              {...register("email", { required: true })}
-              type="email"
+              {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
+              type="text"
               id="email"
               name="email"
               placeholder="Adresse email"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
-            {errors.email && <span className="text-red-500">Ce champ est requis</span>}
+            {errors.email && <span className="text-red-500">Ce champ est requis et doit être une adresse email valide</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="telephone">Numéro de téléphone</label>
             <input
-              {...register("telephone", { required: true })}
+              {...register("telephone", { required: true, pattern: /^\d{10}$/ })}
               type="tel"
               id="telephone"
               name="telephone"
               placeholder="Numéro de téléphone"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
-            {errors.telephone && <span className="text-red-500">Ce champ est requis</span>}
+            {errors.telephone && <span className="text-red-500">Ce champ est requis et doit contenir exactement 10 chiffres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="password">Mot de passe</label>
@@ -97,7 +97,7 @@ export default function Signup() {
               placeholder="Mot de passe"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
-            {errors.mot_de_passe && <span className="text-red-500">Ce champ est requis</span>}
+            {errors.password && <span className="text-red-500">Ce champ est requis</span>}
           </div>
           <Link
             to="/login"
