@@ -1,6 +1,5 @@
 {
-  "name": "Projet_chef_oeuvre_Fec_Kadea",
-  //"packageManager": "yarn@4.1.1",
+  "name": "projetchefoeuvrefeckadea",
   "private": true,
   "workspaces": [
     "frontend",
