@@ -573,11 +573,11 @@ function Faq() {
               avantages, tels que :
             </p>
             <ul className="list-disc ml-6">
-              <li>Un réseau de contacts professionnels</li>
-              <li>Des formations et des ateliers exclusifs</li>
-              <li>Un accès à des ressources et des services</li>
+              <li>Une assistance</li>
+              <li>Une Défense</li>
+              <li>Une Réprésentation</li>
               <li>
-                Un soutien et une représentation auprès des pouvoirs publics
+              Un Appui aux Entreprises
               </li>
             </ul>
           </li>
