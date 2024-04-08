@@ -33,7 +33,7 @@ export default function FormulaireDmd() {
   }
 
   return (
-    <div className="m-6 my-12">
+    <div className="mx-2 md:mx-6 my-12">
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""

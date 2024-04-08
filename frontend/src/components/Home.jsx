@@ -379,8 +379,8 @@ function Temoignages() {
           </h2>
           <div className="text-white leading-7 md:tracking-wider">
             <Slider {...faqAutoplay}>
-              <div className="max-w-[450px] h-[353px] text-black p-6 bg-gray-100 rounded-xl">
-                <blockquote
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
+                <div
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
                 >
@@ -388,8 +388,8 @@ function Temoignages() {
                   et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
                   suis à la FEC, j'ai comme clients des moyennes et des grandes
                   entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
-                </blockquote>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                </div>
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_01} alt="" />
                   </div>
@@ -401,7 +401,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] h-[353px] text-black p-6 bg-gray-100 rounded-xl">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -412,7 +412,7 @@ function Temoignages() {
                   la contacter. Elle vous défend et fait votre marketing. Il
                   faut&nbsp;en&nbsp;être&nbsp;membre
                 </blockquote>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_02} alt="" />
                   </div>
@@ -424,7 +424,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] h-[353px] text-black p-6 bg-gray-100 rounded-xl">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -434,7 +434,7 @@ function Temoignages() {
                   professionnalisme et le sérieux dans ce qu'il a à faire, nous
                   réussirons à redevenir&nbsp;ce&nbsp;grand Congo
                 </blockquote>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6">
+                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_03} alt="" />
                   </div>
