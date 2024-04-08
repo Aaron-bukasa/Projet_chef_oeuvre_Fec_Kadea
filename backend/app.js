@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.envSecret' });
+require('dotenv').config({ path: '.env' });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
