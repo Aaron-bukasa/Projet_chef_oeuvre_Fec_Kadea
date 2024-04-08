@@ -300,7 +300,7 @@ function Temoignages() {
     cssEase: "linear",
     responsive: [
       {
-        breakpoint: 1284,
+        breakpoint: 1460,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
