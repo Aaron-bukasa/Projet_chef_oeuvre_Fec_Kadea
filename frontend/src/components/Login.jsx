@@ -27,7 +27,7 @@ export default function Login() {
         if (userRole === 'utilisateur') {
           window.location.href = '/';
         } else if (userRole === 'administrateur') {
-          // const response = await axios.get('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/', requestOptions);
+          const response = await axios.get('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/', requestOptions);
         }
       } else {
         console.error('Authentication failed');
@@ -53,7 +53,7 @@ export default function Login() {
               {...register("email", {
                 required: 'Adresse email requise',
                 pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
                   message: 'Adresse email invalide'
                 }
               })}

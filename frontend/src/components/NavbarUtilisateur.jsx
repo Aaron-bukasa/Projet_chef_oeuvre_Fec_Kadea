@@ -20,7 +20,7 @@ export default function NavbarUtilisateur() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.post(`https://projet-chef-oeuvre-fec-kadea-2.onrender.com/suivi_utilisateur/${decoded.userId}`, {
+            const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
                 email: decoded.email
             });
 
@@ -54,7 +54,7 @@ export default function NavbarUtilisateur() {
 
     const logout = async() => {
         try {
-            const response = await axios.post('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/users/logout');
+            const response = await axios.post('http://localhost:3000/users/logout');
             if(response.status === 200) {
                 console.log("au revoir");
                 localStorage.removeItem('token');
@@ -109,7 +109,7 @@ export default function NavbarUtilisateur() {
                                 <div className={`${isHover ? 'text-[#4885ff]' : 'text-gray-400'}`}>{decoded.nom && decoded.nom.match(/[a-zA-Z]+/)[0]}</div>
                             </Link>
                         </li>
-                        <li onClick={logout}>
+                        <li onClick={logout} className='hover:cursor-pointer'>
                             <svg xmlns="http://www.w3.org/2000/svg" className='fill-gray-400 hover:fill-[#4885ff]' height="24" viewBox="0 -960 960 960" width="24">
                                 <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
                             </svg>
