@@ -11,7 +11,7 @@ export default function Notifications() {
 
     useEffect(() => {
       const fetchData = async () => {
-          const response = await axios.post(`https://projet-chef-oeuvre-fec-kadea-2.onrender.com/suivi_utilisateur/${decoded.userId}`, {
+          const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
               email: decoded.email
           });
 

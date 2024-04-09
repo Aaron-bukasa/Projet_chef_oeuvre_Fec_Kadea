@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const prisma = new PrismaClient();
 
-function generateAuthToken(user) {
+function generateAuthToken(utilisateur) {
     const payload = {
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-      nom: user.nom
+      userId: utilisateur.id,
+      email: utilisateur.email,
+      role: utilisateur.role,
+      nom: utilisateur.nom
     };
     const secretKey = process.env.RANDOM_TOKEN_SECRET;
     const token = jwt.sign(payload, secretKey, { expiresIn: '2h' });

@@ -42,7 +42,7 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="nom">Nom</label>
             <input
-              {...register("nom", { required: true, pattern: /^[a-zA-Z]*$/ })}
+              {...register("nom", { required: true, pattern: /^[a-zA-Z]+$/ })}
               type="text"
               id="nom"
               name="nom"
@@ -54,7 +54,7 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="prenom">Prénom</label>
             <input
-              {...register("prenom", { required: true, pattern: /^[a-zA-Z]*$/ })}
+              {...register("prenom", { required: true, pattern: /^[a-zA-Z]+$/ })}
               type="text"
               id="prenom"
               name="prenom"
@@ -66,7 +66,7 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="email">Adresse email</label>
             <input
-              {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
+              {...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/ })}
               type="text"
               id="email"
               name="email"
@@ -78,7 +78,7 @@ export default function Signup() {
           <div className="flex flex-col gap-y-1 mb-4">
             <label htmlFor="telephone">Numéro de téléphone</label>
             <input
-              {...register("telephone", { required: true, pattern: /^\d{10}$/ })}
+              {...register("telephone", { required: true, pattern: /^(084|085|080|089|081|082|099|097|090)[0-9]{7}$/ })}
               type="tel"
               id="telephone"
               name="telephone"
