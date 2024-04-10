@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const ctr_dashboard = require('../controllers/controller_dashboard');
-const middlewareAuth = require("../middleware/auth")
 
 
 /* GET home page. */
-router.get('/', ctr_dashboard.dashboard);
+router.get('/', auth, ctr_dashboard.dashboard);
 
 module.exports = router;
