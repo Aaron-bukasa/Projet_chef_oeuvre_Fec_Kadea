@@ -19,7 +19,6 @@ function generateAuthToken(utilisateur) {
 exports.signup = async(req, res) => {
     try {
         const { nom, email, telephone, mot_de_passe, role } = req.body;
-        console.log(nom);
     
         const motDePasseHash = bcrypt.hashSync(mot_de_passe, 10);
     
@@ -62,8 +61,12 @@ exports.login = async(req, res) => {
         }
         
         const token = generateAuthToken(utilisateur)
-    
-        res.status(200).json({ token });
+
+        if(utilisateur.role === "utilisateur") {
+          return res.status(200).json({token})
+        } else if(utilisateur.role === "administrateur") {
+          return res.status(200).json({r:"adm", token})
+        }
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Erreur lors de la connexion' });

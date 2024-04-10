@@ -1,10 +1,11 @@
-require('dotenv').config({ path: '.env' });
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const authRouter = require('./routes/auth');
 const dashboardRouter = require('./routes/dashboard');
 const demandesRouter = require('./routes/demandes');
 const usersRouter = require('./routes/users');
@@ -25,7 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', dashboardRouter);
+app.use('/', authRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/demandes', demandesRouter);
 app.use('/users', usersRouter);
 app.use('/rapport', rapportRouter);
