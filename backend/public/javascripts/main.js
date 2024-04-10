@@ -23,6 +23,7 @@ const handleNavbarServer = () => {
 }
 handleNavbarServer()
 
+
 /* CREER UN COMPTE */
 const createUser = () => {
 
@@ -57,20 +58,24 @@ const createUser = () => {
 
             const response = fetch('/users/server/signup', requestOptions);
 
-            if(!response.ok) {
-                throw new Error('Erreur lors de la requête : ' + response.statusText);
+            if(response.status === 201) {
+                return alert('Utilisateur crée avec succès !');
             }
 
+            return alert('Erreur inconnue lors de la création de l\'utilisateur');
+
         } catch (error) {
-          console.error(error);  
+            console.error(error);
+            alert('Une erreur est survenue. Veuillez réessayer plus tard.');  
+        } finally {
+            nom.value = '';
+            prenom.value = '';
+            email.value = '';
+            telephone.value = '';
+            role.value = '';
+    
+            window.location.href = '/users/server'
         }
-
-        nom.value = '';
-        prenom.value = '';
-        email.value = '';
-        telephone.value = '';
-        role.value = '';
-
     }
 }
 createUser();
@@ -83,6 +88,7 @@ const putUser = () => {
     const prenom = document.querySelector('.putUser #prenom');
     const email = document.querySelector('.putUser #email');
     const telephone = document.querySelector('.putUser #telephone');
+    const password = document.querySelector('.putUser #password');
     const role = document.querySelector('.putUser #role');
 
     let user;
@@ -90,58 +96,62 @@ const putUser = () => {
 
     selectUser?.addEventListener('change', (event) => {
         user = event.target.value;
-
         const newUser = user.split(',')
-        
+      
         id = newUser[0].match(/(?<=:).+/)[0];
-        nom.value = newUser[1].match(/(?<=:").+(?= )/);
-        prenom.value = newUser[1].match(/(?<=:.+ ).+(?=")/);
-        email.value = newUser[2].match(/(?<=:").+(?=")/);
-        telephone.value = newUser[3].match(/(?<=:").+(?=")/);
-        role.value = newUser[5].match(/(?<=:").+(?=")/);
+        prenom.value = newUser[6].match(/(?<=:").+(?= )/);
+        nom.value = newUser[6].match(/(?<=:.+ ).+(?=")/);
+        email.value = newUser[1].match(/(?<=:").+(?=")/);
+        telephone.value = newUser[7].match(/(?<=:").+(?=")/);
+        password.value = newUser[2].match(/(?<=:").+(?=")/);
+        role.value = newUser[3].match(/(?<=:").+(?=")/);
     })
 
-    putUser?.addEventListener('submit', async(e) => {
+    putUser?.addEventListener('submit', async (e) => {
         try {
-            e.preventDefault();
+          e.preventDefault();
+      
+          const postData = {
+            id: Number(id),
+            nom: prenom.value + ' ' + nom.value,
+            email: email.value,
+            telephone: telephone.value,
+            role: role.value,
+            password: password.value
+          };
+      
+          const requestOptions = {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+          };
+      
+          const response = await fetch(`/users/server/${id}`, requestOptions);
+      
+          if (response.status === 200) {
+           return alert('Profil modifié avec succès !');
+          }
 
-            const postData = {
-                id: Number(id),
-                nom: prenom.value + ' '+ nom.value,
-                email: email.value,
-                telephone: telephone.value,
-                role: role.value,
-                mot_de_passe: 'admin'
-            };
-          
-            const requestOptions = {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postData)
-            };
-
-            const response = fetch(`/users/${id}`, requestOptions);
-
-            if(!response.ok) {
-                throw new Error('Erreur lors de la requête : ' + response.statusText);
-            }
-            return response.json();
-
+          return alert('Erreur inconnue lors de la modification du profil');
+      
         } catch (error) {
-            console.error(error);
+          console.error(error);
+          alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+        } finally {
+          selectUser.value = "";
+          nom.value = '';
+          prenom.value = '';
+          email.value = '';
+          password.value = '';
+          telephone.value = '';
+          role.value = '';
+          
+          window.location.href = '/users/server';
         }
-        selectUser.value = "";
-        nom.value = '';
-        prenom.value = '';
-        email.value = '';
-        telephone.value = '';
-        role.value = '';
-
-    })
+      });
 }
-
 putUser()
 
 

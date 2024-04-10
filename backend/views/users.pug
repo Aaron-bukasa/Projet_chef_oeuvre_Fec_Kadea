@@ -29,7 +29,7 @@ block content
                 select(id="utilisateur", name="utilisateur")
                     option(value="") Choisir un utilisateur
                     each user in users
-                        option(value=user)= user.nom
+                        option(value=user)= user.profil_user.nom
             div
                 label(for="nom") Nom
                 input(type="text", id="nom", name="nom")
@@ -42,6 +42,9 @@ block content
             div
                 label(for="telephone") Téléphone
                 input(type="tel", id="telephone", name="telephone")
+            div 
+                label(for="telephone") Password
+                input(type="text", id="password", name="password")
             div
                 label(for="role") Rôle
                 select(id="role", name="role")
@@ -55,9 +58,9 @@ block content
                 tr
                     th ID
                     th Nom complet
-                    th Role 
-                    th Email
-                    th Télephone
+                    th Email 
+                    th Telephone
+                    th Role
                     th Status
                     th Actions
             tbody
@@ -70,7 +73,7 @@ block content
                         td= user.role
                         td= user.profil_user.status_adhesion
                         td 
-                            a(href=`/users/${user.id}`) Voir
+                            a(href=`/users/server/${user.id}`) Voir
                             a(href=`/users/${user.id}`) Modifier
         ul.statistic 
             li Nombre total comptes: !{users.length}
@@ -78,6 +81,6 @@ block content
             li Nombre de compte administrateur: !{users.filter(user => user.role === 'administrateur').length}
             li.btns 
                 a.navLink  Exporter les données
-                a.navLink(href="/users")  Actualiser la page
+                a.navLink(href="/users/server")  Actualiser la page
 
     link(rel="stylesheet", href="/stylesheets/users.css")

@@ -36,6 +36,11 @@ exports.serverSignup = async (req, res) => {
             nom,
             telephone
           }
+        },
+        suivi_user: {
+          create: [
+            { notifications: "Bienvenue sur votre compte utilisateur" },
+          ]
         }
       }
     });
@@ -98,11 +103,11 @@ exports.serverUsersGet = async(req, res) => {
   try {
     const users = await prisma.user.findMany({
       include: {
-        profil_user: true
+        profil_user: true,
+        suivi_user: true
       }
     });
-
-    console.log(users);
+console.log(users);
     res.status(200).render('users', {users});
 
   } catch (error) {
@@ -114,6 +119,7 @@ exports.serverUsersGet = async(req, res) => {
 
 
 exports.serverUserGet = async(req, res) => {
+
   try {
       const { id } = req.params;
   
@@ -124,6 +130,8 @@ exports.serverUserGet = async(req, res) => {
           suivi_user: true
         }
       });
+
+      console.log(user);
   
       if (!user) {
         return res.status(404).json({ message: 'Utilisateur non trouvé' });
@@ -137,32 +145,48 @@ exports.serverUserGet = async(req, res) => {
 }
 
 
-exports.serverUserPut = async(req, res) => {
+exports.serverUserPut = async (req, res) => {
   try {
-      const { id } = req.params;
-      const { nom, email, telephone, role } = req.body;
-  
-      const user = await prisma.user.findUnique({ where: {id: parseInt(id)} });
-      if (!user) {
-        return res.status(404).json({ message: "Utilisateur non trouvé" });
-      }
-  
-      const userUpdate = await prisma.user.update({
-        where: { id: id },
-        data: {
-          nom: nom || user.nom,
-          email: email || user.email,
-          telephone: telephone || user.telephone,
-          role: role || user.role
-        }
-      });
-  
-      res.status(200).render('user', {userUpdate});
+    const { id } = req.params;
 
-    } catch (error) {
-      res.status(500).json({ message: "Erreur lors de la modification du profil" });
+    if (isNaN(Number(id))) {
+      return res.status(400).json({ message: "L'identifiant de l'utilisateur doit être un nombre" });
     }
-}
+
+    const { nom, email, telephone, password, role } = req.body;
+
+    const user = await prisma.user.findUnique({ where: { id: parseInt(id) } });
+    if (!user) {
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+
+    const passwordHash = bcrypt.hashSync(password, 10);
+
+    const userUpdate = await prisma.user.update({
+      where: { id: parseInt(id)},
+      data: {
+        email: email || user.email,
+        password: passwordHash,
+        role: role || user.role,
+        profil_user: {
+          update: {
+            data: {
+              nom: nom || user.nom,
+              telephone: telephone || user.telephone
+            }
+          }
+        }
+  }
+  
+    });
+
+    res.status(200).json({ message: "Profil mis à jour avec succès" });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erreur interne du serveur" });
+  }
+};
 
 
 exports.serverUserLock = async(req, res) => {
