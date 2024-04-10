@@ -238,7 +238,7 @@ const suiviUtilisateur = () => {
     const id = document.querySelector('.suiviUtilisateur p');
     const commentaire = document.querySelector('#commentaire');
     
-    formSuivi.addEventListener('submit', async(e) => {
+    formSuivi?.addEventListener('submit', async(e) => {
         e.preventDefault();
         const utilisateurId = Number(id.textContent);
 

@@ -9,7 +9,7 @@ function SuiviDmd() {
   const onSubmit = async (data) => {
     console.log(data.number);
     try {
-      const response = await axios.post(`https://projet-chef-oeuvre-fec-kadea-2.onrender.com/suivi_demande/${data.number}`, {
+      const response = await axios.post(`http://localhost:3000/suivi_demande/${data.number}`, {
         nom: data.nom
       });
 

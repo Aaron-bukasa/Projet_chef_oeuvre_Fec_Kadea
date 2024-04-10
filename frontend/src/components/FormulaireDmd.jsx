@@ -54,7 +54,7 @@ export default function FormulaireDmd() {
               {...register("nom", {
                 required: "Nom complet requis",
                 pattern: {
-                  value: /^[A-Za-z\s]+$/,
+                  value: /^[a-zA-Z]+ [a-zA-Z]+$/,
                   message: "Veuillez saisir un nom valide",
                 },
               })}
@@ -72,7 +72,7 @@ export default function FormulaireDmd() {
               {...register("email", {
                 required: "Adresse email requise",
                 pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
                   message: "Veuillez saisir une adresse email valide",
                 },
               })}
@@ -90,7 +90,7 @@ export default function FormulaireDmd() {
               {...register("telephone", {
                 required: "Numéro de téléphone requis",
                 pattern: {
-                  value: /^[0-9]{10}$/,
+                  value: /^(084|085|080|089|081|082|099|097|090)[0-9]{7}$/,
                   message: "Veuillez saisir un numéro de téléphone valide",
                 },
               })}
