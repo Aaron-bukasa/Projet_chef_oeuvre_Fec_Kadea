@@ -58,15 +58,17 @@ block content
                     th Role 
                     th Email
                     th Télephone
+                    th Status
                     th Actions
             tbody
                 each user in users
                     tr
                         td= user.id
-                        td= user.nom
-                        td= user.role
+                        td= user.profil_user.nom
                         td= user.email
-                        td= user.telephone
+                        td= user.profil_user.telephone
+                        td= user.role
+                        td= user.profil_user.status_adhesion
                         td 
                             a(href=`/users/${user.id}`) Voir
                             a(href=`/users/${user.id}`) Modifier

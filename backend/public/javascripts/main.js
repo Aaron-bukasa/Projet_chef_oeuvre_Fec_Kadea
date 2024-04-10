@@ -44,7 +44,7 @@ const createUser = () => {
                 email: email.value,
                 telephone: telephone.value,
                 role: role.value,
-                mot_de_passe: 'admin'
+                password: 'admin'
             };
           
             const requestOptions = {
@@ -55,7 +55,7 @@ const createUser = () => {
                 body: JSON.stringify(postData)
             };
 
-            const response = fetch('/users/signup', requestOptions);
+            const response = fetch('/users/server/signup', requestOptions);
 
             if(!response.ok) {
                 throw new Error('Erreur lors de la requête : ' + response.statusText);

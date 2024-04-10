@@ -6,9 +6,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const authRouter = require('./routes/auth');
+const usersRouter = require('./routes/users');
+
 const dashboardRouter = require('./routes/dashboard');
 const demandesRouter = require('./routes/demandes');
-const usersRouter = require('./routes/users');
 const rapportRouter = require('./routes/rapport');
 const suiviDemande = require('./routes/suiviDemande')
 const suiviUser = require('./routes/suiviUser')
@@ -27,9 +28,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
+app.use('/users', usersRouter);
+
 app.use('/dashboard', dashboardRouter);
 app.use('/demandes', demandesRouter);
-app.use('/users', usersRouter);
 app.use('/rapport', rapportRouter);
 app.use('/suivi_demande', suiviDemande);
 app.use('/suivi_utilisateur', suiviUser);
