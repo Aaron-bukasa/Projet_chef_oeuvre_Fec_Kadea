@@ -15,7 +15,7 @@ export default function FormulaireDmd() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("https://projet-chef-oeuvre-fec-kadea-2.onrender.com/demandes", data);
+      const response = await axios.post("http://localhost:3000/demandes", data);
 
       if (response.status === 200) {
         setNumero(response.data.numero);

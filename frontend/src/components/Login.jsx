@@ -8,7 +8,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/users/login', {
+      const response = await axios.post('http://localhost:3000/users/login', {
         email: data.email,
         mot_de_passe: data.password
       });
@@ -27,7 +27,7 @@ export default function Login() {
         if (userRole === 'utilisateur') {
           window.location.href = '/';
         } else if (userRole === 'administrateur') {
-          const response = await axios.get('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/', requestOptions);
+          const response = await axios.get('http://localhost:3000/', requestOptions);
         }
       } else {
         console.error('Authentication failed');
