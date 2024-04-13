@@ -29,7 +29,7 @@ function App() {
   }, []); 
   
   return (
-    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative">
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative roboto-regular">
       {/* {token === 'undefined' || token === null ? <NavbarPublic /> : <NavbarUtilisateur />} */}
       <NavbarPublic />
       <div className="max-w-screen">

@@ -1,43 +1,128 @@
-import { Link } from 'react-router-dom'
-import logoFec from '../assets/images/logoFec.svg'
-import imgMenu from '../assets/images/menu.svg'
-import imgClose from '../assets/images/close.svg'
-import { useState } from 'react'
+import { Link } from "react-router-dom";
+import logoFec from "../assets/images/logoFec.svg";
+import imgMenu from "../assets/images/menu.svg";
+import imgClose from "../assets/images/close.svg";
+import { useState } from "react";
 
 export default function NavbarPublic() {
+  const [isClick, setIsClick] = useState(false);
 
-    const [isClick, setIsClick] = useState(false);
+  const handleClickMenu = () => {
+    isClick ? setIsClick(false) : setIsClick(true);
+  };
 
-    const handleClickMenu = () => {
-        isClick ? setIsClick(false) : setIsClick(true);
-    }
+  const handleClickLink = () => {
+    isClick && setIsClick(false);
+  };
 
-    const handleClickLink = () => {
-        isClick && setIsClick(false)
-    }
+  return (
+    <div
+      /*className={`${
+        isClick && "h-screen"
+      } w-screen grid auto-rows-max grid-rows-[75px auto 75px] text-lg sm:text-xl lg:block lg:bg-white`}*/
+    >
+      <div className={`${isClick && 'h-screen grid grid-rows-[max-content max-content max-content]'} flex justify-between items-center p-6 mb-2 shadow-lg shadow-opacity-75 shadow-color-gray-300`} /*className="/flex items-center justify-between p-6 lg:flex lg:items-center lg:justify-between 2xl:px-24 mb-2 shadow-lg shadow-opacity-75 shadow-color-gray-300"*/>
+        <div onClick={handleClickLink} className={`${isClick && 'col-start-1 col-end-2 row-start-1 row-end-2 bg-red-600'}`} /*className={`${isClick && "mb-24"} `}*/>
+          <Link to="/">
+            <img
+              src={logoFec}
+              alt="Logo de la fédération des entreprises"
+              className="w-24"
+            />
+          </Link>
+        </div>
+        <ul
+        className={`${!isClick ? 'hidden' : 'col-start-1 col-end-3 row-start-2 row-end-3 flex flex-col bg-blue-600'}`}
+          /*className={`${
+            !isClick ? "hidden" : "pl-[30%] flex flex-col gap-y-6"
+          } tracking-wider  max-w-[1284px] justify-between lg:flex lg:gap-x-6 2xl:w-[60%] max-w-[900px]`}*/
+        >
+          <li onClick={handleClickLink}>
+            <Link
+              to="/"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Accueil
+            </Link>
+          </li>
+          <li onClick={handleClickLink}>
+            <a
+              href="/#avantages"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Avantages
+            </a>
+          </li>
+          <li onClick={handleClickLink}>
+            <Link
+              to="formulaireDmd"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Adhésion
+            </Link>
+          </li>
+          <li onClick={handleClickLink}>
+            <Link
+              to="/faq"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Faq
+            </Link>
+          </li>
+          <li onClick={handleClickLink}>
+            <a
+              href="/#contact"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Contact
+            </a>
+          </li>
+          <li onClick={handleClickLink}>
+            <Link
+              to="login"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              Se connecter
+            </Link>
+          </li>
+          <li onClick={handleClickLink}>
+            <Link
+              to="signup"
+              className="font-semibold text-black hover:text-[#4885ff]"
+            >
+              S'inscrire
+            </Link>
+          </li>
+        </ul>
+        <div onClick={handleClickLink} className={`${isClick && ''}`}>
+          <Link
+            to="formulaireDmd"
+            className="text-white font-bold bg-red-600 p-3 rounded-xl hover:opacity-80 lg:block"
+          >
+            Adhérer maintenant
+          </Link>
+        </div>
+        <div
+          onClick={handleClickMenu}
+          className={`${isClick && 'col-start-2 col-end-3 row-start-1 row-end-2'}`}
+          /*className="flex justify-end p-6 lg:hidden"*/
+        >
+          <img
+            src={imgMenu}
+            alt="menu navigation open"
+            className="w-8"
+            /*className={`${isClick && "hidden"} `}*/
+          />
+          <img
+            src={imgClose}
+            alt="menu navigation close"
+            className="hidden"
+            /*className={`${!isClick && "hidden"} `}*/
+          />
+        </div>
+      </div>
 
-    return(
-        <div className={`${isClick && 'h-screen'} w-screen grid auto-rows-max grid-rows-[75px auto 75px]  bg-secondary-blue text-lg sm:text-xl lg:block lg:bg-white`}>
-            <div className='col-start-1 col-end-2 row-start-1 row-end-3 p-6 lg:flex lg:items-center lg:justify-between 2xl:px-24 mb-4 shadow-lg shadow-opacity-75 shadow-color-gray-300'>
-                <div onClick={handleClickLink} className={`${isClick && 'mb-24'} `}>
-                    <Link to="/">
-                        <img src={logoFec} alt="Logo de la fédération des entreprises" className='w-24' />
-                    </Link>
-                </div>
-                <ul className={`${!isClick ? 'hidden' : 'pl-[30%] flex flex-col gap-y-6'} tracking-wider  max-w-[1284px] justify-between lg:flex lg:gap-x-6 2xl:w-[60%] max-w-[900px]`}>
-                    <li onClick={handleClickLink}><Link to="/" className='font-semibold text-black hover:text-[#4885ff]'>Accueil</Link></li>
-                    <li onClick={handleClickLink}><a href="/#avantages" className='font-semibold text-black hover:text-[#4885ff]'>Avantages</a></li>
-                    <li onClick={handleClickLink}><Link to="formulaireDmd" className='font-semibold text-black hover:text-[#4885ff]'>Adhésion</Link></li>
-                    <li onClick={handleClickLink}>
-                    <Link to="/faq" className='font-semibold text-black hover:text-[#4885ff]'>Faq</Link>
-                </li>
-                    <li onClick={handleClickLink}><a href="/#contact" className='font-semibold text-black hover:text-[#4885ff]'>Contact</a></li>
-                    <li onClick={handleClickLink}><Link to="login" className='font-semibold text-black hover:text-[#4885ff]'>Se connecter</Link></li>
-                    <li onClick={handleClickLink}><Link to="signup" className='font-semibold text-black hover:text-[#4885ff]'>S'inscrire</Link></li>
-                </ul>
-                <div onClick={handleClickLink}><Link to="formulaireDmd" className='text-white font-bold bg-red-600 p-3 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></div>
-            </div>
-            {/* <ul className={`${!isClick && 'hidden'} col-start-1 col-end-3 bg-primary-blue row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-8 items-start p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6 2xl:px-24`}>
+      {/* <ul className={`${!isClick && 'hidden'} col-start-1 col-end-3 bg-primary-blue row-start-3 row-end-4 pl-[30%] flex flex-col gap-y-8 items-start p-6 lg:flex lg:flex-row lg:bg-white lg:border-2 lg:border-primary-blue lg:justify-end lg:gap-x-6 2xl:px-24`}>
                 <
                 <li onClick={handleClickLink}>
                     <a href="/#faq" className='flex items-center gap-x-2'>
@@ -47,10 +132,6 @@ export default function NavbarPublic() {
                     </a>
                 </li>
             </ul> */}
-            <div onClick={handleClickMenu} className='col-start-2 col-end-3 row-start-1 row-end-2 flex justify-end p-6 lg:hidden'>
-                <img src={imgMenu} alt='menu navigation open' className={`${isClick && 'hidden'} `}/>
-                <img src={imgClose} alt='menu navigation close' className={`${!isClick && 'hidden'} `} />
-            </div>
-        </div>
-    )
+    </div>
+  );
 }
