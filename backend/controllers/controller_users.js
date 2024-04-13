@@ -54,36 +54,32 @@ exports.serverSignup = async (req, res) => {
 };
 
 
-exports.serverLogin = async(req, res) => {
-
+exports.serverLogin = async (req, res) => {
   try {
-      const { email, password } = req.body;
-  
-      const adm = await prisma.user.findUnique({ where: { email } });
+    const { email, password } = req.body;
 
-      if (!adm) {
-        return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
-      }
-  
-      const passwordValid = bcrypt.compareSync(password, adm.password);
-
-      if (!passwordValid) {
-        return res.status(400).json({ message: 'Email ou mot de passe incorrect' });
-      }
-      
-      const token = generateAuthToken(adm)
-
-      if(adm.role === "administrateur") {
-        return res.status(200).render('dashboard', {token})
-      } else {
-        return res.status(401).json({message: 'Erreur de vérification'})
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur serveur' });
+    const adm = await prisma.user.findUnique({ where: { email } });
+    if (!adm || !bcrypt.compareSync(password, adm.password)) {
+      return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
     }
 
-}
+    const token = generateAuthToken(adm);
+  
+    if (adm.role === "administrateur") {
+
+      res.status(200).cookie('token', token, {
+        httpOnly: true,
+        secure: true
+      }).json('utilisateur verifié');
+
+    } else {
+      res.status(400).json({ message: 'Erreur lors de la connexion' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+};
 
 
 exports.serverLogout = async(req, res) => {
@@ -126,8 +122,8 @@ exports.serverUserGet = async(req, res) => {
       const user = await prisma.user.findUnique({
         where: { id: parseInt(id) },
         include: {
-          profil: true,
-          suivi_user: true
+          suivi_user: true,
+          profil_user: true
         }
       });
 
@@ -139,9 +135,9 @@ exports.serverUserGet = async(req, res) => {
      
       res.status(200).render('user', {user});
 
-    } catch (error) {
-      res.status(500).json({ message: 'Erreur server' });
-    }
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur server' });
+  }
 }
 
 
@@ -208,6 +204,7 @@ exports.serverUserLock = async(req, res) => {
       });
   
       res.status(200).render('user', {message: 'Utilisateur bloqué avec succès'});
+      alert('Utilisateur bloqué avec succès')
       
     } catch (error) {
       res.status(500).json({ message: "Erreur lors de la modification du profil" });
@@ -233,6 +230,7 @@ exports.serverUserUnlock = async(req, res) => {
       });
   
       res.status(200).render('user', {message: 'Utilisateur debloqué avec succès'});
+      alert('Utilisateur debloqué avec succès')
       
     } catch (error) {
       res.status(500).json({ message: "Erreur lors de la modification du profil" });

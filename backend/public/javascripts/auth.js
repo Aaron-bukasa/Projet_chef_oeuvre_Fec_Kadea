@@ -11,7 +11,7 @@ async function handleAuth(event) {
 
         const postData = {
             email: email.value,
-            mot_de_passe: password.value
+            password: password.value
         };
         const requestOptions = {
             method: 'POST',
@@ -21,13 +21,11 @@ async function handleAuth(event) {
             body: JSON.stringify(postData)
         };
 
-        const response = await fetch('/users/login', requestOptions);
-
+        const response = await fetch('/users/server/login', requestOptions);
+        console.log(response);
         if(response.status === 200) {
-            const data = await response.json();
-            if(data.r && data.r==='adm') {
-                window.location.href = ''
-            }
+          console.log('salut mec');
+            window.location.href = '/dashboard';
         } else {
             return console.error('Erreur de connexion');
         }

@@ -1,11 +1,12 @@
-/* RESET STYLE */
+RESET STYLE
+/*
 *, ::before, ::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* VARIABLES */
+/* VARIABLES 
 :root {
   --primary-blue: #051433;
   --secondary-blue: #00194C;
@@ -13,7 +14,7 @@
   --gray: #ccc;
 }
 
-/* STYLES REUTILISABLES */
+/* STYLES REUTILISABLES 
 .navLink {
   cursor: pointer;
   text-decoration: none;
@@ -28,7 +29,7 @@
   opacity: .8;
 }
 
-/* GENERALES STYLES*/
+/* GENERALES STYLES
 #container {
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -45,7 +46,7 @@ ul {
   list-style: none;
 }
 
-/* NAVIGATION */
+/* NAVIGATION 
 .navbar__top {
   grid-column: 1 / 3;
   grid-row: 1 / 2;
@@ -169,7 +170,7 @@ ul {
   }
 }
 
-/* MAIN */
+/* MAIN 
 .main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
@@ -180,7 +181,7 @@ ul {
 }
 
 
-/* FOOTER */
+/* FOOTER 
 .footer {
   grid-column: 1 / 3;
   grid-row: 3 / 4;
@@ -199,3 +200,4 @@ ul {
     font-size: 18px;
   }
 }
+*/

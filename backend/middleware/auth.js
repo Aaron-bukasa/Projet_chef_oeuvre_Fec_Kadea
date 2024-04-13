@@ -1,18 +1,22 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// const jwt = require('jsonwebtoken');
- 
-// module.exports = (req, res, next) => {
-//    try {
-//        const token = req.headers.authorization.split(' ')[1];
-//        const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET);
-//        const userId = decodedToken.userId;
-//        req.auth = {
-//            userId: userId
-//        };
-// 	next();
-//    } catch(error) {
-//        res.status(401).json({ error });
-//    }
-// };
+module.exports = (req, res, next) => {
+    
+    const token = req.cookies.token;
+
+    if (token) {
+        
+        jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).send('Token invalide');
+            } else {
+                console.log('ok verifie');
+                req.user = decoded;
+                next();
+            }
+        });
+    } else {
+        return res.status(401).send('Erreur d\'authentification');
+    }
+};
