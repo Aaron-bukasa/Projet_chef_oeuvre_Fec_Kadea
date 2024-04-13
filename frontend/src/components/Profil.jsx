@@ -12,7 +12,7 @@ export default function Profil() {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const response = await axios.get(`https://projet-chef-oeuvre-fec-kadea-2.onrender.com/users/font/${decoded.userId}`);
+        const response = await axios.get(`http://localhost:3000/users/font/${decoded.userId}`);
         if(response.status === 200) {
             setUser(response.data);
         }

@@ -10,7 +10,7 @@ export default function Signup() {
     localStorage.removeItem("token");
 
     try {
-      const response = await axios.post('https://projet-chef-oeuvre-fec-kadea-2.onrender.com/users/signup', {
+      const response = await axios.post('http://localhost:3000/users/signup', {
         nom: `${data.prenom} ${data.nom}`,
         email: data.email,
         telephone: data.telephone,

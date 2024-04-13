@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Définition des modèles
+// DEFINITION DES MODELES
 
 model Demande {
   id                Int         @id @default(autoincrement())
@@ -32,25 +32,49 @@ model SuiviDemande {
   demandeId   Int
 }
 
-
-model Utilisateur {
-  id                  Int         @id @default(autoincrement())
-  nom                 String
-  email               String      @unique
-  telephone           String      @unique
-  mot_de_passe        String
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String @unique
+  password String
   role                String      @default("utilisateur")  // administrateur, utilisateur
-  statut              String      @default("actif")  // actif, inactif
-  date_inscription    DateTime
-  suivi_utilisateur  SuiviUtilisateur[]
+  date_inscription    DateTime @default(now())
+  profil_user Profil?
+  suivi_user  SuiviUser[]
 }
 
-model SuiviUtilisateur {
+model Profil {
+  id             Int      @id @default(autoincrement())
+  nom String
+  telephone           String      @unique
+  avatar String?
+  bannere        String?
+  adress   String?
+  ville String?
+  date_adhesion DateTime?
+  date_expiration DateTime?
+  status_adhesion String      @default("inactif")  // actif, inactif
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int  @unique
+}
+
+model SuiviUser {
   id          Int       @id @default(autoincrement())
   notifications   String
   date        DateTime  @default(now())
-  utilisateur     Utilisateur   @relation(fields: [utilisateurId ], references: [id])
-  utilisateurId   Int
+  user           User     @relation(fields: [userId], references: [id])
+  userId         Int  @unique
+}
+
+model NewsLetter {
+  id          Int       @id @default(autoincrement())
+  email    String
+
+}
+
+model Message {
+  id          Int       @id @default(autoincrement())
+  email    String
+  message    String
 }
 
 

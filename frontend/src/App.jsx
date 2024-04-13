@@ -29,8 +29,9 @@ function App() {
   }, []); 
   
   return (
-    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden">
-      {token === 'undefined' || token === null ? <NavbarPublic /> : <NavbarUtilisateur />}
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative">
+      {/* {token === 'undefined' || token === null ? <NavbarPublic /> : <NavbarUtilisateur />} */}
+      <NavbarPublic />
       <div className="max-w-screen">
         <Routes>
           <Route path="/" element={<Home />} />
