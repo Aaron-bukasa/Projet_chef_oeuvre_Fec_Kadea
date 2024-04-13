@@ -40,7 +40,6 @@ export default function Home() {
         <DevenirMembre />
         <Avantages />
         <Temoignages />
-        <Faq />
       </div>
     </div>
   );
@@ -59,7 +58,7 @@ function Bannere() {
 
   return (
     <div className="relative xl:h-[85vh]">
-      <div className="w-full absolute bottom-0 pt-6 pb-12 z-10 sm:px-6 md:px-12 lg:px-24 flex flex-col items-center bg-[#00194c69]">
+      <div className="w-full absolute bottom-0 top-0 pt-6 z-10 sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center bg-[#00194c36]">
         <h1 className="inline-block font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
@@ -143,16 +142,18 @@ function DevenirMembre() {
   // }, []);
 
   return (
-    <div className="bg-bg_banner bg-cover">
+    <div className="bg-bg_banner bg-cover relative">
+      <div className="absolute top-0 shadow-membre-box h-2 bg-gray-200 w-full"></div>
       <div
         id="devenir_membre"
         className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1536px] mx-auto"
       >
-        <div className="lg:col-start-1 lg:col-end-2">
-          <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
+        <div className="lg:col-start-1 lg:col-end-2 border-2 py-4 tracking-wide px-12 border border-gray-300 shadow-membre-item rounded-lg">
+          <h2 className="roboto-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
             Devenez membre de la fédération des entreprises
           </h2>
-          <p className="md:text-lg 2xl:text-xl">
+          <p className="md:text-lg 2xl:text-xl first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl">
             La fédération des entreprises est une organisation qui rassemble et
             représente les entreprises de tous les secteurs d'activité.
           </p>
@@ -160,7 +161,7 @@ function DevenirMembre() {
             En adhérant à la fédération, vous bénéficierez de nombreux
             avantages, tels que:
           </p>
-          <ul className="list-disc ml-6 py-2 md:text-lg 2xl:text-xl">
+          <ul className="list-disc ml-6 py-3 md:text-lg 2xl:text-xl">
             <li>
               <strong className="font-normal">Une Assistance</strong>
             </li>
@@ -176,7 +177,7 @@ function DevenirMembre() {
           </ul>
           <Link
             to="formulaireDmd"
-            className="text-white font-bold bg-sky-blue inline-block p-3 rounded-xl my-3 hover:opacity-80 lg:text-xl lg:mt-12"
+            className="bg-red-600 text-white font-bold inline-block p-3 rounded-xl my-2 hover:opacity-80 lg:text-xl lg:mt-6"
           >
             Adhérer à la fédération
           </Link>
@@ -185,7 +186,7 @@ function DevenirMembre() {
           <img
             src={imgMembre}
             alt="la fédération des entreprises du congo"
-            className="mx-auto sm:w-[80%] lg:w-full lg:object-cover"
+            className="mx-auto sm:w-[80%] lg:w-full lg:object-cover rounded-lg"
           />
         </div>
       </div>
@@ -343,33 +344,33 @@ function Temoignages() {
       },
     ],
   };
-  const partenairesRTL = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
-    rtl: true,
-    responsive: [
-      {
-        breakpoint: 786,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  // const partenairesRTL = {
+  //   dots: false,
+  //   infinite: true,
+  //   slidesToShow: 5,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   speed: 2000,
+  //   autoplaySpeed: 2000,
+  //   cssEase: "linear",
+  //   rtl: true,
+  //   responsive: [
+  //     {
+  //       breakpoint: 786,
+  //       settings: {
+  //         slidesToShow: 4,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 640,
+  //       settings: {
+  //         slidesToShow: 3,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //   ],
+  // };
 
   return (
     <div id="Temoignages" className="">
@@ -380,7 +381,7 @@ function Temoignages() {
           </h2>
           <div className="text-white leading-7 md:tracking-wider">
             <Slider {...faqAutoplay}>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
                 <div
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -390,7 +391,7 @@ function Temoignages() {
                   suis à la FEC, j'ai comme clients des moyennes et des grandes
                   entreprises. ça c'est grâce&nbsp;à&nbsp;la&nbsp;FEC&nbsp;!
                 </div>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
+                <div className="flex gap-x-3 items-center border-t-2 p-3 pt-8 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_01} alt="" />
                   </div>
@@ -402,7 +403,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -413,7 +414,7 @@ function Temoignages() {
                   la contacter. Elle vous défend et fait votre marketing. Il
                   faut&nbsp;en&nbsp;être&nbsp;membre
                 </blockquote>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
+                <div className="flex gap-x-3 items-center border-t-2 p-3 pt-4 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_02} alt="" />
                   </div>
@@ -425,7 +426,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -435,7 +436,7 @@ function Temoignages() {
                   professionnalisme et le sérieux dans ce qu'il a à faire, nous
                   réussirons à redevenir&nbsp;ce&nbsp;grand Congo
                 </blockquote>
-                <div className="flex gap-x-3 items-center bg-gray-200 p-3 mt-6 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
+                <div className="flex gap-x-3 items-center border-t-2 p-3 pt-8 md:absolute md:bottom-2 md:w-[90%] lg:bottom-8">
                   <div>
                     <img src={imgTesti_03} alt="" />
                   </div>
@@ -452,7 +453,7 @@ function Temoignages() {
         </div>
       </div>
 
-      <div className="my-12">
+      <div className="my-12 max-w-[80%] mx-auto">
         <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Ils nous accompagnent
         </h2>
@@ -498,7 +499,7 @@ function Temoignages() {
           </div>
         </Slider>
       </div>
-      <div className="my-12 max-w-ful">
+      {/* <div className="my-12 max-w-ful">
         <Slider {...partenairesRTL} className="max-w-full">
           <div className="w-28 h-28">
             <img src={logoMember001} alt="membre 1" />
@@ -540,68 +541,7 @@ function Temoignages() {
             <img src={logoMember013} alt="membre 13" />
           </div>
         </Slider>
-      </div>
-    </div>
-  );
-}
-
-function Faq() {
-  return (
-    <div
-      id="faq"
-      className="p-6 md:text-lg 2xl:text-xl flex flex-col bg-bg_blog xl:pb-12"
-    >
-      <div className="xl:max-w-[1536px] mx-auto">
-        <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
-          Foire aux questions
-        </h2>
-        <ul>
-          <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
-            <h3 className="font-bold text-xl mb-3">
-              Qu'est-ce que la fédération des entreprises ?
-            </h3>
-            <p>
-              La fédération des entreprises est une organisation qui rassemble
-              et représente les entreprises de tous les secteurs d'activité.
-            </p>
-          </li>
-          <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
-            <h3 className="font-bold text-xl mb-3">
-              Quels sont les avantages de l'adhésion ?
-            </h3>
-            <p>
-              En adhérant à la fédération, vous bénéficierez de nombreux
-              avantages, tels que :
-            </p>
-            <ul className="list-disc ml-6">
-              <li>Une assistance</li>
-              <li>Une Défense</li>
-              <li>Une Réprésentation</li>
-              <li>
-              Un Appui aux Entreprises
-              </li>
-            </ul>
-          </li>
-          <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
-            <h3 className="font-bold text-xl mb-3">
-              Comment puis-je adhérer à la fédération ?
-            </h3>
-            <p>
-              Pour adhérer à la fédération, veuillez remplir le formulaire de
-              demande d'adhésion disponible sur notre site web.
-            </p>
-          </li>
-          <li className="border-[3px] border-secondary-blue p-3 rounded-xl my-4">
-            <h3 className="font-bold text-xl mb-3">
-              Combien coûte l'adhésion ?
-            </h3>
-            <p>
-              Le coût de l'adhésion dépend de la taille de votre entreprise.
-              Veuillez consulter notre site web pour plus d'informations.
-            </p>
-          </li>
-        </ul>
-      </div>
+      </div> */}
     </div>
   );
 }

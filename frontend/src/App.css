@@ -33,3 +33,23 @@
   background-image: url('./assets/images/bg_services.png');
   background-repeat: no-repeat;
 }
+
+/* SHADOW */
+.shadow-membre-item {
+  box-shadow: 0px 0px 22px 2px rgb(196, 195, 195);
+}
+.shadow-membre-box {
+  box-shadow: 0px 0px 22px 2px rgb(196, 195, 195);
+}
+
+/* BTN PLAY */
+.slick-prev::before,
+.slick-next::before {
+  font-size: 50px;
+}
+
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color: #333;
+}
+
