@@ -1,14 +1,18 @@
+import dotenv from 'dotenv';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { jwtDecode } from "jwt-decode";
 
+dotenv.config();
+
 export default function Login() {
+  const url = process.env.MY_URL;
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:3000/users/login', {
+      const response = await axios.post(`${url}/users/login`, {
         email: data.email,
         mot_de_passe: data.password
       });

@@ -57,7 +57,7 @@ function Bannere() {
   }, []);
 
   return (
-    <div className="relative xl:h-[85vh]">
+    <div className="relative xl:h-[90vh]">
       <div className="w-full absolute bottom-0 top-0 pt-6 z-10 sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center bg-[#00194c36]">
         <h1 className="inline-block font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
@@ -66,13 +66,13 @@ function Bannere() {
           <div><Link to="suiviDmd" className='text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-4 bg-white rounded-xl hover:bg-gray-100 text-xl'>Suivi de la demande</Link></div>
           <div><Link to="formulaireDmd" className='text-xl font-semibold text-white font-bold bg-red-600 p-4 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></div>
         </div>
-        <div className="py-6">
+        <a href='#devenir_memebre' className="py-6">
           <img
             src={iconArrow}
             alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
             className="w-24 relative top-0 animated-arrow hidden lg:block"
           />
-        </div>
+        </a>
       </div>
       <div>
         <img
@@ -111,44 +111,14 @@ function DevenirMembre() {
   const intersectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // useEffect(() => {
-  //   const options = {
-  //     root: null,
-  //     rootMargin: "0px",
-  //     threshold: 0.5,
-  //   };
-
-  //   const callback = (entries, observer) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting) {
-  //         setIsVisible(true);
-  //       } else {
-  //         setIsVisible(false);
-  //       }
-  //     });
-  //   };
-
-  //   const observer = new IntersectionObserver(callback, options);
-
-  //   if (intersectionRef.current) {
-  //     observer.observe(intersectionRef.current);
-  //   }
-
-  //   return () => {
-  //     if (intersectionRef.current) {
-  //       observer.unobserve(intersectionRef.current);
-  //     }
-  //   };
-  // }, []);
-
   return (
-    <div className="bg-bg_banner bg-cover relative">
+    <div id="devenir_memebre" className="bg-bg_banner bg-cover relative">
       <div className="absolute top-0 shadow-membre-box h-2 bg-gray-200 w-full"></div>
       <div
         id="devenir_membre"
         className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1536px] mx-auto"
       >
-        <div className="lg:col-start-1 lg:col-end-2 border-2 py-4 tracking-wide px-12 border border-gray-300 shadow-membre-item rounded-lg">
+        <div className="mb-6 sm:w-[80%] sm:mx-auto  border-2 py-4 tracking-wide px-12 border border-gray-300 shadow-membre-item rounded-lg lg:col-start-1 lg:col-end-2">
           <h2 className="roboto-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
             Devenez membre de la fédération des entreprises
           </h2>
@@ -207,8 +177,8 @@ function Avantages() {
         <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Les avantages de l'adhésion
         </h2>
-        <div className="grid grid-col-2 grid-row-4 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-x-24">
-          <div className="max-w-[480px] col-start-1 col-end-3 row-start-1 row-end-2 lg:col-start-1 lg:col-end-2 p-3 rounded-xl shadow-lg">
+        <div className="grid grid-col-1 grid-row-5 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12">
+          <div className="col-start-1 col-end-2 row-start-1 row-end-2 max-w-[480px] p-3 rounded-xl shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
                 src={imgAvantage01}
@@ -227,7 +197,7 @@ function Avantages() {
               </p>
             </div>
           </div>
-          <div className="max-w-[480px] col-start-1 col-end-3 row-start-2 row-end-3 lg:col-start-2 lg:col-end-3 p-3 lg:row-start-1 lg:row-end-2 rounded-xl  shadow-lg">
+          <div className="max-w-[480px] col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 p-3 rounded-xl  shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
                 src={imgAvantage02}
@@ -246,7 +216,7 @@ function Avantages() {
               </p>
             </div>
           </div>
-          <div className="max-w-[480px] col-start-1 col-end-3 row-start-3 row-end-4 lg:col-start-1 lg:col-end-2 p-3 lg:row-start-2 lg:row-end-3 rounded-xl  shadow-lg">
+          <div className="max-w-[480px] col-start-1 col-end-2 row-start-3 row-end-4 sm:col-start-1 sm:col-end-2 sm:row-start-2 sm:row-end-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 p-3 rounded-xl  shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
                 src={imgAvantage03}
@@ -265,7 +235,26 @@ function Avantages() {
               </p>
             </div>
           </div>
-          <div className="max-w-[480px] col-start-1 col-end-3 row-start-4 row-end-5 lg:col-start-2 lg:col-end-3 p-3 lg:row-start-2 lg:row-end-3 rounded-xl  shadow-lg">
+          <div className="max-w-[480px] col-start-1 col-end-2 row-start-4 row-end-5 sm:col-start-2 sm:col-end-3 sm:row-start-2 sm:row-end-3 lg:col-start-1 lg:col-end-2 p-3 rounded-xl  shadow-lg">
+            <div className="mb-3 h-[280px]">
+              <img
+                src={imgAvantage04}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
+              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+                Un Appui aux Entreprises
+              </h3>
+              <p className="text-lg">
+                L’appui des entreprises auprès des administrations sur toute
+                question à caractère juridique, social et fiscal.
+              </p>
+            </div>
+          </div>
+          <div className="max-w-[480px] col-start-1 col-end-2 row-start-5 row-end-6 sm:row-start-3 sm:row-end-4 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 p-3 rounded-xl  shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
                 src={imgAvantage04}

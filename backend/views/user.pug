@@ -1,31 +1,41 @@
 extends layout
   
 block content
-    h1= 'Utilisateur ' + user.nom
+    h1 #{user.role} #{user.profil_user.nom}
     div.utilisateur
-        div
-            p Identification : #{user.id}
-            p Nom : #{user.nom}
-            p Email : #{user.email}
-            p Role : #{user.role}
-            p Statut : #{user.statut}
-            p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
-        hr
-        form.suiviUtilisateur(action="/suivi_utilisateur", method="POST")
-            p #{user.id}
+        div.userInfo 
             div
-                label(for="action") Actions
-                select(id="action", name="action")
-                    option(value="") Choisir
-                    option(value="bloquer") Bloquer
-                    option(value="debloquer") Débloquer
-                    option(value="supprimer") Supprimer
-            div
-                label(for="commentaire") Commentaire (facultatif)
-                textarea(id="commentaire", name="commentaire", rows="5", cols="50")
-            button.navLink(type="submit") Valider
+                h2 Profil utilisateur
+                p Identification : #{user.id}
+                p Nom : #{user.profil_user.nom}
+                p Email : #{user.email}
+                p Role : #{user.role}
+                p Statut : #{user.statut}
+                p adresse : #{user.profil_user.adress}
+                p adresse : #{user.profil_user.ville}
+                p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                p Date d'adhésion : #{user.profil_user.date_adhesion}
+                p Status d'adhésion : #{user.profil_user.status_adhesion}
+            form.suiviUtilisateur(action="/suivi_utilisateur", method="POST")
+                p #{user.id}
+                h2 Actions
+                div.actions 
+                    div.lock(href=`/users/server/lock/${user.id}`) Bloquer
+                    div.unlock(href=`/users/server/unlock/${user.id}`) Debloquer
+                    div.delete(href=`/users/server/${user.id}`) Supprimer
+                div
+                    select(id="action", name="action")
+                        option(value="") Choisir
+                        option(value="bloquer") Bloquer
+                        option(value="debloquer") Débloquer
+                        option(value="supprimer") Supprimer
+                div
+                    label(for="commentaire") Commentaire (facultatif)
+                    textarea(id="commentaire", name="commentaire", rows="5", cols="50")
+                button.navLink(type="submit") Valider
         hr
         div 
+            h2 Suivi Utilisateur
             table
                 thead
                     tr
@@ -34,7 +44,7 @@ block content
                         th Notifications
                         th Actions
                 tbody
-                    each suivi in user.suivi_utilisateur
+                    each suivi in user.suivi_user
                         tr
                             td= suivi.id
                             td= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
@@ -43,5 +53,6 @@ block content
                                 a(href="#")  modifier
                                 a(href="#") Valider
                                 a(href="#") Delete
+        
 
     link(rel="stylesheet", href="/stylesheets/user.css")

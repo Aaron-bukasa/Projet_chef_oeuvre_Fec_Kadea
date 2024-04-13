@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/users', usersRouter);
-
 app.use('/dashboard', dashboardRouter);
+
 app.use('/demandes', demandesRouter);
 app.use('/rapport', rapportRouter);
 app.use('/suivi_demande', suiviDemande);

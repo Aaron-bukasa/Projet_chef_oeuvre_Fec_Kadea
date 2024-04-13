@@ -33,37 +33,39 @@ model SuiviDemande {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String @unique
-  password String
-  role                String      @default("utilisateur")  // administrateur, utilisateur
-  date_inscription    DateTime @default(now())
-  profil_user Profil?
-  suivi_user  SuiviUser[]
+id       Int      @id @default(autoincrement())
+email    String @unique
+password String
+role                String      @default("utilisateur")  // administrateur, utilisateur
+date_inscription    DateTime @default(now())
+profil_user Profil?
+suivi_user  SuiviUser[]
 }
 
 model Profil {
   id             Int      @id @default(autoincrement())
-  nom String
-  telephone           String      @unique
-  avatar String?
+  nom            String
+  telephone      String   @unique
+  avatar         String?
   bannere        String?
-  adress   String?
-  ville String?
-  date_adhesion DateTime?
+  adress         String?
+  ville          String?
+  date_adhesion  DateTime?
   date_expiration DateTime?
-  status_adhesion String      @default("inactif")  // actif, inactif
+  status_adhesion String @default("inactif") // actif, inactif
   user           User     @relation(fields: [userId], references: [id])
-  userId         Int  @unique
+  userId         Int      @unique
 }
 
 model SuiviUser {
-  id          Int       @id @default(autoincrement())
-  notifications   String
-  date        DateTime  @default(now())
-  user           User     @relation(fields: [userId], references: [id])
-  userId         Int  @unique
+id          Int       @id @default(autoincrement())
+notifications   String
+date        DateTime  @default(now())
+user           User     @relation(fields: [userId], references: [id])
+userId         Int  @unique
 }
+
+
 
 model NewsLetter {
   id          Int       @id @default(autoincrement())

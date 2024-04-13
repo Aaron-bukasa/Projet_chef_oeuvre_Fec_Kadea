@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctr_dashboard = require('../controllers/controller_auth');
+const ctr_auth = require('../controllers/controller_auth');
 
-router.get('/', ctr_dashboard.dashboard);
+router.get('/', ctr_auth.authLogin);
 
 module.exports = router;

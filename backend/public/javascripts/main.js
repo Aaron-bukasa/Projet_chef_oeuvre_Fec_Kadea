@@ -256,7 +256,6 @@ const suiviUtilisateur = () => {
                 if(commentaire.value === "") {
                     return console.error("votre message ne contient aucun contenu");
                 }
-                console.log(utilisateurId, commentaire.value);
                 const postData = {
                     utilisateurId: utilisateurId,
                     notifications: commentaire.value,
@@ -285,6 +284,11 @@ const suiviUtilisateur = () => {
 }
 
 suiviUtilisateur();
+
+
+function userLock() {
+    
+}
 
 
 
