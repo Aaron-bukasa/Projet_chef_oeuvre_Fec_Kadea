@@ -28,7 +28,6 @@ export default function Login() {
           window.location.href = '/';
         } else if (userRole === 'administrateur') {
           const response = await axios.get('http://localhost:3000/', requestOptions);
-        }
       } else {
         console.error('Authentication failed');
       }
