@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/auth.css')
+    script(src="/javascripts/auth.js" defer) 
+  body
+    div#container
+      div.header 
+        div(class="logo")
+          img(src="/images/logoFec.svg" alt="logo de la fec")
+      div.main
+        form.formAuth(action="/" method="post")
+          h1 Se connecter
+          div.card
+            div
+              label(for="email") Adresse email
+              input(type="text" id="email" name="email" placeholder="Adresse email")
+            div
+              label(for="password") Mot de passe
+              input(type="password" id="password" name="password" placeholder="Mot de passe")
+          button(type="submit") Se connecter
+      div.footer
+          div
+            img(src="/images/logoFec.svg" alt="logo de la féderation des entreprises")
+          div &copy; 2024 - Fédération des Entreprises du Congo. Tous droits réservés

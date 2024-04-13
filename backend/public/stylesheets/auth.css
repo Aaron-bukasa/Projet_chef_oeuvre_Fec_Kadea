@@ -1,0 +1,68 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --primary-blue: #051433;
+    --secondary-blue: #00194C;
+    --sky-blue: #0055ff;
+    --gray: #ccc;
+}
+img {
+    width: 80px;
+    margin-left: -10px;
+}
+body {
+    color: white;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+#container {
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+    grid-template-columns: auto;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+.header {
+    grid-row: 1 / 2;
+    padding: 20px;
+    background-color: var(--secondary-blue);
+}
+.main {
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 12px;
+}
+form {
+    padding: 20px;
+   background-color: var(--secondary-blue);
+   border-radius: 5px;
+   width: 320px;
+}
+h1 {
+    text-align: center;
+    padding-block: 12px;
+}
+input {
+    padding: 5px;
+    border-radius: 8px;
+}
+.card > div {
+    display: flex;
+    flex-direction: column;
+    margin-block: 12px;
+}
+button {
+    padding: 8px;
+    border-radius: 5px;
+}
+.footer {
+    grid-row: 3 / 4;
+    padding: 20px;
+    background-color: var(--secondary-blue);
+}

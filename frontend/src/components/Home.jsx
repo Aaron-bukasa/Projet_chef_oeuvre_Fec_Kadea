@@ -59,15 +59,21 @@ function Bannere() {
 
   return (
     <div className="relative xl:h-[85vh]">
-      <div className="w-full absolute bottom-[15%] py-6 z-10 sm:px-6 md:px-12 lg:px-24 xl:bottom-[30%] flex flex-col items-center">
-        <h1 className="inline-block font-bold text-2xl text-center text-white bg-[#00194c69] p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+      <div className="w-full absolute bottom-0 pt-6 pb-12 z-10 sm:px-6 md:px-12 lg:px-24 flex flex-col items-center bg-[#00194c69]">
+        <h1 className="inline-block font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
-        <img
-          src={iconArrow}
-          alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
-          className="w-24 relative top-12 animated-arrow hidden lg:block xl:top-24"
-        />
+        <div className="flex gap-x-12 mt-12">
+          <div><Link to="suiviDmd" className='text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-4 bg-white rounded-xl hover:bg-gray-100 text-xl'>Suivi de la demande</Link></div>
+          <div><Link to="formulaireDmd" className='text-xl font-semibold text-white font-bold bg-red-600 p-4 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></div>
+        </div>
+        <div className="py-6">
+          <img
+            src={iconArrow}
+            alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
+            className="w-24 relative top-0 animated-arrow hidden lg:block"
+          />
+        </div>
       </div>
       <div>
         <img
@@ -106,35 +112,35 @@ function DevenirMembre() {
   const intersectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
+  // useEffect(() => {
+  //   const options = {
+  //     root: null,
+  //     rootMargin: "0px",
+  //     threshold: 0.5,
+  //   };
 
-    const callback = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      });
-    };
+  //   const callback = (entries, observer) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         setIsVisible(true);
+  //       } else {
+  //         setIsVisible(false);
+  //       }
+  //     });
+  //   };
 
-    const observer = new IntersectionObserver(callback, options);
+  //   const observer = new IntersectionObserver(callback, options);
 
-    if (intersectionRef.current) {
-      observer.observe(intersectionRef.current);
-    }
+  //   if (intersectionRef.current) {
+  //     observer.observe(intersectionRef.current);
+  //   }
 
-    return () => {
-      if (intersectionRef.current) {
-        observer.unobserve(intersectionRef.current);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (intersectionRef.current) {
+  //       observer.unobserve(intersectionRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <div className="bg-bg_banner bg-cover">
@@ -175,12 +181,7 @@ function DevenirMembre() {
             Adhérer à la fédération
           </Link>
         </div>
-        <div
-          ref={intersectionRef}
-          className={`${
-            isVisible && "animated-visible"
-          } opacity-0 lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center`}
-        >
+        <div className='lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center'>
           <img
             src={imgMembre}
             alt="la fédération des entreprises du congo"
