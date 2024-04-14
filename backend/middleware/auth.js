@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
             } else {
                 console.log('ok verifie');
                 req.user = decoded;
+                console.log(req.user);
                 next();
             }
         });
