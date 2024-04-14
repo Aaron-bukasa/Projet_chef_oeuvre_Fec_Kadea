@@ -1,11 +1,11 @@
 extends layout
   
 block content
-    h1 #{user.role} #{user.profil_user.nom}
+    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") #{user.role} #{user.profil_user.nom}
     div.utilisateur
-        div.userInfo 
-            div
-                h2 Profil utilisateur
+        div.userInfo(class="w-full md:flex p-3 gap-4 lg:border-2 my-6") 
+            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
+                h2(class='text-lg font-bold mb-2') Profil utilisateur
                 p Identification : #{user.id}
                 p Nom : #{user.profil_user.nom}
                 p Email : #{user.email}
@@ -16,43 +16,36 @@ block content
                 p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
                 p Date d'adhésion : #{user.profil_user.date_adhesion}
                 p Status d'adhésion : #{user.profil_user.status_adhesion}
-            form.suiviUtilisateur(action="/suivi_utilisateur", method="POST")
-                p #{user.id}
-                h2 Actions
+            form.suiviUtilisateur(action="/suivi_utilisateur", method="POST" class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
+                p(class="hidden") #{user.id}
+                h2(class='text-lg font-bold mb-2') Actions
                 div.actions 
-                    div.lock(href=`/users/server/lock/${user.id}`) Bloquer
-                    div.unlock(href=`/users/server/unlock/${user.id}`) Debloquer
-                    div.delete(href=`/users/server/${user.id}`) Supprimer
-                div
-                    select(id="action", name="action")
+                    select(id="action", name="action" class="border-2 rounded-lg p-2 my-1")
                         option(value="") Choisir
                         option(value="bloquer") Bloquer
                         option(value="debloquer") Débloquer
                         option(value="supprimer") Supprimer
                 div
                     label(for="commentaire") Commentaire (facultatif)
-                    textarea(id="commentaire", name="commentaire", rows="5", cols="50")
-                button.navLink(type="submit") Valider
-        hr
+                    textarea(id="commentaire", name="commentaire", rows="5", cols="50" class="border-2 rounded-lg p-2 my-1")
+                button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Valider
         div 
-            h2 Suivi Utilisateur
-            table
+            h2(class="font-bold text-xl mb-3") Suivi Utilisateur
+            table(class="w-full border-2 p-2 mb-6")
                 thead
-                    tr
-                        th Id
-                        th Date
-                        th Notifications
-                        th Actions
+                    tr(class="py-2 bg-gray-200")
+                        th(class="text-center") Id
+                        th(class="text-center") Date
+                        th(class="text-center") Notifications
+                        th(class="text-center") Actions
                 tbody
                     each suivi in user.suivi_user
                         tr
-                            td= suivi.id
-                            td= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td= suivi.notifications
+                            td(class="text-center")= suivi.id
+                            td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
+                            td(class="text-center")= suivi.notifications
                             td
                                 a(href="#")  modifier
                                 a(href="#") Valider
                                 a(href="#") Delete
         
-
-    link(rel="stylesheet", href="/stylesheets/user.css")

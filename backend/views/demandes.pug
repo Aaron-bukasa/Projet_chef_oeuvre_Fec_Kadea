@@ -2,53 +2,54 @@ extends layout
   
 block content
     div(class="demandes")
-        h1 Liste des demandes d'adhésion
-        section.filtres
-            h2 Filtres
-            form(action="#", method="GET")
+        h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Liste des demandes d'adhésion
+        section(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
+            form(action="#", method="GET" class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
+                h2(class='text-lg font-bold mb-2') Filtres
                 div
                     label(for="etat") État
-                    select#etat(name="etat")
+                    select#etat(name="etat" class="border-2 rounded-lg p-2 my-1 ml-2")
                         option(value="") Tous
                         option(value="En cours") En cours
                         option(value="Terminé") Terminé
                         option(value="Annulé") Annulé
                 div
                     label(for="date-debut") Date de début
-                    input(type="date", id="date-debut", name="date-debut")
+                    input(type="date", id="date-debut", name="date-debut" class="border-2 rounded-lg p-2 my-1 ml-2")
                 div
                     label(for="date-fin") Date de fin
-                    input(type="date", id="date-fin", name="date-fin")
-                    button(type="submit") Filtrer
+                    input(type="date", id="date-fin", name="date-fin" class="border-2 rounded-lg p-2 my-1 ml-2")
+                button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 block w-full md:w-[180px]") Filtrer
+            ul.statistic(class="border-4 border-dashed p-3 flex flex-col my-3 w-full gap-y-4")
+                h2(class='text-lg font-bold mb-2') Les statistiques
+                li Nombre total de demandes: !{demandes.length}
+                li Nombre de demandes en attente: !{demandes.filter(demande => demande.statut === 'en attente').length}
+                li Nombre de demandes validées: !{demandes.filter(demande => demande.statut === 'validée').length}
+                li Nombre de demandes annulé: !{demandes.filter(demande => demande.statut === 'rejetée').length}
+                li(class="my-4 xl:flex") 
+                    a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
+                    a(href="/demandes" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
         section.liste-demandes
-            table
+            h2(class="font-bold text-xl mb-3") Listes des demandes
+            table(class="w-full border-2 p-2 mb-6")
                 thead
-                    tr
-                        th Numéro
-                        th Date
-                        th État
-                        th Demandeur
-                        th Titre
-                        th Actions
+                    tr(class="py-2 bg-gray-200")
+                        th(class="text-center") Numéro
+                        th(class="text-center") Date
+                        th(class="text-center") État
+                        th(class="text-center") Demandeur
+                        th(class="text-center") Titre
+                        th(class="text-center") Actions
                 tbody
                     each demande in demandes
                         tr
-                            td= demande.id
-                            td= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td= demande.statut
-                            td= demande.organisation
-                            td= demande.nom
-                            td
+                            td(class="text-center")= demande.id
+                            td(class="text-center")= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
+                            td(class="text-center")= demande.statut
+                            td(class="text-center")= demande.organisation
+                            td(class="text-center")= demande.nom
+                            td(class="text-center")
                                 a(href=`/demandes/${demande.id}`)  Voir
                                 a(href="#") Valider
                                 a(href="#") Refuser
-        ul.statistic 
-            li Nombre total de demandes: !{demandes.length}
-            li Nombre de demandes en attente: !{demandes.filter(demande => demande.statut === 'en attente').length}
-            li Nombre de demandes validées: !{demandes.filter(demande => demande.statut === 'validée').length}
-            li Nombre de demandes annulé: !{demandes.filter(demande => demande.statut === 'rejetée').length}
-            li.btns 
-                a.navLink  Exporter les données
-                a.navLink(href="/demandes")  Actualiser la page
 
-    link(rel="stylesheet", href="/stylesheets/demandes.css")

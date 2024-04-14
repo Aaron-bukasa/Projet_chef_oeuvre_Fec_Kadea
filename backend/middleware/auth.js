@@ -11,9 +11,7 @@ module.exports = (req, res, next) => {
             if (err) {
                 return res.status(401).send('Token invalide');
             } else {
-                console.log('ok verifie');
                 req.user = decoded;
-                console.log(req.user);
                 next();
             }
         });

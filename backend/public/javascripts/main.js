@@ -19,7 +19,7 @@ const handleNavbarServer = () => {
         }
     }
 
-    menuButtonServer.addEventListener('click', handleClick);
+    menuButtonServer?.addEventListener('click', handleClick);
 }
 handleNavbarServer()
 
