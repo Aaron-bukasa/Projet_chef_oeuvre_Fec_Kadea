@@ -6,12 +6,12 @@ block content
         div(class="w-full flex p-3 lg:gap-4 lg:border-2 my-6")
             form.signup(action="#", method="POST" class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
                 h2(class='text-lg font-bold mb-2') Créer un nouveau utilisateur
-                input(type="text", id="prenom", name="prenom" placeholder='Prenom' class="border-2 rounded-lg p-2 my-1")
-                input(type="text", id="nom", name="nom" placeholder='Nom' class="border-2 rounded-lg p-2 my-1")
-                input(type="email", id="email", name="email" placeholder='Email' class="border-2 rounded-lg p-2 my-1")
-                input(type="text", id="password", name="password" placeholder='Password' class="border-2 rounded-lg p-2 my-1")
-                input(type="number", id="telephone", name="telephone" placeholder='Télephone' class="border-2 rounded-lg p-2 my-1")
-                select(id="role", name="role" class="border-2 rounded-lg p-2 my-1")
+                input(type="text", id="prenomSignup", name="prenom" placeholder='Prenom' class="border-2 rounded-lg p-2 my-1")
+                input(type="text", id="nomSignup", name="nom" placeholder='Nom' class="border-2 rounded-lg p-2 my-1")
+                input(type="email", id="emailSignup", name="email" placeholder='Email' class="border-2 rounded-lg p-2 my-1")
+                input(type="password", id="passwordSignup", name="password" placeholder='Password' class="border-2 rounded-lg p-2 my-1")
+                input(type="number", id="telephoneSignup", name="telephone" placeholder='Télephone' class="border-2 rounded-lg p-2 my-1")
+                select(id="roleSignup", name="role" class="border-2 rounded-lg p-2 my-1")
                     option(value="") Choisir un rôle
                     option(value="administrateur") Administrateur
                     option(value="utilisateur") Utilisateur
@@ -62,7 +62,6 @@ block content
                             td(class="text-center")= user.role
                             td(class="text-center")= user.profil_user.status_adhesion
                             td(class="text-center") 
-                                a(href=`/users/server/${user.id}`) Voir
-                                a(href=`/users/${user.id}`) Modifier
+                                a(href=`/users/server/${user.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
 
 

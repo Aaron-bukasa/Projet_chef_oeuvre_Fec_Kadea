@@ -7,7 +7,6 @@ function SuiviDmd() {
   const [isNotifications, setIsNotifications] = useState([]);
 
   const onSubmit = async (data) => {
-    console.log(data.number);
     try {
       const response = await axios.post(`http://localhost:3000/suivi_demande/${data.number}`, {
         nom: data.nom

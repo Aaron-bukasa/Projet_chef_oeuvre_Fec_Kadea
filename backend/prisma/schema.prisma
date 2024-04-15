@@ -14,13 +14,10 @@ model Demande {
   nom               String
   email             String      @unique
   telephone         String      @unique
-  organisation      String
-  role_ds_entreprise String
-  motivation        String
-  objectifs         String
+  nom_organisation      String
+  forme_juridique   String
   statut            String      @default("en attente")  // en attente, validée, rejetée
   date_soumission   DateTime
-  //fichiers_joints   Fichier[]
   suivi_demande  SuiviDemande[]
 }
 
@@ -85,22 +82,4 @@ model Rapport {
   type                String      // adhésions, demandes, etc.
   date_generation     DateTime
   contenu             String
-}
-
-//model Fichier {
- // id                  Int         @id @default(autoincrement())
- // nom                 String
- // type                String
- // taille              Int
- // contenu             Bytes
- // demande             Demande?    @relation(fields: [demandeId], references: [id])
- // demandeId           Int?
-//}
-
-model Paiement {
-  id                  Int         @id @default(autoincrement())
-  montant             Float
-  devise              String
-  statut              String      @default("en attente")  // en attente, validé, rejeté
-  date_paiement       DateTime
 }

@@ -35,18 +35,15 @@ exports.demandeGet = async(req, res) => {
 
 exports.demandePost = async(req, res) => {
     try {
-        const { nom, email, telephone, organisation, role_ds_entreprise, motivation, objectifs /*fichiers_joints*/ } = req.body;
+        const { nom, email, telephone, nom_organisation, forme_juridique } = req.body;
         
         const nouvelleDemande = await prisma.demande.create({
           data: {
             nom,
             email,
             telephone,
-            organisation,
-            role_ds_entreprise,
-            motivation,
-            objectifs,
-            // fichiers_joints,
+            nom_organisation,
+            forme_juridique,
             date_soumission: new Date(),
             suivi_demande: {
               create: [
@@ -83,16 +80,6 @@ exports.demandePut = async(req, res) => {
 exports.demandeDelete = async(req, res) => {
   try {
       const { id } = req.params;
-  
-      const suivisDemande = await prisma.suiviDemande.findMany({
-        where: { demandeId: parseInt(id) }
-      });
-
-      for (const suivi of suivisDemande) {
-        await prisma.suiviDemande.delete({
-          where: { id: suivi.id }
-        });
-      }
   
       await prisma.demande.delete({
         where: { id: parseInt(id) }
