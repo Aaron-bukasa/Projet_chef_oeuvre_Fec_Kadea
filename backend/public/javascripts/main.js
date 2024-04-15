@@ -19,7 +19,7 @@ const handleNavbarServer = () => {
         }
     }
 
-    menuButtonServer.addEventListener('click', handleClick);
+    menuButtonServer?.addEventListener('click', handleClick);
 }
 handleNavbarServer()
 
@@ -31,6 +31,7 @@ const createUser = () => {
     const nom = document.querySelector('.signup #nom');
     const prenom = document.querySelector('.signup #prenom');
     const email = document.querySelector('.signup #email');
+    const password = document.querySelector('.signup #password');
     const telephone = document.querySelector('.signup #telephone');
     const role = document.querySelector('.signup #role');
 
@@ -45,7 +46,7 @@ const createUser = () => {
                 email: email.value,
                 telephone: telephone.value,
                 role: role.value,
-                password: 'admin'
+                password: password.value
             };
           
             const requestOptions = {
@@ -56,8 +57,8 @@ const createUser = () => {
                 body: JSON.stringify(postData)
             };
 
-            const response = fetch('/users/server/signup', requestOptions);
-
+            const response = await fetch('/users/server/signup', requestOptions);
+            console.log(response);
             if(response.status === 201) {
                 return alert('Utilisateur crée avec succès !');
             }
@@ -132,10 +133,9 @@ const putUser = () => {
       
           if (response.status === 200) {
            return alert('Profil modifié avec succès !');
-          }
-
-          return alert('Erreur inconnue lors de la modification du profil');
-      
+          } else {
+            return alert('Erreur inconnue lors de la modification du profil');
+          }      
         } catch (error) {
           console.error(error);
           alert('Une erreur est survenue. Veuillez réessayer plus tard.');
