@@ -28,6 +28,7 @@ exports.clientSignup = async(req, res) => {
     
         const newUser = await prisma.user.create({
           data: {
+            nom,
             email,
             password: passwordHash,
             date_inscription: new Date(),
@@ -66,11 +67,12 @@ exports.clientLogin = async(req, res) => {
     }
 
     const token = generateAuthToken(user);
+    console.log(user);
 
     res.status(200).cookie('token', token, {
       httpOnly: true,
       secure: true
-    }).json('utilisateur verifié');
+    }).json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur interne du serveur' });
@@ -79,8 +81,8 @@ exports.clientLogin = async(req, res) => {
 
 exports.clientLogout = async(req, res) => {
   try {
-    res.clearCookie('jwtToken');
-    res.status(200).json({ message: 'La déconnection réussi avec succès' });
+    res.clearCookie('token');
+    res.status(200).render('auth', { message: 'Vous vous etes déconnecté' });
   } catch (error) {
    console.error(error); 
   };

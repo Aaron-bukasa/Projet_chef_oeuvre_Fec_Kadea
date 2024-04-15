@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -9,12 +8,13 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${url}/users/login`, {
+      const response = await axios.post('http://localhost:3000/users/client/login', {
         email: data.email,
-        mot_de_passe: data.password
+        password: data.password
       });
-
-      if (response.status === 200) {        
+      
+      if (response.status === 200) { 
+          localStorage.setItem("isLogin", [response.data.id, response.data.nom.match(/^[a-zA-Z]+/), response.data.email]);      
           window.location.href = '/';
       } else {
         console.error('Authentication failed');
@@ -45,7 +45,6 @@ export default function Login() {
                 }
               })}
               type="text"
-              id="email"
               name="email"
               placeholder="Adresse email"
               className={`border-2 h-10 rounded-lg text-black p-3 ${errors.email ? 'border-red-500' : ''}`}
@@ -57,7 +56,6 @@ export default function Login() {
             <input
               {...register("password", { required: 'Mot de passe requis' })}
               type="password"
-              id="password"
               name="password"
               placeholder="Mot de passe"
               className={`border-2 h-10 rounded-lg text-black p-3 ${errors.password ? 'border-red-500' : ''}`}

@@ -14,11 +14,11 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
 
   useEffect(() => {
     const handleStorageChange = () => {
-      setToken(localStorage.getItem('token'));
+      setUser(localStorage.getItem('isLogin'));
     };
   
     window.addEventListener('storage', handleStorageChange);
@@ -30,8 +30,7 @@ function App() {
   
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative roboto-regular">
-      {/* {token === 'undefined' || token === null ? <NavbarPublic /> : <NavbarUtilisateur />} */}
-      <NavbarPublic />
+      {user === 'undefined' || user === null ? <NavbarPublic /> : <NavbarUtilisateur />}
       <div className="max-w-screen">
         <Routes>
           <Route path="/" element={<Home />} />
