@@ -14,7 +14,7 @@ export default function Login() {
       });
       
       if (response.status === 200) { 
-          localStorage.setItem("isLogin", [response.data.id, response.data.nom.match(/^[a-zA-Z]+/), response.data.email]);      
+          localStorage.setItem("isLogin", [response.data.id, response.data.nom?.match(/^[a-zA-Z]+/), response.data.email]);      
           window.location.href = '/';
       } else {
         console.error('Authentication failed');

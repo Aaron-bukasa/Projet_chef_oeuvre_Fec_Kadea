@@ -1,27 +1,37 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 
 export default function Notifications() {
 
     const [notifications, setNotifications] = useState([])
 
-    const token = localStorage.getItem('token')
-    const decoded = jwtDecode(token);
+    const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
 
     useEffect(() => {
-      const fetchData = async () => {
-          const response = await axios.post(`http://localhost:3000/suivi_utilisateur/${decoded.userId}`, {
-              email: decoded.email
-          });
-
-          if(response.status === 200) {
-            setNotifications(response.data);
-          }
-
+      const handleStorageChange = () => {
+        setUser(localStorage.getItem('isLogin'));
       };
-      fetchData();
+    
+      window.addEventListener('storage', handleStorageChange);
+    
+      return () => {
+        window.removeEventListener('storage', handleStorageChange);
+      };
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
+                email: user.split(',')[2]
+            });
+
+            if(response.status === 200) {
+                setNotifications(response.data);
+            }
+        };
+    
+        fetchData();
+      }, []);
 
   return (
     <div className="max-w-[1024px] mx-auto border-2 border-gray-400 mx-6 my-12 rounded-lg bg-gray-100">

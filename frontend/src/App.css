@@ -48,6 +48,14 @@
     0 -4px 6px -4px rgba(0,0,0,.1);
 }
 
+.avatar:hover svg {
+  fill: #4885ff;
+}
+
+.avatar:hover div {
+  color: #4885ff;
+}
+
 /* BTN PLAY */
 /* .slick-prev::before,
 .slick-next::before {
