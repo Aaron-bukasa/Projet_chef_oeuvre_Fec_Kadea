@@ -27,6 +27,7 @@ exports.serverSignup = async (req, res) => {
 
     const newAdm = await prisma.user.create({
       data: {
+        nom,
         email,
         password: passwordHash,
         role,

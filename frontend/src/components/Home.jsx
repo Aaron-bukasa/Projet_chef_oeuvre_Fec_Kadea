@@ -363,14 +363,14 @@ function Temoignages() {
 
   return (
     <div id="Temoignages" className="">
-      <div className="bg-bg_temoignages px-6">
+      <div className="px-6">
         <div className=" px-6 py-12 xl:max-w-[1536px] mx-auto">
-          <h2 className="font-bold text-center text-white text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+          <h2 className="font-bold text-center text-black text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Ce qu’ils disent de nous
           </h2>
           <div className="text-white leading-7 md:tracking-wider">
             <Slider {...faqAutoplay}>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
                 <div
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -392,7 +392,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -415,7 +415,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px]">
+              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"

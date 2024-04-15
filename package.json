@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "dev": "concurrently \"cd frontend && yarn run dev\" \"cd backend && yarn run devstart\""
-
   },
   "dependencies": {
     "concurrently": "^8.2.2"

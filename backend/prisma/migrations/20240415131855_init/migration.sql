@@ -4,10 +4,8 @@ CREATE TABLE "Demande" (
     "nom" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
-    "organisation" TEXT NOT NULL,
-    "role_ds_entreprise" TEXT NOT NULL,
-    "motivation" TEXT NOT NULL,
-    "objectifs" TEXT NOT NULL,
+    "nom_organisation" TEXT NOT NULL,
+    "forme_juridique" TEXT NOT NULL,
     "statut" TEXT NOT NULL DEFAULT 'en attente',
     "date_soumission" TIMESTAMP(3) NOT NULL,
 
@@ -27,6 +25,7 @@ CREATE TABLE "SuiviDemande" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
+    "nom" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role" TEXT NOT NULL DEFAULT 'utilisateur',
@@ -87,17 +86,6 @@ CREATE TABLE "Rapport" (
     "contenu" TEXT NOT NULL,
 
     CONSTRAINT "Rapport_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Paiement" (
-    "id" SERIAL NOT NULL,
-    "montant" DOUBLE PRECISION NOT NULL,
-    "devise" TEXT NOT NULL,
-    "statut" TEXT NOT NULL DEFAULT 'en attente',
-    "date_paiement" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Paiement_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
