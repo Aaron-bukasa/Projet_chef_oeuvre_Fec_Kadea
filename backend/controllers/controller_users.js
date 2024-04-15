@@ -72,7 +72,7 @@ exports.clientLogin = async(req, res) => {
     res.status(200).cookie('token', token, {
       httpOnly: true,
       secure: true
-    }).json(user);
+    }).json({id:user.id, nom:user.nom, email:user.email});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur interne du serveur' });

@@ -3,20 +3,20 @@ const prisma = new PrismaClient();
 
 exports.suiviUserPost = async (req, res) => {
   try {
-    const { utilisateurId, notifications } = req.body;
-    console.log(utilisateurId, notifications);
-    const nouveauSuiviUtilisateur = await prisma.suiviUtilisateur.create({
+    const { userId, notifications } = req.body;
+  
+    const newSuiviUser = await prisma.suiviUser.create({
       data: {
-        utilisateur: {
+        user: {
           connect: {
-            id: utilisateurId
+            id: userId
           }
         },
         notifications: notifications 
       }
     });
-    console.log(nouveauSuiviUtilisateur);
-    res.status(201).json(nouveauSuiviUtilisateur);
+    
+    res.status(201).json(newSuiviUser);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Une erreur s'est produite lors de la création du suivi utilisateur." });
@@ -27,21 +27,21 @@ exports.suviUserGet = async(req, res) => {
   try {
       const { id } = req.params;
     
-      const utilisateur = await prisma.utilisateur.findUnique({
+      const user = await prisma.user.findUnique({
         where: { id: parseInt(id) },
         include: {
-          suivi_utilisateur: true
+          suivi_user: true
         }
       });
-  
-      if (!utilisateur) {
+
+      if (!user) {
         return res.status(404).json({ message: 'Utilisateur non trouvée' });
       } else {
-        if(utilisateur.email !== req.body.email) {
-          return res.status(404).json({ message: "le nom ou l'email incorrect"})
+        if(user.email !== req.body.email) {
+          return res.status(404).json({ message: "nom ou email incorrect"})
         }
-        const suiviUtilisateur = utilisateur.suivi_utilisateur;
-        res.status(200).json(suiviUtilisateur);
+        const suiviUser = user.suivi_user;
+        res.status(200).json(suiviUser);
       }
     } catch (error) {
       console.error(error);
