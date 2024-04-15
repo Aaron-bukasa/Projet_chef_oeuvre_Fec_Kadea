@@ -2,12 +2,9 @@ import dotenv from 'dotenv';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { jwtDecode } from "jwt-decode";
-
-dotenv.config();
 
 export default function Login() {
-  const url = process.env.MY_URL;
+  
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
@@ -17,21 +14,8 @@ export default function Login() {
         mot_de_passe: data.password
       });
 
-      if (response.status === 200) {
-        const { token } = response.data;
-        localStorage.setItem('token', token);
-        const decoded = jwtDecode(token);
-        const userRole = decoded.role;
-
-        const requestOptions = {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        };
-        if (userRole === 'utilisateur') {
+      if (response.status === 200) {        
           window.location.href = '/';
-        } else if (userRole === 'administrateur') {
-          const response = await axios.get('http://localhost:3000/', requestOptions);
       } else {
         console.error('Authentication failed');
       }

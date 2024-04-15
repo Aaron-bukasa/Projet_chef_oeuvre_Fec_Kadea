@@ -44,30 +44,21 @@ export default function FormulaireDmd() {
         <h1 className="font-bold text-xl text-center p-6 sm:text-2xl md:text-3xl xl:text-4xl xl:mb-6">
           Formulaire de Demande d'Adhésion
         </h1>
-        <div>
-          <h2 className="font-medium text-xl mb-4  lg:text-2xl 2xl:text-2xl font-bold">
-            Informations personnelles
-          </h2>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="nom_complet">Nom complet</label>
-            <input
-              {...register("nom", {
-                required: "Nom complet requis",
-                pattern: {
-                  value: /^[a-zA-Z]+ [a-zA-Z]+$/,
-                  message: "Veuillez saisir un nom valide",
-                },
-              })}
-              type="text"
-              placeholder="Nom complet"
-              className="border-2 h-10 rounded-lg text-black p-3"
-            />
-            {errors.nom && (
-              <p className="text-red-500">{errors.nom.message}</p>
-            )}
-          </div>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="email">Adresse email</label>
+          <input
+            {...register("nom", {
+              required: "Nom complet requis",
+              pattern: {
+                value: /^[a-zA-Z]+ [a-zA-Z]+$/,
+                message: "Veuillez saisir un nom valide",
+              },
+            })}
+            type="text"
+            placeholder="Nom complet"
+            className="border-2 h-10 rounded-lg text-black p-3"
+          />
+          {errors.nom && (
+            <p className="text-red-500">{errors.nom.message}</p>
+          )}
             <input
               {...register("email", {
                 required: "Adresse email requise",
@@ -77,15 +68,12 @@ export default function FormulaireDmd() {
                 },
               })}
               type="text"
-              placeholder="Adresse email"
+              placeholder="Email"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
             )}
-          </div>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="telephone">Numéro de téléphone</label>
             <input
               {...register("telephone", {
                 required: "Numéro de téléphone requis",
@@ -101,16 +89,9 @@ export default function FormulaireDmd() {
             {errors.telephone && (
               <p className="text-red-500">{errors.telephone.message}</p>
             )}
-          </div>
-        </div>
-        <div>
-          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
-            Informations sur l'organisation
-          </h2>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="nom_org">Nom de l'organisation</label>
+        
             <input
-              {...register("organisation", {
+              {...register("nom_organisation", {
                 required: "Nom de l'organisation requis",
                 pattern: {
                   value: /^[A-Za-z\s]+$/,
@@ -124,95 +105,21 @@ export default function FormulaireDmd() {
             {errors.organisation && (
               <p className="text-red-500">{errors.organisation.message}</p>
             )}
-          </div>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="role_org">Votre rôle dans l'organisation</label>
             <input
-              {...register("role_ds_entreprise", {
-                required: "Rôle dans l'organisation requis",
+              {...register("forme_juridique", {
+                required: "Forme juridique requis",
                 pattern: {
                   value: /^[A-Za-z\s]+$/,
-                  message: "Veuillez saisir un rôle dans l'organisation valide",
+                  message: "Veuillez saisir la forme juridique valide",
                 },
               })}
               type="text"
-              placeholder="Votre rôle dans l'organisation"
+              placeholder="Forme juridique de l'organisation"
               className="border-2 h-10 rounded-lg text-black p-3"
             />
             {errors.role_ds_entreprise && (
               <p className="text-red-500">{errors.role_ds_entreprise.message}</p>
             )}
-          </div>
-        </div>
-        <div>
-          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
-            Motivations
-          </h2>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="motivation">
-              Pourquoi souhaitez-vous adhérer à notre organisation?
-            </label>
-            <input
-              {...register("motivation", {
-                required: "Motivation requise",
-              })}
-              type="text"
-              placeholder="Motivation"
-              className="border-2 h-10 rounded-lg text-black p-3"
-            />
-            {errors.motivation && (
-              <p className="text-red-500">{errors.motivation.message}</p>
-            )}
-          </div>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="objectifs">
-              Quels sont vos objectifs en tant que membre?
-            </label>
-            <textarea
-              {...register("objectifs", {
-                required: "Objectifs requis",
-              })}
-              rows="4"
-              cols="50"
-              placeholder="Objectifs en tant que membre"
-              className="w-full border-2 rounded-lg text-black p-3"
-            />
-            {errors.objectifs && (
-              <p className="text-red-500">{errors.objectifs.message}</p>
-            )}
-          </div>
-        </div>
-        <div>
-          <h2 className="font-medium text-xl mb-4 lg:text-2xl 2xl:text-2xl font-bold">
-            Fichiers joints
-          </h2>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="cv">Veuillez joindre votre CV (format PDF):</label>
-            <input
-              {...register("cv")}
-              type="file"
-              accept=".pdf"
-              disabled
-            />
-            {errors.cv && (
-              <p className="text-red-500">{errors.cv.message}</p>
-            )}
-          </div>
-          <div className="flex flex-col gap-y-2 mb-3">
-            <label htmlFor="lettre_motivation">
-              Veuillez joindre une lettre de motivation (format PDF):
-            </label>
-            <input
-              {...register("lettre_motivation")}
-              type="file"
-              accept=".pdf"
-              disabled
-            />
-            {errors.lettre_motivation && (
-              <p className="text-red-500">{errors.lettre_motivation.message}</p>
-            )}
-          </div>
-        </div>
 
         <div>
           <input

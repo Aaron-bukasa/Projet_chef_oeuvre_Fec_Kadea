@@ -36,20 +36,18 @@ block content
                     tr(class="py-2 bg-gray-200")
                         th(class="text-center") Numéro
                         th(class="text-center") Date
-                        th(class="text-center") État
-                        th(class="text-center") Demandeur
-                        th(class="text-center") Titre
+                        th(class="text-center") Nom
+                        th(class="text-center") Organisation
+                        th(class="text-center") statut
                         th(class="text-center") Actions
                 tbody
                     each demande in demandes
                         tr
                             td(class="text-center")= demande.id
                             td(class="text-center")= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td(class="text-center")= demande.statut
-                            td(class="text-center")= demande.organisation
                             td(class="text-center")= demande.nom
+                            td(class="text-center")= demande.nom_organisation
+                            td(class="text-center")= demande.statut
                             td(class="text-center")
-                                a(href=`/demandes/${demande.id}`)  Voir
-                                a(href="#") Valider
-                                a(href="#") Refuser
+                                a(href=`/demandes/${demande.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
 

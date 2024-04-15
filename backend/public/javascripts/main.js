@@ -28,12 +28,12 @@ handleNavbarServer()
 const createUser = () => {
 
     const signup = document.querySelector('.signup');
-    const nom = document.querySelector('.signup #nom');
-    const prenom = document.querySelector('.signup #prenom');
-    const email = document.querySelector('.signup #email');
-    const password = document.querySelector('.signup #password');
-    const telephone = document.querySelector('.signup #telephone');
-    const role = document.querySelector('.signup #role');
+    const nom = document.querySelector('.signup #nomSignup');
+    const prenom = document.querySelector('.signup #prenomSignup');
+    const email = document.querySelector('.signup #emailSignup');
+    const password = document.querySelector('.signup #passwordSignup');
+    const telephone = document.querySelector('.signup #telephoneSignup');
+    const role = document.querySelector('.signup #roleSignup');
 
     signup?.addEventListener('submit', signupUser)
 

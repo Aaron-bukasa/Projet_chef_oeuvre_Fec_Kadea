@@ -1,57 +1,46 @@
 extends layout
   
 block content
-    h1 Validation de la demande
+    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Validation de la demande
     div.validation-demande
-        div
-            p Identification : #{demande.id}
-            p Nom : #{demande.nom}
-            p Email : #{demande.email}
-            p Telephone : #{demande.telephone}
-            p Organisation : #{demande.organisation}
-            p Role dans l'entreprise : #{demande.role_ds_entreprise}
-            p Motivation : #{demande.motivation}
-            p Objectifs : #{demande.objectifs}
-            p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
-             p Curriculum vitae : #{demande.cv}
-            p Lettre de motivation : #{demande.lettre_motivation}
-        hr
-        form.createSuiviDmd(action="#", method="POST")
-            p #{demande.id}
-            div 
-                if demande.suivi_demande.length <= 1
+        div(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
+            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-[50%]")
+                h2(class='text-lg font-bold mb-2') Information sur la démande
+                p Identification : #{demande.id}
+                p Nom : #{demande.nom}
+                p Email : #{demande.email}
+                p Telephone : #{demande.telephone}
+                p Organisation : #{demande.nom_organisation}
+                p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
+            form.createSuiviDmd(action="#", method="POST" class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
+                p(class="hidden") #{demande.id}
+                div(class='lg:flex lg:gap-x-6') 
                     div.valid
-                        label(for="validation") Veuillez valider la demande :
-                        select(id="validation", name="validation")
+                        label(for="validation" class='text-lg font-bold mb-2 block') Veuillez valider la demande :
+                        select(id="validation", name="validation" class="border-2 rounded-lg p-2 my-1")
                             option(value="") Choisir
                             option(value="valider") Valider
                             option(value="rejeter") Refuser
-                        button(type="submit" class="navLink selectBtn") Valider
-                else 
                     div.comment
-                        label(for="commentaire") Ajouter un évenement
-                        textarea(id="commentaire", name="commentaire", rows="5", cols="50")
-                    button.navLink(type="submit") Valider
-        hr
+                        label(for="commentaire" class='text-lg font-bold mb-2 block') Ajouter l'état de la demande
+                        textarea(id="commentaire", name="commentaire", rows="3" class="border-2 rounded-lg p-2 my-1 w-full")
+                        button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Valider
         div 
-            table
+            h2(class="font-bold text-xl mb-3") Etat de la demande
+            table(class="w-full border-2 p-2 mb-6")
                 thead
-                    tr
-                        th Id
-                        th Date
-                        th Evénement
-                        th Actions
+                    tr(class="py-2 bg-gray-200")
+                        th(class="text-center") Id
+                        th(class="text-center") Date
+                        th(class="text-center") Etat
+                        th(class="text-center") Actions
                 tbody
                     each suivi in demande.suivi_demande
                         tr
-                            td= suivi.id
-                            td= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td= suivi.evenement
-                            td
-                                a(href="#")  modifier
-                                a(href="#") Valider
-                                a(href="#") Delete
+                            td(class="text-center")= suivi.id
+                            td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
+                            td(class="text-center")= suivi.evenement
+                            td(class="text-center")
+                                a(href="#" class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue")  modifier
+                                a(href="#" class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3") Delete
         
-
-
-    link(rel="stylesheet", href="/stylesheets/demande.css")
