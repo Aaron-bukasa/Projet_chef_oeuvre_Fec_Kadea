@@ -11,6 +11,9 @@ import Profil from "./components/Profil";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Contact from "./components/Contact";
+import Faq from "./components/Faq";
+import Avantages from "./components/Avantages";
 
 function App() {
 
@@ -39,7 +42,10 @@ function App() {
           <Route path="/formulaireDmd" element={<FormulaireDmd />} />
           <Route path="/suiviDmd" element={<SuiviDmd />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/profil" element={<Profil />} />
+          <Route path="/avantages" element={<Avantages />} />
         </Routes>
       </div>
       <Footer />

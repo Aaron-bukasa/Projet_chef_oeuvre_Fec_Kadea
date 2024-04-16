@@ -40,7 +40,7 @@ export default function NavbarPublic() {
           </li>
           <li onClick={handleClickLink}>
             <a
-              href="/#avantages"
+              href="/avantages"
               className="font-semibold text-black hover:text-[#4885ff]"
             >
               Avantages
@@ -64,7 +64,7 @@ export default function NavbarPublic() {
           </li>
           <li onClick={handleClickLink}>
             <a
-              href="/#contact"
+              href="/contact"
               className="font-semibold text-black hover:text-[#4885ff]"
             >
               Contact
