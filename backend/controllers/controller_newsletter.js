@@ -7,6 +7,7 @@ exports.newsletterSubscribe = async(req, res) => {
     
         const newUserNewsletter = await prisma.newsLetter.create({
           data: {
+            nom,
             email
           }
         });
