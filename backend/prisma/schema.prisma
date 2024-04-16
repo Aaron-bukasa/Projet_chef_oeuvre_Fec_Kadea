@@ -65,15 +65,18 @@ userId         Int  @unique
 
 model NewsLetter {
   id          Int       @id @default(autoincrement())
-  email    String
-
+  nom     String
+  email    String     @unique
+  subscribed Boolean @default(false)
 }
 
 model Message {
   id          Int       @id @default(autoincrement())
   nom     String
   email    String
+  objet    String
   message    String
+  subscribed Boolean @default(false)
 }
 
 model Rapport {
