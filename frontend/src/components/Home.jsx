@@ -10,6 +10,8 @@ import imgAvantage01 from "../assets/images/assistance.jpg";
 import imgAvantage02 from "../assets/images/avantage02.jpg";
 import imgAvantage03 from "../assets/images/representation.jpg";
 import imgAvantage04 from "../assets/images/appui.jpg";
+import imgAvantage05 from "../assets/images/avantage05.jpg";
+import imgService003 from "../assets/images/service003.jpg";
 import logoMember001 from "../assets/images/member001.png";
 import logoMember002 from "../assets/images/member002.png";
 import logoMember003 from "../assets/images/member003.png";
@@ -116,7 +118,7 @@ function DevenirMembre() {
       <div className="absolute top-0 shadow-membre-box h-2 bg-gray-200 w-full"></div>
       <div
         id="devenir_membre"
-        className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1536px] mx-auto"
+        className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1386px] mx-auto"
       >
         <div className="mb-6 sm:w-[80%] sm:mx-auto  border-2 py-4 tracking-wide px-12 border border-gray-300 shadow-membre-item rounded-lg lg:col-start-1 lg:col-end-2">
           <h2 className="roboto-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
@@ -172,12 +174,12 @@ function Avantages() {
       </div>
       <div
         id="avantages"
-        className="mx-6 max-w-[1536px] xl:mx-auto xl:pb-24 xl:pt-12 "
+        className="mx-6 max-w-[1386px] pb-10 xl:mx-auto xl:pb-24 xl:pt-12 "
       >
         <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Les avantages de l'adhésion
         </h2>
-        <div className="grid grid-col-1 grid-row-5 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12">
+        <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12">
           <div className="col-start-1 col-end-2 row-start-1 row-end-2 max-w-[480px] p-3 rounded-xl shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
@@ -257,22 +259,56 @@ function Avantages() {
           <div className="max-w-[480px] col-start-1 col-end-2 row-start-5 row-end-6 sm:row-start-3 sm:row-end-4 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 p-3 rounded-xl  shadow-lg">
             <div className="mb-3 h-[280px]">
               <img
-                src={imgAvantage04}
+                src={imgAvantage05}
                 alt="Réseau"
                 className="w-full h-full object-cover rounded-xl"
               />
             </div>
             <div className="p-3">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
-                Un Appui aux Entreprises
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z" />
+                </svg>
+                Information
               </h3>
               <p className="text-lg">
-                L’appui des entreprises auprès des administrations sur toute
-                question à caractère juridique, social et fiscal.
+              L’appui des entreprises auprès des administrations sur toute question à caractère juridique, social et fiscal
               </p>
             </div>
           </div>
+          <div className="max-w-[480px] col-start-1 col-end-2 row-start-6 row-end-7 sm:col-start-2 sm:col-end-3 sm:row-start-3 sm:row-end-4 lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 p-3 rounded-xl  shadow-lg">
+            <div className="mb-3 h-[280px]">
+              <img
+                src={imgService003}
+                alt="Réseau"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+            <div className="p-3">
+              <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M840-120v-640H120v320H40v-320q0-33 23.5-56.5T120-840h720q33 0 56.5 23.5T920-760v560q0 33-23.5 56.5T840-120ZM360-400q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T440-560q0-33-23.5-56.5T360-640q-33 0-56.5 23.5T280-560q0 33 23.5 56.5T360-480ZM40-80v-112q0-34 17.5-62.5T104-298q62-31 126-46.5T360-360q66 0 130 15.5T616-298q29 15 46.5 43.5T680-192v112H40Zm80-80h480v-32q0-11-5.5-20T580-226q-54-27-109-40.5T360-280q-56 0-111 13.5T140-226q-9 5-14.5 14t-5.5 20v32Zm240-400Zm0 400Z" />
+                </svg>
+                Service d’accompagnement et de facilitation
+              </h3>
+              <p className="text-lg">
+              pour l'accomplissement des formalités administratives relatives à la création ou à la reprise d'entreprise;
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto w-max">
+          <Link to='/services' className="bg-red-600 p-3 text-white rounded-lg font-bold tracking-wider sm:text-lg lg:text-xl">Voir plus</Link>
         </div>
       </div>
       <div className="absolute w-full bottom-0 z-[-999]">
@@ -364,7 +400,7 @@ function Temoignages() {
   return (
     <div id="Temoignages" className="">
       <div className="px-6">
-        <div className=" px-6 py-12 xl:max-w-[1536px] mx-auto">
+        <div className=" px-6 py-12 xl:max-w-[1386px] mx-auto">
           <h2 className="font-bold text-center text-black text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Ce qu’ils disent de nous
           </h2>

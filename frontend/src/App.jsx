@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
-import Avantages from "./components/Avantages";
+import Services from "./components/Services";
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/profil" element={<Profil />} />
-          <Route path="/avantages" element={<Avantages />} />
+          <Route path="/services" element={<Services />} />
         </Routes>
       </div>
       <Footer />
