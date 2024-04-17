@@ -31,7 +31,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="grid grid-cols-5 grid-rows-[repeat(6,max-content)] gap-6 p-6 text-lg sm:grid-cols-4 sm:grid-rows-[repeat(4,max-content)] lg:grid-cols-3 lg:grid-rows-[repeat(3,max-content)] lg:content-center 2xl:grid-cols-[max-content,1fr,max-content,repeat(2,1fr)] 2xl:grid-rows-[repeat(2,max-content)] 2xl:px-44 shadow-footer">
+    <div className="grid grid-cols-5 grid-rows-[repeat(6,max-content)] gap-6 p-6 text-lg sm:grid-cols-4 sm:grid-rows-[repeat(4,max-content)] lg:grid-cols-3 lg:grid-rows-[repeat(3,max-content)] lg:content-center 2xl:grid-cols-[max-content,1fr,max-content,repeat(2,1fr)] 2xl:grid-rows-[repeat(2,max-content)] 2xl:px-44 shadow-top">
       <div className="flex justify-center align-center col-start-1 col-end-6 row-start-1 row-end-2 sm:col-end-3 lg:col-end-2 px-6">
         <img src={imgLogo} alt="Logo de la fédération" className="w-[180px]" />
       </div>
@@ -63,9 +63,9 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <a href="/#avantages" className="text-black hover:text-[#4885ff]">
+            <Link to="/services" className="text-black hover:text-[#4885ff]">
               Avantages
-            </a>
+            </Link>
           </li>
           <li>
             <Link
@@ -81,9 +81,9 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <a href="/#contact" className="text-black hover:text-[#4885ff]">
+            <Link to="/contact" className="text-black hover:text-[#4885ff]">
               Contact
-            </a>
+            </Link>
           </li>
           <li>
             <Link to="login" className="text-black hover:text-[#4885ff]">

@@ -582,9 +582,9 @@ video {
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1386px) {
   .container {
-    max-width: 1536px;
+    max-width: 1386px;
   }
 }
 
@@ -1013,7 +1013,7 @@ video {
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1386px) {
   .\32xl\:px-44 {
     padding-left: 11rem;
     padding-right: 11rem;

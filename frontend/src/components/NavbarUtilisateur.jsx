@@ -95,12 +95,12 @@ export default function NavbarUtilisateur() {
               </Link>
             </li>
             <li onClick={handleClickLink}>
-              <a
-                href="/#avantages"
+              <Link
+                to="/services"
                 className="font-semibold text-black hover:text-[#4885ff]"
               >
                 Avantages
-              </a>
+              </Link>
             </li>
             <li onClick={handleClickLink}>
               <Link
@@ -119,12 +119,12 @@ export default function NavbarUtilisateur() {
               </Link>
             </li>
             <li onClick={handleClickLink}>
-              <a
+              <Link
                 href="/contact"
                 className="font-semibold text-black hover:text-[#4885ff]"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:gap-x-6 lg:pl-5 xl:justify-between xl:pl-12 xl:ml-6 2xl:w-[20%] 2xl:pl-20 2xl:ml-12">
