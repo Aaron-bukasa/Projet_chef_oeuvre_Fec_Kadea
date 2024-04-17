@@ -17,7 +17,7 @@ export default function NavbarPublic() {
   };
 
   return (
-      <div className={`${isClick ? 'h-screen grid grid-cols-2 grid-rows-[max-content,max-content,max-content]' : 'h-auto'} text-xl flex justify-between items-center p-6 mb-2 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44 shadow-bottom`}>
+      <div className={`${isClick ? 'h-screen grid grid-cols-2 grid-rows-[max-content,max-content,max-content]' : 'h-auto'} text-xl flex justify-between items-center p-6 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44 border-b-2 bg-zinc-100 fixed top-0 z-[999] w-screen`}>
         <div onClick={handleClickLink} className={`${isClick && 'col-start-1 col-end-2 row-start-1 row-end-2'}`}>
           <Link to="/">
             <img

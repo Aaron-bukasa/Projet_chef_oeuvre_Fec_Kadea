@@ -3,7 +3,6 @@ import imgAvantage02 from "../assets/images/avantage02.jpg";
 import imgAvantage03 from "../assets/images/representation.jpg";
 import imgAvantage04 from "../assets/images/appui.jpg";
 import imgAvantage05 from "../assets/images/avantage05.jpg";
-import bg_banner from "../assets/images/bg_banner.jpg";
 import imgService001 from "../assets/images/service002.jpg";
 import imgService002 from "../assets/images/service002.jpg";
 import imgService003 from "../assets/images/service003.jpg";
@@ -13,22 +12,16 @@ import imgService006 from "../assets/images/service006.jpg";
 
 export default function Services() {
   return (
-    <div className="relative">
-      <div className="absolute w-full top-0 rotate-[180deg] z-[-999]">
-        <img src={bg_banner} alt="image background" className="w-full" />
-      </div>
+    <div className="bg-gray-50">
       <ServicesBase />
       <ServicesPayants />
-      <div className="absolute w-full bottom-0 z-[-999]">
-        <img src={bg_banner} alt="image background" className="w-full" />
-      </div>
     </div>
   );
 }
 
 function ServicesBase() {
   return (
-      <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-12 ">
+      <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-6 ">
         <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Nos services de base
         </h2>
@@ -171,7 +164,7 @@ function ServicesPayants() {
   return(
       <div
         id="avantages"
-        className="mx-6 max-w-[1386px] xl:mx-auto xl:pb-24 xl:pt-12 "
+        className="mx-6 max-w-[1386px] xl:mx-auto xl:p-6"
       >
         <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Nos services payants

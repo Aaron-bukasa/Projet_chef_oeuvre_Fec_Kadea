@@ -30,21 +30,19 @@ export default function Signup() {
   };
 
   return (
-    <div className="mx-6 my-12 md:my-24">
+    <div className="px-6 py-12 md:py-24 bg-gray-50">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-secondary-blue tracking-wider text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
+        className="border-2 bg-white text-black p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6 shadow-membre-box"
       >
-        <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
+        <h1 className="font-bold text-2xl text-center text-black px-6 sm:text-3xl md:text-4xl xl:text-5xl">
           Créer un compte
         </h1>
         <div className="pb-3">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="nom">Nom</label>
             <input
               {...register("nom", { required: true, pattern: /^[a-zA-Z]+$/ })}
               type="text"
-              id="nom"
               name="nom"
               placeholder="Nom"
               className="border-2 h-10 rounded-lg text-black p-3"
@@ -52,11 +50,9 @@ export default function Signup() {
             {errors.nom && <span className="text-red-500">Ce champ est requis et doit contenir uniquement des lettres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="prenom">Prénom</label>
             <input
               {...register("prenom", { required: true, pattern: /^[a-zA-Z]+$/ })}
               type="text"
-              id="prenom"
               name="prenom"
               placeholder="Prénom"
               className="border-2 h-10 rounded-lg text-black p-3"
@@ -64,11 +60,9 @@ export default function Signup() {
             {errors.prenom && <span className="text-red-500">Ce champ est requis et doit contenir uniquement des lettres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="email">Adresse email</label>
             <input
               {...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/ })}
               type="text"
-              id="email"
               name="email"
               placeholder="Adresse email"
               className="border-2 h-10 rounded-lg text-black p-3"
@@ -76,11 +70,8 @@ export default function Signup() {
             {errors.email && <span className="text-red-500">Ce champ est requis et doit être une adresse email valide</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="telephone">Numéro de téléphone</label>
             <input
               {...register("telephone", { required: true, pattern: /^(084|085|080|089|081|082|099|097|090)[0-9]{7}$/ })}
-              type="tel"
-              id="telephone"
               name="telephone"
               placeholder="Numéro de téléphone"
               className="border-2 h-10 rounded-lg text-black p-3"
@@ -88,11 +79,9 @@ export default function Signup() {
             {errors.telephone && <span className="text-red-500">Ce champ est requis et doit contenir exactement 10 chiffres</span>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="password">Mot de passe</label>
             <input
               {...register("password", { required: true })}
               type="password"
-              id="password"
               name="password"
               placeholder="Mot de passe"
               className="border-2 h-10 rounded-lg text-black p-3"
@@ -101,14 +90,14 @@ export default function Signup() {
           </div>
           <Link
             to="/login"
-            className="block text-blue-400 text-lg text-right mr-3 tracking-wider"
+            className="block text-secondary-blue font-bold text-lg text-right mr-3 tracking-wider"
           >
             Se connecter
           </Link>
         </div>
         <button
           type="submit"
-          className="ml-6 bg-sky-blue text-white font-bold py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
+          className="ml-6 bg-red-600 text-white font-bold py-3 px-4 rounded-xl hover:opacity-80 tracking-wider"
         >
           S'inscrire
         </button>

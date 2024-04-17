@@ -25,17 +25,16 @@ export default function Login() {
   };
 
   return (
-    <div className="mx-6 my-12 md:my-24">
+    <div className="px-6 py-12 md:py-24 bg-gray-50">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-secondary-blue text-white p-6 w-full rounded-xl mb-12 mt-6 w-full md:max-w-[768px] md:mx-auto"
+        className="border-2 bg-white text-black p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6 shadow-membre-box"
       >
-        <h1 className="font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl xl:text-5xl">
+        <h1 className="font-bold text-2xl text-center p-6 sm:text-3xl md:text-4xl xl:text-5xl">
           Se connecter
         </h1>
         <div className="pb-3">
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="email">Adresse email</label>
             <input
               {...register("email", {
                 required: 'Adresse email requise',
@@ -52,7 +51,6 @@ export default function Login() {
             {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
           <div className="flex flex-col gap-y-1 mb-4">
-            <label htmlFor="password">Mot de passe</label>
             <input
               {...register("password", { required: 'Mot de passe requis' })}
               type="password"
@@ -64,14 +62,14 @@ export default function Login() {
           </div>
           <Link
             to="/signup"
-            className=" block text-blue-400 text-lg text-right mr-3 tracking-wider"
+            className=" block text-secondary-blue font-bold text-lg text-right mr-3 tracking-wider"
           >
             Créer un compte
           </Link>
         </div>
         <button
           type="submit"
-          className="ml-6 bg-sky-blue text-white font-bold bg-sky-blue py-3 px-4 rounded-xl hover:opacity-80"
+          className="ml-6 bg-red-600 text-white font-bold text-xl py-3 px-4 rounded-xl hover:opacity-80"
         >
           Se connecter
         </button>

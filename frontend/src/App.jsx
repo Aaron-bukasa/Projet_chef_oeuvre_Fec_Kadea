@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative roboto-regular">
       {user === 'undefined' || user === null ? <NavbarPublic /> : <NavbarUtilisateur />}
-      <div className="max-w-screen">
+      <div className="max-w-screen mt-[101px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />

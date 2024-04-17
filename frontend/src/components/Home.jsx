@@ -65,10 +65,24 @@ function Bannere() {
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
         <div className="flex gap-x-12 mt-12">
-          <div><Link to="suiviDmd" className='text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-4 bg-white rounded-xl hover:bg-gray-100 text-xl'>Suivi de la demande</Link></div>
-          <div><Link to="formulaireDmd" className='text-xl font-semibold text-white font-bold bg-red-600 p-4 rounded-xl hover:opacity-80'>Adhérer maintenant</Link></div>
+          <div>
+            <Link
+              to="suiviDmd"
+              className="text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-4 bg-white rounded-xl hover:bg-gray-100 text-xl"
+            >
+              Suivi de la demande
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="formulaireDmd"
+              className="text-xl font-semibold text-white font-bold bg-red-600 p-4 rounded-xl hover:opacity-80"
+            >
+              Adhérer maintenant
+            </Link>
+          </div>
         </div>
-        <a href='#devenir_memebre' className="py-6">
+        <a href="#devenir_memebre" className="py-6">
           <img
             src={iconArrow}
             alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
@@ -114,18 +128,19 @@ function DevenirMembre() {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div id="devenir_memebre" className="bg-bg_banner bg-cover relative">
-      <div className="absolute top-0 shadow-membre-box h-2 bg-gray-200 w-full"></div>
+    <div id="devenir_memebre" className="bg-zinc-100">
       <div
         id="devenir_membre"
-        className="p-6 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:gap-x-12 xl:max-w-[1386px] mx-auto"
+        className="p-4 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24 xl:max-w-[1586px] mx-auto"
       >
-        <div className="mb-6 sm:w-[80%] sm:mx-auto  border-2 py-4 tracking-wide px-12 border border-gray-300 shadow-membre-item rounded-lg lg:col-start-1 lg:col-end-2">
-          <h2 className="roboto-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl 2xl:text-4xl">
+        <div className="mb-4 sm:w-[80%] sm:mx-auto  border-2 py-4 tracking-wide px-12 border border-zinc-50 shadow-membre-item rounded-lg lg:col-start-1 lg:col-end-2">
+          <h2 className="roboto-bold text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-3xl 2xl:text-4xl">
             Devenez membre de la fédération des entreprises
           </h2>
-          <p className="md:text-lg 2xl:text-xl first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
-  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl">
+          <p
+            className="md:text-lg 2xl:text-xl first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
+          >
             La fédération des entreprises est une organisation qui rassemble et
             représente les entreprises de tous les secteurs d'activité.
           </p>
@@ -154,7 +169,7 @@ function DevenirMembre() {
             Adhérer à la fédération
           </Link>
         </div>
-        <div className='lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center'>
+        <div className="lg:col-start-2 lg:col-end-3 lg:flex lg:justify-center">
           <img
             src={imgMembre}
             alt="la fédération des entreprises du congo"
@@ -169,12 +184,9 @@ function DevenirMembre() {
 function Avantages() {
   return (
     <div className="relative">
-      <div className="absolute w-full top-0 rotate-[180deg] z-[-999]">
-        <img src={bg_banner} alt="image background" className="w-full" />
-      </div>
       <div
         id="avantages"
-        className="mx-6 max-w-[1386px] pb-10 xl:mx-auto xl:pb-24 xl:pt-12 "
+        className="mx-6 max-w-[1386px] pb-10 xl:mx-auto xl:pt-4 "
       >
         <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Les avantages de l'adhésion
@@ -190,7 +202,14 @@ function Avantages() {
             </div>
             <div className="p-3">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M480-240q21 0 35.5-14.5T530-290q0-21-14.5-35.5T480-340q-21 0-35.5 14.5T430-290q0 21 14.5 35.5T480-240Zm-36-154h74q0-36 8-53t34-43q35-35 49.5-58.5T624-602q0-53-36-85.5T491-720q-55 0-93.5 27T344-618l66 26q7-27 28-43.5t49-16.5q27 0 45 14.5t18 38.5q0 17-11 36t-37 42q-33 29-45.5 55.5T444-394ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M480-240q21 0 35.5-14.5T530-290q0-21-14.5-35.5T480-340q-21 0-35.5 14.5T430-290q0 21 14.5 35.5T480-240Zm-36-154h74q0-36 8-53t34-43q35-35 49.5-58.5T624-602q0-53-36-85.5T491-720q-55 0-93.5 27T344-618l66 26q7-27 28-43.5t49-16.5q27 0 45 14.5t18 38.5q0 17-11 36t-37 42q-33 29-45.5 55.5T444-394ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z" />
+                </svg>
                 Une Assistance
               </h3>
               <p className="text-lg">
@@ -209,7 +228,14 @@ function Avantages() {
             </div>
             <div className="p-3">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q97-30 162-118.5T718-480H480v-315l-240 90v207q0 7 2 18h238v316Z" />
+                </svg>
                 Une Défense
               </h3>
               <p className="text-lg">
@@ -228,7 +254,14 @@ function Avantages() {
             </div>
             <div className="p-3">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M840-120v-640H120v320H40v-320q0-33 23.5-56.5T120-840h720q33 0 56.5 23.5T920-760v560q0 33-23.5 56.5T840-120ZM360-400q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T440-560q0-33-23.5-56.5T360-640q-33 0-56.5 23.5T280-560q0 33 23.5 56.5T360-480ZM40-80v-112q0-34 17.5-62.5T104-298q62-31 126-46.5T360-360q66 0 130 15.5T616-298q29 15 46.5 43.5T680-192v112H40Zm80-80h480v-32q0-11-5.5-20T580-226q-54-27-109-40.5T360-280q-56 0-111 13.5T140-226q-9 5-14.5 14t-5.5 20v32Zm240-400Zm0 400Z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M840-120v-640H120v320H40v-320q0-33 23.5-56.5T120-840h720q33 0 56.5 23.5T920-760v560q0 33-23.5 56.5T840-120ZM360-400q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T440-560q0-33-23.5-56.5T360-640q-33 0-56.5 23.5T280-560q0 33 23.5 56.5T360-480ZM40-80v-112q0-34 17.5-62.5T104-298q62-31 126-46.5T360-360q66 0 130 15.5T616-298q29 15 46.5 43.5T680-192v112H40Zm80-80h480v-32q0-11-5.5-20T580-226q-54-27-109-40.5T360-280q-56 0-111 13.5T140-226q-9 5-14.5 14t-5.5 20v32Zm240-400Zm0 400Z" />
+                </svg>
                 Une Réprésentation
               </h3>
               <p className="text-lg">
@@ -247,7 +280,14 @@ function Avantages() {
             </div>
             <div className="p-3">
               <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center justify-center gap-x-4">
-              <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                  viewBox="0 -960 960 960"
+                  width="32"
+                >
+                  <path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z" />
+                </svg>
                 Un Appui aux Entreprises
               </h3>
               <p className="text-lg">
@@ -277,7 +317,8 @@ function Avantages() {
                 Information
               </h3>
               <p className="text-lg">
-              L’appui des entreprises auprès des administrations sur toute question à caractère juridique, social et fiscal
+                L’appui des entreprises auprès des administrations sur toute
+                question à caractère juridique, social et fiscal
               </p>
             </div>
           </div>
@@ -302,46 +343,26 @@ function Avantages() {
                 Service d’accompagnement et de facilitation
               </h3>
               <p className="text-lg">
-              pour l'accomplissement des formalités administratives relatives à la création ou à la reprise d'entreprise;
+                pour l'accomplissement des formalités administratives relatives
+                à la création ou à la reprise d'entreprise;
               </p>
             </div>
           </div>
         </div>
         <div className="mx-auto w-max">
-          <Link to='/services' className="bg-red-600 p-3 text-white rounded-lg font-bold tracking-wider sm:text-lg lg:text-xl">Voir plus</Link>
+          <Link
+            to="/services"
+            className="bg-red-600 p-3 text-white rounded-lg font-bold tracking-wider sm:text-lg lg:text-xl"
+          >
+            Voir plus
+          </Link>
         </div>
-      </div>
-      <div className="absolute w-full bottom-0 z-[-999]">
-        <img src={bg_banner} alt="image background" className="w-full" />
       </div>
     </div>
   );
 }
 
 function Temoignages() {
-  const faqAutoplay = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    cssEase: "linear",
-    responsive: [
-      {
-        breakpoint: 1460,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 786,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   const partenaires = {
     dots: false,
@@ -369,44 +390,17 @@ function Temoignages() {
       },
     ],
   };
-  // const partenairesRTL = {
-  //   dots: false,
-  //   infinite: true,
-  //   slidesToShow: 5,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   speed: 2000,
-  //   autoplaySpeed: 2000,
-  //   cssEase: "linear",
-  //   rtl: true,
-  //   responsive: [
-  //     {
-  //       breakpoint: 786,
-  //       settings: {
-  //         slidesToShow: 4,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 640,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
 
   return (
     <div id="Temoignages" className="">
       <div className="px-6">
-        <div className=" px-6 py-12 xl:max-w-[1386px] mx-auto">
+        <div className=" px-6 py-12 xl:max-w-[1586px] mx-auto">
           <h2 className="font-bold text-center text-black text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Ce qu’ils disent de nous
           </h2>
-          <div className="text-white leading-7 md:tracking-wider">
-            <Slider {...faqAutoplay}>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
+          <div className="text-white leading-7 md:tracking-wider md:xl">
+            <div className="grid gap-6 grid-cols-1 grid-rows-3 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1">
+              <div className="col-start-1 col-end-2 row-start-1 row-end-2 max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg mx-auto">
                 <div
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -428,7 +422,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
+              <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg mx-auto">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -451,7 +445,7 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-              <div className="max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg">
+              <div className="col-start-1 col-end-2 row-start-3 row-end-4 sm:row-start-2 sm:row-end-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 max-w-[450px] md:h-[353px] text-black p-6 bg-gray-100 rounded-xl md:relative lg:max-w-[420px] shadow-lg mx-auto">
                 <blockquote
                   className="mb-3 first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
@@ -473,12 +467,12 @@ function Temoignages() {
                   </div>
                 </div>
               </div>
-            </Slider>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="my-12 max-w-[80%] mx-auto">
+      <div className="my-12 xl:max-w-[1386px] mx-auto">
         <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Ils nous accompagnent
         </h2>
@@ -524,49 +518,6 @@ function Temoignages() {
           </div>
         </Slider>
       </div>
-      {/* <div className="my-12 max-w-ful">
-        <Slider {...partenairesRTL} className="max-w-full">
-          <div className="w-28 h-28">
-            <img src={logoMember001} alt="membre 1" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember002} alt="membre 2" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember003} alt="membre 3" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember004} alt="membre 4" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember005} alt="membre 5" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember006} alt="membre 6" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember007} alt="membre 7" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember008} alt="membre 8" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember009} alt="membre 9" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember010} alt="membre 10" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember011} alt="membre 11" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember012} alt="membre 12" />
-          </div>
-          <div className="w-28 h-28">
-            <img src={logoMember013} alt="membre 13" />
-          </div>
-        </Slider>
-      </div> */}
     </div>
   );
 }
