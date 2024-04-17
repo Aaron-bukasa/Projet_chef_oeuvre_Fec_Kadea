@@ -10,8 +10,10 @@ export default function FormulaireDmd() {
     reset,
     formState: { errors },
   } = useForm();
+
   const [isSend, setIsSend] = useState(false);
   const [numero, setNumero] = useState(null);
+  const [isMore, setIsMore] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -132,7 +134,7 @@ export default function FormulaireDmd() {
           </button>
         </div>
       </form>
-      <div className="lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 border-2 border-gray-200 px-6 bg-gray-200 rounded-lg">
+      <div className="lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 px-6 rounded-lg">
         <h2 className="font-bold text-center text-secondary-blue text-xl mb-6 pt-6 lg:text-center lg:text-3xl">Dispositions statuaires relatives aux membres</h2>
         <div className="text-justify">
           <p className="my-2">
@@ -163,14 +165,14 @@ export default function FormulaireDmd() {
             Fédération. Il veille à communiquer à celle-ci toutes les
             informations utiles à la réalisation de son objet social.
           </p>
-          <p className="my-2">
+          <p className={isMore ? "my-2" : 'hidden'}>
             <strong>Article 8 :</strong> Tout membre peut démissionner de la
             Fédération. Il adressera à cet effet à la Fédération un courrier
             recommandé avec accusé de réception auquel la Fédération répondra
             par une prise d’acte. Il reste tenu d’acquitter les cotisations
             échues. Toute cotisation versée reste acquise à la Fédération.
           </p>
-          <p className="my-2">
+          <p className={isMore ? "my-2" : 'hidden'}>
             <strong>Article 9 :</strong> Le Conseil d’Administration peut
             prononcer l’exclusion d’un membre en cas de violation des statuts et
             règlements de la Fédération, du Code éthique ou pour un motif grave
@@ -180,7 +182,7 @@ export default function FormulaireDmd() {
             avant. Le membre exclu reste tenu d’acquitter les cotisations
             échues.
           </p>
-          <p className="my-2">
+           <p className={isMore ? "my-2" : 'hidden'}>
             <strong>Article 74 :</strong> Le régime des cotisations est arrêté
             annuellement par l’Assemblée Générale Ordinaire, sur proposition du
             Conseil d’Administration. Le montant de la cotisation est déterminé
@@ -191,6 +193,7 @@ export default function FormulaireDmd() {
             cotisations sont payables au lieu et dans les délais fixés par le
             Conseil d’Administration.
           </p>
+          <button onClick={() => setIsMore(true)} className={isMore ? 'hidden' : "bg-gray-300 p-2 my-2 rounded-lg font-semibold"}>Lire plus</button>
         </div>
       </div>
     </div>
