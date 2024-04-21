@@ -31,13 +31,12 @@ export default function Footer() {
   };
 
   return (
-    <div className="grid grid-cols-5 grid-rows-[repeat(6,max-content)] gap-6 p-6 text-lg sm:grid-cols-4 sm:grid-rows-[repeat(4,max-content)] lg:grid-cols-3 lg:grid-rows-[repeat(3,max-content)] lg:content-center 2xl:grid-cols-[max-content,1fr,max-content,repeat(2,1fr)] 2xl:grid-rows-[repeat(2,max-content)] 2xl:px-44 shadow-top">
-      <div className="flex justify-center align-center col-start-1 col-end-6 row-start-1 row-end-2 sm:col-end-3 lg:col-end-2 px-6">
+    <div className="lg:py-6 bg-zinc-300 text-[#000033]">
+      <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 p-6 text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] 2xl:px-44 max-w-[1586px] mx-auto justify-between">
+      <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         <img src={imgLogo} alt="Logo de la fédération" className="w-[180px]" />
-      </div>
-      <div className="col-start-1 col-end-6 row-start-2 row-end-3 sm:col-start-3 sm:col-end-5 sm:row-start-1 sm:row-end-2 lg:col-start-2 lg:col-end-3 flex flex-col items-center">
         <div>
-          <h2 className="font-semibold text-xl mb-4 lg:text-2xl after:content-[''] after:block after:bg-secondary-blue after:h-[3px] after:w-full after:mt-1" >
+          <h2 className="font-semibold text-xl my-4" >
             Fédération des entreprises du Congo
           </h2>
           <p>
@@ -54,53 +53,53 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="col-start-1 col-end-6 row-start-3 row-end-4 sm:col-start-1 sm:col-end-3 sm:row-start-2 sm:row-end-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 flex flex-col items-center px-6 tracking-wider">
-        <ul>
-          <h2 className="font-semibold text-2xl mb-3 w-max after:content-[''] after:block after:bg-secondary-blue after:h-[3px] after:w-full after:mt-1">Menu</h2>
+      <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 tracking-wider flex sm:justify-center">
+        <ul className="flex flex-col gap-y-1">
+          <h2 className="font-semibold text-2xl mb-3 w-max">Menu</h2>
           <li>
-            <Link to="/" className="text-black hover:text-[#4885ff]">
+            <Link to="/" className="text-primary-blue hover:text-focus-color">
               Accueil
             </Link>
           </li>
           <li>
-            <Link to="/services" className="text-black hover:text-[#4885ff]">
+            <Link to="/services" className="text-primary-blue  hover:text-focus-color">
               Avantages
             </Link>
           </li>
           <li>
             <Link
               to="formulaireDmd"
-              className="text-black hover:text-[#4885ff]"
+              className="text-primary-blue  hover:text-focus-color"
             >
               Adhésion
             </Link>
           </li>
           <li>
-            <Link to="/faq" className="text-black hover:text-[#4885ff]">
+            <Link to="/faq" className="text-primary-blue hover:text-focus-color">
               Faq
             </Link>
           </li>
           <li>
-            <Link to="/contact" className="text-black hover:text-[#4885ff]">
+            <Link to="/contact" className="text-primary-blue  hover:text-focus-color">
               Contact
             </Link>
           </li>
           <li>
-            <Link to="login" className="text-black hover:text-[#4885ff]">
+            <Link to="login" className="text-primary-blue  hover:text-focus-color">
               Se connecter
             </Link>
           </li>
           <li>
-            <Link to="signup" className="text-black hover:text-[#4885ff]">
+            <Link to="signup" className="text-primary-blue  hover:text-focus-color">
               S'inscrire
             </Link>
           </li>
         </ul>
       </div>
-      <div className="col-start-1 col-end-6 row-start-4 row-end-5 sm:col-start-3 sm:col-end-5 sm:row-start-2 sm:row-end-3 lg:col-start-1 lg:col-end-3 2xl:col-start-4 2xl:col-end-5 2xl:row-start-1 2xl:row-end-2 flex flex-col items-center">
+      <div className="col-start-1 col-end-2 row-start-3 row-end-4 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2">
         <div>
           <div className="newsletter">
-            <h2 className="font-semibold text-2xl mb-4 xl:mb-7 after:content-[''] after:block after:bg-secondary-blue after:h-[3px] after:w-full after:mt-1">
+            <h2 className="font-semibold text-2xl mb-4 xl:mb-7">
               Inscrivez-vous à notre newsletter
             </h2>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -120,7 +119,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="shrink-0 w-max p-3 bg-gray-400 text-white font-semibold rounded-r-lg hover:opacity-80"
+                className="shrink-0 w-max p-3 bg-[#003366] text-white font-semibold rounded-r-lg hover:opacity-80"
               >
                 Soumettre
               </button>
@@ -131,53 +130,29 @@ export default function Footer() {
           <div className="">
             <h2 className="font-semibold text-2xl mt-6 w-max after:content-[''] after:block after:bg-secondary-blue after:w-full after:mt-1">Suivez-nous</h2>
             <div className="flex items-center gap-x-4 my-6">
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgFacebook} alt="facebook" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgInstagram} alt="instagramme" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgTwitter} alt="twitter" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgLinkedin} alt="twitter" className="w-8" />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="col-start-1 col-end-6 row-start-5 row-end-5 sm:row-start-3 sm:row-end-4 lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 2xl:col-start-5 2xl:col-end-6 2xl:row-start-1 2xl:row-end-2 flex flex-col items-center">
-        <div>
-          <h2 className="font-semibold text-2xl mb-5 w-max after:content-[''] after:block after:bg-secondary-blue after:h-[3px] after:w-full after:mt-1">Actions</h2>
-          <div className="flex flex-col gap-y-4">
-            <Link
-              to="formulaireDmd"
-              className="text-xl font-semibold text-white font-bold bg-red-600 p-2 rounded-xl hover:opacity-80 w-max"
-            >
-              Adhérer maintenant
-            </Link>
-            <Link
-              to="suiviDmd"
-              className="text-primary-blue font-bold text-primary-blue border-2 border-primary-blue p-2 bg-white rounded-xl hover:bg-gray-100 text-xl w-max"
-            >
-              Suivi de la demande
-            </Link>
-            <a
-              href="#root"
-              className="w-12 h-12 rounded-full flex items-center justify-center p-1 border-4 border-black"
-            >
-              <img src={imgBackTop} alt="bouton de retour" className="w-full" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="col-start-1 col-end-6 row-start-6 row-end-7 sm:row-start-4 sm:row-end-5 sm:col-end-5 lg:col-end-4 lg:row-start-3 lg:row-end-4 2xl:col-end-6 2xl:row-start-2 2xl:row-end-3">
+      <div className="col-start-1 col-end-2 row-start-4 row-end-5 sm:col-end-4 sm:row-start-2 sm:row-end-3">
         <div className="border-t-2 pt-5">
           &copy; 2024 - Fédération des Entreprises du Congo. Tous droits
           réservés
         </div>
       </div>
+    </div>
     </div>
   );
 }

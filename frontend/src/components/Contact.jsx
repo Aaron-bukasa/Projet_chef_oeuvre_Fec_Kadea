@@ -40,8 +40,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="p-6 max-w-[1386px] mx-auto">
-      <h1 className="font-bold text-center text-secondary-blue text-3xl mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+    <div>
+        <div className="p-6 max-w-[1386px] mx-auto">
+      <h1 className="font-bold text-center text-primary-blue text-3xl mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Nous contactez
         </h1>
       <div className="lg:grid lg:grid-cols-2 lg:grid-rows-auto lg:gap-6 xl:gap-12">
@@ -84,13 +85,6 @@ export default function Contact() {
               </p>
             </div>
           </div>
-          <div className="my-6">
-            <img
-              src={imgLogo}
-              alt="Logo de la fédération"
-              className="w-[180px]"
-            />
-          </div>
           <div>
             <h2 className="font-semibold text-xl my-4 lg:text-2xl tracking-wider">
               Suivez-nous
@@ -111,15 +105,15 @@ export default function Contact() {
             </div>
           </div>
         </div>
-        <div className="mx-2 md:mx-6 my-12 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2">
+        <div className="mx-2 md:mx-6 my-4 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2">
           <form
             onSubmit={handleSubmit(onSubmit)}
             action=""
             method="POST"
             encType="multipart/form-data"
-            className="border-2 bg-gray-100 text-black p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12 shadow-membre-box"
+            className="border-2 bg-btn-color text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12"
           >
-            <h2 className="font-semibold text-xl my-4 lg:text-2xl tracking-wider text-center">
+            <h2 className="font-bold text-xl text-center p-6 sm:text-2xl md:text-3xl xl:text-4xl">
               Nous écrire
             </h2>
             <input
@@ -183,11 +177,12 @@ export default function Contact() {
             <input
               type="submit"
               placeholder="Envoyer"
-              className="text-white font-bold bg-red-600 p-3 rounded-xl hover:opacity-80 cursor-pointer"
+              className="text-white font-bold bg-focus-color p-3 rounded-xl hover:opacity-80 cursor-pointer"
             />
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

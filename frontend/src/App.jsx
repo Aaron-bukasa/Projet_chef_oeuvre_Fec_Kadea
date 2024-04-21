@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Notifications from "./components/Notifications";
 import Profil from "./components/Profil";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
@@ -18,6 +18,12 @@ import Services from "./components/Services";
 function App() {
 
   const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
+  const location = useLocation();
+  const [currentPath, setCurrentPath] = useState(location.pathname);
+
+  useEffect(() => {
+    setCurrentPath(location.pathname);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -33,8 +39,8 @@ function App() {
   
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative roboto-regular">
-      {user === 'undefined' || user === null ? <NavbarPublic /> : <NavbarUtilisateur />}
-      <div className="max-w-screen">
+      {user === 'undefined' || user === null ? <NavbarPublic currentPath={currentPath} /> : <NavbarUtilisateur currentPath={currentPath} />}
+      <div className="max-w-screen mt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />

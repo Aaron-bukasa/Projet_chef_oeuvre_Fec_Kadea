@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const middlewareAuth = require('../middleware/auth');
+const authEmail = require('../middleware/authEmail');
 const ctr_message = require('../controllers/controller_message');
 
 router.post('/receive', ctr_message.messageReceive);

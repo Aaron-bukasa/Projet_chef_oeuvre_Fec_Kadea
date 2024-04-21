@@ -13,7 +13,7 @@ const rapportRouter = require('./routes/rapport');
 const suiviDemande = require('./routes/suiviDemande')
 const suiviUser = require('./routes/suiviUser')
 const newsletter = require('./routes/newsletter')
-const message = require('./routes/message')
+const messages = require('./routes/messages')
 
 const app = express();
 app.use(cors());
@@ -36,7 +36,7 @@ app.use('/rapport', rapportRouter);
 app.use('/suivi_demande', suiviDemande);
 app.use('/suivi_user', suiviUser);
 app.use('/newsletter', newsletter);
-app.use('/message', message);
+app.use('/messages', messages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

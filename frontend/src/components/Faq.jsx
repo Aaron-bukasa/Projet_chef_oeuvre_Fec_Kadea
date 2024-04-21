@@ -22,11 +22,11 @@ export default function Faq() {
   return (
     <div
       id="faq"
-      className="p-6 md:text-lg 2xl:text-xl flex flex-col bg-bg_blog xl:pb-12"
+      className="p-6 md:text-lg 2xl:text-xl flex flex-col xl:pb-12"
     >
       <div></div>
       <div className="max-w-[1386px] w-[80%]  mx-auto">
-        <h2 className="font-bold text-center text-secondary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Foire aux questions
         </h2>
         <ul>
