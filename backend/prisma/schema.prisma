@@ -9,6 +9,8 @@ datasource db {
 
 // DEFINITION DES MODELES
 
+// DEMANDE ET SUIVI DEMANDE
+
 model Demande {
   id                Int         @id @default(autoincrement())
   nom               String
@@ -28,6 +30,8 @@ model SuiviDemande {
   demande     Demande   @relation(fields: [demandeId], references: [id])
   demandeId   Int
 }
+
+// USER, PROFIL ET SUIVI USER
 
 model User {
 id       Int      @id @default(autoincrement())
@@ -63,13 +67,27 @@ user           User     @relation(fields: [userId], references: [id])
 userId         Int  @unique
 }
 
+
+// NEWSLETTERS ET ABONNES
+
 model NewsLetter {
   id          Int       @id @default(autoincrement())
-  nom     String
-  email    String     @unique
+  newsletter  String
   date        DateTime  @default(now())
-  subscribed Boolean @default(false)
+  abonnement           Abonnement     @relation(fields: [abonnementId], references: [id])
+  abonnementId         Int  @unique
 }
+
+model Abonnement {
+  id          Int       @id @default(autoincrement())
+  email    String
+  date        DateTime  @default(now())
+  confirmed Boolean @default(false)
+  newsletter  NewsLetter[]
+}
+
+
+// MESSAGE ET REPONSE
 
 model Message {
   id          Int       @id @default(autoincrement())
@@ -91,6 +109,9 @@ model MessageReponse {
   message     Message     @relation(fields: [messageId], references: [id])
   messageId         Int  @unique
 }
+
+
+// RAPPORT
 
 model Rapport {
   id                  Int         @id @default(autoincrement())

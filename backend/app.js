@@ -35,7 +35,7 @@ app.use('/demandes', demandesRouter);
 app.use('/rapport', rapportRouter);
 app.use('/suivi_demande', suiviDemande);
 app.use('/suivi_user', suiviUser);
-app.use('/newsletter', newsletter);
+app.use('/newsletters', newsletter);
 app.use('/messages', messages);
 
 // catch 404 and forward to error handler

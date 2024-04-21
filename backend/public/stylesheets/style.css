@@ -729,6 +729,10 @@ video {
   width: 3rem;
 }
 
+.w-2\/4 {
+  width: 50%;
+}
+
 .w-20 {
   width: 5rem;
 }
@@ -983,8 +987,21 @@ video {
     display: flex;
   }
 
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
+  .md\:w-3\/5 {
+    width: 60%;
+  }
+
   .md\:w-\[180px\] {
     width: 180px;
+  }
+
+  .md\:gap-x-5 {
+    -moz-column-gap: 1.25rem;
+         column-gap: 1.25rem;
   }
 
   .md\:text-2xl {
