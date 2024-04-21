@@ -65,23 +65,13 @@ exports.messageReceive = async(req, res) => {
 
 
 exports.messageSend = async (req, res) => {
-  const { id } = req.body;
 
-  const isSubscribed = await prisma.message.findUnique({
-    where: {
-      id: parseInt(id)
-    },
-    select: {
-      subscribed: true
-    }
-  });
+  const { messageId, objet, email, reponse } = req.body;
 
-  if (!isValidEmail(req.body.email)) {
+  if (!isValidEmail(email)) {
     res.status(400).json({ message: 'Adresse email invalide' });
     return;
   }
-
-  // Valider les autres champs du corps de la requête (objet, message)
 
   const oauth2Client = new google.auth.OAuth2(
     process.env.EMAIL_CLIENT_ID,
@@ -89,7 +79,6 @@ exports.messageSend = async (req, res) => {
     process.env.EMAIL_REDIRECT_URL
   );
   oauth2Client.setCredentials({refresh_token: process.env.EMAIL_REFRESH_TOKEN});
-
 
   try {
     const accessToken = await oauth2Client.getAccessToken();
@@ -106,15 +95,28 @@ exports.messageSend = async (req, res) => {
     })
 
     const mailOptions = {
-      from: 'Aaron bukasa <aardev.buk@gmail.com>',
+      from: 'aardev.buk@gmail.com',
       to: req.body.email,
       subject: req.body.objet,
       text: req.body.message
     }
 
     const result = await transport.sendMail(mailOptions)
-    console.log('E-mail envoyé avec succès !');
-    res.status(200).json(result);
+
+    if(result) {
+      const response = await prisma.messageReponse.create({
+        data: {
+          message: {
+            connect: {
+              id: messageId
+            }
+          },
+          objet: objet,
+          reponse: reponse 
+        }
+      });
+    }
+    res.status(200).json({message: "E-mail envoyé avec succès !"});
   } catch (error) {
     console.error('Erreur lors de l\'envoi de l\'e-mail :', error);
     res.status(500).send('Erreur lors de l\'envoi de l\'e-mail');
@@ -131,20 +133,42 @@ exports.messagesGet = async(req, res) => {
   }
 }
 
+// exports.messageGet = async(req, res) => {
+//   try {
+//       const { id } = req.params;
+  
+//       const message = await prisma.message.findUnique({
+//         where: { id: parseInt(id) },
+//       });
+  
+//       if (!message) {
+//         return res.status(404).json('Message non trouvée');
+//       }
+//       res.status(200).render('message', {message});
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'Erreur lors de la récupération du message' });
+//     }
+// }
+
 exports.messageGet = async(req, res) => {
   try {
       const { id } = req.params;
   
       const message = await prisma.message.findUnique({
         where: { id: parseInt(id) },
+        include: {
+         message_reponse: true
+        }
       });
   
       if (!message) {
-        return res.status(404).json('Message non trouvée');
+        return res.status(404).json({ message: 'message non trouvée' });
       }
+  
       res.status(200).render('message', {message});
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Erreur lors de la récupération du message' });
+      res.status(500).json({ message: "Erreur lors de la récupération du message" });
     }
 }

@@ -1,15 +1,19 @@
 extends layout
   
 block content
-    div(class="message")
-        h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Liste des messages
+    div(class="newsletter")
+        h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Liste des abonnés aux newsletters
         section(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
-            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
-                div(class="rounded-full p-5 w-12 h-12") 5
+            div(class="border-2 p-3 my-3 w-[50%]")
+                h2(class="font-bold text-xl mb-3") Newsletter
+                form(class="flex flex-col")
+                    input(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
+                    textarea(name="message", cols="30", rows="5" placeholder="newsletter" class="border-2 rounded-lg p-2 my-1")
+                    button(type='submit' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-max") Envoyer
             ul.statistic(class="border-4 border-dashed p-3 flex flex-col my-3 w-full gap-y-4")
                 h2(class='text-lg font-bold mb-2') Les statistiques
-                li Nombre total de nessages: !{messages.length}
-                li Nombre de messages non lus: !{messages.filter(message => message.read === false).length}
+                li Nombre total de nessages: !{newsletters.length}
+                li Nombre de messages non lus: !{newsletters.filter(newsletter => newsletter.read === false).length}
                 li Nombre de messages lus: !{messages.filter(message => message.read === true).length}
                 li(class="my-4 xl:flex") 
                     a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
