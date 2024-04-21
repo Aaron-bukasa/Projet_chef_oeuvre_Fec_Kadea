@@ -42,10 +42,10 @@ export default function FormulaireDmd() {
           action=""
           method="POST"
           encType="multipart/form-data"
-          className="border-2 bg-white text-black p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12 shadow-membre-box lg:mt-8"
+          className="border-2 bg-btn-color text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12 shadow-membre-box lg:mt-8"
         >
           <h2 className="font-bold text-lg text-center p-6 sm:text-xl md:text-2xl xl:text-3xl">
-            Formulaire de Demande d'Adhésion
+            Formulaire de demande d'adhésion
           </h2>
           <input
             {...register("nom", {
@@ -126,11 +126,11 @@ export default function FormulaireDmd() {
             <input
               type="submit"
               value="Soumettre la demande"
-              className="text-white font-bold bg-red-600 p-3 rounded-xl hover:opacity-80 cursor-pointer"
+              className="text-white font-bold bg-focus-color p-3 rounded-xl hover:opacity-80 cursor-pointer"
             />
             <button
               type="submit"
-              className="ml-6 bg-red-600 text-white font-bold p-3 rounded-xl hover:opacity-80"
+              className="ml-6 bg-focus-color text-white font-bold p-3 rounded-xl hover:opacity-80"
             >
               Annuler
             </button>

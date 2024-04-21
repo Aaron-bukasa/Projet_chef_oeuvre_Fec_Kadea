@@ -10,6 +10,9 @@ export default {
         'primary-blue': '#051433',
         'secondary-blue': '#00194C',
         'sky-blue': '#0055ff',
+        'focus-color': '#ff764c',
+        'secondary-color': '#f8f9fa',
+        "btn-color": '#003366'
       },
       screens : {
         "sm": "640px",

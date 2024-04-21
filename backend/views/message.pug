@@ -1,0 +1,19 @@
+extends layout
+  
+block content
+    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Message recu
+    div
+        div(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
+            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-[50%]")
+                h2(class='text-lg font-bold mb-2') Information sur le message
+                p Identification : #{message.id}
+                p Date de création : #{message.date_reception.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                p Nom : #{message.nom}
+                p Email : #{message.email}
+                p Statut : #{message.read}
+        div(class="border-4 p-3 flex flex-col my-3 w-[75%]")
+            h2(class="font-bold text-xl mb-3") Envoyer une reponse
+            form 
+                input(type="text" placeholder='objet')
+                textarea(name="message", cols="30", rows="10" placeholder="message")
+                button(type='submit')

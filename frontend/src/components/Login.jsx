@@ -25,10 +25,10 @@ export default function Login() {
   };
 
   return (
-    <div className="px-6 py-12 md:py-24 bg-gray-50">
+    <div className="px-6 py-12 md:py-24">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="border-2 bg-white text-black p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6 shadow-membre-box"
+        className="border-2 bg-btn-color text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6"
       >
         <h1 className="font-bold text-2xl text-center p-6 sm:text-3xl md:text-4xl xl:text-5xl">
           Se connecter
@@ -62,14 +62,14 @@ export default function Login() {
           </div>
           <Link
             to="/signup"
-            className=" block text-secondary-blue font-bold text-lg text-right mr-3 tracking-wider"
+            className=" block text-white font-bold text-lg text-right mr-3 tracking-wider"
           >
-            Créer un compte
+            Dévenez membre de la FEC
           </Link>
         </div>
         <button
           type="submit"
-          className="ml-6 bg-red-600 text-white font-bold text-xl py-3 px-4 rounded-xl hover:opacity-80"
+          className="ml-6 bg-sky-blue text-white font-bold text-xl py-3 px-4 rounded-xl hover:opacity-80"
         >
           Se connecter
         </button>

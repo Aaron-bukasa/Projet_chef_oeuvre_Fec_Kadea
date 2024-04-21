@@ -10,19 +10,19 @@
       transform: translateY(20px);
     }
   }
+.animate-arrowForward {
+  animation: arrowForward 1s infinite alternate;
+}
 
-  .animated-visible {
-    animation: visible_image 6s infinite alternate;
+@keyframes arrowForward {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(15px);
+  }
+}
   
-  @keyframes visible_image {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 .notifications ul {
   display: none;
 }

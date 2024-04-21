@@ -31,7 +31,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="lg:mb-6 bg-zinc-100">
+    <div className="lg:py-6 bg-zinc-300 text-[#000033]">
       <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 p-6 text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] 2xl:px-44 max-w-[1586px] mx-auto justify-between">
       <div className="col-start-1 col-end-2 row-start-1 row-end-2">
         <img src={imgLogo} alt="Logo de la fédération" className="w-[180px]" />
@@ -54,43 +54,43 @@ export default function Footer() {
         </div>
       </div>
       <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 tracking-wider flex sm:justify-center">
-        <ul>
+        <ul className="flex flex-col gap-y-1">
           <h2 className="font-semibold text-2xl mb-3 w-max">Menu</h2>
           <li>
-            <Link to="/" className="text-black hover:text-[#4885ff]">
+            <Link to="/" className="text-primary-blue hover:text-focus-color">
               Accueil
             </Link>
           </li>
           <li>
-            <Link to="/services" className="text-black hover:text-[#4885ff]">
+            <Link to="/services" className="text-primary-blue  hover:text-focus-color">
               Avantages
             </Link>
           </li>
           <li>
             <Link
               to="formulaireDmd"
-              className="text-black hover:text-[#4885ff]"
+              className="text-primary-blue  hover:text-focus-color"
             >
               Adhésion
             </Link>
           </li>
           <li>
-            <Link to="/faq" className="text-black hover:text-[#4885ff]">
+            <Link to="/faq" className="text-primary-blue hover:text-focus-color">
               Faq
             </Link>
           </li>
           <li>
-            <Link to="/contact" className="text-black hover:text-[#4885ff]">
+            <Link to="/contact" className="text-primary-blue  hover:text-focus-color">
               Contact
             </Link>
           </li>
           <li>
-            <Link to="login" className="text-black hover:text-[#4885ff]">
+            <Link to="login" className="text-primary-blue  hover:text-focus-color">
               Se connecter
             </Link>
           </li>
           <li>
-            <Link to="signup" className="text-black hover:text-[#4885ff]">
+            <Link to="signup" className="text-primary-blue  hover:text-focus-color">
               S'inscrire
             </Link>
           </li>
@@ -119,7 +119,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="shrink-0 w-max p-3 bg-gray-400 text-white font-semibold rounded-r-lg hover:opacity-80"
+                className="shrink-0 w-max p-3 bg-[#003366] text-white font-semibold rounded-r-lg hover:opacity-80"
               >
                 Soumettre
               </button>
@@ -130,16 +130,16 @@ export default function Footer() {
           <div className="">
             <h2 className="font-semibold text-2xl mt-6 w-max after:content-[''] after:block after:bg-secondary-blue after:w-full after:mt-1">Suivez-nous</h2>
             <div className="flex items-center gap-x-4 my-6">
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgFacebook} alt="facebook" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgInstagram} alt="instagramme" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgTwitter} alt="twitter" className="w-8" />
               </Link>
-              <Link to="#" className="hover:opacity-80">
+              <Link to="#" className="hover:opacity-60">
                 <img src={imgLinkedin} alt="twitter" className="w-8" />
               </Link>
             </div>
