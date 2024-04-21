@@ -155,13 +155,11 @@ exports.serverUserPut = async (req, res) => {
       return res.status(404).json({ message: "Utilisateur non trouvé" });
     }
 
-    const passwordHash = bcrypt.hashSync(password, 10);
-
     const userUpdate = await prisma.user.update({
       where: { id: parseInt(id)},
       data: {
         email: email || user.email,
-        password: passwordHash || user.password,
+        password: password === user.password ? user.password : bcrypt.hashSync(password, 10),
         role: role || user.role,
         profil_user: {
           update: {
@@ -224,7 +222,7 @@ exports.serverUserUnlock = async(req, res) => {
         where: { id: id },
         data: {
           nom: user.nom.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
-          email: user.email.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/)
+          email: user.email.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
         }
       });
   
@@ -241,7 +239,7 @@ exports.serverUserDelete = async(req, res) => {
   try {
       const { id } = req.params;
   
-      await prisma.utilisateur.delete({
+      await prisma.user.delete({
         where: { id: parseInt(id) }
       });
   

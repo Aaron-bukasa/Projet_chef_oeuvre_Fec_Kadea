@@ -92,7 +92,7 @@ exports.clientUserGet = async(req, res) => {
   try {
       const { id } = req.params;
   
-      const user = await prisma.utilisateur.findUnique({
+      const user = await prisma.user.findUnique({
         where: { id: parseInt(id) },
         include: {
           suivi_utilisateur: true
@@ -113,24 +113,25 @@ exports.clientUserGet = async(req, res) => {
 exports.clientUserPut = async(req, res) => {
     try {
         const userId = req.body.id;
-        const { nom, email, telephone, role } = req.body;
+        const { nom, email, password, telephone, role } = req.body;
     
-        const utilisateur = await prisma.utilisateur.findUnique({ where: { id: userId } });
-        if (!utilisateur) {
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!user) {
           return res.status(404).json({ message: "Utilisateur non trouvé" });
         }
     
-        const utilisateurMisAJour = await prisma.utilisateur.update({
+        const userUpdate = await prisma.user.update({
           where: { id: userId },
           data: {
-            nom: nom || utilisateur.nom,
-            email: email || utilisateur.email,
-            telephone: telephone || utilisateur.telephone,
-            role: role || utilisateur.role
+            nom: nom || user.nom,
+            email: email || user.email,
+            password: password || user.password,
+            telephone: telephone || user.telephone,
+            role: role || user.role
           }
         });
     
-        res.status(200).json({ utilisateur: utilisateurMisAJour });
+        res.status(200).json({ user: userUpdate });
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Erreur lors de la modification du profil" });
@@ -141,7 +142,7 @@ exports.clientUserDelete = async(req, res) => {
   try {
       const { id } = req.params;
   
-      await prisma.utilisateur.delete({
+      await prisma.user.delete({
         where: { id: parseInt(id) }
       });
   
