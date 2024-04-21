@@ -67,6 +67,7 @@ model NewsLetter {
   id          Int       @id @default(autoincrement())
   nom     String
   email    String     @unique
+  date        DateTime  @default(now())
   subscribed Boolean @default(false)
 }
 
@@ -76,7 +77,19 @@ model Message {
   email    String
   objet    String
   message    String
-  subscribed Boolean @default(false)
+  date        DateTime  @default(now())
+  reponse Boolean @default(false)
+  message_reponse MessageReponse?
+}
+
+model MessageReponse {
+  id          Int       @id @default(autoincrement())
+  email     String
+  objet     String
+  reponse   String
+  date        DateTime  @default(now())
+  message     Message     @relation(fields: [messageId], references: [id])
+  messageId         Int  @unique
 }
 
 model Rapport {
