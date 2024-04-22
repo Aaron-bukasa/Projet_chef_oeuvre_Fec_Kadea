@@ -86,15 +86,6 @@ exports.newsletterSend = async (req, res) => {
       select: { email: true } 
     });
 
-    if(abonnes) {
-      await prisma.newsLetter.create({
-        data: {
-          objet,
-          newsletter
-        }
-      })
-    }
-
     const oAuth2Client = new OAuth2Client({
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
@@ -130,6 +121,12 @@ exports.newsletterSend = async (req, res) => {
       await transporter.sendMail(mailOptions);
     }
 
+    await prisma.newsLetter.create({
+      data: {
+        objet,
+        newsletter
+      }
+    })
     res.status(200).send('Newsletter envoyée avec succès à tous les abonnés confirmés.');
   } catch (error) {
     console.error('Erreur lors de l\'envoi de la newsletter :', error);
@@ -141,13 +138,10 @@ exports.newsletterSend = async (req, res) => {
 exports.abonnesGet = async(req, res) => {
 
   try {
-    const abonnes = await prisma.abonnement.findMany({
-      include: {
-        newsletter: true
-      }
-    });
+    const abonnes = await prisma.abonnement.findMany();
+    const newsletters = await prisma.newsLetter.findMany();
     
-    res.status(200).render('newsletters', {abonnes});
+    res.status(200).render('newsletters', {abonnes, newsletters});
 
   } catch (error) {
     console.error(error);

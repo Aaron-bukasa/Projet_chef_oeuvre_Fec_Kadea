@@ -6,9 +6,9 @@ block content
         section(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
             div(class="border-2 p-3 my-3 w-2/4")
                 h2(class="font-bold text-xl mb-3") Nouvelle newsletter
-                form(class="flex flex-col")
-                    input(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
-                    textarea(name="message", cols="30", rows="5" placeholder="newsletter" class="border-2 rounded-lg p-2 my-1")
+                form.create_newsletter(method='post' class="flex flex-col")
+                    input.objet(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
+                    textarea.content(name="message", cols="30", rows="5" placeholder="newsletter" class="border-2 rounded-lg p-2 my-1")
                     button(type='submit' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-max") Envoyer
             ul.statistic(class="border-4 border-dashed w-2/4 p-3 flex flex-col my-3 w-full gap-y-4")
                 h2(class='text-lg font-bold mb-2') Les statistiques
@@ -20,7 +20,7 @@ block content
                 li Nombre total d'abonnés: !{abonnes.length}
                 li(class="my-4 xl:flex") 
                     a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
-                    a(href="/demandes" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+                    a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
         section(class="md:flex md:gap-x-5") 
             div(class="border-2 md:w-3/5 p-3")
                 h2(class="font-bold text-xl mb-3 text-center") Listes des newsletters envoyés
@@ -58,5 +58,7 @@ block content
                                 td(class="text-center")= abonne.date.toLocaleString('en-GB', { timeZone: 'UTC' })
                                 td(class="text-center")= abonne.email
                                 td(class="text-center")= abonne.confirmed
+
+    script(src="/javascripts/newsletters.js")
                         
 

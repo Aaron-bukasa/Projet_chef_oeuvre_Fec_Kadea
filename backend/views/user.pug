@@ -16,20 +16,22 @@ block content
                 p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
                 p Date d'adhésion : #{user.profil_user.date_adhesion}
                 p Status d'adhésion : #{user.profil_user.status_adhesion}
-            form.suiviUtilisateur(action="/suivi_utilisateur", method="POST" class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                p(class="hidden") #{user.id}
-                div(class='lg:flex lg:gap-x-6')
-                    div.actions 
+            div.suiviUtilisateur(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
+                p.identifiant(class="hidden") #{user.id}
+                div(class='lg:flex lg:gap-x-6 relative')
+                    div.actions(class='2/4') 
                         h2(class='text-lg font-bold mb-2') Actions
-                        select(id="action", name="action" class="border-2 rounded-lg p-2 my-1")
-                            option(value="") Choisir
-                            option(value="bloquer") Bloquer
-                            option(value="debloquer") Débloquer
-                            option(value="supprimer") Supprimer
-                    div
+                        div(class='flex flex-col gap-y-2')
+                            button.bloquer(class='text-white bg-red-600 rounded-lg font-bold p-1') Bloquer
+                            button.debloquer(class='text-white bg-red-600 rounded-lg font-bold p-1')  Debloquer
+                            button.supprimer(class='text-white bg-red-600 rounded-lg font-bold p-1')  Supprimer
+                    form(class='w-2/4' action="/suivi_utilisateur", method="POST")
                         label(for="commentaire") Commentaire (facultatif)
                         textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
-                    button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full") Valider
+                        button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full") Valider
+                    div.loading(class="hidden absolute top-2/4 left-2/4")
+                        span loading 
+                        span .....
         div 
             h2(class="font-bold text-xl mb-3") Suivi Utilisateur
             table(class="w-full border-2 p-2 mb-6")
@@ -50,3 +52,4 @@ block content
                                 a(href="#") Valider
                                 a(href="#") Delete
         
+    script(src="/javascripts/user.js")

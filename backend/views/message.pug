@@ -22,7 +22,7 @@ block content
         h2(class="font-bold text-xl mb-3") Conversation
         table(class="w-full border-2 p-2 mb-6")
             tbody
-                each reponse in message.message_reponse
+                each message in message
                     tr
                         td(class="text-center")= response.date.toLocaleString('en-GB', { timeZone: 'UTC' })
                         td(class="text-center")= response.nom

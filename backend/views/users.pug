@@ -18,20 +18,20 @@ block content
                 button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Créer le compte
             form.putUser(action="#", method="POST" class="border-4 border-dashed p-3 flex flex-col my-3 w-full")
                 h2(class='text-lg font-bold mb-2') Modifier un utilisateur
-                select(id="utilisateur", name="utilisateur" class="border-2 rounded-lg p-2 my-1")
+                select(id="user", name="user" class="border-2 rounded-lg p-2 my-1")
                     option(value="") Choisir un utilisateur
                     each user in users
                         option(value=user)= user.profil_user.nom
-                input(type="text", id="prenom", name="prenom" placeholder='Prenom' class="border-2 rounded-lg p-2 my-1")
-                input(type="text", id="nom", name="nom" placeholder='Nom' class="border-2 rounded-lg p-2 my-1")
-                input(type="email", id="email", name="email" placeholder='Email' class="border-2 rounded-lg p-2 my-1")
-                input(type="text", id="password", name="password" placeholder='Password' class="border-2 rounded-lg p-2 my-1")
-                input(type="number", id="telephone", name="telephone" placeholder='Télephone' class="border-2 rounded-lg p-2 my-1")
-                select(id="role", name="role" class="border-2 rounded-lg p-2 my-1")
+                input(type="text", id="putPrenom", name="prenom" placeholder='Prenom' class="border-2 rounded-lg p-2 my-1")
+                input(type="text", id="putNom", name="nom" placeholder='Nom' class="border-2 rounded-lg p-2 my-1")
+                input(type="email", id="putEmail", name="email" placeholder='Email' class="border-2 rounded-lg p-2 my-1")
+                input(type="text", id="putPassword", name="password" placeholder='Password' class="border-2 rounded-lg p-2 my-1")
+                input(type="number", id="putTelephone", name="telephone" placeholder='Télephone' class="border-2 rounded-lg p-2 my-1")
+                select(id="putRole", name="role" class="border-2 rounded-lg p-2 my-1")
                     option(value="") Choisir un rôle
                     option(value="administrateur") Administrateur
                     option(value="utilisateur") Utilisateur
-                button.navLink(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Valider les modifications
+                button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Valider les modifications
             ul.statistic(class="border-4 border-dashed p-3 flex flex-col my-3 w-full gap-y-4")
                 h2(class='text-lg font-bold mb-2') Les statistiques
                 li Nombre total comptes: !{users.length}
@@ -63,5 +63,7 @@ block content
                             td(class="text-center")= user.profil_user.status_adhesion
                             td(class="text-center") 
                                 a(href=`/users/server/${user.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
+
+    script(src="/javascripts/users.js")
 
 
