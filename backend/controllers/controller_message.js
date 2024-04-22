@@ -1,67 +1,120 @@
+require('dotenv').config();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-require('dotenv').config();
+const { OAuth2Client } = require('google-auth-library');
+const nodemailer = require('nodemailer');
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-exports.messageReceive = async(req, res) => {
-    try {
-        const { nom, email, objet, message } = req.body;
+// exports.messageReceive = async(req, res) => {
+//     try {
+//         const { nom, email, objet, message } = req.body;
     
-        const newMessage = await prisma.message.create({
-          data: {
-            nom,
-            email,
-            objet,
-            message
-          }
-        });
-        res.status(201).json('message envoyé avec succès');
+//         const newMessage = await prisma.message.create({
+//           data: {
+//             nom,
+//             email,
+//             objet,
+//             message
+//           }
+//         });
+//         res.status(201).json('message envoyé avec succès');
 
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de l\'envoie du message' });
+//       } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: 'Erreur lors de l\'envoie du message' });
+//       }
+// }
+
+
+exports.messageReceive = async (req, res) => {
+  const { nom, email, objet, message } = req.body;
+
+  try {
+    const nouveauMessage = await prisma.message.create({
+      data: {
+        nom,
+        email,
+        objet,
+        message,
+        confirmed: false
       }
-}
+    });
 
-// exports.messageSend = async (req, res) => {
+    const oAuth2Client = new OAuth2Client({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      redirectUri: process.env.REDIRECT_URI
+    });
 
-//   const { id } = req.body;
+    oAuth2Client.setCredentials({
+      refresh_token: process.env.REFRESH_TOKEN
+    });
 
-//   const isSubscribed = await prisma.message.findUnique({
-//     where: {
-//       id: parseInt(id)
-//     },
-//     select: {
-//       subscribed: true
-//     }
-//   });
+    const tokens = await oAuth2Client.getAccessToken();
 
-//   if (!isValidEmail(req.body.email)) {
-//     res.status(400).json({ message: 'Adresse email invalide' });
-//     return;
-//   }
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: process.env.EMAIL_HOST,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: tokens.token
+      }
+    });
 
-//   const message = {
-//     from: process.env.MAIL_USER,
-//     to: req.body.email,
-//     subject: req.body.objet,
-//     text: req.body.message
-//   };
+    const mailOptions = {
+      from: process.env.EMAIL_HOST,
+      to: email,
+      subject: 'Confirmation de réception de votre message',
+      text: `Nous avons bien reçu votre message. Veuillez confirmer en répondant à cet e-mail.`
+    };
 
-//   try {
-//     await mailer.sendMail(message);
-//     console.log(`Email envoyé à ${req.body.email}`);
-//     res.json({ message: 'Email envoyé avec succès' });
-//   } catch (error) {
-//     console.error(`Erreur lors de l'envoi d'email à ${req.body.email}: ${error.message}`);
-//     res.status(500).json({ message: 'Erreur d\'envoi d\'email' });
-//   }
-// };
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).send('Votre message a été envoyé avec succès. Veuillez vérifier votre boîte de réception pour la confirmation.');
+
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi de l\'e-mail de contact :', error);
+    res.status(500).send('Une erreur s\'est produite lors de l\'envoi de l\'e-mail de contact.');
+  }
+};
+
+
+exports.confirmerReceptionMessage = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const message = await prisma.message.findFirst({
+      where: {
+        email,
+        confirme: false
+      }
+    });
+
+    if (message) {
+      await prisma.message.update({
+        where: { id: message.id },
+        data: { confirme: true }
+      });
+
+      res.status(200).send('Votre message a été confirmé avec succès.');
+
+    } else {
+      res.status(404).send('Aucun message non confirmé correspondant trouvé pour cet e-mail.');
+    }
+
+  } catch (error) {
+    console.error('Erreur lors de la confirmation de réception du message :', error);
+    res.status(500).send('Une erreur s\'est produite lors de la confirmation de réception du message.');
+  }
+};
+
 
 
 exports.messageSend = async (req, res) => {
@@ -74,11 +127,11 @@ exports.messageSend = async (req, res) => {
   }
 
   const oauth2Client = new google.auth.OAuth2(
-    process.env.EMAIL_CLIENT_ID,
-    process.env.EMAIL_CLIENT_SECRET,
-    process.env.EMAIL_REDIRECT_URL
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    process.env.REDIRECT_URL
   );
-  oauth2Client.setCredentials({refresh_token: process.env.EMAIL_REFRESH_TOKEN});
+  oauth2Client.setCredentials({refresh_token: process.env.REFRESH_TOKEN});
 
   try {
     const accessToken = await oauth2Client.getAccessToken();
@@ -86,7 +139,7 @@ exports.messageSend = async (req, res) => {
       service: 'gmail',
       auth: {
         type: 'OAuth2',
-        user: 'aardev.buk@gmail.com',
+        user: process.env.EMAIL_HOST,
         clientId: process.env.EMAIL_CLIENT_ID,
         clientSecret: process.env.EMAIL_CLIENT_SECRET,
         refreshToken: process.env.EMAIL_REFRESH_TOKEN,
@@ -95,7 +148,7 @@ exports.messageSend = async (req, res) => {
     })
 
     const mailOptions = {
-      from: 'aardev.buk@gmail.com',
+      from: process.env.EMAIL_HOST,
       to: req.body.email,
       subject: req.body.objet,
       text: req.body.message
@@ -132,24 +185,6 @@ exports.messagesGet = async(req, res) => {
     console.error(error);
   }
 }
-
-// exports.messageGet = async(req, res) => {
-//   try {
-//       const { id } = req.params;
-  
-//       const message = await prisma.message.findUnique({
-//         where: { id: parseInt(id) },
-//       });
-  
-//       if (!message) {
-//         return res.status(404).json('Message non trouvée');
-//       }
-//       res.status(200).render('message', {message});
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'Erreur lors de la récupération du message' });
-//     }
-// }
 
 exports.messageGet = async(req, res) => {
   try {
