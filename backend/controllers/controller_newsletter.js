@@ -1,50 +1,51 @@
+require('dotenv').config();
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-require('dotenv').config();
-
 const prisma = new PrismaClient();
-const router = express.Router();
+const { OAuth2Client } = require('google-auth-library');
 
-const oAuth2Client = new google.auth.OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  process.env.REDIRECT_URL
-);
 
-const gmailAuthUrl = oAuth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: ['https://mail.google.com/'],
-});
-
-exports.abonnementPost = async(req, res) => {
+exports.abonnementPost = async (req, res) => {
   const { email } = req.body;
 
   try {
     const subscription = await prisma.abonnement.create({
       data: {
         email
-      },
+      }
     });
 
+    const oAuth2Client = new OAuth2Client({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      redirectUri: process.env.REDIRECT_URI
+    });
+
+    oAuth2Client.setCredentials({
+      refresh_token: process.env.REFRESH_TOKEN
+    });
+
+    const tokens = await oAuth2Client.getAccessToken();
+
     const transporter = nodemailer.createTransport({
-      service: 'Gmail',
+      service: 'gmail',
       auth: {
         type: 'OAuth2',
         user: process.env.EMAIL_HOST,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: await oAuth2Client.getAccessToken(),
-      },
+        accessToken: tokens.token
+      }
     });
 
     const mailOptions = {
       from: process.env.EMAIL_HOST,
       to: email,
       subject: 'Confirmation de votre abonnement à la newsletter',
-      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/confirm/${subscription.id}`,
+      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/confirm/${subscription.id}`
     };
 
     await transporter.sendMail(mailOptions);
@@ -54,7 +55,8 @@ exports.abonnementPost = async(req, res) => {
     console.error('Erreur lors de l\'abonnement à la newsletter :', error);
     res.status(500).send('Une erreur s\'est produite lors de l\'abonnement à la newsletter.');
   }
-}
+};
+
 
 exports.abonnementConfirm = async(req, res) => {
 
@@ -73,57 +75,93 @@ exports.abonnementConfirm = async(req, res) => {
   }
 }
 
-// exports.abonneSubscribe = async(req, res) => {
-//     try {
-//         const { nom, email } = req.body;
-    
-//         const newAbonne = await prisma.abonnes.create({
-//           data: {
-//             nom,
-//             email
-//           }
-//         });
-//         console.log(newAbonne);
-//         res.status(201).json('Un email de confirmation vous a été envoyé. Veuillez consulter votre boîte de réception pour confirmer votre abonnement à la newsletter.');
 
-//       } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Erreur lors de soumission de votre demande' });
-//       }
-// }
+exports.confirmationGet = (req, res) => {
+  try {        
+      res.status(200).render('confirmation');
+  } catch (error) {
+      console.error(error);
+  }
+}
+
 
 exports.newsletterSend = async (req, res) => {
-    // try {
-    //   const { demandeId, evenement } = req.body;
-    //   const nouveauSuiviDemande = await prisma.suiviDemande.create({
-    //     data: {
-    //       demande: { connect: { id: demandeId } },
-    //       evenement,
-    //     },
-    //   });
-  
-    //   res.status(201).json({ message: 'Suivi de demande créé avec succès', suivi: nouveauSuiviDemande });
-    // } catch (error) {
-    //   console.error(error);
-    //   res.status(500).json({ message: 'Erreur lors de la création du suivi de demande' });
-    // }
-  };
 
-  exports.abonnesGet = async(req, res) => {
+  const { objet, newsletter } = req.body;
 
-    try {
-      const abonnes = await prisma.abonnement.findMany({
-        include: {
-          newsletter: true
+  try {
+    const abonnes = await prisma.abonnement.findMany({
+      where: { confirmed: true },
+      select: { email: true } 
+    });
+
+    if(abonnes) {
+      const newsletter = await prisma.newsLetter.create({
+        data: {
+          objet,
+          newsletter
         }
-      });
-     
-      res.status(200).render('newsletters', {abonnes});
-  
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur lors de la récupération des utilisateurs' });
+      })
     }
-  
+
+    const oAuth2Client = new OAuth2Client({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      redirectUri: process.env.REDIRECT_URI
+    });
+
+    oAuth2Client.setCredentials({
+      refresh_token: process.env.REFRESH_TOKEN
+    });
+
+    const tokens = await oAuth2Client.getAccessToken();
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: process.env.EMAIL_HOST,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: tokens.token
+      }
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_HOST,
+      subject: objet,
+      text: newsletter
+    };
+
+    for (const abonne of abonnes) {
+      mailOptions.to = abonne.email;
+      await transporter.sendMail(mailOptions);
+    }
+
+    res.status(200).send('Newsletter envoyée avec succès à tous les abonnés confirmés.');
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi de la newsletter :', error);
+    res.status(500).send('Une erreur s\'est produite lors de l\'envoi de la newsletter.');
   }
+};
+
+
+exports.abonnesGet = async(req, res) => {
+
+  try {
+    const abonnes = await prisma.abonnement.findMany({
+      include: {
+        newsletter: true
+      }
+    });
+    
+    res.status(200).render('newsletters', {abonnes});
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur lors de la récupération des utilisateurs' });
+  }
+
+}
   

@@ -72,6 +72,7 @@ userId         Int  @unique
 
 model NewsLetter {
   id          Int       @id @default(autoincrement())
+  objet       String
   newsletter  String
   date        DateTime  @default(now())
   abonnement           Abonnement     @relation(fields: [abonnementId], references: [id])
