@@ -100,7 +100,7 @@ exports.confirmerReceptionMessage = async (req, res) => {
     if (message) {
       await prisma.message.update({
         where: { id: message.id },
-        data: { confirme: true }
+        data: { confirmed: true }
       });
 
       res.status(200).send('Votre message a été confirmé avec succès.');
