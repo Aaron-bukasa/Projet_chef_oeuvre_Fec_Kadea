@@ -75,8 +75,6 @@ model NewsLetter {
   objet       String
   newsletter  String
   date        DateTime  @default(now())
-  abonnement           Abonnement     @relation(fields: [abonnementId], references: [id])
-  abonnementId         Int  @unique
 }
 
 model Abonnement {
@@ -84,7 +82,6 @@ model Abonnement {
   email    String
   date        DateTime  @default(now())
   confirmed Boolean @default(false)
-  newsletter  NewsLetter[]
 }
 
 
@@ -97,6 +94,7 @@ model Message {
   objet    String
   message    String
   read    Boolean @default(false)
+  confirmed Boolean @default(false)
   date        DateTime  @default(now())
   reponse Boolean @default(false)
   message_reponse MessageReponse?

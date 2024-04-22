@@ -45,7 +45,7 @@ exports.abonnementPost = async (req, res) => {
       from: process.env.EMAIL_HOST,
       to: email,
       subject: 'Confirmation de votre abonnement à la newsletter',
-      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/confirm/${subscription.id}`
+      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/newsletters/abonnement/confirm/${subscription.id}`
     };
 
     await transporter.sendMail(mailOptions);
@@ -76,15 +76,6 @@ exports.abonnementConfirm = async(req, res) => {
 }
 
 
-exports.confirmationGet = (req, res) => {
-  try {        
-      res.status(200).render('confirmation');
-  } catch (error) {
-      console.error(error);
-  }
-}
-
-
 exports.newsletterSend = async (req, res) => {
 
   const { objet, newsletter } = req.body;
@@ -96,7 +87,7 @@ exports.newsletterSend = async (req, res) => {
     });
 
     if(abonnes) {
-      const newsletter = await prisma.newsLetter.create({
+      await prisma.newsLetter.create({
         data: {
           objet,
           newsletter

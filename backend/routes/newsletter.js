@@ -7,6 +7,5 @@ router.post('/abonnement', ctr_newsletter.abonnementPost);
 router.get('/abonnement/confirm/:id', ctr_newsletter.abonnementConfirm)
 router.post('/send', ctr_newsletter.newsletterSend);
 router.get('/', ctr_newsletter.abonnesGet);
-router.get('/confirmation', ctr_newsletter.confirmationGet)
 
 module.exports = router;
