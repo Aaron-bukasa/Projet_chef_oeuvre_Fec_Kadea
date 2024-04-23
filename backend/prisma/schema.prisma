@@ -54,7 +54,7 @@ model Profil {
   ville          String?
   date_adhesion  DateTime?
   date_expiration DateTime?
-  status_adhesion String @default("inactif") // actif, inactif
+  status_adhesion String @default("inactif") // actif, inactif, bloquer
   user           User     @relation(fields: [userId], references: [id])
   userId         Int      @unique
 }

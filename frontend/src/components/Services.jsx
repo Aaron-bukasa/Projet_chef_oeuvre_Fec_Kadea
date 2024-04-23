@@ -17,7 +17,7 @@ import Service from "./service";
 
 export default function Services() {
   return (
-    <div>
+    <div className="bg-bg_desktop bg-no-repeat bg-cover">
       <ServicesBase />
       <ServicesPayants />
     </div>
@@ -26,7 +26,7 @@ export default function Services() {
 
 function ServicesBase() {
   return (
-      <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-6 ">
+      <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-6">
         <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Nos services de base
         </h2>

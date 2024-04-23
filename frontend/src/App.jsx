@@ -54,7 +54,7 @@ function App() {
           <Route path="/services" element={<Services />} />
         </Routes>
       </div>
-      <Footer />
+      <Footer currentPath={currentPath} />
     </div>
   );
 }

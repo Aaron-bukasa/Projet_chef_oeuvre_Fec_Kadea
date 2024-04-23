@@ -125,8 +125,6 @@ exports.serverUserGet = async(req, res) => {
           profil_user: true
         }
       });
-
-      console.log(user);
   
       if (!user) {
         return res.status(404).json({ message: 'Utilisateur non trouvé' });
@@ -183,13 +181,15 @@ exports.serverUserPut = async (req, res) => {
 
 
 exports.serverUserLock = async(req, res) => {
+  console.log("salut");
   try {
-      const { id } = req.params;
+      const { id } = req.body;
       const lock = 'EDN.ICM.PSSR';
-  
+      console.log(id);
       const user = await prisma.user.findUnique({ where: {id: parseInt(id)} });
+      console.log(user);
       if (!user) {
-        return res.status(404).json({ message: "Utilisateur non trouvé" });
+        return res.status(404).json("Utilisateur non trouvé");
       }
   
       const userUpdate = await prisma.user.update({
@@ -197,14 +197,20 @@ exports.serverUserLock = async(req, res) => {
         data: {
           nom: lock+user.nom+lock,
           email: lock+user.email+lock,
+          profil_user: {
+            update: {
+              data: {
+                status_adhesion: 'bloqué'
+         }
+            }
+          }
         }
       });
   
-      res.status(200).render('user', {message: 'Utilisateur bloqué avec succès'});
-      alert('Utilisateur bloqué avec succès')
-      
+      return res.status(200).json('Utilisateur bloqué avec succès');
+     
     } catch (error) {
-      res.status(500).json({ message: "Erreur lors de la modification du profil" });
+      return res.status(500).json({ message: "Erreur lors de la modification du profil" });
     }
 }
 
@@ -223,14 +229,21 @@ exports.serverUserUnlock = async(req, res) => {
         data: {
           nom: user.nom.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
           email: user.email.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
+          profil_user: {
+            update: {
+              data: {
+                status_adhesion: 'inactif'
+         }
+            }
+          }
         }
       });
   
-      res.status(200).render('user', {message: 'Utilisateur debloqué avec succès'});
+      res.status(200).json('Utilisateur debloqué avec succès');
       alert('Utilisateur debloqué avec succès')
       
     } catch (error) {
-      res.status(500).json({ message: "Erreur lors de la modification du profil" });
+      res.status(500).json("Erreur lors de la modification du profil");
     }
 }
 

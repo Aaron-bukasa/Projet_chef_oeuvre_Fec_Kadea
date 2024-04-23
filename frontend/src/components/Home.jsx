@@ -79,7 +79,6 @@ export default function Home() {
   //   config: { duration: 4000 },
   // });
 
-  console.log(isVisible);
 
   return (
     <div className="leading-6 lg:leading-8">
@@ -114,7 +113,7 @@ function Bannere() {
           <div>
             <Link
               to="suiviDmd"
-              className="hidden sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
+              className="sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
             >
               Suivi de la demande
             </Link>
@@ -128,7 +127,7 @@ function Bannere() {
             </Link>
           </div>
         </div>
-        <a href="#devenir_memebre" className="py-6">
+        <a href="#devenir_membre" className="py-6">
           <img
             src={iconArrow}
             alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
@@ -172,7 +171,7 @@ function Bannere() {
 function DevenirMembre() {
 
   return (
-    <div className="bg-white">
+    <div id="devenir_membre" className="bg-bg_desktop">
       <div
         className="p-4 max-w-screen-2xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
       >
@@ -229,7 +228,7 @@ function DevenirMembre() {
 
 function Avantages({intersectionRef}) {
   return (
-    <div className="relative bg-secondary-color">
+    <div className="relative bg-bg_icon-gray">
       <div
         ref={intersectionRef}
         id="avantages"
@@ -329,7 +328,7 @@ function Temoignages() {
   };
 
   return (
-    <div id="Temoignages" className="">
+    <div id="Temoignages" className="bg-bg_desktop">
       <div className="px-6">
         <div className="sm:py-6 md:py-12 xl:max-w-[1586px] mx-auto">
           <h2 className="font-bold text-center text-primary-blue text-3xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">

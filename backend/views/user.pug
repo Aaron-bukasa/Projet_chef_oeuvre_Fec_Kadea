@@ -29,9 +29,10 @@ block content
                         label(for="commentaire") Commentaire (facultatif)
                         textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
                         button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full") Valider
-                    div.loading(class="hidden absolute top-2/4 left-2/4")
-                        span loading 
-                        span .....
+                    div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
+                        div(class='text-center py-12') 
+                            span loading
+                            span .....
         div 
             h2(class="font-bold text-xl mb-3") Suivi Utilisateur
             table(class="w-full border-2 p-2 mb-6")

@@ -50,7 +50,7 @@ exports.abonnementPost = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res.status(200).send('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.');
+    res.status(201).send('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.');
   } catch (error) {
     console.error('Erreur lors de l\'abonnement à la newsletter :', error);
     res.status(500).send('Une erreur s\'est produite lors de l\'abonnement à la newsletter.');

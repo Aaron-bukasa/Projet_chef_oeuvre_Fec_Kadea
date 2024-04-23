@@ -11,9 +11,9 @@ router.post('/server/logout', middlewareAuth, ctr_adm.serverLogout);
 router.get('/server',middlewareAuth, ctr_adm.serverUsersGet);
 router.get('/server/:id', middlewareAuth, ctr_adm.serverUserGet);
 router.put('/server/:id',middlewareAuth, ctr_adm.serverUserPut);
-router.put('/server/lock/:id', middlewareAuth, ctr_adm.serverUserLock);
-router.put('/server/unlock/:id', middlewareAuth, ctr_adm.serverUserUnlock);
-router.delete('/server/:id', middlewareAuth, ctr_adm.serverUserDelete);
+router.put('/server/lock', ctr_adm.serverUserLock);
+router.put('/server/unlock', middlewareAuth, ctr_adm.serverUserUnlock);
+router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 
 
 // API CLIENT

@@ -16,7 +16,7 @@ export default function NavbarPublic(props) {
   };
 
   return (
-    <div className="text-xl fixed top-0 z-[999] w-screen bg-[#f8f9fa] md:w-full md:h-20 md:flex lg:h-24 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44">
+    <div className="text-xl fixed top-0 z-[999] w-screen bg-[#f8f9fa] md:w-full md:h-20 md:flex lg:h-24 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44 border-b-2">
       <div
         onClick={handleClickLink}
         className={"w-full flex items-center justify-between p-6 md:w-[25%]"}
@@ -65,14 +65,6 @@ export default function NavbarPublic(props) {
             Avantages
           </Link>
         </li>
-        {/* <li onClick={handleClickLink}>
-            <Link
-              to="formulaireDmd"
-              className="font-semibold text-black hover:text-[#4885ff]"
-            >
-              Adhésion
-            </Link>
-          </li> */}
         <li onClick={handleClickLink}>
           <Link
             to="/faq"
@@ -106,14 +98,6 @@ export default function NavbarPublic(props) {
             Se connecter
           </a>
         </div>
-        {/* <li onClick={handleClickLink}>
-            <Link
-              to="signup"
-              className="font-semibold text-black hover:text-[#4885ff]"
-            >
-              S'inscrire
-            </Link>
-          </li> */}
       </div>
     </div>
   );
