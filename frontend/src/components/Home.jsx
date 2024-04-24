@@ -173,7 +173,7 @@ function DevenirMembre() {
   return (
     <div id="devenir_membre" className="bg-bg_desktop">
       <div
-        className="p-4 max-w-screen-2xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
+        className="p-4 max-w-screen-xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
       >
         <div className="mb-4 sm:mx-auto tracking-wide md:px-12 lg:col-start-1 lg:col-end-2">
           <h2 className="roboto-bold text-3xl text-primary-blue mb-6 sm:mb-12 lg:mb-12 lg:text-3xl 2xl:text-4xl">
@@ -232,7 +232,7 @@ function Avantages({intersectionRef}) {
       <div
         ref={intersectionRef}
         id="avantages"
-        className="mx-6 max-w-[1386px] pb-10 xl:mx-auto xl:pt-4 "
+        className="mx-6 max-w-screen-xl pb-10 xl:mx-auto xl:pt-4 "
       >
         <h2 className="font-bold text-center text-3xl text-primary-blue mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Les avantages de l'adhésion
@@ -330,7 +330,7 @@ function Temoignages() {
   return (
     <div id="Temoignages" className="bg-bg_desktop">
       <div className="px-6">
-        <div className="sm:py-6 md:py-12 xl:max-w-[1586px] mx-auto">
+        <div className="sm:py-6 md:py-12 max-w-screen-xl mx-auto">
           <h2 className="font-bold text-center text-primary-blue text-3xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Ce qu’ils disent de nous
           </h2>
@@ -372,7 +372,7 @@ function Temoignages() {
         </div>
       </div>
 
-      <div className="sm:py-12 xl:max-w-[1386px] mx-auto px-6">
+      <div className="sm:py-12 max-w-screen-xl mx-auto px-6">
         <h2 className="font-bold text-center text-primary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Ils nous accompagnent
         </h2>

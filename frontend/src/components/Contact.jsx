@@ -41,7 +41,7 @@ export default function Contact() {
 
   return (
     <div className="bg-bg_desktop">
-      <div className="p-6 max-w-[1386px] mx-auto">
+      <div className="p-6 max-w-screen-xl mx-auto">
         <div className="mb-12">
         <h1 className="font-bold text-center text-primary-blue text-3xl mb-6 pt-6 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Nous contactez
@@ -115,7 +115,7 @@ export default function Contact() {
               action=""
               method="POST"
               encType="multipart/form-data"
-              className="border-2 bg-btn-color text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12"
+              className="border-2 linear-bg text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12"
             >
               <h2 className="font-bold text-xl text-center p-6 sm:text-2xl md:text-3xl xl:text-4xl">
                 Nous écrire
