@@ -204,10 +204,10 @@ export default function Footer(props) {
               <Response isLoading={isLoading} setIsResponse={setIsResponse} isResponse={isResponse} isError={isError} isData={isData} />
             </div>
             <div className="">
-              <h2 className="font-semibold text-2xl mt-6 w-max after:content-[''] after:block after:bg-secondary-blue after:w-full after:mt-1">
+              <h2 className="font-semibold text-xl md:text-2xl mt-4 xl:mb-7">
                 Suivez-nous
               </h2>
-              <div className="flex items-center gap-x-4 my-6">
+              <div className="flex items-center gap-x-4 my-2 mb:my-6">
                 <Link to="#" className="hover:opacity-60">
                   <img src={imgFacebook} alt="facebook" className="w-8" />
                 </Link>

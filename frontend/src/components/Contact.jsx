@@ -59,17 +59,17 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-bg_desktop">
+    <div className="bg-bg_desktop bg-cover">
       <div className="p-6 max-w-screen-2xl mx-auto">
         <div className="mb-6 md:mb-12">
           <h1 className="font-bold text-center text-primary-blue text-3xl mb-4 pt-2 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Nous contactez
           </h1>
-          <p className="text-justify md:text-center text-lg md:text-xl md:px-12">
+          <p className="text-justify md:text-center md:text-lg md:px-12">
             Que vous soyez un membre actuel, un futur membre ou un partenaire
             potentiel, nous sommes là pour vous.
           </p>
-          <p className="text-justify text-lg md:text-xl md:px-12">
+          <p className="text-justify md:text-lg md:px-12">
             Voici quelques raisons de nous contacter : En savoir plus sur les
             avantages de l'adhésion, Demander une adhésion, Poser des questions
             sur les partenariats, Obtenir de l'aide pour un problème lié à votre
@@ -77,13 +77,13 @@ export default function Contact() {
           </p>
         </div>
         <div className="lg:grid lg:grid-cols-2 lg:grid-rows-auto lg:gap-6 xl:gap-12">
-          <div className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 text-lg lg:text-xl">
-            <div className="text-lg sm:xl">
+          <div className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 md:text-lg lg:text-xl">
+            <div className="md:text-lg sm:xl">
               <h2 className="text-center sm:text-left font-semibold text-xl my-4 lg:text-2xl tracking-wider">
                 Fédération des entreprises du Congo
               </h2>
               <div className="border-2 border-gray-300 p-3 my-4 rounded-lg ">
-                <p className="mb-2 text-lg">Adresse</p>
+                <p className="mb-2">Adresse</p>
                 <p>
                   10 Av des aviateurs, Gombe,
                   <br />
@@ -108,7 +108,7 @@ export default function Contact() {
                 </p>
               </div>
               <div className="border-2 border-gray-300 p-3 my-4 rounded-lg">
-                <p className="mb-2 text-lg">Heure de travail</p>
+                <p className="mb-2">Heure de travail</p>
                 <p>
                   Lundi – Vendredi: 8h00 – 16h00,
                   <br />
@@ -117,21 +117,21 @@ export default function Contact() {
               </div>
             </div>
             <div >
-              <h2 className="font-semibold text-xl my-4 lg:text-2xl tracking-wider">
+              <h2 className="font-semibold text-xl my-2 lg:text-2xl tracking-wider">
                 Suivez-nous
               </h2>
-              <div className="flex items-center gap-x-4 my-6">
+              <div className="flex items-center gap-x-4 md:my-6">
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgFacebook} alt="facebook" className="w-8" />
+                  <img src={imgFacebook} alt="facebook" className="w-6" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgInstagram} alt="instagramme" className="w-8" />
+                  <img src={imgInstagram} alt="instagramme" className="w-6" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgTwitter} alt="twitter" className="w-8" />
+                  <img src={imgTwitter} alt="twitter" className="w-6" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgLinkedin} alt="twitter" className="w-8" />
+                  <img src={imgLinkedin} alt="twitter" className="w-6" />
                 </Link>
               </div>
             </div>
@@ -142,9 +142,9 @@ export default function Contact() {
               action=""
               method="POST"
               encType="multipart/form-data"
-              className="linear-bg border-2 text-white p-6 w-full rounded-xl mb-6 md:mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12"
+              className="linear-bg border-2 text-white p-6 w-full rounded-xl md:mb-6 md:mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-3 md:pb-12"
             >
-              <h2 className="font-bold text-2xl text-secondary-blue text-center p-6 md:text-3xl xl:text-4xl">
+              <h2 className="font-bold text-center text-2xl text-primary-blue mb-3 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl">
                 Nous écrire
               </h2>
               <input

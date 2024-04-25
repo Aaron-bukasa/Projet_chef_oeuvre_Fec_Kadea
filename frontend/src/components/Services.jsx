@@ -27,7 +27,7 @@ export default function Services() {
 function ServicesBase() {
   return (
       <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-6">
-        <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
           Nos services de base
         </h2>
         <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
@@ -80,7 +80,7 @@ function ServicesPayants() {
         id="avantages"
         className="mx-6 max-w-[1386px] xl:mx-auto xl:p-6"
       >
-        <h2 className="font-bold text-center text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 md:pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
           Nos services payants
         </h2>
          <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">

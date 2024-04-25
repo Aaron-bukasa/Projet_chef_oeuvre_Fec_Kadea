@@ -20,7 +20,7 @@ function generateAuthToken(user) {
 
 // CONTROLLERS CLIENT
 
-exports.clientSignup = async(req, res) => {
+exports.memberSignup = async(req, res) => {
     try {
         const { nom, email, telephone, password } = req.body;
     
@@ -57,7 +57,7 @@ exports.clientSignup = async(req, res) => {
       }
 }
 
-exports.clientLogin = async(req, res) => {
+exports.memberLogin = async(req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -79,7 +79,7 @@ exports.clientLogin = async(req, res) => {
   }
 }
 
-exports.clientLogout = async(req, res) => {
+exports.memberLogout = async(req, res) => {
   try {
     res.clearCookie('token');
     res.status(200).render('auth', { message: 'Vous vous etes déconnecté' });
@@ -88,7 +88,7 @@ exports.clientLogout = async(req, res) => {
   };
 };
 
-exports.clientUserGet = async(req, res) => {
+exports.memberUserGet = async(req, res) => {
   try {
       const { id } = req.params;
   
@@ -110,7 +110,7 @@ exports.clientUserGet = async(req, res) => {
     }
 }
 
-exports.clientUserPut = async(req, res) => {
+exports.memberUserPut = async(req, res) => {
     try {
         const userId = req.body.id;
         const { nom, email, password, telephone, role } = req.body;
@@ -138,7 +138,7 @@ exports.clientUserPut = async(req, res) => {
       }
 }
 
-exports.clientUserDelete = async(req, res) => {
+exports.memberUserDelete = async(req, res) => {
   try {
       const { id } = req.params;
   
