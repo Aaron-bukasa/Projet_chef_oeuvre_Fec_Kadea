@@ -1,8 +1,8 @@
 export default function Temoignage({ className, text, imgTestim, name, statut }) {
     return (
-      <div className={`${className} w-full sm:max-w-[450px] md:h-[353px] text-black p-6 bg-secondary-color rounded-xl md:relative lg:max-w-[420px] shadow-lg mx-auto`}>
+      <div className={`${className} h-max w-full bg-white sm:max-w-[450px] md:h-[353px] text-black p-6  rounded-xl md:relative lg:max-w-[420px] shadow-lg mx-auto`}>
         <blockquote
-          className="mb-3 text-lg text-justify first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+          className="mb-3 ms:text-lg text-justify first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
   first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
         >
           {text}

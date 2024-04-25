@@ -73,13 +73,6 @@ export default function Home() {
     };
   }, []);
 
-  // const { value: frontend } = useSpring({
-  //   from: { value: 0 },
-  //   to: { value: isVisible ? 92 : 0 },
-  //   config: { duration: 4000 },
-  // });
-
-
   return (
     <div className="leading-6 lg:leading-8">
       <Bannere />
@@ -110,7 +103,7 @@ function Bannere() {
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
         <div className="flex text-xs gap-x-4 text- sm:gap-x-12 sm:mt-12">
-          <div>
+          <div className="hidden md:block"> 
             <Link
               to="suiviDmd"
               className="sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
@@ -173,10 +166,10 @@ function DevenirMembre() {
   return (
     <div id="devenir_membre" className="bg-bg_desktop">
       <div
-        className="p-4 max-w-screen-xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
+        className="p-4 max-w-screen-2xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
       >
         <div className="mb-4 sm:mx-auto tracking-wide md:px-12 lg:col-start-1 lg:col-end-2">
-          <h2 className="roboto-bold text-3xl text-primary-blue mb-6 sm:mb-12 lg:mb-12 lg:text-3xl 2xl:text-4xl">
+          <h2 className="roboto-bold text-2xl text-primary-blue mb-3 sm:mb-6 lg:mb-12 lg:text-3xl">
             Devenez membre de la fédération des entreprises
           </h2>
           <p
@@ -232,9 +225,9 @@ function Avantages({intersectionRef}) {
       <div
         ref={intersectionRef}
         id="avantages"
-        className="mx-6 max-w-screen-xl pb-10 xl:mx-auto xl:pt-4 "
+        className="mx-6 max-w-screen-2xl pb-10 xl:mx-auto xl:pt-4 "
       >
-        <h2 className="font-bold text-center text-3xl text-primary-blue mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
           Les avantages de l'adhésion
         </h2>
         <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
@@ -328,14 +321,14 @@ function Temoignages() {
   };
 
   return (
-    <div id="Temoignages" className="bg-bg_desktop">
+    <div id="Temoignages" className="bg-bg_desktop bg-cover">
       <div className="px-6">
-        <div className="sm:py-6 md:py-12 max-w-screen-xl mx-auto">
-          <h2 className="font-bold text-center text-primary-blue text-3xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <div className="sm:py-6 md:py-12 max-w-screen-2xl mx-auto">
+          <h2 className="font-bold text-center text-primary-blue text-2xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
             Ce qu’ils disent de nous
           </h2>
           <div className="text-white leading-7 md:tracking-wider">
-            <div className="grid gap-6 grid-cols-1 grid-rows-3 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1">
+            <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(3,max-content)] sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1">
               <Temoignage
                 text="Avant d'être membre a la FEC, je travaillais avec des micros
                   et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
@@ -372,8 +365,8 @@ function Temoignages() {
         </div>
       </div>
 
-      <div className="sm:py-12 max-w-screen-xl mx-auto px-6">
-        <h2 className="font-bold text-center text-primary-blue text-3xl mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <div className="pt-8 sm:py-12 max-w-screen-2xl mx-auto px-6">
+        <h2 className="font-bold text-center text-primary-blue text-2xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
           Ils nous accompagnent
         </h2>
         <Slider {...partenaires} className="w-full">

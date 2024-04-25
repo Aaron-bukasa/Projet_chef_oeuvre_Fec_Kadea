@@ -16,7 +16,7 @@ export default function NavbarPublic(props) {
   };
 
   return (
-    <div className="text-xl fixed top-0 z-[999] w-screen bg-[#f8f9fa] md:w-full md:h-20 md:flex lg:h-24 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44 border-b-2">
+    <div className="text-xl fixed top-0 z-[999] w-full bg-[#f8f9fa] md:w-full md:h-20 md:flex lg:h-24 lg:text-lg lg:items-center lg:justify-between xl:text-xl 2xl:px-44 border-b-2">
       <div
         onClick={handleClickLink}
         className={"w-full flex items-center justify-between p-6 md:w-[25%]"}
@@ -32,12 +32,12 @@ export default function NavbarPublic(props) {
           <img
             src={imgMenu}
             alt="menu navigation open"
-            className={`${isClick && "hidden"} w-8`}
+            className={`${isClick && "hidden"} w-6`}
           />
           <img
             src={imgClose}
             alt="menu navigation close"
-            className={`${!isClick && "hidden"} w-8`}
+            className={`${!isClick && "hidden"} w-6`}
           />
         </div>
       </div>

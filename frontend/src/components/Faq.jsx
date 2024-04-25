@@ -28,17 +28,17 @@ export default function Faq() {
   };
 
   return (
-    <div id="faq" className="p-6 md:text-lg 2xl:text-xl flex flex-col xl:pb-12 bg-bg_desktop">
-      <div className="max-w-[1024px] w-[80%]  mx-auto">
-        <div className="max-w-[1024px] mb-12 mx-auto">
+    <div id="faq" className="p-6 md:text-lg 2xl:text-xl flex flex-col xl:pb-12 bg-bg_desktop bg-cover">
+      <div className="max-w-[1024px] md:w-[80%]  mx-auto">
+        <div className="max-w-[1024px] mb-12 md:mx-auto">
           <h2 className="font-bold text-center text-3xl mb-6 pt-6 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
             Foire aux questions
           </h2>
           <div>
-            <p className="text-center mb-2">
+            <p className="md:text-center mb-2 text-lg">
               Bienvenue dans la FAQ de la fédération des entreprises du congo !
             </p>
-            <p>
+            <p className="text-justify sm:text-left text-lg">
               Nous espérons que cette page vous aidera à trouver les réponses à
               vos questions sur notre fédération, nos services et nos adhésions.
               Voici quelques-unes des questions les plus fréquemment posées :
@@ -49,7 +49,7 @@ export default function Faq() {
           <li className="border-[2px] border-gray-400 rounded-xl my-4 overflow-hidden">
             <h3
               onClick={() => handleClick("question1")}
-              className="font-bold text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
+              className="font-bold text-lg md:text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
             >
               <span>Comment devenir membre à la fédération ?</span>
               <span>
@@ -145,7 +145,7 @@ export default function Faq() {
           <li className="border-[2px] border-gray-400 rounded-xl my-4 overflow-hidden">
             <h3
               onClick={() => handleClick("question2")}
-              className="font-bold text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
+              className="font-bold text-lg md:text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
             >
               <span>Qu'est-ce que la fédération des entreprises ?</span>
               <span>
@@ -183,7 +183,7 @@ export default function Faq() {
           <li className="border-[2px] border-gray-400 rounded-xl my-4 overflow-hidden">
             <h3
               onClick={() => handleClick("question3")}
-              className="font-bold text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
+              className="font-bold text-lg md:text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
             >
               <span>Quels sont les avantages de l'adhésion ?</span>
               <span>
@@ -229,7 +229,7 @@ export default function Faq() {
           <li className="border-[2px] border-gray-400 rounded-xl my-4 overflow-hidden">
             <h3
               onClick={() => handleClick("question4")}
-              className="font-bold text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
+              className="font-bold text-lg md:text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
             >
               <span>Comment puis-je adhérer à la fédération ?</span>
               <span>
@@ -267,7 +267,7 @@ export default function Faq() {
           <li className="border-[2px] border-gray-400 rounded-xl my-4 overflow-hidden">
             <h3
               onClick={() => handleClick("question5")}
-              className="font-bold text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
+              className="font-bold text-lg md:text-xl cursor-pointer bg-gray-100 px-3 py-2 flex justify-between items-center shadow-bottom"
             >
               <span>Combien coûte l'adhésion ?</span>
               <span>

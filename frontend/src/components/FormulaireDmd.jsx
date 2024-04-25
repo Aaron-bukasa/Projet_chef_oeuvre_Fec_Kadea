@@ -1,55 +1,21 @@
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import ConfirmationDmd from "./ConfirmationDmd";
-import { useState } from "react";
-
 export default function FormulaireDmd() {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-
-  const [isSend, setIsSend] = useState(false);
-  const [numero, setNumero] = useState(null);
-  const [accepted, setAccepted] = useState(false);
-
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post("http://localhost:3000/demandes", data);
-
-      if (response.status === 200) {
-        setNumero(response.data.numero);
-        setIsSend(true);
-      } else {
-        console.error("Inscription échouée");
-      }
-    } catch (error) {
-      console.error("Erreur Axios:", error);
-    }
-  };
-
-  if (isSend) {
-    return <ConfirmationDmd numero={numero} />;
-  }
-
+ 
   const handleAccepted = (event) => {
     event.preventDefault();
-    setAccepted(true);
+    window.location.href = 'formDmd'
   }
 
   return (
-    <div className="py-12 md:px-6 bg-bg_desktop">
-      <div className="lg:items-center lg:gap-6 xl:gap-12 max-w-[1386px] items-center justify-center px-6 mx-auto">
+    <div className="py-1 md:py-12 md:px-6 bg-bg_desktop">
+      <div className="lg:items-center lg:gap-6 xl:gap-12 max-w-5xl items-center justify-center px-6 mx-auto">
         <form
           onSubmit={handleAccepted}
           action=""
           method="POST"
           encType="multipart/form-data"
-          className={accepted ? 'hidden' : 'px-6 rounded-lg maw-w-[1024px] py-6'}
+          className='px-6 rounded-lg maw-w-[1024px] py-6'
         >
-          <h2 className="font-bold text-center text-xl mb-6 lg:text-center lg:text-3xl">
+          <h2 className="font-bold text-secondary-blue text-center text-xl md:text-2xl mb-6 lg:text-center lg:text-4xl">
             Dispositions statuaires relatives aux membres
           </h2>
           <div className="text-justify text-lg">
@@ -113,110 +79,11 @@ export default function FormulaireDmd() {
           </div>
           <div className="my-6">
             <input type="checkbox" required id="condition"/>
-            <label htmlFor="condition" className="ml-3">
+            <label htmlFor="condition" className="ml-3 text-lg">
               J'ai lu et j'accepte les conditions générales d'adhésion.
             </label>
           </div>
-          <button type="submit" className="bg-red-600 text-white font-bold p-3 rounded-lg">J'accepte</button>
-        </form>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          action=""
-          method="POST"
-          encType="multipart/form-data"
-          className={accepted ? "border-2 bg-btn-color text-white p-6 w-full rounded-xl mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-6 pb-12 shadow-membre-box lg:mt-8" : "hidden "}
-        >
-          <h2 className="font-bold text-lg text-center p-6 sm:text-xl md:text-2xl xl:text-3xl">
-            Formulaire de demande d'adhésion
-          </h2>
-          <input
-            {...register("nom", {
-              required: "Nom complet requis",
-              pattern: {
-                value: /^[a-zA-Z]+ [a-zA-Z]+$/,
-                message: "Veuillez saisir un nom valide",
-              },
-            })}
-            type="text"
-            placeholder="Nom complet"
-            className="border-2 h-10 rounded-lg text-black p-3 outline-none"
-          />
-          {errors.nom && <p className="text-red-500">{errors.nom.message}</p>}
-          <input
-            {...register("email", {
-              required: "Adresse email requise",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                message: "Veuillez saisir une adresse email valide",
-              },
-            })}
-            type="text"
-            placeholder="Email"
-            className="border-2 h-10 rounded-lg text-black p-3 outline-none"
-          />
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
-          )}
-          <input
-            {...register("telephone", {
-              required: "Numéro de téléphone requis",
-              pattern: {
-                value: /^(084|085|080|089|081|082|099|097|090)[0-9]{7}$/,
-                message: "Veuillez saisir un numéro de téléphone valide",
-              },
-            })}
-            type="tel"
-            placeholder="Numéro de téléphone"
-            className="border-2 h-10 rounded-lg text-black p-3 outline-none"
-          />
-          {errors.telephone && (
-            <p className="text-red-500">{errors.telephone.message}</p>
-          )}
-
-          <input
-            {...register("nom_organisation", {
-              required: "Nom de l'organisation requis",
-              pattern: {
-                value: /^[A-Za-z\s]+$/,
-                message: "Veuillez saisir un nom d'organisation valide",
-              },
-            })}
-            type="text"
-            placeholder="Nom de l'organisation"
-            className="border-2 h-10 rounded-lg text-black p-3 outline-none"
-          />
-          {errors.organisation && (
-            <p className="text-red-500">{errors.organisation.message}</p>
-          )}
-          <input
-            {...register("forme_juridique", {
-              required: "Forme juridique requis",
-              pattern: {
-                value: /^[A-Za-z\s]+$/,
-                message: "Veuillez saisir la forme juridique valide",
-              },
-            })}
-            type="text"
-            placeholder="Forme juridique de l'organisation"
-            className="border-2 h-10 rounded-lg text-black p-3 outline-none"
-          />
-          {errors.role_ds_entreprise && (
-            <p className="text-red-500">{errors.role_ds_entreprise.message}</p>
-          )}
-
-          <div>
-            <input
-              type="submit"
-              value="Soumettre la demande"
-              className="text-white font-bold bg-red-500 p-3 rounded-xl hover:opacity-80 cursor-pointer"
-            />
-            <button
-              type="submit"
-              className="ml-6 bg-red-500 text-white font-bold p-3 rounded-xl hover:opacity-80"
-            >
-              Annuler
-            </button>
-          </div>
+          <button type="submit" className="bg-red-600 text-white font-bold py-3 px-4 rounded-lg">J'accepte</button>
         </form>
       </div>
     </div>

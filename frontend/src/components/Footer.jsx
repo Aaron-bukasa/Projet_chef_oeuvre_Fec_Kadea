@@ -8,6 +8,7 @@ import imgBackTop from "../assets/images/expand_less.svg";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
+import Response from "./Response";
 
 export default function Footer(props) {
   const [isResponse, setIsResponse] = useState(false);
@@ -51,15 +52,15 @@ export default function Footer(props) {
 
   return (
     <div className="lg:py-6 bg-zinc-100 border-t-2 text-primary-blue">
-      <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 p-6 text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] 2xl:px-44 max-w-[1586px] mx-auto justify-between">
+      <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 p-6 sm:text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] max-w-screen-2xl mx-auto justify-between">
         <div className="col-start-1 col-end-2 row-start-1 row-end-2">
           <img
             src={imgLogo}
             alt="Logo de la fédération"
-            className="w-[180px]"
+            className="md:w-[180px]"
           />
           <div>
-            <h2 className="font-semibold text-xl my-4">
+            <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">
               Fédération des entreprises du Congo
             </h2>
             <p>
@@ -78,7 +79,7 @@ export default function Footer(props) {
         </div>
         <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 tracking-wider flex sm:justify-center">
           <ul className="flex flex-col gap-y-1">
-            <h2 className="font-semibold text-2xl mb-3 w-max">Menu</h2>
+            <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">Menu</h2>
             <li>
               <Link
                 to="/"
@@ -131,7 +132,7 @@ export default function Footer(props) {
               <Link
                 to="formulaireDmd"
                 className={
-                  props.currentPath === "/formulaireDmd"
+                  (props.currentPath === '/formulaireDmd' || props.currentPath === '/formDmd')
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
                     : "text-primary-blue hover:text-focus-color lg:text-xl"
                 }
@@ -168,7 +169,7 @@ export default function Footer(props) {
         <div className="col-start-1 col-end-2 row-start-3 row-end-4 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2">
           <div>
             <div className="newsletter relative">
-              <h2 className="font-semibold text-2xl mb-4 xl:mb-7">
+              <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">
                 Inscrivez-vous à notre newsletter
               </h2>
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -200,26 +201,7 @@ export default function Footer(props) {
                   <p className="text-red-500">{errors.email.message}</p>
                 )}
               </form>
-              <div onClick={() => setIsResponse(false)}>
-                {isLoading && (<div className="absolute bg-loading rounded-lg top-2/4 left-2/4 px-6 py-5 shadow-xl -translate-x-1/2 -translate-y-1/2 flex justify-center items-center font-semibold">
-                  loading...
-                </div>)}
-                {isResponse && (<div className={`${isError ? 'bg-erreur' : 'bg-succefull'} absolute rounded-lg top-2/4 left-2/4 px-6 py-5 shadow-xl -translate-x-1/2 -translate-y-1/2 flex font-semibold w-max`}>
-                  <p className="mt-4">{isData}</p>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#000000"
-                      height="24"
-                      viewBox="0 -960 960 960"
-                      width="24"
-                      className="w-12"
-                    >
-                      <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                    </svg>
-                  </div>
-                </div>)}
-              </div>
+              <Response isLoading={isLoading} setIsResponse={setIsResponse} isResponse={isResponse} isError={isError} isData={isData} />
             </div>
             <div className="">
               <h2 className="font-semibold text-2xl mt-6 w-max after:content-[''] after:block after:bg-secondary-blue after:w-full after:mt-1">

@@ -22,6 +22,10 @@
     transform: translateX(15px);
   }
 }
+
+.linear-bg {
+  background: linear-gradient(to left top, #00194C -19%, white, white, 95%, #00194C);
+}
   
 .notifications ul {
   display: none;

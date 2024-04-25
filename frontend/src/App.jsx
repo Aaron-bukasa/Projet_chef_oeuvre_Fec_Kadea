@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
 import Services from "./components/Services";
+import FormDmd from "./components/FormDmd";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/profil" element={<Profil />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/formDmd" element={<FormDmd />} />
         </Routes>
       </div>
       <Footer currentPath={currentPath} />
