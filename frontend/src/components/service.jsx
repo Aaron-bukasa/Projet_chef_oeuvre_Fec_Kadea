@@ -15,11 +15,11 @@ export default function Service({
           />
         </div>
         <div className="p-3">
-          <h3 className="font-medium text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-2xl font-extrabold text-primary-blue flex items-center gap-x-4">
+          <h3 className="font-medium text-lg font-semibold mb-4 lg:mb-6 lg:text-xl font-extrabold text-primary-blue flex items-center gap-x-4">
             <img src={iconService} alt="icon du service" className="w-8" />
             {titleService}
           </h3>
-          <p className="text-lg text-justify">{paramService}</p>
+          <p className="md:text-lg text-justify">{paramService}</p>
         </div>
       </div>
     );
