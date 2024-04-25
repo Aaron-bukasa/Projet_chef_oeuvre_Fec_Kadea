@@ -11,20 +11,28 @@ block content
                 p Email : #{demande.email}
                 p Telephone : #{demande.telephone}
                 p Organisation : #{demande.nom_organisation}
+                p Forme juridique : #{demande.forme_juridique}
+                p Secteur d'activité  : #{demande.secteur_activite}
+                p Province d'activité  : #{demande.province_activite}
+                p Statut de la demande : #{demande.statut}
                 p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
-            form.createSuiviDmd(action="#", method="POST" class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                p(class="hidden") #{demande.id}
-                div(class='lg:flex lg:gap-x-6') 
-                    div.valid
-                        label(for="validation" class='text-lg font-bold mb-2 block') Veuillez valider la demande :
-                        select(id="validation", name="validation" class="border-2 rounded-lg p-2 my-1")
-                            option(value="") Choisir
-                            option(value="valider") Valider
-                            option(value="rejeter") Refuser
-                    div.comment
-                        label(for="commentaire" class='text-lg font-bold mb-2 block') Ajouter l'état de la demande
-                        textarea(id="commentaire", name="commentaire", rows="3" class="border-2 rounded-lg p-2 my-1 w-full")
-                        button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2") Valider
+            div.suiviUtilisateur(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
+                input(type='button' class="hidden" value=demande.id)
+                div(class='lg:flex lg:gap-x-6 relative')
+                    div.actions(class='2/4') 
+                        h2(class='text-lg font-bold mb-2') Actions
+                        div(class='flex flex-col gap-y-2')
+                            input.valider(type='button' value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.rejeter(type='button' value='rejeter' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.supprimer(type='button' value='supprimer' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                    form(class='w-2/4' action="/suivi_utilisateur", method="POST")
+                        label(for="commentaire") Commentaire (facultatif)
+                        textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
+                        button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full") Valider
+                    div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
+                        div(class='text-center py-12') 
+                            span loading
+                            span .....
         div 
             h2(class="font-bold text-xl mb-3") Etat de la demande
             table(class="w-full border-2 p-2 mb-6")
@@ -44,3 +52,4 @@ block content
                                 a(href="#" class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue")  modifier
                                 a(href="#" class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3") Delete
         
+    script(src="/javascripts/demande.js")

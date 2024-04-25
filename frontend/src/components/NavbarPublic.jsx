@@ -84,7 +84,7 @@ export default function NavbarPublic(props) {
         <li onClick={handleClickLink}>
           <Link
             to="formulaireDmd"
-            className={props.currentPath === '/formulaireDmd' ? 'text-focus-color font-semibold hover:text-focus-color lg:text-xl' : 'font-semibold text-primary-blue hover:text-focus-color lg:text-xl'}
+            className={(props.currentPath === '/formulaireDmd' || props.currentPath === '/formDmd') ? 'text-focus-color font-semibold hover:text-focus-color lg:text-xl' : 'font-semibold text-primary-blue hover:text-focus-color lg:text-xl'}
           >
             Adhérer
           </Link>

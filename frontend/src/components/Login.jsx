@@ -60,7 +60,7 @@ export default function Login() {
         onSubmit={handleSubmit(onSubmit)}
         className="linear-bg border-2 text-white p-6 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6"
       >
-        <h1 className="font-bold text-secondary-blue text-2xl text-center p-6 sm:text-3xl md:text-4xl xl:text-5xl">
+        <h1 className="font-bold text-center text-2xl text-primary-blue lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
           Se connecter
         </h1>
         <div className="pb-3">

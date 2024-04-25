@@ -6,19 +6,19 @@ export default function FormulaireDmd() {
   }
 
   return (
-    <div className="py-1 md:py-12 md:px-6 bg-bg_desktop">
-      <div className="lg:items-center lg:gap-6 xl:gap-12 max-w-5xl items-center justify-center px-6 mx-auto">
+    <div className="md:py-12 px-6 bg-bg_desktop bg-cover">
+      <div className="mx-auto">
         <form
           onSubmit={handleAccepted}
           action=""
           method="POST"
           encType="multipart/form-data"
-          className='px-6 rounded-lg maw-w-[1024px] py-6'
+          className='rounded-lg max-w-5xl mx-auto py-6'
         >
-          <h2 className="font-bold text-secondary-blue text-center text-xl md:text-2xl mb-6 lg:text-center lg:text-4xl">
+          <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
             Dispositions statuaires relatives aux membres
           </h2>
-          <div className="text-justify text-lg">
+          <div className="text-justify md:text-lg">
             <p className="my-2">
               <strong>Article 5 :</strong> Peut devenir membre de la Fédération,
               toute personne physique commerçante ou morale régulièrement
@@ -77,9 +77,9 @@ export default function FormulaireDmd() {
               les délais fixés par le Conseil d’Administration.
             </p>
           </div>
-          <div className="my-6">
+          <div className="my-3 flex gap-x-2">
             <input type="checkbox" required id="condition"/>
-            <label htmlFor="condition" className="ml-3 text-lg">
+            <label htmlFor="condition" className="ml-3 md:text-lg">
               J'ai lu et j'accepte les conditions générales d'adhésion.
             </label>
           </div>

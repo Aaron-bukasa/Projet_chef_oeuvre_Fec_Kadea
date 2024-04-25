@@ -14,12 +14,15 @@ datasource db {
 model Demande {
   id                Int         @id @default(autoincrement())
   nom               String
-  email             String      @unique
+  email             String
   telephone         String      @unique
   nom_organisation      String
   forme_juridique   String
+  secteur_activite String
+  province_activite String
+  confirmed   Boolean @default(false)
   statut            String      @default("en attente")  // en attente, validée, rejetée
-  date_soumission   DateTime
+  date_soumission   DateTime    @default(now())
   suivi_demande  SuiviDemande[]
 }
 
@@ -31,14 +34,14 @@ model SuiviDemande {
   demandeId   Int
 }
 
-// USER, PROFIL ET SUIVI USER
+// user, PROFIL ET SUIVI user
 
 model User {
 id       Int      @id @default(autoincrement())
 nom      String
 email    String @unique
 password String
-role                String      @default("utilisateur")  // administrateur, utilisateur
+role                String      @default("membre")  // administrateur, membre
 date_inscription    DateTime @default(now())
 profil_user Profil?
 suivi_user  SuiviUser[]

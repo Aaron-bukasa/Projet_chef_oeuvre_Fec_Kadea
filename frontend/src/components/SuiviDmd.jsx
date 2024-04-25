@@ -33,6 +33,7 @@ function SuiviDmd() {
 
       if (response.status === 200) {
         setIsError(false);
+        setIsResponse(false);
         return setIsNotifications(response.data);
       } else {
         setIsError(true);
@@ -42,7 +43,7 @@ function SuiviDmd() {
       setIsError(true);
       setIsLoading(false);
       setIsResponse(true);
-      return setIsData("erreur lors de la recupération des données au serveur");
+      return setIsData("Erreur lors de la recupération des données au serveur");
     }
 
     reset();

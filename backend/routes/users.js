@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const middlewareAuth = require('../middleware/auth');
 const ctr_adm = require('../controllers/controller_adm');
-const ctr_users = require('../controllers/controller_users');
+const ctr_members = require('../controllers/controller_members');
 
 // API SERVER
 router.post('/server/signup', middlewareAuth, ctr_adm.serverSignup);
@@ -17,11 +17,11 @@ router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 
 
 // API CLIENT
-router.post('/client/signup', ctr_users.clientSignup);
-router.post('/client/login', ctr_users.clientLogin);
-router.post('/client/logout', ctr_users.clientLogout);
-router.get('/client/:id', ctr_users.clientUserGet);
-router.put('/client/:id', ctr_users.clientUserPut);
-router.delete('/client/:id', ctr_users.clientUserDelete);
+router.post('/signup', ctr_members.memberSignup);
+router.post('/member/login', ctr_members.memberLogin);
+router.post('/member/logout', ctr_members.memberLogout);
+router.get('/member/:id', ctr_members.memberUserGet);
+router.put('/member/:id', ctr_members.memberUserPut);
+router.delete('/member/:id', ctr_members.memberUserDelete);
 
 module.exports = router;
