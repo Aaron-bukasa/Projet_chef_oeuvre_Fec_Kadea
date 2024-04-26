@@ -17,14 +17,13 @@ block content
                 p Statut de la demande : #{demande.statut}
                 p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
             div(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                input(type='button' class="hidden" value=demande.id)
                 div(class='lg:flex lg:gap-x-6 relative')
                     div.actions(class='2/4') 
                         h2(class='text-lg font-bold mb-2') Actions
                         div(class='flex flex-col gap-y-2')
-                            input.valider(type='button' value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.rejeter(type='button' value='rejeter' class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.supprimer(type='button' value='supprimer' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.valider(type='button' data-id=demande.id value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.rejeter(type='button' data-id=demande.id value='rejeter' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.supprimer(type='button' data-id=demande.id value='supprimer' class='text-white bg-red-600 rounded-lg font-bold p-1')
                     form.suivi_demande(class='w-2/4')
                         label(for="commentaire") Ajouter état de la demande
                         textarea.suivi(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
@@ -44,12 +43,12 @@ block content
                         th(class="text-center") Actions
                 tbody
                     each suivi in demande.suivi_demande
-                        tr
+                        tr(class="relative")
                             td(class="text-center")= suivi.id
                             td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
                             td(class="text-center")= suivi.evenement
                             td.actionsTD(class="text-center")
-                                input.suiviUpdate(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue")
-                                input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3") 
+                                input.suiviUpdate(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue cursor-pointer")
+                                input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3 cursor-pointer") 
         
     script(src="/javascripts/demande.js")

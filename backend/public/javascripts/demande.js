@@ -1,29 +1,37 @@
 action(
     document.querySelector('.valider'),
+    document.querySelector('.supprimer').dataset.id,
     'validée',
     'PUT',
-    'la validation'
+    '/demandes',
+    'Demande validée avec succès',
+    'Erreur lors de la validation de la demande'
 )
 
 action(
     document.querySelector('.rejeter'),
+    document.querySelector('.supprimer').dataset.id,
     'rejétée',
     'PUT',
-    'du rejet'
+    '/demandes',
+    'Demande rejetée avec succès',
+    'Erreur lors du rejet de la demande'
 )
 
 action(
     document.querySelector('.supprimer'),
+    document.querySelector('.supprimer').dataset.id,
     'supprimée',
     'DELETE',
-    'la suppression'
+    '/demandes',
+    'Demande supprimée avec succès',
+    'Erreur lors de la suppression de la demande'
 )
 
 
-function action(element, statut, method, errorStatut) {
+function action(element, id, statut, method, route, succefullMessage, errorMessage) {
 
     element.addEventListener('click', async() => {
-        const id = document.querySelector('input.hidden')
     
         const postData = {
             id: id.value,
@@ -38,9 +46,10 @@ function action(element, statut, method, errorStatut) {
         };
     
         try {
-            const response = await fetch('/demandes', requestOptions);
+            const response = await fetch(route, requestOptions);
+            console.log(response);
             if(response.status === 200) {
-                alert(`Demande ${statut} avec succès`)
+                alert(succefullMessage)
                 if(method === 'DELETE') {
                     window.location.href = `/demandes`
                 } else {
@@ -48,7 +57,7 @@ function action(element, statut, method, errorStatut) {
                 }
             }
         } catch (error) {
-            alert(`Erreur lors de ${errorStatut} de la demande`)
+            alert(errorMessage)
         }
     
     })
@@ -98,7 +107,7 @@ function suiviActions(element, method, succefullMessage, errorMessage) {
 }
 
 
-const suiviDelete = document.querySelector('.suiviDelete');
+// const suiviDelete = document.querySelector('.suiviDelete');
 const actionsTD = document.querySelectorAll('.actionsTD');
 
 actionsTD.forEach((td) => {
@@ -109,14 +118,14 @@ actionsTD.forEach((td) => {
             const title = document.createElement('h3');
             const textarea = document.createElement('textarea');
             const btns = document.createElement('div');
-            const annuler = document.createElement('button');
-            const valider = document.createElement('button');
+            const annuler = document.createElement('input');
+            const valider = document.createElement('input');
 
             title.textContent = `Modification du suivi ${event.target.dataset.id}`
             textarea.setAttribute('rows', 5);
             annuler.setAttribute('type', 'button');
             annuler.setAttribute('value', 'Annuler');
-            valider.setAttribute('type', 'button');
+            valider.setAttribute('type', 'submit');
             valider.setAttribute('value', 'Valider');
 
             form.appendChild(title)
@@ -126,14 +135,43 @@ actionsTD.forEach((td) => {
             btns.appendChild(valider)
             btns.appendChild(annuler)
 
-        } else if(event.target.value === 'Supprimer') {
+            // STYLES
+            form.style.backgroundColor = '#c4c4c4';
+            form.style.width = '50%';
+            form.style.position = 'absolute';
+            form.style.top = '50%';
+            form.style.left = '50%';
+            form.style.transform = 'translate';
+            form.style.translate = '-50%';
+            form.style.padding = '12px';
 
+            textarea.style.border = '2px solid'
+            textarea.style.backgroundColor = '#D4D4D4'
+            textarea.style.width = '100%'
+            textarea.style.padding = '4px'
+
+            btns.style.marginInline = '0px auto';
+
+            annuler.style.backgroundColor = 'red';
+            valider.style.backgroundColor = 'blue'
+
+            td.appendChild(form)
+
+        } else if(event.target.value === 'Supprimer') {
+            action(
+                document.querySelector('.suiviDelete'),
+                undefined,
+                'DELETE',
+                '/suivi_demande',
+                `Suivi ${event.target.dataset.id} supprimée avec succès`,
+                `Erreur lors de la suppression de suivi ${event.target.dataset.id}`
+            )
         }
     })
 })
 
 
-suiviDelete.addEventListener('click', () => {
-    console.log(suiviDelete.dataset.id);
+// suiviDelete.addEventListener('click', () => {
+//     console.log(suiviDelete.dataset.id);
 
-})
+// })
