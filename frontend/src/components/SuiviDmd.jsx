@@ -18,13 +18,14 @@ function SuiviDmd() {
   const [isError, setIsError] = useState(false);
 
   const onSubmit = async (data) => {
-
+    data.nom = data.nom.toLowerCase();
     setIsLoading(true);
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/suivi_demande/${data.number}`,
+        `http://localhost:3000/suivi_demande/EDNICMPSSR`,
         {
+          id: data.number,
           nom: data.nom,
         }
       );

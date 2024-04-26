@@ -62,20 +62,46 @@ exports.suiviDemandeDelete = async (req, res) => {
 };
 
 
-exports.suviDemandeGet = async(req, res) => {
+// exports.suviDemandeGet = async(req, res) => {
+//   try {
+//       const { id, nom } = req.body;
+//       const suivi_demande = await prisma.suiviDemande.findUnique({
+//         where: { id: parseInt(id) },
+//       });
+//   console.log(suivi_demande);
+//       if (!suivi_demande) {
+//         return res.status(404).json({ message: 'suivi demande non trouvée' });
+//       }
+//       console.log(suivi_demande);
+//       res.status(200).json(suivi_demande)
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: 'Erreur lors de la récupération du suivi demande' });
+//     }
+// }
+
+exports.suviDemandeFront = async(req, res) => {
   try {
-      const { id } = req.params;
-      const suivi_demande = await prisma.suiviDemande.findUnique({
+      const { id, nom } = req.body;
+      const demande = await prisma.demande.findUnique({
         where: { id: parseInt(id) },
+        include: {
+          suivi_demande: true
+        }
       });
-  console.log(suivi_demande);
-      if (!suivi_demande) {
-        return res.status(404).json({ message: 'suivi demande non trouvée' });
+  
+      if (!demande) {
+        return res.status(404).json({ message: 'Demande non trouvée' });
+      } else {
+        if(demande.nom !== nom) {
+          return res.status(404).json({ message: "le nom ou le numero incorrect"})
+        }
+
+        const suiviDemande = demande.suivi_demande;
+        res.status(200).json(suiviDemande);
       }
-      console.log(suivi_demande);
-      res.status(200).json(suivi_demande)
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Erreur lors de la récupération du suivi demande' });
+      res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
     }
 }

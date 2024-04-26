@@ -18,7 +18,7 @@ export default function Login() {
   } = useForm();
 
   const onSubmit = async (data) => {
-
+    data.email = data.email.trim();
     setIsLoading(true);
 
     try {

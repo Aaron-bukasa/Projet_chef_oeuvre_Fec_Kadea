@@ -8,11 +8,46 @@ block content
                 h2(class='text-lg font-bold mb-2') Filtres
                 div
                     label(for="etat") État
-                    select#etat(name="etat" class="border-2 rounded-lg p-2 my-1 ml-2")
+                    select(id="etat" name="etat" class="border rounded-lg p-2 my-1 ml-2")
                         option(value="") Tous
-                        option(value="En cours") En cours
-                        option(value="Terminé") Terminé
-                        option(value="Annulé") Annulé
+                        optgroup(label="Confirmation")
+                            option(value=true) True
+                            option(value=false) False
+                        optgroup(label="Forme juridique")
+                            option(value="ETS") L’entreprise individuelle (ou établissement)
+                            option(value="SARL") La Société à Responsabilité Limitée (S.A.R.L)
+                            option(value="SA") La Société Anonyme (S.A)
+                            option(value="SAS") La Société par Actions Simplifiées (S.A.S.)
+                            option(value="SNC") La Société en Nom Collectif (S.N.C)
+                            option(value="SNS") La Société en Commandite Simple (S.C.S)
+                            option(value="GIE") Le Groupement d’Intérêt Economique (G.I.E)
+                        optgroup(label="Province")
+                            option(value="Bas-Uele") Bas-Uele
+                            option(value="Équateur") Équateur
+                            option(value="Haut-Katanga") Haut-Katanga
+                            option(value="Haut-Lomami") Haut-Lomami
+                            option(value="Haut-Uele") Haut-Uele
+                            option(value="Ituri") Ituri
+                            option(value="Kasaï") Kasaï
+                            option(value="Kasaï central") Kasaï central
+                            option(value="Kasaï oriental") Kasaï oriental
+                            option(value="Kinshasa") Kinshasa
+                            option(value="Kongo-Central") Kongo-Central
+                            option(value="Kwango") Kwango
+                            option(value="Kwilu") Kwilu
+                            option(value="Lomami") Lomami
+                            option(value="Lualaba") Lualaba
+                            option(value="Mai-Ndombe") Mai-Ndombe
+                            option(value="Maniema") Maniema
+                            option(value="Mongala") Mongala
+                            option(value="Nord-Kivu") Nord-Kivu
+                            option(value="Nord-Ubangi") Nord-Ubangi
+                            option(value="Sankuru") Sankuru
+                            option(value="Sud-Kivu") Sud-Kivu
+                            option(value="Sud-Ubangi") Sud-Ubangi
+                            option(value="Tanganyika") Tanganyika
+                            option(value="Tshopo") Tshopo
+                            option(value="Tshuapa") Tshuapa
                 div
                     label(for="date-debut") Date de début
                     input(type="date", id="date-debut", name="date-debut" class="border-2 rounded-lg p-2 my-1 ml-2")
@@ -38,18 +73,39 @@ block content
                         th(class="text-center") Date
                         th(class="text-center") Nom
                         th(class="text-center") Organisation
+                        th(class="text-center") Forme juridique
+                        th(class="text-center") Secteur d'activité
+                        th(class="text-center") Province d'activité
                         th(class="text-center") statut
                         th(class="text-center") confirmation
                         th(class="text-center") Actions
                 tbody
                     each demande in demandes
-                        tr
-                            td(class="text-center")= demande.id
-                            td(class="text-center")= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td(class="text-center")= demande.nom
-                            td(class="text-center")= demande.nom_organisation
-                            td(class="text-center")= demande.statut
-                            td(class="text-center")= demande.confirmed
-                            td(class="text-center")
-                                a(href=`/demandes/${demande.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
+                        if demande.secteur_activite === ''
+                            tr
+                                td(class="text-center")= demande.id
+                                td(class="text-center")= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
+                                td(class="text-center")= demande.nom
+                                td(class="text-center")= demande.nom_organisation
+                                td(class="text-center")= demande.forme_juridique
+                                td(class="text-center")= demande.secteur_activite
+                                td(class="text-center")= demande.province_activite
+                                td(class="text-center")= demande.statut
+                                td(class="text-center")= demande.confirmed
+                                td(class="text-center")
+                                    a(href=`/demandes/${demande.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
+                        else if demande.secteur_activite === 'commerce'
+                            tr 
+                                td(class="text-center")= demande.id
+                                td(class="text-center")= demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })
+                                td(class="text-center")= demande.nom
+                                td(class="text-center")= demande.nom_organisation
+                                td(class="text-center")= demande.forme_juridique
+                                td(class="text-center")= demande.secteur_activite
+                                td(class="text-center")= demande.province_activite
+                                td(class="text-center")= demande.statut
+                                td(class="text-center")= demande.confirmed
+                                td(class="text-center")
+                                    a(href=`/demandes/${demande.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
 
+    script(src="/javascripts/demandes.js")
