@@ -1,6 +1,5 @@
 action(
     document.querySelector('.valider'),
-    document.querySelector('.supprimer').dataset.id,
     'validée',
     'PUT',
     '/demandes',
@@ -10,7 +9,6 @@ action(
 
 action(
     document.querySelector('.rejeter'),
-    document.querySelector('.supprimer').dataset.id,
     'rejétée',
     'PUT',
     '/demandes',
@@ -20,7 +18,6 @@ action(
 
 action(
     document.querySelector('.supprimer'),
-    document.querySelector('.supprimer').dataset.id,
     'supprimée',
     'DELETE',
     '/demandes',
@@ -28,13 +25,22 @@ action(
     'Erreur lors de la suppression de la demande'
 )
 
+suiviActions(
+    document.querySelector('.btnSuiviCreate'),
+    document.querySelector('.suiviCreate'),
+    'POST',
+    '/suivi_demande',
+    'Suivi de demande créé avec succès',
+    'Erreur lors de l\'ajout du nouveau suivi'
+)
 
-function action(element, id, statut, method, route, succefullMessage, errorMessage) {
+
+function action(element, statut, method, route, succefullMessage, errorMessage) {
 
     element.addEventListener('click', async() => {
     
         const postData = {
-            id: id.value,
+            id: element.dataset.id,
             statut: statut && statut
         };
         const requestOptions = {
@@ -47,44 +53,26 @@ function action(element, id, statut, method, route, succefullMessage, errorMessa
     
         try {
             const response = await fetch(route, requestOptions);
-            console.log(response);
             if(response.status === 200) {
-                alert(succefullMessage)
-                if(method === 'DELETE') {
-                    window.location.href = `/demandes`
-                } else {
-                    window.location.href = `/demandes/${id}`
-                }
+
+                return alert(succefullMessage)
             }
         } catch (error) {
-            alert(errorMessage)
+            return alert(errorMessage)
         }
     
     })
 }
 
 
+function suiviActions(submit, textarea, method, route, succefullMessage, errorMessage) {
 
-
-suiviActions(
-    document.querySelector('.createSuivi'),
-    'POST',
-    'Suivi de demande créé avec succès',
-    'Erreur lors de l\'ajout du nouveau suivi'
-)
-
-
-function suiviActions(element, method, succefullMessage, errorMessage) {
-
-    const comment = document.querySelector('textarea.suivi');
-    const id = document.querySelector('input.hidden')
-
-    element.addEventListener('click', async(event) => {
+    submit.addEventListener('click', async(event) => {
         event.preventDefault();
     
         const postData = {
-            demandeId: id.value,
-            evenement: comment.value
+            id: submit.dataset.id,
+            evenement: textarea.value
         };
     
         const requestOptions = {
@@ -96,7 +84,7 @@ function suiviActions(element, method, succefullMessage, errorMessage) {
         };
     
         try {
-            const response = await fetch('/suivi_demande', requestOptions);
+            const response = await fetch(route, requestOptions);
             if(response.status === 201) {
                 return alert(succefullMessage)
             }
@@ -123,10 +111,14 @@ actionsTD.forEach((td) => {
 
             title.textContent = `Modification du suivi ${event.target.dataset.id}`
             textarea.setAttribute('rows', 5);
+            textarea.setAttribute('class', "suiviUpdate");
             annuler.setAttribute('type', 'button');
             annuler.setAttribute('value', 'Annuler');
+            annuler.setAttribute('class', 'btnAnnulerUpdate');
             valider.setAttribute('type', 'submit');
             valider.setAttribute('value', 'Valider');
+            valider.setAttribute('class', 'btnSuiviUpdate');
+            valider.setAttribute('data-id', event.target.dataset.id);
 
             form.appendChild(title)
             form.appendChild(textarea)
@@ -157,6 +149,15 @@ actionsTD.forEach((td) => {
 
             td.appendChild(form)
 
+            suiviActions(
+                document.querySelector('.btnSuiviUpdate'),
+                document.querySelector('.suiviUpdate'),
+                'PUT',
+                '/suivi_demande',
+                'Suivi de demande modifié avec succès',
+                'Erreur lors de la modification du nouveau suivi'
+            )
+
         } else if(event.target.value === 'Supprimer') {
             action(
                 document.querySelector('.suiviDelete'),
@@ -169,9 +170,3 @@ actionsTD.forEach((td) => {
         }
     })
 })
-
-
-// suiviDelete.addEventListener('click', () => {
-//     console.log(suiviDelete.dataset.id);
-
-// })
