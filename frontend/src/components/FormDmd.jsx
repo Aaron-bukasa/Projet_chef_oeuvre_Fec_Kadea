@@ -19,6 +19,8 @@ export default function FormDmd() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    data.nom = data.nom.toLowerCase().trim();
+    
     setIsLoading(true);
 
     try {

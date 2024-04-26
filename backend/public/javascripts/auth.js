@@ -11,7 +11,7 @@ const adminLogin = () => {
             event.preventDefault();
 
             const postData = {
-                email: email.value,
+                email: email.value.trim(),
                 password: password.value
             };
             const requestOptions = {
