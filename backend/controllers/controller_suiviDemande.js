@@ -3,10 +3,10 @@ const prisma = new PrismaClient();
 
 exports.suiviDemandePost = async (req, res) => {
   try {
-    const { demandeId, evenement } = req.body;
+    const { id, evenement } = req.body;
     const nouveauSuiviDemande = await prisma.suiviDemande.create({
       data: {
-        demande: { connect: { id: demandeId } },
+        demande: { connect: { id: parseInt(id) } },
         evenement,
       },
     });
@@ -15,6 +15,31 @@ exports.suiviDemandePost = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erreur lors de la création du suivi de demande' });
+  }
+};
+
+exports.suiviDemandePut = async (req, res) => {
+  try {
+    const { id, evenement } = req.body;
+
+    const suivi_demande = await prisma.suiviDemande.findUnique({ where: { id: parseInt(id) } });
+    if (!suivi_demande) {
+      return res.status(404).json({ message: "Suivi non trouvé" });
+    }
+
+    const suiviUpdate = await prisma.suiviDemande.update({
+      where: { id: parseInt(id)},
+      data: {
+        evenement: evenement,
+      }
+  
+    });
+
+    return res.status(200).json({ message: "Suivi mis à jour avec succès" });
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erreur lors de la mise à jour du suivi' });
   }
 };
 

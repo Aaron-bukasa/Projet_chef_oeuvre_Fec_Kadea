@@ -18,6 +18,7 @@ function SuiviDmd() {
   const [isError, setIsError] = useState(false);
 
   const onSubmit = async (data) => {
+
     setIsLoading(true);
 
     try {
@@ -121,9 +122,7 @@ function SuiviDmd() {
                 className="flex gap-x-6 p-3 border-bottom-2"
               >
                 <p>
-                  {new Date(notification.date).toLocaleString("en-GB", {
-                    timeZone: "UTC",
-                  })}
+                  {new Date(notification.date).toUTCString()}
                 </p>
                 <p>{notification.evenement}</p>
               </li>
