@@ -101,18 +101,6 @@ exports.demandePost = async (req, res) => {
 };
 
 
-
-// exports.demandePost = async(req, res) => {
-//     try {
-
-        
-//         res.status(200).json({ message: 'Demande soumise avec succès', numero: nouvelleDemande.id });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Erreur lors de la soumission de la demande' });
-//     }
-// };
-
 exports.demandeConfirm = async(req, res) => {
   const { id } = req.params;
 

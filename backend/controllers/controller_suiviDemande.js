@@ -43,6 +43,25 @@ exports.suiviDemandePut = async (req, res) => {
   }
 };
 
+
+exports.suiviDemandeDelete = async (req, res) => {
+  const { suiviDemandeId } = req.body;
+
+  try {
+    await prisma.suiviDemande.delete({
+      where: {
+        id: parseInt(suiviDemandeId),
+      },
+    });
+
+    res.status(200).send("Suivi de demande supprimé avec succès");
+  } catch (error) {
+    console.error('Erreur lors de la suppression du suivi de demande :', error);
+    res.status(500).send("Une erreur s'est produite lors de la suppression du suivi de demande.");
+  }
+};
+
+
 exports.suviDemandeGet = async(req, res) => {
   try {
       const { id } = req.params;
