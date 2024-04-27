@@ -55,16 +55,16 @@ export default function Login() {
   };
 
   return (
-    <div className="relative px-6 py-12 md:py-24 bg-bg_desktop">
+    <div className="relative px-[10%] py-12 md:py-24 bg-bg_desktop 2xl:px-[13%]">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="linear-bg border-2 text-white p-6 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-6 lg:pb-6"
+        className="linear-bg border-2 text-white w-full px-3 py-4 rounded-xl sm:mb-6 md:mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-3 md:pb-12"
       >
-        <h1 className="font-bold text-center text-2xl text-primary-blue lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+        <h1 className="font-bold text-center text-xl text-primary-blue py-1 sm:text-2xl sm:p-3 md:text-3xl lg:mb-6 lg:text-center lg:text-4xl xl:text-4xl">
           Se connecter
         </h1>
         <div className="pb-3">
-          <div className="flex flex-col gap-y-1 mb-4">
+          <div className="flex flex-col gap-y-1 mb-3">
             <input
               {...register("email", {
                 required: "Adresse email requise",
@@ -76,7 +76,7 @@ export default function Login() {
               type="text"
               name="email"
               placeholder="Adresse email"
-              className={`border-2 h-10 rounded-lg text-black p-3 ${
+              className={`border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1 ${
                 errors.email ? "border-red-500" : ""
               }`}
             />
@@ -90,7 +90,7 @@ export default function Login() {
               type="password"
               name="password"
               placeholder="Mot de passe"
-              className={`border-2 h-10 rounded-lg text-black p-3 ${
+              className={`border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1 ${
                 errors.password ? "border-red-500" : ""
               }`}
             />
@@ -100,17 +100,16 @@ export default function Login() {
           </div>
           <Link
             to="/signup"
-            className=" text-sm md:text-lg block text-secondary-blue text-right mr-3 tracking-wider"
+            className="text-sm md:text-lg block text-secondary-blue text-right mr-3 sm:text-base"
           >
             Dévenez membre de la FEC
           </Link>
         </div>
-        <button
-          type="submit"
-          className="md:mx-6 bg-btn-color text-white font-bold text-xl py-3 px-4 rounded-xl hover:opacity-80"
-        >
-          Se connecter
-        </button>
+        <input
+                type="submit"
+                value="Se connecter"
+                className="text-white font-bold bg-btn-color p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer sm:p-3 xl:text-xl"
+              />
       </form>
       <Response isLoading={isLoading} setIsResponse={setIsResponse} isResponse={isResponse} isError={isError} isData={isData} />
     </div>

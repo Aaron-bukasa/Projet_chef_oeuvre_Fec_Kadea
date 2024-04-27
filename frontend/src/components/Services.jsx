@@ -16,6 +16,7 @@ import iconAvantage04 from "../assets/images/support_agent.svg";
 import Service from "./service";
 
 export default function Services() {
+
   return (
     <div className="bg-bg_desktop bg-no-repeat bg-cover">
       <ServicesBase />
@@ -26,11 +27,11 @@ export default function Services() {
 
 function ServicesBase() {
   return (
-      <div id="avantages" className="mx-6 max-w-[1386px] xl:mx-auto xl:pt-6">
-        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+      <div id="avantages" className="px-[10%] lg:px-[5%] xl:mx-auto xl:pt-6 2xl:px-[13%]">
+        <h2 className="font-bold text-center text-xl text-primary-blue py-6 sm:text-2xl sm:py-10 md:text-3xl lg:text-center lg:text-4xl xl:text-5xl">
           Nos services de base
         </h2>
-        <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
+        <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12">
           <Service
             imgService={imgAvantage01}
             iconService={iconAvantage01}
@@ -78,12 +79,12 @@ function ServicesPayants() {
   return(
       <div
         id="avantages"
-        className="mx-6 max-w-[1386px] xl:mx-auto xl:p-6"
+        className="px-[10%] lg:px-[5%] xl:mx-auto xl:py-10 2xl:px-[13%]"
       >
-        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 md:pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+        <h2 className="font-bold text-center text-xl text-primary-blue mb-6 sm:text-2xl md:pt-6 md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl xl:mb-16">
           Nos services payants
         </h2>
-         <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
+         <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12">
           <Service
             imgService={imgService001}
             iconService={iconAvantage01}

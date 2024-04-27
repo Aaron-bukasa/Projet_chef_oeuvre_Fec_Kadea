@@ -39,9 +39,9 @@ function App() {
   }, []); 
   
   return (
-    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] overflow-x-hidden relative roboto-regular">
+    <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] relative roboto-regular w-screen">
       {user === 'undefined' || user === null ? <NavbarPublic currentPath={currentPath} /> : <NavbarUtilisateur currentPath={currentPath} />}
-      <div className="max-w-screen mt-20">
+      <div className="w-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />

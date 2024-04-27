@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import imgLogo from "../assets/images/logoFec.svg";
 import imgFacebook from "../assets/images/facebook.svg";
 import imgInstagram from "../assets/images/instagram.svg";
 import imgTwitter from "../assets/images/twitter.png";
@@ -60,16 +59,16 @@ export default function Contact() {
 
   return (
     <div className="bg-bg_desktop bg-cover">
-      <div className="p-6 max-w-screen-2xl mx-auto">
-        <div className="mb-6 md:mb-12">
-          <h1 className="font-bold text-center text-primary-blue text-3xl mb-4 pt-2 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <div className="py-8 px-[10%] mx-auto 2xl:px-[13%]">
+        <div className="mb-6 md:mb-8 max-w-5xl mx-auto">
+          <h1 className="font-bold text-center text-primary-blue text-2xl mb-4 sm:text-3xl sm:pt-2 md:text-4xl lg:mb-8 lg:text-center xl:text-5xl xl:text-center">
             Nous contactez
           </h1>
-          <p className="text-justify md:text-center md:text-lg md:px-12">
+          <p className="text-justify md:text-start md:leading-normal md:text-center md:text-xl xl:text-center">
             Que vous soyez un membre actuel, un futur membre ou un partenaire
             potentiel, nous sommes là pour vous.
           </p>
-          <p className="text-justify md:text-lg md:px-12">
+          <p className="text-justify md:leading-normal md:text-start md:text-xl md:text-lg">
             Voici quelques raisons de nous contacter : En savoir plus sur les
             avantages de l'adhésion, Demander une adhésion, Poser des questions
             sur les partenariats, Obtenir de l'aide pour un problème lié à votre
@@ -78,8 +77,8 @@ export default function Contact() {
         </div>
         <div className="lg:grid lg:grid-cols-2 lg:grid-rows-auto lg:gap-6 xl:gap-12">
           <div className="lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 md:text-lg lg:text-xl">
-            <div className="md:text-lg sm:xl">
-              <h2 className="text-center sm:text-left font-semibold text-xl my-4 lg:text-2xl tracking-wider">
+            <div className="md:text-lg">
+              <h2 className="text-center sm:text-left font-semibold text-xl my-4  lg:text-2xl tracking-wider">
                 Fédération des entreprises du Congo
               </h2>
               <div className="border-2 border-gray-300 p-3 my-4 rounded-lg ">
@@ -122,29 +121,29 @@ export default function Contact() {
               </h2>
               <div className="flex items-center gap-x-4 md:my-6">
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgFacebook} alt="facebook" className="w-6" />
+                  <img src={imgFacebook} alt="facebook" className="w-6 xl:w-8" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgInstagram} alt="instagramme" className="w-6" />
+                  <img src={imgInstagram} alt="instagramme" className="w-6 xl:w-8" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgTwitter} alt="twitter" className="w-6" />
+                  <img src={imgTwitter} alt="twitter" className="w-6 xl:w-7" />
                 </Link>
                 <Link to="#" className="hover:opacity-80">
-                  <img src={imgLinkedin} alt="twitter" className="w-6" />
+                  <img src={imgLinkedin} alt="twitter" className="w-6 xl:w-8" />
                 </Link>
               </div>
             </div>
           </div>
-          <div className="mx-2 md:mx-6 mb-4 mt-10 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 relative">
+          <div className="mb-4 mt-10 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 relative">
             <form
               onSubmit={handleSubmit(onSubmit)}
               action=""
               method="POST"
               encType="multipart/form-data"
-              className="linear-bg border-2 text-white p-6 w-full rounded-xl md:mb-6 md:mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-3 md:pb-12"
+              className="linear-bg border-2 text-white w-full px-3 py-4 rounded-xl sm:mb-6 md:mb-12 max-w-[768px] md:mx-auto flex flex-col gap-y-3 md:pb-6"
             >
-              <h2 className="font-bold text-center text-2xl text-primary-blue mb-3 lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl">
+              <h2 className="font-bold text-center text-2xl text-secondary-blue mb-1 sm:text-3xl sm:p-3 md:text-4xl lg:mb-6 lg:text-center lg:text-3xl xl:text-4xl">
                 Nous écrire
               </h2>
               <input
@@ -157,7 +156,7 @@ export default function Contact() {
                 })}
                 type="text"
                 placeholder="Nom complet"
-                className="border-2 h-10 rounded-lg text-black p-3 outline-none"
+                className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
               />
               {errors.nom && (
                 <p className="text-red-500">{errors.nom.message}</p>
@@ -172,7 +171,7 @@ export default function Contact() {
                 })}
                 type="text"
                 placeholder="Email"
-                className="border-2 h-10 rounded-lg text-black p-3 outline-none"
+                className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
               />
               {errors.email && (
                 <p className="text-red-500">{errors.email.message}</p>
@@ -186,7 +185,7 @@ export default function Contact() {
                 })}
                 type="text"
                 placeholder="Objet"
-                className="border-2 h-10 rounded-lg text-black p-3 outline-none"
+                className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none"
               />
               {errors.organisation && (
                 <p className="text-red-500">{errors.objet.message}</p>
@@ -195,7 +194,7 @@ export default function Contact() {
                 id="message"
                 placeholder="Entrez votre message ici"
                 rows="5"
-                className="p-3 rounded-lg text-black border-2 outline-none"
+                className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
                 {...register("message", {
                   required: "Ce champ est requis",
                   maxLength: {
@@ -209,8 +208,8 @@ export default function Contact() {
               )}
               <input
                 type="submit"
-                placeholder="Envoyer"
-                className="text-white font-bold bg-btn-color p-3 rounded-xl hover:opacity-80 cursor-pointer"
+                value="Envoyer"
+                className="text-white font-bold bg-btn-color p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer xl:my-4"
               />
             </form>
             <Response

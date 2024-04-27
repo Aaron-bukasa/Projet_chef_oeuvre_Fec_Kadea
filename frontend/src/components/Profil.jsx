@@ -26,7 +26,7 @@ export default function Profil() {
   console.log(user);
 
   return (
-    <div className="m-6">
+    <div className="py-8 px-[10%]">
       <div className="max-w-[1024px] mx-auto">
         <h2 className="font-medium text-center text-xl mb-4 lg:mb-6 lg:text-2xl 2xl:text-3xl font-bold">
           Mon profil

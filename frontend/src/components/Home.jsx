@@ -98,12 +98,12 @@ function Bannere() {
 
   return (
     <div className="relative xl:h-[93vh]">
-      <div className="w-full absolute bottom-0 top-0 pt-6 z-10 sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center bg-[#00194c36]">
-        <h1 className="inline-block font-bold text-xl text-center text-white p-6 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+      <div className="w-full absolute bottom-0 top-0 pt-6 z-10 bg-[#00194c36] sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center">
+        <h1 className="inline-block font-bold text-xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
         <div className="flex text-xs gap-x-4 text- sm:gap-x-12 sm:mt-12">
-          <div className="hidden md:block"> 
+          <div className="hidden sm:block"> 
             <Link
               to="suiviDmd"
               className="sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
@@ -114,7 +114,7 @@ function Bannere() {
           <div>
             <Link
               to="formulaireDmd"
-              className="text-lg sm:text-xl font-semibold text-white font-bold bg-red-600 p-2 sm:p-4 rounded-xl hover:opacity-80"
+              className="text-lg tracking-wide font-semibold text-white font-bold bg-red-600 p-3 rounded-lg hover:opacity-80 sm:text-xl sm:p-4"
             >
               Adhérer maintenant
             </Link>
@@ -166,24 +166,24 @@ function DevenirMembre() {
   return (
     <div id="devenir_membre" className="bg-bg_desktop">
       <div
-        className="p-4 max-w-screen-2xl mx-auto lg:grid lg:grid-cols-2 lg:gap-x-6 lg:py-24"
+        className="py-8 px-[10%] mx-auto md:pt-12 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:py-24 lg:px-[5%] 2xl:px-[13%]"
       >
-        <div className="mb-4 sm:mx-auto tracking-wide md:px-12 lg:col-start-1 lg:col-end-2">
-          <h2 className="roboto-bold text-2xl text-primary-blue mb-3 sm:mb-6 lg:mb-12 lg:text-3xl">
+        <div className="mb-4 sm:mx-auto tracking-wide md:mb-8 lg:col-start-1 lg:col-end-2">
+          <h2 className="roboto-bold text-primary-blue mb-3 text-xl text-center sm:mb-6 sm:text-2xl md:text-3xl lg:mb-12 lg:text-4xl">
             Devenez membre de la fédération des entreprises
           </h2>
           <p
-            className="md:text-lg 2xl:text-xl first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
-  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl"
+            className="text-justify first-letter:font-bold first-letter:text-3xl first-letter:text-secondary-blue
+  first-letter:mr-1 first-letter:float-left lg:first-letter:text-5xl md:text-xl"
           >
             La fédération des entreprises est une organisation qui rassemble et
             représente les entreprises de tous les secteurs d'activité.
           </p>
-          <p className="md:text-lg 2xl:text-xl">
+          <p className="text-justify md:text-xl">
             En adhérant à la fédération, vous bénéficierez de nombreux
             avantages, tels que:
           </p>
-          <ul className="list-disc ml-6 py-3 md:text-lg 2xl:text-xl">
+          <ul className="list-disc ml-6 py-3 md:text-lg md:text-xl">
             <li>
               <strong className="font-normal">Une Assistance</strong>
             </li>
@@ -202,7 +202,7 @@ function DevenirMembre() {
           </ul>
           <Link
             to="formulaireDmd"
-            className="bg-red-600 text-white font-bold inline-block p-3 rounded-xl my-2 hover:opacity-80 lg:text-xl lg:mt-6"
+            className="bg-red-600 text-white font-bold inline-block p-3 rounded-xl my-2 hover:opacity-80 md:text-xl lg:text-xl lg:mt-6"
           >
             Adhérer à la fédération
           </Link>
@@ -225,12 +225,12 @@ function Avantages({intersectionRef}) {
       <div
         ref={intersectionRef}
         id="avantages"
-        className="mx-6 max-w-screen-2xl pb-10 xl:mx-auto xl:pt-4 "
+        className="px-[10%] pb-8  md:py-6 lg:px-[5%] xl:mx-auto xl:pt-4 2xl:px-[13%]"
       >
-        <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+        <h2 className="font-bold text-center text-xl text-primary-blue mb-6 pt-6 sm:text-2xl sm:my-12 md:text-3xl md:my-6 md:pt-0 md:pb-4 lg:text-center lg:text-4xl xl:my-12 xl:text-5xl">
           Les avantages de l'adhésion
         </h2>
-        <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-12">
+        <div className="grid grid-col-1 grid-row-6 sm:grid-col-2 sm:grid-row-3 lg:grid-col-3 lg:grid-row-2 justify-center gap-6 mb-12 lg:gap-3 lg:justify-between xl:gap-6">
           <Service
             imgService={imgAvantage01}
             iconService={iconAvantage01}
@@ -281,7 +281,7 @@ function Avantages({intersectionRef}) {
         <div className="mx-auto w-max lg:mt-24 lg:mb-12">
           <Link
             to="/services"
-            className="flex items-center justify-center bg-red-600 py-4 md:py-6 px-8 text-white rounded-lg font-bold tracking-wider sm:text-lg lg:text-xl"
+            className="text-white rounded-lg font-bold tracking-wider flex items-center justify-center bg-red-600 py-3 px-6 sm:text-lg sm:py-3 sm:px-6 md:py-6 lg:text-xl"
           >
             <span>Voir plus</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="animate-arrowForward" fill="#ffffff" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
@@ -322,13 +322,13 @@ function Temoignages() {
 
   return (
     <div id="Temoignages" className="bg-bg_desktop bg-cover">
-      <div className="px-6">
-        <div className="sm:py-6 md:py-12 max-w-screen-2xl mx-auto">
-          <h2 className="font-bold text-center text-primary-blue text-2xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+      <div className="px-[10%] lg:px-[5%] 2xl:px-[13%]">
+        <div className="sm:py-6 md:py-12 mx-auto">
+          <h2 className="font-bold text-center text-primary-blue text-xl sm:text-2xl mb-6 sm:mb-12 md:text-3xl pt-6 lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl">
             Ce qu’ils disent de nous
           </h2>
           <div className="text-white leading-7 md:tracking-wider">
-            <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(3,max-content)] sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1">
+            <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(3,max-content)] sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 lg:justify-between">
               <Temoignage
                 text="Avant d'être membre a la FEC, je travaillais avec des micros
                   et des petites entreprises. Aujourd'hui, ça fait 26 ans que je
@@ -358,15 +358,15 @@ function Temoignages() {
                 imgTestim={imgTesti_03}
                 name="Yvonne KUSUAMINA"
                 statut="DG Pay Network"
-                className="col-start-1 col-end-2 row-start-3 row-end-4 sm:row-start-2 sm:row-end-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2"
+                className="col-start-1 col-end-2 row-start-3 row-end-4 sm:row-start-2 sm:row-end-3 md:h-max lg:h-auto lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="pt-8 sm:py-12 max-w-screen-2xl mx-auto px-6">
-        <h2 className="font-bold text-center text-primary-blue text-2xl mb-6 sm:mb-12 pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+      <div className="pt-8 px-[10%] sm:py-12 mx-auto md:py-0 lg:px-[5%] xl:py-12 2xl:px-[13%]">
+        <h2 className="font-bold text-center text-primary-blue text-xl mb-8 pt-6 sm:mb-12 sm:text-2xl md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl xl:mb-16">
           Ils nous accompagnent
         </h2>
         <Slider {...partenaires} className="w-full">
