@@ -45,15 +45,15 @@ export default function FormDmd() {
   };
 
   return (
-    <div className="py-6 md:py-12 px-6 bg-bg_desktop bg-cover">
+    <div className="py-6 px-[10%] md:py-12 bg-bg_desktop bg-cover 2xl:px-[13%]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
         method="POST"
         encType="multipart/form-data"
-        className="relative linear-bg border-2 text-white p-6 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-3 lg:mt-8"
+        className="relative linear-bg border-2 text-white px-2 py-4 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-3 lg:mt-8"
       >
-        <h2 className="font-bold text-center text-xl text-primary-blue mb-3 lg:mb-6 lg:text-center md:text-2xl lg:text-3xl xl:text-4xl">
+        <h2 className="font-bold text-center text-xl text-secondary-blue mb-3 sm:text-2xl sm:py-3 lg:mb-6 lg:text-center md:text-3xl lg:text-4xl xl:text-5xl">
           Formulaire de demande d'adhésion
         </h2>
         <input
@@ -66,7 +66,7 @@ export default function FormDmd() {
           })}
           type="text"
           placeholder="Nom complet"
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         />
         {errors.nom && <p className="text-red-500">{errors.nom.message}</p>}
         <input
@@ -79,7 +79,7 @@ export default function FormDmd() {
           })}
           type="text"
           placeholder="Adresse email"
-          className="border-2 rounded-lg text-black p- md:p-2 outline-none"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         />
         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         <input
@@ -92,7 +92,7 @@ export default function FormDmd() {
           })}
           type="tel"
           placeholder="Numéro de téléphone"
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         />
         {errors.telephone && (
           <p className="text-red-500">{errors.telephone.message}</p>
@@ -108,7 +108,7 @@ export default function FormDmd() {
           })}
           type="text"
           placeholder="Nom de l'organisation"
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         />
         {errors.organisation && (
           <p className="text-red-500">{errors.organisation.message}</p>
@@ -117,7 +117,7 @@ export default function FormDmd() {
           {...register("forme_juridique", {
             required: "Veuillez sélectionner une forme juridique",
           })}
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none w-full"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         >
           <option value="">Forme juridique</option>
           <option value="ETS">
@@ -149,7 +149,7 @@ export default function FormDmd() {
           })}
           type="text"
           placeholder="Secteur d'activité"
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         />
         {errors.secteur_activite && (
           <p className="text-red-500">{errors.secteur_activite.message}</p>
@@ -158,7 +158,7 @@ export default function FormDmd() {
           {...register("province_activite", {
             required: "Veuillez sélectionner la province d'activité",
           })}
-          className="border-2 rounded-lg text-black p-1 md:p-2 outline-none w-full"
+          className="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1"
         >
           <option value="">Province d'activité</option>
           <option value="Bas-Uele">Bas-Uele</option>
@@ -192,15 +192,15 @@ export default function FormDmd() {
           <p className="text-red-500">{errors.province_activite.message}</p>
         )}
 
-        <div className="flex flex-col gap-y-2 mt-3 md:flex-row">
+        <div className="flex flex-col gap-y-2 mt-3 sm:flex-row sm:gap-x-3 md:flex-row xl:my-2">
           <input
             type="submit"
             value="Soumettre la demande"
-            className="text-white font-bold bg-btn-color p-3 rounded-lg hover:opacity-80 cursor-pointer"
+            className="text-white font-bold bg-btn-color p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer"
           />
           <button
             type="submit"
-            className="md:ml-6 bg-red-500 text-white font-bold p-3 rounded-lg hover:opacity-80"
+            className="text-white font-bold bg-red-600 p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer"
           >
             Annuler
           </button>

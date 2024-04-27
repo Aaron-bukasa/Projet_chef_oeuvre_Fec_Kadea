@@ -34,7 +34,7 @@ export default function Notifications() {
       }, []);
 
   return (
-    <div className="max-w-[1024px] mx-auto border-2 border-gray-400 mx-6 my-12 rounded-lg bg-gray-100">
+    <div className="mx-auto border-2 border-gray-400 px-[10%] py-8 rounded-lg bg-gray-100">
       <div className="p-6">
       <h1 className="text-center my-6">NOTIFICATIONS</h1>
       <ul className="flex flex-col-reverse gap-y-3">

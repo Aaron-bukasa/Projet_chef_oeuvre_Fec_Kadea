@@ -17,7 +17,7 @@ export default function Faq() {
     qtn3: questions.question3,
     qtn4: questions.question4,
     qtn5: questions.question5,
-  })
+  });
 
   const handleClick = (questionName) => {
     setQuestions((prevState) => ({
@@ -28,17 +28,20 @@ export default function Faq() {
   };
 
   return (
-    <div id="faq" className="p-6 md:text-lg 2xl:text-xl flex flex-col xl:pb-12 bg-bg_desktop bg-cover">
-      <div className="max-w-[1024px] md:w-[80%]  mx-auto">
-        <div className="max-w-[1024px] mb-6 md:mb-12 md:mx-auto">
-          <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 md:pt-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+    <div
+      id="faq"
+      className="py-8 px-[10%] md:text-lg 2xl:text-xl flex flex-col xl:pb-12 bg-bg_desktop bg-cover 2xl:px-[13%]"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-6 md:mb-12 md:mx-auto">
+          <h2 className="font-bold text-center text-xl text-primary-blue mb-6  sm:text-2xl md:pt-6 md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl">
             Foire aux questions
           </h2>
           <div>
-            <p className="md:text-center mb-2 md:text-lg">
+            <p className="mb-2 md:text-xl">
               Bienvenue dans la FAQ de la fédération des entreprises du congo !
             </p>
-            <p className="text-justify sm:text-left md:text-lg">
+            <p className="text-justify sm:text-left md:text-xl">
               Nous espérons que cette page vous aidera à trouver les réponses à
               vos questions sur notre fédération, nos services et nos adhésions.
               Voici quelques-unes des questions les plus fréquemment posées :

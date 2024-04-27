@@ -6,16 +6,16 @@ export default function FormulaireDmd() {
   }
 
   return (
-    <div className="md:py-12 px-6 bg-bg_desktop bg-cover">
+    <div className="md:py-6 px-[10%] bg-bg_desktop bg-cover 2xl:px-[13%]">
       <div className="mx-auto">
         <form
           onSubmit={handleAccepted}
           action=""
           method="POST"
           encType="multipart/form-data"
-          className='rounded-lg max-w-5xl mx-auto py-6'
+          className='rounded-lg mx-auto py-6 max-w-7xl'
         >
-          <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 lg:mb-12 lg:text-center lg:text-3xl xl:text-4xl">
+          <h2 className="font-bold text-center text-2xl text-primary-blue mb-6 md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl">
             Dispositions statuaires relatives aux membres
           </h2>
           <div className="text-justify md:text-lg">

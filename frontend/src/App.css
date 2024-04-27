@@ -1,3 +1,9 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .animated-arrow {
     animation: arrow_downward 1s infinite alternate;
   }
@@ -64,15 +70,3 @@
 .avatar:hover div {
   color: #4885ff;
 }
-
-/* BTN PLAY */
-/* .slick-prev::before,
-.slick-next::before {
-  font-size: 50px;
-}
-
-.slick-prev:hover::before,
-.slick-next:hover::before {
-  color: #333;
-} */
-

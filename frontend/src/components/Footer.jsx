@@ -4,7 +4,6 @@ import imgFacebook from "../assets/images/facebook.svg";
 import imgInstagram from "../assets/images/instagram.svg";
 import imgTwitter from "../assets/images/twitter.png";
 import imgLinkedin from "../assets/images/linkedin.svg";
-import imgBackTop from "../assets/images/expand_less.svg";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
@@ -52,15 +51,15 @@ export default function Footer(props) {
 
   return (
     <div className="lg:py-6 bg-zinc-100 border-t-2 text-primary-blue">
-      <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 p-6 sm:text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] max-w-screen-2xl mx-auto justify-between">
+      <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 py-6 px-[5%] sm:text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] mx-auto justify-between xl:px-[7%] xl:tracking-wider">
         <div className="col-start-1 col-end-2 row-start-1 row-end-2">
           <img
             src={imgLogo}
             alt="Logo de la fédération"
-            className="md:w-[180px]"
+            className="w-32 mb-1 md:w-40"
           />
           <div>
-            <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">
+            <h2 className="font-semibold text-lg md:text-xl mb-1 sm:mb-4 xl:mb-7">
               Fédération des entreprises du Congo
             </h2>
             <p>
@@ -79,7 +78,7 @@ export default function Footer(props) {
         </div>
         <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 tracking-wider flex sm:justify-center">
           <ul className="flex flex-col gap-y-1">
-            <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">Menu</h2>
+            <h2 className="font-semibold text-lg md:text-xl mb-1 sm:mb-4 lg:text-2xl xl:mb-7">Menu</h2>
             <li>
               <Link
                 to="/"
@@ -169,7 +168,7 @@ export default function Footer(props) {
         <div className="col-start-1 col-end-2 row-start-3 row-end-4 sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2">
           <div>
             <div className="newsletter relative">
-              <h2 className="font-semibold text-xl md:text-2xl mb-4 xl:mb-7">
+              <h2 className="font-semibold text-lg md:text-xl mb-2 sm:mb-4 lg:text-2xl xl:mb-7">
                 Inscrivez-vous à notre newsletter
               </h2>
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -186,15 +185,16 @@ export default function Footer(props) {
                     type="text"
                     name="email"
                     placeholder="Email"
-                    className={`className="w-[200px] p-3 rounded-l-lg bg-gray-200 text-black placeholder:text-gray-500 outline-0 focus:bg-gray-300" ${
+                    className={`className="p-1 w-4/5 max-w-48 sm:p-3 rounded-l-md bg-gray-200 text-black placeholder:text-gray-500 outline-0 focus:bg-gray-300 xl:max-w-none xl:w-full" ${
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
                   <button
                     type="submit"
-                    className="shrink-0 w-max p-3 bg-[#003366] text-white font-semibold rounded-r-lg hover:opacity-80"
+                    className="w-max p-1 sm:p-3 bg-btn-color text-white font-semibold rounded-r-md hover:opacity-80 sm:bg-gray-300 lg:bg-btn-color xl:w-[40%]"
                   >
-                    Soumettre
+                    <svg className="hidden sm:block fill:btn-color lg:hidden" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>
+                    <span className="sm:hidden lg:block">Soumettre</span>
                   </button>
                 </div>
                 {errors.email && (
@@ -204,21 +204,21 @@ export default function Footer(props) {
               <Response isLoading={isLoading} setIsResponse={setIsResponse} isResponse={isResponse} isError={isError} isData={isData} />
             </div>
             <div className="">
-              <h2 className="font-semibold text-xl md:text-2xl mt-4 xl:mb-7">
+              <h2 className="font-semibold text-lg md:text-xl mt-4 xl:mb-7">
                 Suivez-nous
               </h2>
               <div className="flex items-center gap-x-4 my-2 mb:my-6">
                 <Link to="#" className="hover:opacity-60">
-                  <img src={imgFacebook} alt="facebook" className="w-8" />
+                  <img src={imgFacebook} alt="facebook" className="w-6 sm:w-8" />
                 </Link>
                 <Link to="#" className="hover:opacity-60">
-                  <img src={imgInstagram} alt="instagramme" className="w-8" />
+                  <img src={imgInstagram} alt="instagramme" className="w-6 sm:w-8" />
                 </Link>
                 <Link to="#" className="hover:opacity-60">
-                  <img src={imgTwitter} alt="twitter" className="w-8" />
+                  <img src={imgTwitter} alt="twitter" className="w-6 sm:w-8" />
                 </Link>
                 <Link to="#" className="hover:opacity-60">
-                  <img src={imgLinkedin} alt="twitter" className="w-8" />
+                  <img src={imgLinkedin} alt="twitter" className="w-6 sm:w-8" />
                 </Link>
               </div>
             </div>

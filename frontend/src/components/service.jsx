@@ -7,7 +7,7 @@ export default function Service({
   }) {
     return (
       <div className={`${className} rounded-xl shadow-lg bg-white`}>
-        <div className="mb-3 h-[280px]">
+        <div className="mb-3 h-48 sm:h-[280px]">
           <img
             src={imgService}
             alt="Réseau"
@@ -15,8 +15,8 @@ export default function Service({
           />
         </div>
         <div className="p-3">
-          <h3 className="font-medium text-lg font-semibold mb-4 lg:mb-6 lg:text-xl font-extrabold text-primary-blue flex items-center gap-x-4">
-            <img src={iconService} alt="icon du service" className="w-8" />
+          <h3 className="font-semibold text-primary-blue flex items-center gap-x-4 mb-2 sm:mb-4 sm:text-lg lg:mb-6 lg:text-xl">
+            <img src={iconService} alt="icon du service" className="w-6 sm:w-8" />
             {titleService}
           </h3>
           <p className="md:text-lg text-justify">{paramService}</p>
