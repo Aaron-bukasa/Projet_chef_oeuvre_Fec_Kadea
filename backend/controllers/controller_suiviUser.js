@@ -24,27 +24,28 @@ exports.suiviUserPost = async (req, res) => {
 };
 
 exports.suviUserGet = async(req, res) => {
-  try {
-      const { id } = req.params;
+  // try {
+  //     const { id } = req.params;
     
-      const user = await prisma.user.findUnique({
-        where: { id: parseInt(id) },
-        include: {
-          suivi_user: true
-        }
-      });
+  //     const user = await prisma.user.findUnique({
+  //       where: { id: parseInt(id) },
+  //       include: {
+  //         suivi_user: true
+  //       }
+  //     });
 
-      if (!user) {
-        return res.status(404).json({ message: 'Utilisateur non trouvée' });
-      } else {
-        if(user.email !== req.body.email) {
-          return res.status(404).json({ message: "nom ou email incorrect"})
-        }
-        const suiviUser = user.suivi_user;
-        res.status(200).json(suiviUser);
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
-    }
+  //     if (!user) {
+  //       return res.status(404).json({ message: 'Utilisateur non trouvée' });
+  //     } else {
+  //       if(user.email !== req.body.email) {
+  //         return res.status(404).json({ message: "nom ou email incorrect"})
+  //       }
+  //       const suiviUser = user.suivi_user;
+  //       console.log(suiviUser);
+  //       res.status(200).json({suiviUser});
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ message: 'Erreur lors de la récupération de la demande' });
+  //   }
 }

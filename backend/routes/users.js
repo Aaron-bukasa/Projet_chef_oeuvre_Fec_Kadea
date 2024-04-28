@@ -11,7 +11,7 @@ router.post('/server/logout', middlewareAuth, ctr_adm.serverLogout);
 router.get('/server',middlewareAuth, ctr_adm.serverUsersGet);
 router.get('/server/:id', middlewareAuth, ctr_adm.serverUserGet);
 router.put('/server/:id',middlewareAuth, ctr_adm.serverUserPut);
-router.put('/server/lock', ctr_adm.serverUserLock);
+router.put('/server/lock', middlewareAuth, ctr_adm.serverUserLock);
 router.put('/server/unlock', middlewareAuth, ctr_adm.serverUserUnlock);
 router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 
@@ -19,9 +19,9 @@ router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 // API CLIENT
 router.post('/signup', ctr_members.memberSignup);
 router.post('/member/login', ctr_members.memberLogin);
-router.post('/member/logout', ctr_members.memberLogout);
-router.get('/member/:id', ctr_members.memberUserGet);
-router.put('/member/:id', ctr_members.memberUserPut);
-router.delete('/member/:id', ctr_members.memberUserDelete);
+router.post('/member/logout', middlewareAuth, ctr_members.memberLogout);
+router.get('/member/:id', middlewareAuth, ctr_members.memberUserGet);
+router.put('/member/:id', middlewareAuth, ctr_members.memberUserPut);
+router.delete('/member/:id', middlewareAuth, ctr_members.memberUserDelete);
 
 module.exports = router;
