@@ -2,18 +2,16 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import Response from "../components/Response";
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   const [isResponse, setIsResponse] = useState(false);
   const [isData, setIsData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -38,16 +36,16 @@ export default function Login() {
       setIsResponse(true);
 
       if (response.status === 200) {
+        setIsResponse(false);
+        setIsError(false);
+
         localStorage.setItem("isLogin", [
           response.data.id,
           response.data.nom?.match(/^[a-zA-Z]+/),
           response.data.email,
         ]);
 
-        setIsError(false);
-        setIsLoggedIn(true);
-        navigate('/protected-page');
-        return;
+        navigate('/');
 
       } else {
         setIsError(true);

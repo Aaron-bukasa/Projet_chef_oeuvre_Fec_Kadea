@@ -116,14 +116,6 @@ export default function NavbarPublic(props) {
           Se connecter
         </Link>
       </div>
-      {/* <div
-        className={`${
-          !isClick
-            ? "h-0 opacity-0 flex flex-col gap-y-0 py-0"
-            : "h-screen opacity-100 bg-white flex flex-col justify-start gap-y-6 px-6 py-[12%]"
-        } tracking-wider md:opacity-100 md:h-auto md:w-[75%] md:flex-row md:justify-between md:items-center md:text-lg md:pr-6 md:gap-x-4 lg:w-full lg:flex lg:gap-x-6 2xl:gap-x-4 transition-all duration-700 ease-in-out`}
-      >
-      </div> */}
     </div>
   );
 }

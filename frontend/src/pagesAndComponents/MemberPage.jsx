@@ -2,10 +2,11 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavigationMember from "./membersPages/NavigationMember";
 import FooterMember from './membersPages/FooterMember';
-import Notifications from "./membersPages/Notifications"
+import Notifications from "./membersPages/Notifications";
 import Profil from "./membersPages/Profil";
+import Contenu from "./membersPages/Contenu";
 
-export default function Contenu() {
+export default function MemberPage() {
 
     const location = useLocation();
     const [currentPath, setCurrentPath] = useState(location.pathname);
