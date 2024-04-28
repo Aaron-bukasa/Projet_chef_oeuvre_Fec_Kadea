@@ -14,7 +14,6 @@ import FormDmd from "./publiquesPages/FormDmd";
 
 export default function PubliquesPages() {
 
-    const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
     const location = useLocation();
     const [currentPath, setCurrentPath] = useState(location.pathname);
 
@@ -22,23 +21,11 @@ export default function PubliquesPages() {
         setCurrentPath(location.pathname);
     }, [location.pathname]);
 
-    useEffect(() => {
-        const handleStorageChange = () => {
-        setUser(localStorage.getItem('isLogin'));
-        };
-    
-        window.addEventListener('storage', handleStorageChange);
-    
-        return () => {
-        window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
     return (
         <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] relative roboto-regular w-screen">
             <NavbarPublic currentPath={currentPath} />
             <div className="w-screen">
-                <Routes>
+               <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
