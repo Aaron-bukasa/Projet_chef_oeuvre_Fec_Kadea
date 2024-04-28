@@ -1,12 +1,12 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import imgFacebook from "../assets/images/facebook.svg";
-import imgInstagram from "../assets/images/instagram.svg";
-import imgTwitter from "../assets/images/twitter.png";
-import imgLinkedin from "../assets/images/linkedin.svg";
+import imgFacebook from "../../assets/images/facebook.svg";
+import imgInstagram from "../../assets/images/instagram.svg";
+import imgTwitter from "../../assets/images/twitter.png";
+import imgLinkedin from "../../assets/images/linkedin.svg";
 import { useState } from "react";
-import Response from "./Response";
+import Response from "../components/Response";
 
 export default function Contact() {
   const [isResponse, setIsResponse] = useState(false);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Response from "./Response";
+import Response from "../components/Response";
 
 function SuiviDmd() {
   const {

@@ -1,6 +1,5 @@
-import iconMore from "../assets/images/expand_more.svg";
-import iconLess from "../assets/images/expand_less.svg";
-import bgWallCrack from "../assets/images/bg-wall-crack.png";
+import iconMore from "../../assets/images/expand_more.svg";
+import iconLess from "../../assets/images/expand_less.svg";
 import { useState } from "react";
 
 export default function Faq() {

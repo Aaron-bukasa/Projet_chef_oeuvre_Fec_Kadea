@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import imgLogo from "../assets/images/logoFec.svg";
-import imgFacebook from "../assets/images/facebook.svg";
-import imgInstagram from "../assets/images/instagram.svg";
-import imgTwitter from "../assets/images/twitter.png";
-import imgLinkedin from "../assets/images/linkedin.svg";
+import imgLogo from "../../assets/images/logoFec.svg";
+import imgFacebook from "../../assets/images/facebook.svg";
+import imgInstagram from "../../assets/images/instagram.svg";
+import imgTwitter from "../../assets/images/twitter.png";
+import imgLinkedin from "../../assets/images/linkedin.svg";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
-import Response from "./Response";
+import Response from "../components/Response";
 
 export default function Footer(props) {
   const [isResponse, setIsResponse] = useState(false);

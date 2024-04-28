@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import logoFec from "../assets/images/logoFec.svg";
-import imgMenu from "../assets/images/menu.svg";
-import imgClose from "../assets/images/close.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import logoFec from "../../assets/images/logoFec.svg";
+import imgMenu from "../../assets/images/menu.svg";
+import imgClose from "../../assets/images/close.svg";
 
-export default function NavbarPublic(props) {
+export default function NavigationMember(props) {
   const [isClick, setIsClick] = useState(false);
 
   const handleClickMenu = () => {
@@ -59,71 +59,60 @@ export default function NavbarPublic(props) {
         </li>
         <li onClick={handleClickLink}>
           <Link
-            to="/services"
+            to="/blog"
             className={`${
-              props.currentPath === "/services" ? "text-focus-color" : "text-primary-blue"} 
+              props.currentPath === "/" ? "text-focus-color" : "text-primary-blue"} 
                 font-semibold hover:text-focus-color sm:text-lg lg:text-xl`}
           >
-            Avantages
+            Blog
           </Link>
         </li>
         <li onClick={handleClickLink}>
           <Link
-            to="/faq"
+            to="/evenement"
             className={`${
               props.currentPath === "/faq" ? "text-focus-color" : "text-primary-blue"} 
                 font-semibold hover:text-focus-color sm:text-lg lg:text-xl`}
           >
-            Faq
+            Evénements
           </Link>
         </li>
         <li onClick={handleClickLink}>
           <Link
-            to="/contact"
-            className={`${
-              props.currentPath === "/contact" ? "text-focus-color" : "text-primary-blue"} 
-                font-semibold hover:text-focus-color sm:text-lg lg:text-xl`}
-          >
-            Contact
-          </Link>
-        </li>
-        <li onClick={handleClickLink}>
-          <Link
-            to="/suiviDmd"
+            to="/communaute"
             className={`${
               props.currentPath === "/suiviDmd" ? "text-focus-color" : "text-primary-blue"} 
                 font-semibold text-nowrap hover:text-focus-color sm:text-lg lg:text-xl`}
           >
-            Suivi de la demande
+            Communauté
           </Link>
         </li>
         <li onClick={handleClickLink}>
           <Link
-            to="/formulaireDmd"
+            to="/about"
             className={`${
               (props.currentPath === '/formulaireDmd' || props.currentPath === '/formDmd') ? "text-focus-color" : "text-primary-blue"} 
                 font-semibold hover:text-focus-color sm:text-lg lg:text-xl`}
           >
-            Adhérer
+            A propos de nous
           </Link>
         </li>
       </ul>
-      <div onClick={handleClickLink} className={`${isClick ? 'opacity-100 px-[10%] ' : 'opacity-0 -translate-x-44 -translate-y-28'} opacity-0 transition-all duration-700 ease-in-out lg:opacity-100 lg:translate-x-0 lg:translate-y-0 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg;row-end-2 lg:p-0 lg:m-0`}>
+      <ul onClick={handleClickLink} className={`${isClick ? 'opacity-100 px-[10%] ' : 'opacity-0 -translate-x-44 -translate-y-28'} opacity-0 transition-all duration-700 ease-in-out lg:opacity-100 lg:translate-x-0 lg:translate-y-0 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg;row-end-2 lg:p-0 lg:m-0`}>
+        <li>
+            <Link to='/notifications'>Notifications</Link>
+        </li>
+        <li>
+            <Link to='/profil'>Profil</Link>
+        </li>
+        <li>
         <Link
-          to="/login"
-          className="text-white font-bold bg-btn-color p-3 rounded-xl hover:opacity-80 sm:text-lg lg:block lg:p-4"
+          to="/logout"
         >
-          Se connecter
+          Se deconnecter
         </Link>
-      </div>
-      {/* <div
-        className={`${
-          !isClick
-            ? "h-0 opacity-0 flex flex-col gap-y-0 py-0"
-            : "h-screen opacity-100 bg-white flex flex-col justify-start gap-y-6 px-6 py-[12%]"
-        } tracking-wider md:opacity-100 md:h-auto md:w-[75%] md:flex-row md:justify-between md:items-center md:text-lg md:pr-6 md:gap-x-4 lg:w-full lg:flex lg:gap-x-6 2xl:gap-x-4 transition-all duration-700 ease-in-out`}
-      >
-      </div> */}
+        </li>
+      </ul>
     </div>
   );
 }

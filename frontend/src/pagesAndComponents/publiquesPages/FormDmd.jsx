@@ -2,7 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import ConfirmationDmd from "./ConfirmationDmd";
 import { useState } from "react";
-import Response from "./Response";
+import Response from "../components/Response";
 
 export default function FormDmd() {
  

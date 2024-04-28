@@ -2,9 +2,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Response from "./Response";
+import { useNavigate } from 'react-router-dom';
+import Response from "../components/Response";
 
 export default function Login() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const [isResponse, setIsResponse] = useState(false);
   const [isData, setIsData] = useState("");
@@ -23,7 +27,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/client/login",
+        "http://localhost:3000/users/member/login",
         {
           email: data.email,
           password: data.password,
@@ -41,7 +45,8 @@ export default function Login() {
         ]);
 
         setIsError(false);
-        window.location.href = "/";
+        setIsLoggedIn(true);
+        navigate('/protected-page');
         return;
 
       } else {

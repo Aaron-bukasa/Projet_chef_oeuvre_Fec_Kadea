@@ -1,19 +1,19 @@
-import imgAvantage01 from "../assets/images/assistance.jpg";
-import imgAvantage02 from "../assets/images/avantage02.jpg";
-import imgAvantage03 from "../assets/images/representation.jpg";
-import imgAvantage04 from "../assets/images/appui.jpg";
-import imgAvantage05 from "../assets/images/avantage05.jpg";
-import imgService001 from "../assets/images/service002.jpg";
-import imgService002 from "../assets/images/service002.jpg";
-import imgService003 from "../assets/images/service003.jpg";
-import imgService004 from "../assets/images/service004.jpg";
-import imgService005 from "../assets/images/service005.jpg";
-import imgService006 from "../assets/images/service006.jpg";
-import iconAvantage01 from "../assets/images/help_center.svg";
-import iconAvantage02 from "../assets/images/security.svg";
-import iconAvantage03 from "../assets/images/co_present.svg";
-import iconAvantage04 from "../assets/images/support_agent.svg";
-import Service from "./service";
+import imgAvantage01 from "../../assets/images/assistance.jpg";
+import imgAvantage02 from "../../assets/images/avantage02.jpg";
+import imgAvantage03 from "../../assets/images/representation.jpg";
+import imgAvantage04 from "../../assets/images/appui.jpg";
+import imgAvantage05 from "../../assets/images/avantage05.jpg";
+import imgService001 from "../../assets/images/service002.jpg";
+import imgService002 from "../../assets/images/service002.jpg";
+import imgService003 from "../../assets/images/service003.jpg";
+import imgService004 from "../../assets/images/service004.jpg";
+import imgService005 from "../../assets/images/service005.jpg";
+import imgService006 from "../../assets/images/service006.jpg";
+import iconAvantage01 from "../../assets/images/help_center.svg";
+import iconAvantage02 from "../../assets/images/security.svg";
+import iconAvantage03 from "../../assets/images/co_present.svg";
+import iconAvantage04 from "../../assets/images/support_agent.svg";
+import Service from "../components/service";
 
 export default function Services() {
 
