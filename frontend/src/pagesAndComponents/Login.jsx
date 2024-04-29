@@ -2,10 +2,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Response from "../components/Response";
+import Response from "./components/Response";
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({setIsLogin}) {
 
   const [isResponse, setIsResponse] = useState(false);
   const [isData, setIsData] = useState("");
@@ -39,12 +39,14 @@ export default function Login() {
         setIsResponse(false);
         setIsError(false);
 
-        localStorage.setItem("isLogin", [
-          response.data.id,
-          response.data.nom?.match(/^[a-zA-Z]+/),
-          response.data.email,
-        ]);
+        // localStorage.setItem("isLogin", [
+        //   response.data.id,
+        //   response.data.nom?.match(/^[a-zA-Z]+/),
+        //   response.data.email,
+        // ]);
 
+        localStorage.setItem('isLogin', true);
+        setIsLogin(true);
         navigate('/');
 
       } else {

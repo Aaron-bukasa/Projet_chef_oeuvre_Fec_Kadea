@@ -29,8 +29,10 @@ export default function NavigationMember(props) {
   const handleLogout = async () => {
     try {
       const response = await axios.post('http://localhost:3000/users/member/logout');
+      console.log(response);
       if (response.status === 200) {
         localStorage.removeItem("isLogin");
+        props.setIsLogin(false)
         navigate('/');
       } else {
         console.error("Erreur de la déconnection");
