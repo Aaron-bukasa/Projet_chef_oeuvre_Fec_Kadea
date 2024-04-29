@@ -21,7 +21,7 @@ block content
                     div.actions(class='2/4') 
                         h2(class='text-lg font-bold mb-2') Actions
                         div(class='flex flex-col gap-y-2')
-                            input.valider(type='button' data-id=demande.id value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.valider(type='button' data-id=demande.id data-name=demande.nom data-email=demande.email value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
                             input.rejeter(type='button' data-id=demande.id value='rejeter' class='text-white bg-red-600 rounded-lg font-bold p-1')
                             input.supprimer(type='button' data-id=demande.id value='supprimer' class='text-white bg-red-600 rounded-lg font-bold p-1')
                     form(class='w-2/4')

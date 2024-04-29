@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const middlewareAuth = require('../middleware/auth');
+const authFont = require('../middleware/authFont');
 const ctr_adm = require('../controllers/controller_adm');
 const ctr_members = require('../controllers/controller_members');
 
@@ -17,9 +18,10 @@ router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 
 
 // API CLIENT
-router.post('/signup', ctr_members.memberSignup);
+router.post('/member/signup', ctr_members.memberSignup);
 router.post('/member/login', ctr_members.memberLogin);
-router.post('/member/logout', middlewareAuth, ctr_members.memberLogout);
+router.post('/member/logout', ctr_members.memberLogout);
+// router.get('/member/auth', authFont, ctr_members.memberAuth);
 router.get('/member/:id', middlewareAuth, ctr_members.memberUserGet);
 router.put('/member/:id', middlewareAuth, ctr_members.memberUserPut);
 router.delete('/member/:id', middlewareAuth, ctr_members.memberUserDelete);

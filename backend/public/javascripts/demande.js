@@ -54,8 +54,12 @@ function action(element, statut, method, route, succefullMessage, errorMessage) 
         try {
             const response = await fetch(route, requestOptions);
             if(response.status === 200) {
-
-                return alert(succefullMessage)
+               
+                if(statut !== 'validée') {
+                    return alert(succefullMessage)
+                } else {
+                    emailSignupMember(element, succefullMessage, errorMessage);
+                }
             }
         } catch (error) {
             return alert(errorMessage)
@@ -170,3 +174,27 @@ actionsTD.forEach((td) => {
         }
     })
 })
+
+async function emailSignupMember(element, succefullMessage, errorMessage) {
+    const dataMember = {
+        nom: element.dataset.name,
+        email: element.dataset.email
+    };
+    
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataMember)
+    };
+
+    try {
+        const response = await fetch('/demandes/signup', requestOptions);
+        if (response.status === 201) {
+            return alert(succefullMessage)
+        } 
+    } catch (error) {
+        return alert(errorMessage)
+    }
+}

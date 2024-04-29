@@ -95,7 +95,7 @@ exports.demandePost = async (req, res) => {
 
     res.status(201).json('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.');
   } catch (error) {
-    console.error('Erreur lors de l\'abonnement à la newsletter :', error);
+    console.error('Erreur lors de la demande d\'adhésion :', error);
     res.status(500).json('Une erreur s\'est produite lors de la soumission de la demande.');
   }
 };
@@ -112,8 +112,8 @@ exports.demandeConfirm = async(req, res) => {
 
     res.redirect(`/demandes/confirmation_demande/${id}`);
   } catch (error) {
-    console.error('Erreur lors de la confirmation de l\'abonnement :', error);
-    res.status(500).send('Une erreur s\'est produite lors de la confirmation de l\'abonnement.');
+    console.error('Erreur lors de la confirmation de la demande :', error);
+    res.status(500).send('Une erreur s\'est produite lors de la confirmation de la demande.');
   }
 }
 
@@ -126,6 +126,52 @@ exports.confirmation_demande = (req, res) => {
       console.error(error);
   }
 }
+
+exports.signupPost = async (req, res) => {
+
+  const {name, email} = req.body;
+
+  try {
+    const oAuth2Client = new OAuth2Client({
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      redirectUri: process.env.REDIRECT_URI
+    });
+
+    oAuth2Client.setCredentials({
+      refresh_token: process.env.REFRESH_TOKEN
+    });
+
+    const tokens = await oAuth2Client.getAccessToken();
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: process.env.EMAIL_HOST,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: tokens.token
+      }
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_HOST,
+      to: email,
+      subject: 'validation de la demande',
+      text: `Félicitaion ${name} ! 
+            Votre demande d'adhésion a été validé, veillez rensigner les informations de la connexion à notre plateforme : ${process.env.FRONT_URL}/EDNICMPSSR/signup`
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(201).json('Email d\'inscription vous a été envoyé ! Veuillez vérifier votre boîte de réception.');
+  } catch (error) {
+    console.error('Erreur lors de l\'envoie d\'email d\'inscription:', error);
+    res.status(500).json('Une erreur s\'est produite lors de la soumission de la demande.');
+  }
+};
 
 exports.demandePut = async(req, res) => {
     try {

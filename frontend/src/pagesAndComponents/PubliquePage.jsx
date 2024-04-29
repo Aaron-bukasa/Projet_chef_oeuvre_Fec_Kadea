@@ -1,7 +1,6 @@
 import NavbarPublic from "./publiquesPages/NavbarPublic";
 import Home from "./publiquesPages/Home";
-import Signup from "./publiquesPages/Signup";
-import Login from "./publiquesPages/Login";
+import Login from "./Login";
 import FormulaireDmd from "./publiquesPages/FormulaireDmd";
 import SuiviDmd from "./publiquesPages/SuiviDmd";
 import Footer from "./publiquesPages/Footer";
@@ -27,7 +26,6 @@ export default function PubliquesPages() {
             <div className="w-screen">
                <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/formulaireDmd" element={<FormulaireDmd />} />
                     <Route path="/suiviDmd" element={<SuiviDmd />} />

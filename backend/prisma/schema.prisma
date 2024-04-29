@@ -14,7 +14,7 @@ datasource db {
 model Demande {
   id                Int         @id @default(autoincrement())
   nom               String
-  email             String
+  email             String      @unique
   telephone         String      @unique
   nom_organisation      String
   forme_juridique   String
