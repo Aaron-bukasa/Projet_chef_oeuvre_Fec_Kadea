@@ -1,3 +1,6 @@
+let nameAvatar = document.querySelector('.name');
+nameAvatar.textContent = localStorage.getItem('descendRemonte').match(/(?<=PSSR)[a-zA-Z]+/)[0].split('').reverse().join('').toLowerCase();
+
 /* BAR DE NAVIGATION */
 const handleNavbarServer = () => {
     const menuButtonServer = document.querySelector('.menu-button');

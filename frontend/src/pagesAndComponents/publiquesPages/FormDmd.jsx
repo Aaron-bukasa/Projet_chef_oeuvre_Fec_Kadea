@@ -45,7 +45,7 @@ export default function FormDmd() {
   };
 
   return (
-    <div className="py-6 px-[10%] md:py-12 bg-bg_desktop bg-cover 2xl:px-[13%]">
+    <div className="py-6 px-[10%] md:py-12 bg-bg_desktop bg-cover bg-slate-200 2xl:px-[13%]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""

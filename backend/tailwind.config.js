@@ -17,6 +17,9 @@ module.exports = {
         "xl": "1280px",
         "2xl": "1386px"
       },
+      backgroundImage: {
+        'bg_desktop': "url('/images/bg-desktop.jpg')"
+      },
     },
   },
   plugins: [],

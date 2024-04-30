@@ -53,7 +53,7 @@ export default function Footer(props) {
   };
 
   return (
-    <div className="lg:py-6 bg-zinc-100 border-t-2 text-primary-blue">
+    <div className="lg:py-6 bg-primary-blue border-t-2 text-white">
       <div className="grid gap-6 grid-cols-1 grid-rows-[repeat(4,max-content)] gap-6 py-6 px-[5%] sm:text-lg sm:grid-cols-3 sm:grid-rows-[repeat(2,max-content)] mx-auto justify-between xl:px-[7%] xl:tracking-wider">
         <FecLocalisation className="col-start-1 col-end-2 row-start-1 row-end-2" />
         <div className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 tracking-wider flex sm:justify-center">
@@ -67,7 +67,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/"
                     ? "text-focus-color hover:text-focus-color"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Accueil
@@ -79,7 +79,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/services"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Avantages
@@ -91,7 +91,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/faq"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Faq
@@ -103,7 +103,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/contact"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Contact
@@ -116,7 +116,7 @@ export default function Footer(props) {
                   props.currentPath === "/formulaireDmd" ||
                   props.currentPath === "/formDmd"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Adhésion
@@ -128,7 +128,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/suiviDmd"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Suivi de la demande
@@ -140,7 +140,7 @@ export default function Footer(props) {
                 className={
                   props.currentPath === "/login"
                     ? "text-focus-color hover:text-focus-color lg:text-xl"
-                    : "text-primary-blue hover:text-focus-color lg:text-xl"
+                    : "text-white hover:text-focus-color lg:text-xl"
                 }
               >
                 Se connecter

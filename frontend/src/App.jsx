@@ -23,7 +23,6 @@ function App() {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
-console.log(isLogin);
   return(
     <>
       <Routes>

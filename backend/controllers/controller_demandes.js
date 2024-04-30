@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const { OAuth2Client } = require('google-auth-library');
+const uuid = require('uuid');
 
 exports.demandesGet = async(req, res) => {
 
@@ -17,12 +18,23 @@ exports.demandesGet = async(req, res) => {
     }
 }
 
+exports.demandesGetJSON = async(req, res) => {
+
+  try {
+      const demandes = await prisma.demande.findMany();
+      res.status(200).json(demandes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la récupération des demandes' });
+    }
+}
+
 exports.demandeGet = async(req, res) => {
   try {
-      const { id } = req.params;
+      const { requestId } = req.params;
   
       const demande = await prisma.demande.findUnique({
-        where: { id: parseInt(id) },
+        where: { requestId: requestId },
         include: {
           suivi_demande: true
         }
@@ -45,6 +57,7 @@ exports.demandePost = async (req, res) => {
   try {
     const nouvelleDemande = await prisma.demande.create({
       data: {
+        requestId: uuid.v4(),
         nom,
         email,
         telephone,
@@ -54,7 +67,10 @@ exports.demandePost = async (req, res) => {
         province_activite,
         suivi_demande: {
           create: [
-            { evenement: "Démande d'adhésion en attente" },
+            { 
+              requestId: uuid.v4(),
+              evenement: "Démande d'adhésion en attente" 
+            },
           ]
         }
       }
@@ -88,7 +104,7 @@ exports.demandePost = async (req, res) => {
       from: process.env.EMAIL_HOST,
       to: email,
       subject: 'Confirmation de votre demande d\'adhésion',
-      text: `Cliquez sur ce lien pour confirmer votre demande d'adhésion : ${process.env.WEBSITE_URL}/demandes/confirm/${nouvelleDemande.id}`
+      text: `Cliquez sur ce lien pour confirmer votre demande d'adhésion : ${process.env.WEBSITE_URL}/demandes/confirm/${nouvelleDemande.requestId}`
     };
 
     await transporter.sendMail(mailOptions);
@@ -102,15 +118,15 @@ exports.demandePost = async (req, res) => {
 
 
 exports.demandeConfirm = async(req, res) => {
-  const { id } = req.params;
+  const { requestId } = req.params;
 
   try {
     await prisma.demande.update({
-      where: { id: parseInt(id) },
+      where: { requestId: requestId },
       data: { confirmed: true },
     });
 
-    res.redirect(`/demandes/confirmation_demande/${id}`);
+    res.redirect(`/demandes/confirmation_demande/${requestId}`);
   } catch (error) {
     console.error('Erreur lors de la confirmation de la demande :', error);
     res.status(500).send('Une erreur s\'est produite lors de la confirmation de la demande.');
@@ -119,9 +135,9 @@ exports.demandeConfirm = async(req, res) => {
 
 
 exports.confirmation_demande = (req, res) => {
-  const {id} = req.params;
+  const {requestId} = req.params;
   try {        
-      res.status(200).render('confirmationDmd', {id});
+      res.status(200).render('confirmationDmd', {requestId});
   } catch (error) {
       console.error(error);
   }
@@ -175,11 +191,11 @@ exports.signupPost = async (req, res) => {
 
 exports.demandePut = async(req, res) => {
     try {
-        const { id } = req.body;
+        const { requestId } = req.body;
         const { statut } = req.body;
     
         const demandeModifiee = await prisma.demande.update({
-          where: { id: parseInt(id) },
+          where: { requestId: requestId },
           data: {
             statut: statut
           }
@@ -193,18 +209,18 @@ exports.demandePut = async(req, res) => {
 }
 
 exports.demandeDelete = async (req, res) => {
-  const { id } = req.body;
+  const { requestId } = req.body;
 
   try {
     await prisma.suiviDemande.deleteMany({
       where: {
-        demandeId: parseInt(id),
+        demandeRequestId: requestId,
       },
     });
 
     await prisma.demande.delete({
       where: {
-        id: parseInt(id),
+        requestId: requestId,
       },
     });
 
