@@ -13,6 +13,7 @@ datasource db {
 
 model Demande {
   id                Int         @id @default(autoincrement())
+  requestId         String      @unique
   nom               String
   email             String      @unique
   telephone         String      @unique
@@ -28,16 +29,18 @@ model Demande {
 
 model SuiviDemande {
   id          Int       @id @default(autoincrement())
+  requestId         String    @unique
   evenement   String
   date        DateTime  @default(now())
-  demande     Demande   @relation(fields: [demandeId], references: [id])
-  demandeId   Int
+  demande     Demande   @relation(fields: [demandeRequestId], references: [requestId])
+  demandeRequestId   String
 }
 
 // user, PROFIL ET SUIVI user
 
 model User {
 id       Int      @id @default(autoincrement())
+requestId         String    @unique
 nom      String
 email    String @unique
 password String
@@ -49,6 +52,7 @@ suivi_user  SuiviUser[]
 
 model Profil {
   id             Int      @id @default(autoincrement())
+  requestId         String    @unique
   nom            String
   telephone      String   @unique
   avatar         String?
@@ -58,16 +62,17 @@ model Profil {
   date_adhesion  DateTime?
   date_expiration DateTime?
   status_adhesion String @default("inactif") // actif, inactif, bloquer
-  user           User     @relation(fields: [userId], references: [id])
-  userId         Int      @unique
+  user           User     @relation(fields: [userRequestId], references: [requestId])
+  userRequestId         String      @unique
 }
 
 model SuiviUser {
 id          Int       @id @default(autoincrement())
+requestId         String    @unique
 notifications   String
 date        DateTime  @default(now())
-user           User     @relation(fields: [userId], references: [id])
-userId         Int  @unique
+user           User     @relation(fields: [userRequestId], references: [requestId])
+userRequestId        String  @unique
 }
 
 
@@ -75,6 +80,7 @@ userId         Int  @unique
 
 model NewsLetter {
   id          Int       @id @default(autoincrement())
+  requestId         String    @unique
   objet       String
   newsletter  String
   date        DateTime  @default(now())
@@ -82,6 +88,7 @@ model NewsLetter {
 
 model Abonnement {
   id          Int       @id @default(autoincrement())
+  requestId         String    @unique
   email    String
   date        DateTime  @default(now())
   confirmed Boolean @default(false)
@@ -92,6 +99,7 @@ model Abonnement {
 
 model Message {
   id          Int       @id @default(autoincrement())
+  requestId         String    @unique
   nom     String
   email    String
   objet    String
@@ -105,11 +113,12 @@ model Message {
 
 model MessageReponse {
   id          Int       @id @default(autoincrement())
+  requestId         String    @unique
   objet     String
   reponse   String
   date        DateTime  @default(now())
-  message     Message     @relation(fields: [messageId], references: [id])
-  messageId         Int  @unique
+  message     Message     @relation(fields: [messageRequestId], references: [requestId])
+  messageRequestId       String  @unique
 }
 
 
@@ -117,6 +126,7 @@ model MessageReponse {
 
 model Rapport {
   id                  Int         @id @default(autoincrement())
+  requestId         String    @unique
   type                String      // adhésions, demandes, etc.
   date_generation     DateTime
   contenu             String

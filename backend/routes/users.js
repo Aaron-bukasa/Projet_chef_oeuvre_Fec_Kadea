@@ -20,7 +20,7 @@ router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
 // API CLIENT
 router.post('/member/signup', ctr_members.memberSignup);
 router.post('/member/login', ctr_members.memberLogin);
-router.post('/member/logout', ctr_members.memberLogout);
+router.post('/member/logout', middlewareAuth, ctr_members.memberLogout);
 // router.get('/member/auth', authFont, ctr_members.memberAuth);
 router.get('/member/:id', middlewareAuth, ctr_members.memberUserGet);
 router.put('/member/:id', middlewareAuth, ctr_members.memberUserPut);

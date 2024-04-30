@@ -46,6 +46,7 @@ block content
                 thead
                     tr(class="py-2 bg-gray-200")
                         th(class="text-center") ID
+                        th(class="text-center") Identification
                         th(class="text-center") Nom complet
                         th(class="text-center") Email 
                         th(class="text-center") Telephone
@@ -56,6 +57,7 @@ block content
                     each user in users
                         tr
                             td(class="text-center")= user.id
+                            td(class="text-center")= user.requestId
                             td(class="text-center")= user.profil_user.nom
                             td(class="text-center")= user.email
                             td(class="text-center")= user.profil_user.telephone

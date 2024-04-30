@@ -2,6 +2,7 @@ const adminLogin = () => {
     const form = document.querySelector('.formAuth');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
+    const name = document.querySelector('.name')
 
     form?.addEventListener('submit', handleAuth)
 
@@ -25,8 +26,10 @@ const adminLogin = () => {
             const response = await fetch('/users/server/login', requestOptions);
            
             if(response.status === 200) {
-            
+                const descendRemonte = await response.json();
+                localStorage.setItem('descendRemonte', descendRemonte)
                 window.location.href = '/dashboard';
+
             } else {
                 return console.error('Erreur de connexion');
             }
@@ -56,6 +59,7 @@ const adminLogout = () => {
             const response = await fetch('/users/server/logout', requestOptions);
            
             if(response.status === 200) {
+                localStorage.removeItem('descendRemonte')
                 window.location.href = '/';
             } else {
                 return console.error('Erreur erreur s\'est produite lors du processus de ls deconnexion');

@@ -9,7 +9,7 @@ action(
 
 action(
     document.querySelector('.rejeter'),
-    'rejétée',
+    'rejetée',
     'PUT',
     '/demandes',
     'Demande rejetée avec succès',
@@ -40,7 +40,7 @@ function action(element, statut, method, route, succefullMessage, errorMessage) 
     element.addEventListener('click', async() => {
     
         const postData = {
-            id: element.dataset.id,
+            requestId: element.dataset.id,
             statut: statut && statut
         };
         const requestOptions = {
@@ -55,10 +55,15 @@ function action(element, statut, method, route, succefullMessage, errorMessage) 
             const response = await fetch(route, requestOptions);
             if(response.status === 200) {
                
-                if(statut !== 'validée') {
-                    return alert(succefullMessage)
-                } else {
+                if(statut === 'rejetée') {
+                    alert(succefullMessage)
+                    window.location.href = `/demandes/${element.dataset.id}`;
+                } else if(statut === 'validée') {
                     emailSignupMember(element, succefullMessage, errorMessage);
+                } else if(statut === 'supprimée') {
+                    alert(succefullMessage)
+                    window.location.href = '/demandes';
+                    return;
                 }
             }
         } catch (error) {
@@ -90,7 +95,8 @@ function suiviActions(submit, textarea, method, route, succefullMessage, errorMe
         try {
             const response = await fetch(route, requestOptions);
             if(response.status === 201) {
-                return alert(succefullMessage)
+                alert(succefullMessage);
+                return window.location.href = `/demandes/${submit.dataset.id}`;
             }
         } catch (error) {
             alert(errorMessage)

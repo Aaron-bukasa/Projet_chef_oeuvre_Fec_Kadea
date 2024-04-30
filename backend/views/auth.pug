@@ -5,22 +5,16 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/auth.js" defer) 
   body
-    div(class="grid grid-cols-1 grid-rows-[max-content,auto,max-content] h-screen w-screen")
-      div(class="col-start-1 col-end-2 row-start-1 row-end-2 p-6 border-b-2 border-black 2xl:px-44 bg-secondary-blue")
-        div(class="logo")
-          img(src="/images/logoFec.svg" alt="logo de la fec" class="w-20")
-      div(class="col-start-1 col-end-2 row-start-2 row-end-3 m-auto bg-secondary-blue text-white p-6 tracking-wider w-[70%] max-w-[700px] rounded-xl")
+    div.flex.flex-col.justify-center.items-center.gap-y-12.h-screen.bg-bg_desktop 
+      div(class="logo")
+        img(src="/images/logoFec.svg" alt="logo de la fec" class='w-36 lg:w-48')
+      div(class="w-3/5 bg-secondary-blue p-6 text-white rounded-lg lg:w-2/5")
         form.formAuth(action="/" method="post")
-          h1(class="text-center text-3xl font-bold mb-6") Se connecter
+          h1(class="font-bold text-white text-center text-xl py-1 sm:text-2xl sm:p-3 md:text-3xl lg:mb-6 lg:text-center lg:text-4xl xl:text-4xl") Se connecter
           div.card
             div(class='flex flex-col gap-y-2 mb-4')
-              label(for="email") Email
-              input(type="text" id="email" name="email" placeholder="Adresse email" class="p-3 rounded-lg outline-none text-black focus:bg-slate-200")
+              input(type="text" id="email" name="email" placeholder="Adresse email" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
             div(class='flex flex-col gap-y-2 mb-4')
-              label(for="password") Mot de passe
-              input(type="password" id="password" name="password" placeholder="Mot de passe" class="p-3 rounded-lg outline-none text-black focus:bg-slate-200")
-          button(type="submit" class="mt-5 bg-sky-blue p-3 font-bold rounded-lg hover:opacity-80 text-lg") Se connecter
-      div(class="col-start-1 col-end-2 row-start-3 row-end-4 p-6 text-white border-t-2 2xl:px-44 bg-secondary-blue")
-          div
-            img(src="/images/logoFec.svg" alt="logo de la féderation des entreprises" class="w-20 mb-3")
-          div &copy; 2024 - Fédération des Entreprises du Congo. Tous droits réservés
+              input(type="password" id="password" name="password" placeholder="Mot de passe" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
+          button(type="submit" class="mt-5 bg-red-700 p-3 font-bold rounded-lg hover:opacity-80 text-lg") Se connecter
+          

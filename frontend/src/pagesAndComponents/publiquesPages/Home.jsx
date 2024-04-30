@@ -281,7 +281,7 @@ function Avantages({intersectionRef}) {
         <div className="mx-auto w-max lg:mt-24 lg:mb-12">
           <Link
             to="/services"
-            className="text-white rounded-lg font-bold tracking-wider flex items-center justify-center bg-red-600 py-3 px-6 sm:text-lg sm:py-3 sm:px-6 md:py-6 lg:text-xl"
+            className="text-white rounded-lg font-bold tracking-wider flex items-center justify-center bg-red-600 py-3 px-6 sm:text-lg sm:py-3 sm:px-6 md:py-4 lg:text-xl xl:px-12"
           >
             <span>Voir plus</span>
             <svg xmlns="http://www.w3.org/2000/svg" className="animate-arrowForward" fill="#ffffff" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>

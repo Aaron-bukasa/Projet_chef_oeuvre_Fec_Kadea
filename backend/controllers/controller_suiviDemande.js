@@ -1,13 +1,16 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const uuid = require('uuid');
 
 exports.suiviDemandePost = async (req, res) => {
   try {
     const { id, evenement } = req.body;
+    console.log(id, evenement);
     const nouveauSuiviDemande = await prisma.suiviDemande.create({
       data: {
-        demande: { connect: { id: parseInt(id) } },
+        demande: { connect: { requestId: id } },
         evenement,
+        requestId: uuid.v4()
       },
     });
 
@@ -20,15 +23,15 @@ exports.suiviDemandePost = async (req, res) => {
 
 exports.suiviDemandePut = async (req, res) => {
   try {
-    const { id, evenement } = req.body;
+    const { requestId, evenement } = req.body;
 
-    const suivi_demande = await prisma.suiviDemande.findUnique({ where: { id: parseInt(id) } });
+    const suivi_demande = await prisma.suiviDemande.findUnique({ where: { requestId: requestId } });
     if (!suivi_demande) {
       return res.status(404).json({ message: "Suivi non trouvé" });
     }
 
     const suiviUpdate = await prisma.suiviDemande.update({
-      where: { id: parseInt(id)},
+      where: { requestId: requestId},
       data: {
         evenement: evenement,
       }
@@ -45,12 +48,12 @@ exports.suiviDemandePut = async (req, res) => {
 
 
 exports.suiviDemandeDelete = async (req, res) => {
-  const { id } = req.body;
+  const { requestId } = req.body;
 
   try {
     await prisma.suiviDemande.delete({
       where: {
-        id: parseInt(id),
+        requestId: requestId,
       },
     });
 
@@ -82,9 +85,9 @@ exports.suiviDemandeDelete = async (req, res) => {
 
 exports.suviDemandeFront = async(req, res) => {
   try {
-      const { id, nom } = req.body;
+      const { requestId, nom } = req.body;
       const demande = await prisma.demande.findUnique({
-        where: { id: parseInt(id) },
+        where: { requestId: requestId },
         include: {
           suivi_demande: true
         }

@@ -14,10 +14,10 @@ export default function Service({
             className="w-full h-full object-cover rounded-t-xl"
           />
         </div>
-        <div className="p-3">
+        <div className="py-2 px-6">
           <h3 className="font-semibold text-primary-blue flex items-center gap-x-4 mb-2 sm:mb-4 sm:text-lg lg:mb-6 lg:text-xl">
-            <img src={iconService} alt="icon du service" className="w-6 sm:w-8" />
             {titleService}
+            <img src={iconService} alt="icon du service" className="w-6 sm:w-8" />
           </h3>
           <p className="md:text-lg text-justify">{paramService}</p>
         </div>
