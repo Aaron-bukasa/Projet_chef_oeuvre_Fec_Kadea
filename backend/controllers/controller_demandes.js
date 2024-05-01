@@ -101,7 +101,7 @@ exports.demandePost = async (req, res) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: `<Fédération des entreprises du congo (FEC)> ${process.env.EMAIL_HOST}`,
       to: email,
       subject: 'Confirmation de votre demande d\'adhésion',
       text: `Cliquez sur ce lien pour confirmer votre demande d'adhésion : ${process.env.WEBSITE_URL}/demandes/confirm/${nouvelleDemande.requestId}`
