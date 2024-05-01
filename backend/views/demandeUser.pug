@@ -8,17 +8,17 @@ html
     div(class="flex flex-col justify-center items-center gap-y-12 h-screen w-3/5 lg:w-2/5 mx-auto") 
       div(class="logo")
         img(src="/images/logoFec.svg" alt="logo de la fec" class='w-36 lg:w-48')
-      div 
-        h1(class="text-center font-bold text-xl mb-6") Confirmation de la demande d'adhésion
-        p Merci pour la confirmation de votre demande d'adhésion. Veuillez définir votre mot de passe de connexion. Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un symbole spécial. Vous pouvez également utiliser notre générateur de mot de passe sécurisé pour créer un mot de passe fort et facile à retenir.
+      div
+        h1(class="text-center font-bold text-xl mb-6") Définition du mot de passe
+        p Votre démande d'adhésion a été soumise avec succès. Veuillez définir votre mot de passe de connexion. Votre mot de passe doit contenir au moins 8 caractères, dont une majuscule, une minuscule, un chiffre et un symbole spécial.
         div(class="bg-secondary-blue p-6 text-white rounded-lg mx-auto mt-6")
           form.formAuth(action="/" method="post" class="w-full")
             h1(class="font-bold text-white text-center text-xl py-1 sm:text-2xl sm:p-3 md:text-3xl lg:mb-6 lg:text-center lg:text-4xl xl:text-4xl") Se connecter
             div.card
               div(class='flex flex-col gap-y-2 mb-4')
-                  input(type="text" id="nom" name="nom" placeholder="noms" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
+                  input(type="text" id="nom" name="nom" value=demandeUser.name readonly="readonly" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1 capitalize")
               div(class='flex flex-col gap-y-2 mb-4')
-                input(type="text" id="email" name="email" placeholder="Adresse email" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
+                input(type="text" id="email" name="email" value=demandeUser.email readonly="readonly" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
               div(class='flex flex-col gap-y-2 mb-4')
                 input(type="password" id="password" name="password" placeholder="Mot de passe" class="border-2 rounded-lg text-black p-1 sm:p-3 text-sm sm:text-base outline-none xl:my-1")
               div(class='')
