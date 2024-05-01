@@ -44,11 +44,12 @@ requestId         String    @unique
 nom      String
 email    String @unique
 password String
-role                String      @default("membre")  // administrateur, membre
+role                String      @default("user")  // administrateur, membre, user
+verified    Boolean @default(false)
 date_inscription    DateTime @default(now())
 profil_user Profil?
 suivi_user  SuiviUser[]
-vilidate   ConfirmationUser
+confirm_user   ConfirmationUser
 }
 
 model Profil {

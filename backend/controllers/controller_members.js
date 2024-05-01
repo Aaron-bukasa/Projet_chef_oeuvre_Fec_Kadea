@@ -31,12 +31,12 @@ function generateAuthToken(user) {
 
 exports.memberSignup = async (req, res) => {
   try {
-    const { password } = req.body;
+    const { requestId } = req.body;
 
     const userDemande = await prisma.demande.findUnique({ where: { requestId: requestId } });
 
     if (userDemande) {
-      const passwordHash = bcrypt.hashSync(password, 10);
+      const passwordHash = bcrypt.hashSync(req.body.password, 10);
 
       const newUser = await prisma.user.create({
         data: {
@@ -56,11 +56,11 @@ exports.memberSignup = async (req, res) => {
             create: [
               {
                 requestId: uuid.v4(),
-                notifications: `Bienvenue ${userEmail.nom} sur la plateforme de la fédérqtion des entreprises du Congo`
+                notifications: `Bienvenue ${userDemande.nom} sur la plateforme de la fédérqtion des entreprises du Congo`
               },
             ],
           },
-          validate: {
+          confirm_user: {
             create: {
               code: genererCodeConfirmation(),
               expiration: new Date(Date.now() + 1000 * 60 * 60 * 24 * 0.0625),
@@ -97,11 +97,11 @@ exports.memberSignup = async (req, res) => {
         from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
         to: userDemande.email,
         subject: 'Confirmez votre adresse e-mail',
-        text: `Veuillez utiliser ce code pour confirmer votre adresse e-mail : ${newUser.validate.code}`
+        text: `Veuillez utiliser ce code pour confirmer votre adresse e-mail : ${newUser.confirm_user.code}`
       };
 
       await transporter.sendMail(mailOptions);
-      res.status(201).json('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.')
+      res.status(201).json('Le code de confirmation est envoyé ! Veuillez vérifier votre boîte de réception.')
 
     //   const token = generateAuthToken(newUser);
     //   res
@@ -113,7 +113,7 @@ exports.memberSignup = async (req, res) => {
     //     .json("membrer ajouté avec succès");
     }
 
-    res.status(401).json("Erreur d'ajout du mot de passe")
+    res.status(401).json(newUser.requestId)
 
   } catch (error) {
     console.error(error);
@@ -173,8 +173,11 @@ exports.memberUserGet = async (req, res) => {
       where: { id: parseInt(id) },
       include: {
         suivi_utilisateur: true,
+        confirm_user: true
       },
     });
+
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: "Utilisateur non trouvée" });
@@ -221,10 +224,10 @@ exports.memberUserPut = async (req, res) => {
 
 exports.memberUserDelete = async (req, res) => {
   try {
-    const { id } = req.params;
-
+    const { requestId } = req.body;
+    
     await prisma.user.delete({
-      where: { id: parseInt(id) },
+      where: { requestId: requestId },
     });
 
     res.status(200).json({ message: "Utilisateur supprimé avec succès" });

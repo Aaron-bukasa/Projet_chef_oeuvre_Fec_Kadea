@@ -7,6 +7,7 @@ block content
             div(class="border-4 border-dashed p-3 flex flex-col my-3 w-[50%]")
                 h2(class='text-lg font-bold mb-2') Profil utilisateur
                 p Identification : #{user.id}
+                p requestId : #{user.requestId}
                 p Nom : #{user.profil_user.nom}
                 p Email : #{user.email}
                 p Role : #{user.role}
@@ -17,18 +18,17 @@ block content
                 p Date d'adhésion : #{user.profil_user.date_adhesion}
                 p Status d'adhésion : #{user.profil_user.status_adhesion}
             div.suiviUtilisateur(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                p.identifiant(class="hidden") #{user.id}
                 div(class='lg:flex lg:gap-x-6 relative')
                     div.actions(class='2/4') 
                         h2(class='text-lg font-bold mb-2') Actions
                         div(class='flex flex-col gap-y-2')
-                            button.bloquer(class='text-white bg-red-600 rounded-lg font-bold p-1') Bloquer
-                            button.debloquer(class='text-white bg-red-600 rounded-lg font-bold p-1')  Debloquer
-                            button.supprimer(class='text-white bg-red-600 rounded-lg font-bold p-1')  Supprimer
+                            input.bloquer(type='button' data-id=user.requestId value="Bloquer" class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.debloquer(type="button" data-id=user.requestId value="Débloquer" class='text-white bg-red-600 rounded-lg font-bold p-1')
+                            input.supprimerUser(type="button" data-id=user.requestId value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold p-1')
                     form(class='w-2/4' action="/suivi_utilisateur", method="POST")
                         label(for="commentaire") Commentaire (facultatif)
                         textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
-                        button(type="submit" class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full") Valider
+                        input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full")
                     div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
                         div(class='text-center py-12') 
                             span loading
@@ -48,9 +48,8 @@ block content
                             td(class="text-center")= suivi.id
                             td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
                             td(class="text-center")= suivi.notifications
-                            td
-                                a(href="#")  modifier
-                                a(href="#") Valider
-                                a(href="#") Delete
+                            td.actionsTD(class="text-center")
+                                input(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue cursor-pointer")
+                                input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3 cursor-pointer") 
         
     script(src="/javascripts/user.js")

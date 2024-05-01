@@ -256,7 +256,25 @@ exports.serverUserUnlock = async (req, res) => {
 
 exports.serverUserDelete = async (req, res) => {
   try {
-    const { requestId } = req.params;
+    const { requestId } = req.body;
+
+    await prisma.suiviUser.deleteMany({
+      where: {
+        userRequestId : requestId,
+      },
+    });
+
+    await prisma.profil.deleteMany({
+      where: {
+        userRequestId : requestId,
+      },
+    });
+
+    await prisma.confirmationUser.deleteMany({
+      where: {
+        userRequestId : requestId,
+      },
+    });
 
     await prisma.user.delete({
       where: { requestId: requestId },
