@@ -36,7 +36,7 @@ model SuiviDemande {
   demandeRequestId   String
 }
 
-// user, PROFIL ET SUIVI user
+// user, PROFIL, SUIVI ET CONFIRMATION
 
 model User {
 id       Int      @id @default(autoincrement())
@@ -48,6 +48,7 @@ role                String      @default("membre")  // administrateur, membre
 date_inscription    DateTime @default(now())
 profil_user Profil?
 suivi_user  SuiviUser[]
+vilidate   ConfirmationUser
 }
 
 model Profil {
@@ -73,6 +74,14 @@ notifications   String
 date        DateTime  @default(now())
 user           User     @relation(fields: [userRequestId], references: [requestId])
 userRequestId        String  @unique
+}
+
+model ConfirmationUser {
+  id Int  @id @default(autoincrement())
+  code  String
+  expiration DateTime
+  user           User     @relation(fields: [userRequestId], references: [requestId])
+  userRequestId        String  @unique
 }
 
 
@@ -131,3 +140,4 @@ model Rapport {
   date_generation     DateTime
   contenu             String
 }
+

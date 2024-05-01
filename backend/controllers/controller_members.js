@@ -2,6 +2,16 @@ const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
+const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+const { OAuth2Client } = require('google-auth-library');
+const uuid = require('uuid');
+const crypto = require('crypto');
+
+// GENERATEUR CODE
+function genererCodeConfirmation() {
+  return crypto.randomBytes(16).toString('hex');
+}
 
 // GENERATEUR TOKEN
 
@@ -21,52 +31,93 @@ function generateAuthToken(user) {
 
 exports.memberSignup = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { password } = req.body;
 
-    const userEmail = await prisma.demande.findUnique({ where: { email } });
-    
-    if (
-      userEmail &&
-      userEmail.confirmed === true &&
-      userEmail.statut === "validée"
-    ) {
+    const userDemande = await prisma.demande.findUnique({ where: { requestId: requestId } });
+
+    if (userDemande) {
       const passwordHash = bcrypt.hashSync(password, 10);
 
       const newUser = await prisma.user.create({
         data: {
-          nom: userEmail.nom,
-          email,
+          requestId: uuid.v4(),
+          nom: userDemande.nom,
+          email: userDemande.email,
           password: passwordHash,
           date_inscription: new Date(),
           profil_user: {
             create: {
-              nom: userEmail.nom,
-              telephone: userEmail.telephone,
+              requestId: uuid.v4(),
+              nom: userDemande.nom,
+              telephone: userDemande.telephone,
             },
           },
           suivi_user: {
             create: [
-              { notifications: `Bienvenue ${userEmail.nom} sur la plateforme de la fédérqtion des entreprises du Congo`},
+              {
+                requestId: uuid.v4(),
+                notifications: `Bienvenue ${userEmail.nom} sur la plateforme de la fédérqtion des entreprises du Congo`
+              },
             ],
           },
+          validate: {
+            create: {
+              code: genererCodeConfirmation(),
+              expiration: new Date(Date.now() + 1000 * 60 * 60 * 24 * 0.0625),
+            }
+          }
         },
       });
 
-      const token = generateAuthToken(newUser);
-      res
-        .status(201)
-        .cookie("token", token, {
-          httpOnly: true,
-          secure: true,
-        })
-        .json("membrer ajouté avec succès");
+      const oAuth2Client = new OAuth2Client({
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        redirectUri: process.env.REDIRECT_URI
+      });
+
+      oAuth2Client.setCredentials({
+        refresh_token: process.env.REFRESH_TOKEN
+      });
+
+      const tokens = await oAuth2Client.getAccessToken();
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          type: 'OAuth2',
+          user: process.env.EMAIL_HOST,
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN,
+          accessToken: tokens.token
+        }
+      });
+
+      const mailOptions = {
+        from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
+        to: userDemande.email,
+        subject: 'Confirmez votre adresse e-mail',
+        text: `Veuillez utiliser ce code pour confirmer votre adresse e-mail : ${newUser.validate.code}`
+      };
+
+      await transporter.sendMail(mailOptions);
+      res.status(201).json('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.')
+
+    //   const token = generateAuthToken(newUser);
+    //   res
+    //     .status(201)
+    //     .cookie("token", token, {
+    //       httpOnly: true,
+    //       secure: true,
+    //     })
+    //     .json("membrer ajouté avec succès");
     }
 
-    res.status(401).json("Erreur d'ajout du nouveau membrer")
+    res.status(401).json("Erreur d'ajout du mot de passe")
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erreur lors de l'inscription" });
+    res.status(500).json({ message: "Erreur lors de la définition du mot de passe" });
   }
 };
 
