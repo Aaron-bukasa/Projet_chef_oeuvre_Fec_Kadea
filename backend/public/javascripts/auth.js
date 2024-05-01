@@ -83,32 +83,9 @@ function displayPassword() {
     }
 }
 
-function displaySuccess() {
-    const div = document.createElement('div');
-    const close = document.createElement('div');
-    const bar1 = document.createElement('div');
-    const bar2 = document.createElement('div');
-    const success = document.createElement('p');
-
-    success.textContent = textSucceffull;
-    success.style.background = "#d1e7dd";
-    success.style.width = '100%';
-    success.style.height = '100%';
-
-    bar1.style.transform = "translate(45deg)";
-    bar2.style.transform = "translate(-45deg)";
-    close.appendChild(bar1);
-    close.appendChild(bar2);
-    close.style.cursor = 'pointer';
-    close.style.marginLeft = 'auto';
-    close.style.marginRight = '0';
-
-    div.appendChild(close);
-}
-
-
 function displayMessage(form, statusElement, message, display) {
-    document.querySelector('.displayMessage') && (document.querySelector('.displayMessage').style.display = 'none');
+    const dispalyAll = document.querySelectorAll('.displayMessage');
+    dispalyAll?.forEach(element => element.style.display = 'none');
 
     const div = document.createElement('div');
     const close = document.createElement('div');
@@ -117,8 +94,6 @@ function displayMessage(form, statusElement, message, display) {
     const p = document.createElement('p');
 
     p.textContent = message;
-    p.style.width = '100%';
-    p.style.height = '100%';
     p.style.display = display;
     p.style.textAlign = 'center'
    
@@ -147,8 +122,6 @@ function displayMessage(form, statusElement, message, display) {
     div.style.top = '50%'
     div.style.left = '50%'
     div.style.transform = 'translate(-50%, -50%)';
-    div.style.width = '50%';
-    div.style.height = '50%';
     div.style.padding = '15px';
     div.style.borderRadius = '15px'
     div.style.display = 'flex';
@@ -163,6 +136,6 @@ function displayMessage(form, statusElement, message, display) {
     form.style.position = 'relative';
 
     close.addEventListener('click', () => {
-        div.style.display = 'none'
+        div.style.display = 'none';
     })
 }
