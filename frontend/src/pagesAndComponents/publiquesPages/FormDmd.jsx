@@ -31,7 +31,8 @@ export default function FormDmd() {
 
       if (response.status === 201) {
         setIsError(false);
-        return setIsData(response.data);
+        setIsResponse(false);
+        window.location.href = `http://localhost:3000/demandes/user/${response.data.id}`
       } else {
         setIsError(true);
         return setIsData("Inscription échouée");
