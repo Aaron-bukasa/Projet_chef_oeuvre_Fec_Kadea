@@ -99,22 +99,22 @@ function Bannere() {
   return (
     <div className="relative xl:h-[93vh]">
       <div className="w-full absolute bottom-0 top-0 pt-6 z-10 bg-[#00194c36] sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center">
-        <h1 className="inline-block font-bold text-xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl">
+        <h1 className="inline-block font-bold text-xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl xl:text-7xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
         <div className="flex text-xs gap-x-4 text- sm:gap-x-12 sm:mt-12">
-          <div className="hidden sm:block"> 
+          {/* <div className="hidden sm:block"> 
             <Link
               to="suiviDmd"
               className="sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
             >
               Suivi de la demande
             </Link>
-          </div>
+          </div> */}
           <div>
             <Link
               to="formulaireDmd"
-              className="text-lg tracking-wide font-semibold text-white font-bold bg-red-600 p-3 rounded-lg hover:opacity-80 sm:text-xl sm:p-4"
+              className="text-lg tracking-wide font-semibold text-white font-bold bg-red-600 p-3 rounded-lg hover:opacity-80 sm:text-xl sm:p-4 lg:py-5 xl:text-2xl"
             >
               Adhérer maintenant
             </Link>

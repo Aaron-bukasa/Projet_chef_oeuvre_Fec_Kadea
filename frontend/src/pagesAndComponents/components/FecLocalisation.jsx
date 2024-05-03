@@ -8,10 +8,7 @@ export default function FecLocalisation({ className }) {
           alt="Logo de la fédération"
           className="w-32 mb-1 md:w-40"
         />
-        <div>
-          <h2 className="font-semibold text-lg md:text-xl mb-1 sm:mb-4 xl:mb-7">
-            Fédération des entreprises du Congo
-          </h2>
+        <div className="mt-6">
           <p>
             10 Av des aviateurs, Gombe,
             <br />

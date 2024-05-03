@@ -52,9 +52,9 @@ export default function FormDmd() {
         action=""
         method="POST"
         encType="multipart/form-data"
-        className="relative linear-bg border-2 text-white px-2 py-4 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-3 lg:mt-8"
+        className="relative linear-bg border-2 text-white px-3 md:px-6 py-4 w-full rounded-xl max-w-[768px] md:mx-auto flex flex-col gap-y-3 lg:mt-8"
       >
-        <h2 className="font-bold text-center text-xl text-secondary-blue mb-3 sm:text-2xl sm:py-3 lg:mb-6 lg:text-center md:text-3xl lg:text-4xl xl:text-5xl">
+        <h2 className="font-bold text-center text-xl text-secondary-blue mb-3 sm:text-1xl sm:py-3 lg:mb-6 lg:text-center md:text-2xl lg:text-3xl xl:text-4xl">
           Formulaire de demande d'adhésion
         </h2>
         <input
@@ -197,11 +197,11 @@ export default function FormDmd() {
           <input
             type="submit"
             value="Soumettre la demande"
-            className="text-white font-bold bg-btn-color p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer"
+            className="text-white tracking-wider font-bold bg-btn-color p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer lg:text-lg"
           />
           <button
             type="submit"
-            className="text-white font-bold bg-red-600 p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer"
+            className="tracking-wider text-white font-bold bg-red-600 p-3 md:p-4 rounded-xl hover:opacity-80 cursor-pointer lg:text-lg"
           >
             Annuler
           </button>
