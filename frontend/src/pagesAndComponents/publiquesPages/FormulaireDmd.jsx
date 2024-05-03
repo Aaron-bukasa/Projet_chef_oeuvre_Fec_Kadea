@@ -77,9 +77,9 @@ export default function FormulaireDmd() {
               les délais fixés par le Conseil d’Administration.
             </p>
           </div>
-          <div className="my-3 flex gap-x-2">
-            <input type="checkbox" required id="condition"/>
-            <label htmlFor="condition" className="ml-3 md:text-lg">
+          <div className="my-3 flex items-center gap-x-2 lg:my-6">
+            <input type="checkbox" required id="condition" className="border-2 w-5 h-5" />
+            <label htmlFor="condition" className="ml-3 md:text-lg ld:text-xl">
               J'ai lu et j'accepte les conditions générales d'adhésion.
             </label>
           </div>
