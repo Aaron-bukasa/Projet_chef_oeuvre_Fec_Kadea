@@ -1,6 +1,5 @@
 import NavbarPublic from "./publiquesPages/NavbarPublic";
 import Home from "./publiquesPages/Home";
-import Login from "./Login";
 import FormulaireDmd from "./publiquesPages/FormulaireDmd";
 import SuiviDmd from "./publiquesPages/SuiviDmd";
 import Footer from "./publiquesPages/Footer";

@@ -7,6 +7,7 @@ import imgTwitter from "../../assets/images/twitter.png";
 import imgLinkedin from "../../assets/images/linkedin.svg";
 import { useState } from "react";
 import Response from "../components/Response";
+import bg_002 from "../../assets/images/bg_002.jpg"
 
 export default function Contact() {
   const [isResponse, setIsResponse] = useState(false);
@@ -58,7 +59,10 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-bg_desktop bg-cover">
+    <div className="relative">
+      <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <div className="py-8 px-[10%] mx-auto 2xl:px-[13%]">
         <div className="mb-6 md:mb-8 max-w-5xl mx-auto">
           <h1 className="font-bold text-center text-primary-blue text-2xl mb-4 sm:text-3xl sm:pt-2 md:text-4xl lg:mb-8 lg:text-center xl:text-5xl xl:text-center">

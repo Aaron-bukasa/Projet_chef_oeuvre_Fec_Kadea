@@ -2,6 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Response from "../components/Response";
+import bg_002 from "../../assets/images/bg_002.jpg"
 
 export default function FormDmd() {
  
@@ -46,7 +47,10 @@ export default function FormDmd() {
   };
 
   return (
-    <div className="py-6 px-[10%] md:py-12 bg-bg_desktop bg-cover bg-slate-200 2xl:px-[13%]">
+    <div className="relative py-6 px-[10%] md:py-12 2xl:px-[13%]">
+      <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
