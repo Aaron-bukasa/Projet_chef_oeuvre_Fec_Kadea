@@ -34,6 +34,7 @@ import iconAvantage03 from "../../assets/images/co_present.svg";
 import iconAvantage04 from "../../assets/images/support_agent.svg";
 import Service from "../components/service";
 import Temoignage from "../components/Temoignage";
+import bg_002 from "../../assets/images/bg_002.jpg"
 
 import { useEffect, useRef, useState } from "react";
 
@@ -164,7 +165,10 @@ function Bannere() {
 function DevenirMembre() {
 
   return (
-    <div id="devenir_membre" className="bg-bg_desktop">
+    <div id="devenir_membre" className="relative">
+       <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+          <img src={bg_002} alt="" className="" />
+        </div>
       <div
         className="py-8 px-[10%] mx-auto md:pt-12 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:py-24 lg:px-[5%] 2xl:px-[13%]"
       >
@@ -321,7 +325,10 @@ function Temoignages() {
   };
 
   return (
-    <div id="Temoignages" className="bg-bg_desktop bg-cover">
+    <div id="Temoignages" className="relative">
+       <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+          <img src={bg_002} alt="" className="w-full h-full object-cover"/>
+        </div>
       <div className="px-[10%] lg:px-[5%] 2xl:px-[13%]">
         <div className="sm:py-6 md:py-12 mx-auto">
           <h2 className="font-bold text-center text-primary-blue text-xl sm:text-2xl mb-6 sm:mb-12 md:text-3xl pt-6 lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl">
@@ -364,7 +371,6 @@ function Temoignages() {
           </div>
         </div>
       </div>
-
       <div className="pt-8 px-[10%] sm:py-12 mx-auto md:py-0 lg:px-[5%] xl:py-12 2xl:px-[13%]">
         <h2 className="font-bold text-center text-primary-blue text-xl mb-8 pt-6 sm:mb-12 sm:text-2xl md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl xl:mb-16">
           Ils nous accompagnent

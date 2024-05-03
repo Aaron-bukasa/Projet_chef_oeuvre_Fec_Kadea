@@ -5,6 +5,7 @@ import { useState } from "react";
 import Response from "./components/Response";
 import { useNavigate } from "react-router-dom";
 import logoFec from "../assets/images/logoFec.svg";
+import bg_002 from "../assets/images/bg_002.jpg";
 
 export default function Login({ setIsLogin }) {
   const [isResponse, setIsResponse] = useState(false);
@@ -60,7 +61,10 @@ export default function Login({ setIsLogin }) {
   };
 
   return (
-    <div className="bg-bg_desktop">
+    <div className="relative">
+      <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <div className="flex flex-col justify-center items-center gap-y-8 p-6 min-h-screen roboto-regular sm:p-6 sm:gap-y-12 md:w-11/12 md:mx-auto lg:mx-auto lg:w-9/12 2xl:w-7/12 2xl:max-w-4xl">
         <div>
           <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />

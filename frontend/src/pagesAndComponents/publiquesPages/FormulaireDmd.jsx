@@ -1,3 +1,5 @@
+import bg_002 from "../../assets/images/bg_002.jpg";
+
 export default function FormulaireDmd() {
  
   const handleAccepted = (event) => {
@@ -6,7 +8,10 @@ export default function FormulaireDmd() {
   }
 
   return (
-    <div className="md:py-6 px-[10%] bg-bg_desktop bg-cover 2xl:px-[13%]">
+    <div className="relative md:py-6 px-[10%] bg-cover 2xl:px-[13%]">
+      <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <div className="mx-auto">
         <form
           onSubmit={handleAccepted}

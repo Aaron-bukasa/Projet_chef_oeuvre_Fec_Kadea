@@ -1,6 +1,7 @@
 import iconMore from "../../assets/images/expand_more.svg";
 import iconLess from "../../assets/images/expand_less.svg";
 import { useState } from "react";
+import bg_002 from "../../assets/images/bg_002.jpg"
 
 export default function Faq() {
   const [questions, setQuestions] = useState({
@@ -29,8 +30,11 @@ export default function Faq() {
   return (
     <div
       id="faq"
-      className="py-8 px-[10%] md:text-lg 2xl:text-xl flex flex-col xl:pb-12 bg-bg_desktop bg-cover 2xl:px-[13%]"
+      className="relative py-8 px-[10%] md:text-lg 2xl:text-xl flex flex-col xl:pb-12 2xl:px-[13%]"
     >
+      <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <div className="mx-auto max-w-7xl">
         <div className="mb-6 md:mb-12 md:mx-auto">
           <h2 className="font-bold text-center text-xl text-primary-blue mb-6  sm:text-2xl md:pt-6 md:text-3xl lg:mb-12 lg:text-center lg:text-4xl xl:text-5xl">
