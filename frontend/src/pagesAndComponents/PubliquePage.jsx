@@ -26,7 +26,6 @@ export default function PubliquesPages() {
             <div className="w-screen">
                <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/formulaireDmd" element={<FormulaireDmd />} />
                     <Route path="/suiviDmd" element={<SuiviDmd />} />
                     <Route path="/contact" element={<Contact />} />

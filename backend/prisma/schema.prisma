@@ -49,7 +49,7 @@ verified    Boolean @default(false)
 date_inscription    DateTime @default(now())
 profil_user Profil?
 suivi_user  SuiviUser[]
-confirm_user   ConfirmationUser
+confirm_user   ConfirmationUser?
 }
 
 model Profil {
@@ -79,6 +79,7 @@ userRequestId        String  @unique
 
 model ConfirmationUser {
   id Int  @id @default(autoincrement())
+  requestId         String    @unique
   code  String
   expiration DateTime
   user           User     @relation(fields: [userRequestId], references: [requestId])

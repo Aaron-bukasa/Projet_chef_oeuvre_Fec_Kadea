@@ -50,72 +50,6 @@ exports.demandeGet = async(req, res) => {
     }
 }
 
-// exports.demandePost = async (req, res) => {
-  
-//   const { nom, email, telephone, nom_organisation, forme_juridique, secteur_activite, province_activite } = req.body;
-
-//   try {
-//     const nouvelleDemande = await prisma.demande.create({
-//       data: {
-//         requestId: uuid.v4(),
-//         nom,
-//         email,
-//         telephone,
-//         nom_organisation,
-//         forme_juridique,
-//         secteur_activite,
-//         province_activite,
-//         suivi_demande: {
-//           create: [
-//             { 
-//               requestId: uuid.v4(),
-//               evenement: "Démande d'adhésion en attente" 
-//             },
-//           ]
-//         }
-//       }
-//     });
-
-//     const oAuth2Client = new OAuth2Client({
-//       clientId: process.env.CLIENT_ID,
-//       clientSecret: process.env.CLIENT_SECRET,
-//       redirectUri: process.env.REDIRECT_URI
-//     });
-
-//     oAuth2Client.setCredentials({
-//       refresh_token: process.env.REFRESH_TOKEN
-//     });
-
-//     const tokens = await oAuth2Client.getAccessToken();
-
-//     const transporter = nodemailer.createTransport({
-//       service: 'gmail',
-//       auth: {
-//         type: 'OAuth2',
-//         user: process.env.EMAIL_HOST,
-//         clientId: process.env.CLIENT_ID,
-//         clientSecret: process.env.CLIENT_SECRET,
-//         refreshToken: process.env.REFRESH_TOKEN,
-//         accessToken: tokens.token
-//       }
-//     });
-
-//     const mailOptions = {
-//       from: `<Fédération des entreprises du congo (FEC)> ${process.env.EMAIL_HOST}`,
-//       to: email,
-//       subject: 'Confirmation de votre demande d\'adhésion',
-//       text: `Cliquez sur ce lien pour confirmer votre demande d'adhésion : ${process.env.WEBSITE_URL}/demandes/confirm/${nouvelleDemande.requestId}`
-//     };
-
-//     await transporter.sendMail(mailOptions);
-
-//     res.status(201).json('Email de confirmation envoyé ! Veuillez vérifier votre boîte de réception.');
-//   } catch (error) {
-//     console.error('Erreur lors de la demande d\'adhésion :', error);
-//     res.status(500).json('Une erreur s\'est produite lors de la soumission de la demande.');
-//   }
-// };
-
 exports.demandePost = async (req, res) => {
   const { nom, email, telephone, nom_organisation, forme_juridique, secteur_activite, province_activite } = req.body;
 
@@ -141,7 +75,7 @@ exports.demandePost = async (req, res) => {
       }
     });
 
-    res.status(201).json({id: nouvelleDemande.requestId});
+    res.status(201).json({id: nouvelleDemande.requestId, nom: nouvelleDemande.nom, email: nouvelleDemande.email});
   } catch (error) {
     console.error('Erreur lors de la soumission de la demande :', error);
     res.status(500).json("Une erreur s'est produite lors de la soumission de la demande.");
@@ -161,31 +95,31 @@ exports.demandeUserInfo = async(req, res) => {
 }
 
 
-exports.demandeConfirm = async(req, res) => {
-  const { requestId } = req.params;
+// exports.demandeConfirm = async(req, res) => {
+//   const { requestId } = req.params;
 
-  try {
-    await prisma.demande.update({
-      where: { requestId: requestId },
-      data: { confirmed: true },
-    });
+//   try {
+//     await prisma.demande.update({
+//       where: { requestId: requestId },
+//       data: { confirmed: true },
+//     });
 
-    res.redirect(`/demandes/confirmation_demande/${requestId}`);
-  } catch (error) {
-    console.error('Erreur lors de la confirmation de la demande :', error);
-    res.status(500).send('Une erreur s\'est produite lors de la confirmation de la demande.');
-  }
-}
+//     res.redirect(`/demandes/confirmation_demande/${requestId}`);
+//   } catch (error) {
+//     console.error('Erreur lors de la confirmation de la demande :', error);
+//     res.status(500).send('Une erreur s\'est produite lors de la confirmation de la demande.');
+//   }
+// }
 
 
-exports.confirmation_demande = (req, res) => {
-  const {requestId} = req.params;
-  try {        
-      res.status(200).render('confirmationDmd', {requestId});
-  } catch (error) {
-      console.error(error);
-  }
-}
+// exports.confirmation_demande = (req, res) => {
+//   const {requestId} = req.params;
+//   try {        
+//       res.status(200).render('confirmationDmd', {requestId});
+//   } catch (error) {
+//       console.error(error);
+//   }
+// }
 
 exports.signupPost = async (req, res) => {
 

@@ -9,6 +9,7 @@ module.exports = {
         'primary-blue': '#051433',
         'secondary-blue': '#00194C',
         'sky-blue': '#0055ff',
+        "btn-color": '#003366',
       },
       screens : {
         "sm": "640px",
