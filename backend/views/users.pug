@@ -51,6 +51,7 @@ block content
                         th(class="text-center") Telephone
                         th(class="text-center") Role
                         th(class="text-center") Status
+                        th(class="text-center") Verified
                         th(class="text-center") Actions
                 tbody
                     each user in users
@@ -61,6 +62,7 @@ block content
                             td(class="text-center")= user.profil_user.telephone
                             td(class="text-center")= user.role
                             td(class="text-center")= user.profil_user.status_adhesion
+                            td(class="text-center")= user.verified
                             td(class="text-center") 
                                 a(href=`/users/server/${user.requestId}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
 

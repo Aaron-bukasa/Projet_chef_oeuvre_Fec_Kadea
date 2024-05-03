@@ -27,6 +27,43 @@ function generateAuthToken(user) {
   return token;
 }
 
+// ENVOIE EMAIL
+async function sendEmail(destinateur, code) {
+  const oAuth2Client = new OAuth2Client({
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: process.env.REDIRECT_URI
+  });
+
+  oAuth2Client.setCredentials({
+    refresh_token: process.env.REFRESH_TOKEN
+  });
+
+  const tokens = await oAuth2Client.getAccessToken();
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      type: 'OAuth2',
+      user: process.env.EMAIL_HOST,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: tokens.token
+    }
+  });
+
+  const mailOptions = {
+    from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
+    to: destinateur,
+    subject: 'Confirmez votre adresse e-mail',
+    text: `Veuillez utiliser ce code pour confirmer votre adresse e-mail : ${code}`
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
+
 // CONTROLLERS CLIENT
 
 exports.memberSignup = async (req, res) => {
@@ -35,91 +72,138 @@ exports.memberSignup = async (req, res) => {
 
     const userDemande = await prisma.demande.findUnique({ where: { requestId: requestId } });
 
-    if (userDemande) {
-      const passwordHash = bcrypt.hashSync(req.body.password, 10);
-
-      const newUser = await prisma.user.create({
-        data: {
-          requestId: uuid.v4(),
-          nom: userDemande.nom,
-          email: userDemande.email,
-          password: passwordHash,
-          date_inscription: new Date(),
-          profil_user: {
-            create: {
-              requestId: uuid.v4(),
-              nom: userDemande.nom,
-              telephone: userDemande.telephone,
-            },
-          },
-          suivi_user: {
-            create: [
-              {
-                requestId: uuid.v4(),
-                notifications: `Bienvenue ${userDemande.nom} sur la plateforme de la fédérqtion des entreprises du Congo`
-              },
-            ],
-          },
-          confirm_user: {
-            create: {
-              code: genererCodeConfirmation(),
-              expiration: new Date(Date.now() + 1000 * 60 * 60 * 24 * 0.0625),
-            }
-          }
-        },
-      });
-
-      const oAuth2Client = new OAuth2Client({
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        redirectUri: process.env.REDIRECT_URI
-      });
-
-      oAuth2Client.setCredentials({
-        refresh_token: process.env.REFRESH_TOKEN
-      });
-
-      const tokens = await oAuth2Client.getAccessToken();
-
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          type: 'OAuth2',
-          user: process.env.EMAIL_HOST,
-          clientId: process.env.CLIENT_ID,
-          clientSecret: process.env.CLIENT_SECRET,
-          refreshToken: process.env.REFRESH_TOKEN,
-          accessToken: tokens.token
-        }
-      });
-
-      const mailOptions = {
-        from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
-        to: userDemande.email,
-        subject: 'Confirmez votre adresse e-mail',
-        text: `Veuillez utiliser ce code pour confirmer votre adresse e-mail : ${newUser.confirm_user.code}`
-      };
-
-      await transporter.sendMail(mailOptions);
-      res.status(201).json('Le code de confirmation est envoyé ! Veuillez vérifier votre boîte de réception.')
-
-    //   const token = generateAuthToken(newUser);
-    //   res
-    //     .status(201)
-    //     .cookie("token", token, {
-    //       httpOnly: true,
-    //       secure: true,
-    //     })
-    //     .json("membrer ajouté avec succès");
+    if (!userDemande) {
+      return res.status(404).json({ message: "Demande introuvable" });
     }
 
-    res.status(401).json(newUser.requestId)
+    const passwordHash = bcrypt.hashSync(req.body.password, 10);
+
+    const newUser = await prisma.user.create({
+      data: {
+        requestId: uuid.v4(),
+        nom: userDemande.nom,
+        email: userDemande.email,
+        password: passwordHash,
+        date_inscription: new Date(),
+        profil_user: {
+          create: {
+            requestId: uuid.v4(),
+            nom: userDemande.nom,
+            telephone: userDemande.telephone,
+          },
+        },
+        suivi_user: {
+          create: [
+            {
+              requestId: uuid.v4(),
+              notifications: `Bienvenue ${userDemande.nom} sur la plateforme de la fédération des entreprises du Congo`
+            },
+          ],
+        }
+      },
+    });
+
+    const codeConfirmation = genererCodeConfirmation();
+    const dateExpiration = new Date();
+    dateExpiration.setDate(dateExpiration.getDate() + 7);
+
+    const confirmUser = await prisma.confirmationUser.create({
+      data: {
+        user: {
+          connect: {
+            requestId: newUser.requestId,
+          },
+        },
+        requestId: uuid.v4(),
+        code: codeConfirmation,
+        expiration: dateExpiration,
+      },
+    });
+
+    sendEmail(userDemande.email, codeConfirmation)
+    return res.status(201).json({message:'Le code de confirmation est envoyé ! Veuillez vérifier votre boîte de réception.', id: newUser.requestId});
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Erreur lors de la définition du mot de passe" });
+    console.error("Erreur lors de la création de l'utilisateur :", error);
+    return res.status(500).json({ message: "Erreur lors de la création de l'utilisateur" });
   }
 };
+
+exports.memberCheckCode = async (req, res) => {
+  try {
+    const { requestId, code } = req.body;
+
+    const enregistrementConfirmation = await prisma.confirmationUser.findUnique({
+      where: {
+        userRequestId: requestId,
+        code,
+      },
+    });
+
+    if (!enregistrementConfirmation || enregistrementConfirmation.expiration < Date.now()) {
+      throw new Error('Code de confirmation invalide ou expiré');
+    }
+
+    const user = await prisma.user.update({
+      where: {
+        requestId: requestId,
+      },
+      data: {
+        verified: true,
+      },
+    });
+
+    const token = generateAuthToken(user);
+
+    await prisma.confirmationUser.delete({
+      where: {
+        requestId: enregistrementConfirmation.requestId,
+      },
+    });
+
+    res.status(200).cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+    }).json('Adresse e-mail confirmée avec succès');
+  } catch (error) {
+    console.error('Erreur de confirmation de l\'adresse e-mail :', error.message);
+    res.status(500).json({ message: 'Erreur de confirmation de l\'adresse e-mail : ' + error.message });
+  }
+};
+
+exports.resendCodeConfirmation = async(req, res) => {
+  try {
+    const {requestId} = req.body;
+    const newCode = genererCodeConfirmation();
+    const newDateExpiration = new Date();
+    newDateExpiration.setDate(newDateExpiration.getDate() + 7);
+
+    const codeUser = await prisma.confirmationUser.update({
+      where: {
+        userRequestId : requestId
+      },
+      data: {
+        code: newCode,
+        expiration: newDateExpiration,
+      },
+    });
+
+    const user = await prisma.user.findUnique({where: {requestId : requestId}});
+
+    if(codeUser && user) {
+      sendEmail(user.email, newCode)
+      return res.status(201).json('Nouveau code envoyé')
+    } else {
+      return res.status(404).json('Erreur lors de renvoie du nouveau code')
+    }  
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json('Erreur server')
+  }
+  
+}
+
+
 
 exports.memberLogin = async (req, res) => {
   try {
@@ -133,7 +217,6 @@ exports.memberLogin = async (req, res) => {
     }
 
     const token = generateAuthToken(user);
-    console.log(user);
 
     res
       .status(200)
@@ -156,14 +239,6 @@ exports.memberLogout = async (req, res) => {
     console.error(error);
   }
 };
-
-// exports.memberAuth = async(req, res) => {
-//   try {
-//     res.status(200).json('found');
-//   } catch (error) {
-//     res.status(500).json('no found')
-//   }
-// }
 
 exports.memberUserGet = async (req, res) => {
   try {
@@ -226,6 +301,24 @@ exports.memberUserDelete = async (req, res) => {
   try {
     const { requestId } = req.body;
     
+    await prisma.suiviUser.deleteMany({
+      where: {
+        userRequestId: requestId,
+      },
+    });
+
+    await prisma.profil.delete({
+      where: {
+        userRequestId: requestId,
+      },
+    });
+
+    await prisma.confirmationUser.delete({
+      where: {
+        userRequestId: requestId,
+      },
+    });
+
     await prisma.user.delete({
       where: { requestId: requestId },
     });

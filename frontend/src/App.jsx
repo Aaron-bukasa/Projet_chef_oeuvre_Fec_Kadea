@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pagesAndComponents/Login";
 import Signup from "./pagesAndComponents/Signup";
+import ConfirmUser from "./pagesAndComponents/ConfirmUser";
 
 function App() {
 
@@ -23,12 +24,14 @@ function App() {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+ 
   return(
     <>
       <Routes>
         <Route path="/*" element={isLogin ? <MemberPage setIsLogin={setIsLogin} /> : <PubliquesPages />} />
         <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
-        <Route path="/EDNICMPSSR/signup" element={<Signup setIsLogin={setIsLogin} />} />
+        <Route path="/signup/:requestId" element={<Signup />} />
+        <Route path="/confirmUser/:requestId" element={<ConfirmUser setIsLogin={setIsLogin} />} />
       </Routes>
     </>
   )

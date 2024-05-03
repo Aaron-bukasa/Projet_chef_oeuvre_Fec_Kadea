@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import ConfirmationDmd from "./ConfirmationDmd";
 import { useState } from "react";
 import Response from "../components/Response";
 
@@ -32,7 +31,8 @@ export default function FormDmd() {
       if (response.status === 201) {
         setIsError(false);
         setIsResponse(false);
-        window.location.href = `http://localhost:3000/demandes/user/${response.data.id}`
+        localStorage.setItem("userDmd", [response.data.nom, response.data.email])
+        window.location.href = `/signup/${response.data.id}`
       } else {
         setIsError(true);
         return setIsData("Inscription échouée");
