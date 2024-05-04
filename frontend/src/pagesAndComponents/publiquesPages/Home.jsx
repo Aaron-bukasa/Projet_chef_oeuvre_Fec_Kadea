@@ -99,29 +99,19 @@ function Bannere() {
 
   return (
     <div className="relative xl:h-[93vh]">
-      <div className="w-full absolute bottom-0 top-0 pt-6 z-10 bg-[#00194c36] sm:px-6 md:px-12 lg:px-24 flex flex-col justify-center items-center">
-        <h1 className="inline-block font-bold text-xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl xl:text-7xl">
+      <div className="w-full absolute bottom-0 pb-14 h-full top-0 pt-6 z-10 bg-[#00194c36] sm:px-6 md:px-12 lg:px-24 flex flex-col justify-end items-center">
+        <h1 className="inline-block font-bold text-2xl text-center text-white p-6 sm:text-3xl md:text-4xl lg:text-5xl">
           FÉDÉRATION DES ENTREPRISES DU CONGO
         </h1>
-        <div className="flex text-xs gap-x-4 text- sm:gap-x-12 sm:mt-12">
-          {/* <div className="hidden sm:block"> 
-            <Link
-              to="suiviDmd"
-              className="sm:font-bold text-black p-2 sm:p-4 bg-white rounded-xl hover:bg-gray-100 sm:text-xl"
-            >
-              Suivi de la demande
-            </Link>
-          </div> */}
-          <div>
+          <div className="mt-6">
             <Link
               to="formulaireDmd"
-              className="text-lg tracking-wide font-semibold text-white font-bold bg-red-600 p-3 rounded-lg hover:opacity-80 sm:text-xl sm:p-4 lg:py-5 xl:text-2xl"
+              className="text-lg tracking-wide font-semibold text-white font-bold bg-red-600 p-3 rounded-lg hover:opacity-80 sm:text-xl sm:p-4 xl:text-xl"
             >
               Adhérer maintenant
             </Link>
           </div>
-        </div>
-        <a href="#devenir_membre" className="py-6">
+        <a href="#devenir_membre" className="py-3">
           <img
             src={iconArrow}
             alt="la fleche pointe vers le bas de la page pour montre les informations supplementaires"
@@ -173,7 +163,7 @@ function DevenirMembre() {
         className="py-8 px-[10%] mx-auto md:pt-12 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:py-24 lg:px-[5%] 2xl:px-[13%]"
       >
         <div className="mb-4 sm:mx-auto tracking-wide md:mb-8 lg:col-start-1 lg:col-end-2">
-          <h2 className="roboto-bold text-primary-blue mb-3 text-xl text-center sm:mb-6 sm:text-2xl md:text-3xl lg:mb-12 lg:text-4xl">
+          <h2 className="roboto-bold text-primary-blue mb-3 text-xl sm:mb-6 sm:text-2xl md:text-3xl lg:mb-12 lg:text-4xl">
             Devenez membre de la fédération des entreprises
           </h2>
           <p
@@ -344,7 +334,7 @@ function Temoignages() {
                 imgTestim={imgTesti_01}
                 name="Eliane MUNKENI"
                 statut="Présidente Nationale, FEC"
-                className="col-start-1 col-end-2 row-start-1 row-end-2"
+                className="col-start-1 col-end-2 row-start-1 row-end-2 md:h-max"
               />
               <Temoignage
                 text="La FEC est comme un employé en plus dans votre société. Elle
@@ -355,7 +345,7 @@ function Temoignages() {
                 imgTestim={imgTesti_02}
                 name="Eric MONGA"
                 statut="Vice Président Nationale, FEC"
-                className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2"
+                className="col-start-1 col-end-2 row-start-2 row-end-3 sm:col-start-2 sm:col-end-3 sm:row-start-1 sm:row-end-2 md:h-max"
               />
               <Temoignage
                 text="J&#32;'ai la vision d'un Congo fort et prospère. Je reste
