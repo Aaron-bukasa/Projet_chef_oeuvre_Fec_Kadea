@@ -87,16 +87,6 @@ export default function NavbarPublic(props) {
             Contact
           </Link>
         </li>
-        {/* <li onClick={handleClickLink}>
-          <Link
-            to="/suiviDmd"
-            className={`${
-              props.currentPath === "/suiviDmd" ? "text-focus-color" : "text-primary-blue"} 
-                font-semibold text-nowrap hover:text-focus-color sm:text-lg lg:text-xl`}
-          >
-            Suivi de la demande
-          </Link>
-        </li> */}
         <li onClick={handleClickLink}>
           <Link
             to="/formulaireDmd"

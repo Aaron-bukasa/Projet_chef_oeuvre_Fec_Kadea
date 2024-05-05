@@ -2,7 +2,8 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Response from "../components/Response";
-import bg_002 from "../../assets/images/bg_002.jpg"
+import bg_002 from "../../assets/images/bg_002.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function FormDmd() {
  
@@ -10,6 +11,7 @@ export default function FormDmd() {
   const [isData, setIsData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -33,7 +35,7 @@ export default function FormDmd() {
         setIsError(false);
         setIsResponse(false);
         localStorage.setItem("userDmd", [response.data.nom, response.data.email])
-        window.location.href = `/signup/${response.data.id}`
+        return navigate("/signup/${response.data.id}");
       } else {
         setIsError(true);
         return setIsData("Inscription échouée");

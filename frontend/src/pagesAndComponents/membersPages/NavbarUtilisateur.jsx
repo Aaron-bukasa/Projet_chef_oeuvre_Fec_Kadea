@@ -96,6 +96,9 @@ export default function NavbarUtilisateur() {
           </Link>
         </li>
         <li onClick={handleClickLink}>
+          <div>
+            
+          </div>
           <Link
             to="/services"
             className="font-semibold text-black hover:text-[#4885ff]"
