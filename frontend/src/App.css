@@ -32,6 +32,24 @@
 .linear-bg {
   background: linear-gradient(to left top, #00194C, #d7e5fa, #d3ddf3, #d7e5fa, #00194C);
 }
+
+.hoverLinkChildren:hover > div a {
+  color: #ff764c;
+}
+
+.hoverLinkChildren:hover > ul {
+  visibility: visible;
+  opacity: 1;
+}
+.hoverLinkChildren:hover svg {
+  transform: rotate(180deg);
+  fill: #ff764c;
+}
+
+.profilHoverChidren:hover svg, .profilHoverChidren:hover a {
+  fill: #ff764c;
+  color: #ff764c;
+}
   
 .notifications ul {
   display: none;

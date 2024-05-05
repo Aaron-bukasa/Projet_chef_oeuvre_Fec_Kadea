@@ -1,7 +1,6 @@
 import NavbarPublic from "./publiquesPages/NavbarPublic";
 import Home from "./publiquesPages/Home";
 import FormulaireDmd from "./publiquesPages/FormulaireDmd";
-import SuiviDmd from "./publiquesPages/SuiviDmd";
 import Footer from "./publiquesPages/Footer";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -26,7 +25,6 @@ export default function PubliquesPages() {
                <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/formulaireDmd" element={<FormulaireDmd />} />
-                    <Route path="/suiviDmd" element={<SuiviDmd />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/faq" element={<Faq />} />
                     <Route path="/services" element={<Services />} />

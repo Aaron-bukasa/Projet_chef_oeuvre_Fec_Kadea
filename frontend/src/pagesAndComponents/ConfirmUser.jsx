@@ -37,7 +37,7 @@ export default function confirmUser({ setIsLogin }) {
 
         localStorage.setItem("isLogin", true);
         setIsLogin(true);
-        navigate("/");
+        return navigate("/");
       } else {
         setIsError(true);
         return setIsData("Inscription échouée");

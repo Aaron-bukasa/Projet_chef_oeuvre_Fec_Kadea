@@ -1,10 +1,13 @@
 import bg_002 from "../../assets/images/bg_002.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function FormulaireDmd() {
- 
+  
+  const navigate = useNavigate();
+
   const handleAccepted = (event) => {
     event.preventDefault();
-    window.location.href = 'formDmd'
+    return navigate("/formDmd");
   }
 
   return (
