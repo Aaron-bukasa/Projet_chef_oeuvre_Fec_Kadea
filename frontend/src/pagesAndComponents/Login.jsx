@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import logoFec from "../assets/images/logoFec.svg";
 import bg_002 from "../assets/images/bg_002.jpg";
 
-export default function Login({ setIsLogin }) {
+export default function Login({ setIsUser }) {
   const [isResponse, setIsResponse] = useState(false);
   const [isData, setIsData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,9 +40,9 @@ export default function Login({ setIsLogin }) {
       if (response.status === 200) {
         setIsResponse(false);
         setIsError(false);
-
-        localStorage.setItem("isLogin", true);
-        setIsLogin(true);
+        localStorage.setItem("userId", response.data.userId);
+        localStorage.setItem("token", response.data.token);
+        setIsUser(true);
         navigate("/");
       } else {
         setIsError(true);
@@ -66,9 +66,9 @@ export default function Login({ setIsLogin }) {
         <img src={bg_002} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="flex flex-col justify-center items-center gap-y-8 p-6 min-h-screen roboto-regular sm:p-6 sm:gap-y-12 md:w-11/12 md:mx-auto lg:mx-auto lg:w-9/12 2xl:w-7/12 2xl:max-w-4xl">
-        <div>
+        <Link to='/'>
           <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />
-        </div>
+        </Link>
         <div className="linear-bg w-full rounded-lg px-4 py-6 sm:p-6 lg:py-8">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -125,7 +125,7 @@ export default function Login({ setIsLogin }) {
                 </label>
               </div>
               <Link
-                to="/EDNICMPSSR/signup"
+                to="/formulaireDmd"
                 className="text-sm underline md:text-lg block text-secondary-blue text-right mr-3 sm:text-base"
               >
                 Dévenez membre de la FEC

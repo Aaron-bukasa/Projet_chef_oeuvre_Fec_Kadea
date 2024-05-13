@@ -6,35 +6,42 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pagesAndComponents/Login";
 import Signup from "./pagesAndComponents/Signup";
 import ConfirmUser from "./pagesAndComponents/ConfirmUser";
+import axios from "axios";
 
 function App() {
-
-  const [isLogin, setIsLogin] = useState(
-    window.localStorage.getItem("isLogin") || false
-  );
+  const [isUser, setIsUser] = useState(false);
+  const user = localStorage.getItem('userId');
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      setIsLogin(localStorage.getItem("isLogin"));
-    };
+    if (user !== null) {
+      const verifiedRole = async () => {
+        const response = await axios.post(
+          "http://localhost:3000/users/member/role",
+          { requestId: user }
+        );
 
-    window.addEventListener("storage", handleStorageChange);
+        if (response.status === 200) {
+          setIsUser(true);
+        }
+      };
 
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
- 
-  return(
+      verifiedRole();
+    }
+  }, [user]);
+
+  return (
     <>
       <Routes>
-        <Route path="/*" element={isLogin ? <MemberPage setIsLogin={setIsLogin} /> : <PubliquesPages />} />
-        <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
+        <Route
+          path="/*"
+          element={isUser ? <MemberPage setIsUser={setIsUser} /> : <PubliquesPages />}
+        />
+        <Route path="/login" element={<Login setIsUser={setIsUser} />} />
         <Route path="/signup/:requestId" element={<Signup />} />
-        <Route path="/confirmUser/:requestId" element={<ConfirmUser setIsLogin={setIsLogin} />} />
+        <Route path="/confirmUser/:requestId" element={<ConfirmUser setIsUser={setIsUser} />} />
       </Routes>
     </>
-  )
+  );
 }
 
 export default App;

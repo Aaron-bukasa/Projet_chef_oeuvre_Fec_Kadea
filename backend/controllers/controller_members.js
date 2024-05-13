@@ -14,15 +14,14 @@ function genererCodeConfirmation() {
 }
 
 // GENERATEUR TOKEN
-
 function generateAuthToken(user) {
   const payload = {
-    userId: user.id,
+    userId: user.requestId,
     email: user.email,
     nom: user.nom,
   };
   const secretKey = process.env.RANDOM_TOKEN_SECRET;
-  const token = jwt.sign(payload, secretKey, { expiresIn: "2h" });
+  const token = jwt.sign(payload, secretKey, { expiresIn: "24h" });
 
   return token;
 }
@@ -68,7 +67,7 @@ async function sendEmail(destinateur, code) {
 
 exports.memberSignup = async (req, res) => {
   try {
-    const { requestId } = req.body;
+    const { requestId, password } = req.body;
 
     const userDemande = await prisma.demande.findUnique({ where: { requestId: requestId } });
 
@@ -76,7 +75,7 @@ exports.memberSignup = async (req, res) => {
       return res.status(404).json({ message: "Demande introuvable" });
     }
 
-    const passwordHash = bcrypt.hashSync(req.body.password, 10);
+    const passwordHash = bcrypt.hashSync(password, 10);
 
     const newUser = await prisma.user.create({
       data: {
@@ -161,10 +160,7 @@ exports.memberCheckCode = async (req, res) => {
       },
     });
 
-    res.status(200).cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-    }).json('Adresse e-mail confirmée avec succès');
+    res.status(200).json({token: token});
   } catch (error) {
     console.error('Erreur de confirmation de l\'adresse e-mail :', error.message);
     res.status(500).json({ message: 'Erreur de confirmation de l\'adresse e-mail : ' + error.message });
@@ -203,8 +199,6 @@ exports.resendCodeConfirmation = async(req, res) => {
   
 }
 
-
-
 exports.memberLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -219,17 +213,26 @@ exports.memberLogin = async (req, res) => {
     const token = generateAuthToken(user);
 
     res
-      .status(200)
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-      })
-      .json({ id: user.id, nom: user.nom, email: user.email });
+      .status(200).json({userId: user.requestId, token: token});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erreur interne du serveur" });
   }
 };
+
+exports.memberRole = async(req, res) => {
+  const {requestId} = req.body;
+  try {
+    const user = await prisma.user.findUnique({where: {requestId}});
+    if(!user) {
+      return res.status(400).json("membre introuvablee")
+    }
+    return res.status(200).json(user.role);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Erreur serveur")
+  }
+}
 
 exports.memberLogout = async (req, res) => {
   try {
@@ -242,17 +245,15 @@ exports.memberLogout = async (req, res) => {
 
 exports.memberUserGet = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { requestId } = req.body;
 
     const user = await prisma.user.findUnique({
-      where: { id: parseInt(id) },
+      where: { requestId: requestId },
       include: {
-        suivi_utilisateur: true,
-        confirm_user: true
+        suivi_user: true,
+        profil_user: true
       },
     });
-
-    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: "Utilisateur non trouvée" });

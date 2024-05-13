@@ -7,7 +7,7 @@ import imgClose from "../../assets/images/close.svg";
 import { useNavigate } from "react-router-dom";
 import Profil from "../components/Profil";
 
-export default function NavigationMember({currentPath, setIsLogin}) {
+export default function NavigationMember({currentPath, setIsUser}) {
   const [isClick, setIsClick] = useState(false);
   const navigate = useNavigate();
 
@@ -314,7 +314,7 @@ export default function NavigationMember({currentPath, setIsLogin}) {
             : "opacity-0 -translate-x-44 -translate-y-28"
         } relative opacity-0 transition-all duration-700 ease-in-out lg:opacity-100 lg:translate-x-0 lg:translate-y-0 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg;row-end-2 lg:p-0 lg:m-0 before:content-[''] before:h-1 before:bg-secondary-blue before:block before:my-3 lg:flex lg:gap-x-6 lg:before:hidden xl:gap-x-6 2xl:gap-x-12`}
       >
-        <Profil setIsLogin={setIsLogin} isClick={isClick} />
+        <Profil setIsUser={setIsUser} isClick={isClick} />
       </div>
     </div>
   );

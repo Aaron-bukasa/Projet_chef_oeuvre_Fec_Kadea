@@ -4,6 +4,7 @@ const middlewareAuth = require('../middleware/auth');
 const ctr_suiviDemande = require('../controllers/controller_suiviDemande');
 
 router.post('/', ctr_suiviDemande.suiviDemandePost);
+//router.get('/', ctr_suiviDemande.suiviDemandeGet);
 router.put('/', ctr_suiviDemande.suiviDemandePut);
 router.delete('/', ctr_suiviDemande.suiviDemandeDelete);
 router.post('/EDNICMPSSR', ctr_suiviDemande.suviDemandeFront);

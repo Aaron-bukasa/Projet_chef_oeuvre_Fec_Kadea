@@ -3,36 +3,40 @@ import axios from "axios";
 
 export default function SuiviDmd() {
 
-    const [notifications, setNotifications] = useState([])
+  const [notifications, setNotifications] = useState([])
+  const user = localStorage.getItem('userId');
 
-    const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
+  useEffect(() => {
+    const verifiedRole = async () => {
+      try {
+        const token = localStorage.getItem('token');
 
-    useEffect(() => {
-      const handleStorageChange = () => {
-        setUser(localStorage.getItem('isLogin'));
-      };
-    
-      window.addEventListener('storage', handleStorageChange);
-    
-      return () => {
-        window.removeEventListener('storage', handleStorageChange);
-      };
-    }, []);
+        if (!token) {
+          console.error('Token non trouvé dans le localStorage');
+          return;
+        }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
-                email: user.split(',')[2]
-            });
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            if(response.status === 200) {
-                setNotifications(response.data);
-            }
-        };
-    
-        fetchData();
-      }, []);
+        const response = await axios.post(
+          "http://localhost:3000/users/member",
+          {
+            requestId: user
+          }
+        );
 
+        if (response.status === 200) {
+          setNotifications(response.data.nom);
+        } else {
+          console.error(response.data);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion au serveur :", error);
+      }
+    };
+
+    verifiedRole();
+  }, [user]);
   return (
     <div className="mx-auto border-2 border-gray-400 px-[10%] py-8 rounded-lg bg-gray-100">
       <div className="p-6">

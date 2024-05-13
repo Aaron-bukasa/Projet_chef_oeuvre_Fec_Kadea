@@ -14,7 +14,7 @@ function generateAuthToken(user) {
     nom: user.nom,
   };
   const secretKey = process.env.RANDOM_TOKEN_SECRET;
-  const token = jwt.sign(payload, secretKey, { expiresIn: "2h" });
+  const token = jwt.sign(payload, secretKey, { expiresIn: "24h" });
 
   return token;
 }

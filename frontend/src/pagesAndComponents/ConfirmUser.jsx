@@ -5,8 +5,9 @@ import { useRef, useState } from "react";
 import Response from "./components/Response";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function confirmUser({ setIsLogin }) {
+export default function confirmUser({ setIsUser }) {
   const codeRef = useRef();
   const [isResponse, setIsResponse] = useState(false);
   const [isData, setIsData] = useState("");
@@ -15,10 +16,10 @@ export default function confirmUser({ setIsLogin }) {
   const navigate = useNavigate();
 
   const url = window.location.href;
+  const requestId = url.match(/(?<=.+\/confirmUser\/).+/)[0];
 
   const validateCode = async (event) => {
     event.preventDefault();
-    const requestId = url.match(/(?<=.+\/confirmUser\/).+/)[0];
     const code = codeRef.current.value.trim();
     setIsLoading(true);
 
@@ -32,11 +33,11 @@ export default function confirmUser({ setIsLogin }) {
       setIsResponse(true);
 
       if (response.status === 200) {
-        setIsError(false);
         setIsResponse(false);
-
-        localStorage.setItem("isLogin", true);
-        setIsLogin(true);
+        setIsError(false);
+        localStorage.setItem("userId", requestId);
+        localStorage.setItem("token", response.data.token);
+        setIsUser(true);
         return navigate("/");
       } else {
         setIsError(true);
@@ -62,10 +63,10 @@ export default function confirmUser({ setIsLogin }) {
       );
 
       setIsLoading(false);
-      setIsResponse(true);
+      
 
       if (response.status === 201) {
-        setIsLogin(true);
+        setIsResponse(true);
         setIsError(false);
         return setIsData(response.data);
       } else {
@@ -84,12 +85,13 @@ export default function confirmUser({ setIsLogin }) {
   return (
     <div className="relative">
       <div className="absolute top-0 left-0 w-full h-full z-[-999]">
-          <img src={bg_002} alt="" className="w-full h-full object-cover" />
-        </div>
+        <img src={bg_002} alt="" className="w-full h-full object-cover" />
+      </div>
       <div className="flex flex-col justify-center items-center gap-y-8 p-3 min-h-screen roboto-regular sm:p-6 sm:gap-y-12 md:w-11/12 md:mx-auto lg:mx-auto lg:w-9/12 2xl:w-7/12 2xl:max-w-4xl">
-        
         <div>
-          <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />
+          <Link to="/">
+            <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />
+          </Link>
         </div>
         <div className="linear-bg rounded-lg sm:p-6">
           <form action="" className="relative p-3" onSubmit={validateCode}>
