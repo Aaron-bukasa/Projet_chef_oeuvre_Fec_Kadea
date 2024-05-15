@@ -17,8 +17,8 @@ export default function Profil(props) {
           "http://localhost:3000/users/member/logout"
         );
         if (response.status === 200) {
-          localStorage.removeItem("isLogin");
-          props.setIsLogin(false);
+          localStorage.removeItem("userId");
+          props.setIsUser(false);
           return navigate("/");
         } else {
           console.error("Erreur de la déconnection");

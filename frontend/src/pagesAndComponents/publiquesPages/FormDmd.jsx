@@ -35,7 +35,7 @@ export default function FormDmd() {
         setIsError(false);
         setIsResponse(false);
         localStorage.setItem("userDmd", [response.data.nom, response.data.email])
-        return navigate("/signup/${response.data.id}");
+        return navigate(`/signup/${response.data.id}`);
       } else {
         setIsError(true);
         return setIsData("Inscription échouée");

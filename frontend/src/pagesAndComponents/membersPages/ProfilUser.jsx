@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { jwtDecode } from "jwt-decode";
 
-export default function Profil() {
+export default function ProfilUser() {
 
   const [user, setUser] = useState();
 

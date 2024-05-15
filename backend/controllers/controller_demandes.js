@@ -121,51 +121,51 @@ exports.demandeUserInfo = async(req, res) => {
 //   }
 // }
 
-exports.signupPost = async (req, res) => {
+// exports.signupPost = async (req, res) => {
 
-  const {name, email} = req.body;
+//   const {name, email} = req.body;
 
-  try {
-    const oAuth2Client = new OAuth2Client({
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      redirectUri: process.env.REDIRECT_URI
-    });
+//   try {
+//     const oAuth2Client = new OAuth2Client({
+//       clientId: process.env.CLIENT_ID,
+//       clientSecret: process.env.CLIENT_SECRET,
+//       redirectUri: process.env.REDIRECT_URI
+//     });
 
-    oAuth2Client.setCredentials({
-      refresh_token: process.env.REFRESH_TOKEN
-    });
+//     oAuth2Client.setCredentials({
+//       refresh_token: process.env.REFRESH_TOKEN
+//     });
 
-    const tokens = await oAuth2Client.getAccessToken();
+//     const tokens = await oAuth2Client.getAccessToken();
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        type: 'OAuth2',
-        user: process.env.EMAIL_HOST,
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: tokens.token
-      }
-    });
+//     const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         type: 'OAuth2',
+//         user: process.env.EMAIL_HOST,
+//         clientId: process.env.CLIENT_ID,
+//         clientSecret: process.env.CLIENT_SECRET,
+//         refreshToken: process.env.REFRESH_TOKEN,
+//         accessToken: tokens.token
+//       }
+//     });
 
-    const mailOptions = {
-      from: process.env.EMAIL_HOST,
-      to: email,
-      subject: 'validation de la demande',
-      text: `Félicitaion ${name} ! 
-            Votre demande d'adhésion a été validé, veillez rensigner les informations de la connexion à notre plateforme : ${process.env.FRONT_URL}/EDNICMPSSR/signup`
-    };
+//     const mailOptions = {
+//       from: process.env.EMAIL_HOST,
+//       to: email,
+//       subject: 'validation de la demande',
+//       text: `Félicitaion ${name} ! 
+//             Votre demande d'adhésion a été validé, veillez rensigner les informations de la connexion à notre plateforme : ${process.env.FRONT_URL}/EDNICMPSSR/signup`
+//     };
 
-    await transporter.sendMail(mailOptions);
+//     await transporter.sendMail(mailOptions);
 
-    res.status(201).json('Email d\'inscription vous a été envoyé ! Veuillez vérifier votre boîte de réception.');
-  } catch (error) {
-    console.error('Erreur lors de l\'envoie d\'email d\'inscription:', error);
-    res.status(500).json('Une erreur s\'est produite lors de la soumission de la demande.');
-  }
-};
+//     res.status(201).json('Email d\'inscription vous a été envoyé ! Veuillez vérifier votre boîte de réception.');
+//   } catch (error) {
+//     console.error('Erreur lors de l\'envoie d\'email d\'inscription:', error);
+//     res.status(500).json('Une erreur s\'est produite lors de la soumission de la demande.');
+//   }
+// };
 
 exports.demandePut = async(req, res) => {
     try {
@@ -178,7 +178,6 @@ exports.demandePut = async(req, res) => {
             statut: statut
           }
         });
-        console.log('voir');
         res.status(200).json('Demande validée avec succès');
       } catch (error) {
         console.error(error);

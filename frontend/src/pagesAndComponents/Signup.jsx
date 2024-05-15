@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logoFec from "../assets/images/logoFec.svg";
 import bg_002 from "../assets/images/bg_002.jpg"
+import { Link } from "react-router-dom";
 
 export default function Signup({ usernameEmail }) {
   const [isResponse, setIsResponse] = useState(false);
@@ -15,6 +16,8 @@ export default function Signup({ usernameEmail }) {
 
   const navigate = useNavigate();
   const user = localStorage.getItem('userDmd').split(',')
+  const url = window.location.href;
+  const requestId = url.match(/(?<=.+\/signup\/).+/)[0];
 
   const {
     register,
@@ -23,8 +26,6 @@ export default function Signup({ usernameEmail }) {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const url = window.location.href;
-    const requestId = url.match(/(?<=.+\/signup\/).+/)[0];
     setIsLoading(true);
 
     try {
@@ -39,15 +40,16 @@ export default function Signup({ usernameEmail }) {
       setIsLoading(false);
       setIsResponse(true);
 
-      if (response.status === 201) {
+      if (response.status !== 201) {
+        setIsError(true);
+        return setIsData("Inscription échouée");
+
+      } else {
         setIsResponse(false);
         setIsError(false);
         const requestIdUser = response.data.id;
         localStorage.removeItem('userDmd');
-        window.location.href = `/confirmUser/${requestIdUser}`;
-      } else {
-        setIsError(true);
-        return setIsData("Inscription échouée");
+        navigate(`/confirmUser/${requestIdUser}`);
       }
     } catch (error) {
       setIsError(true);
@@ -65,11 +67,10 @@ export default function Signup({ usernameEmail }) {
         <img src={bg_002} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="flex flex-col justify-center items-center gap-y-8 p-6 min-h-screen roboto-regular sm:p-6 sm:gap-y-12 md:w-11/12 md:mx-auto lg:mx-auto lg:w-9/12 2xl:w-7/12 2xl:max-w-4xl">
-        <div className="absolute top-0 left-0 w-full h-full z-[-999]">
-          <img src={bg_002} alt="" className="w-full object-cover" />
-        </div>
         <div>
-          <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />
+          <Link to="/">
+            <img src={logoFec} alt="logo de la fec" className="w-36 sm:w-48" />
+          </Link>
         </div>
         <div className="linear-bg rounded-lg px-4 py-6 sm:p-6 lg:py-8">
             <form onSubmit={handleSubmit(onSubmit)} className="w-full">
