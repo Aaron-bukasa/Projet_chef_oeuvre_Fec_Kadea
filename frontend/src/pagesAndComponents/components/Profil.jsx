@@ -49,6 +49,10 @@ export default function Profil(props) {
           className={isProfilOpen ? "block absolute -right-24 bg-secondary-color p-6 flex flex-col gap-y-3" : props.isClick ? 'flex flex-col gap-y-3 mt-6' : 'hidden'
           }
         >
+          <div onClick={handleClick} className="ml-auto mr-0">
+        <svg xmlns="http://www.w3.org/2000/svg" className="hover:fill-focus-color cursor-pointer" fill='#000000' height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </div>
+
           <li className="profilHoverChidren text-nowrap">
             <Link to="GestionCompte" className="flex gap-x-2 font-semibold">
               <svg

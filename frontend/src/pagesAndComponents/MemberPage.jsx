@@ -10,7 +10,7 @@ import Opportunites from "./membersPages/Opportunites";
 import Ressources from "./membersPages/Ressources";
 import Support from "./membersPages/Support";
 import Commentaire from "./membersPages/Commentaire";
-import MessageMembre from "./components/MessageMembre";
+import MessageMembre from "./membersPages/MessageMembre";
 import SuiviDmd from "./membersPages/SuiviDmd";
 import axios from "axios";
 

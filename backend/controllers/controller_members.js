@@ -244,15 +244,18 @@ exports.memberLogout = async (req, res) => {
 };
 
 exports.memberUserGet = async (req, res) => {
+
   try {
-    const { requestId } = req.body;
+    const { requestId } = req.params;
 
     const user = await prisma.user.findUnique({
-      where: { requestId: requestId },
+      where: {
+        requestId: requestId
+      },
       include: {
         suivi_user: true,
         profil_user: true
-      },
+      }
     });
 
     if (!user) {
