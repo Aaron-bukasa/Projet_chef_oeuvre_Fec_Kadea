@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const middlewareAuth = require('../middleware/auth');
+const userRole = require('../middleware/userRole');
 const ctr_adm = require('../controllers/controller_adm');
 const ctr_members = require('../controllers/controller_members');
 
 // API SERVER
-router.post('/server/signup', middlewareAuth, ctr_adm.serverSignup);
+router.post('/server/signup', userRole, ctr_adm.serverSignup);
 router.post('/server/login', ctr_adm.serverLogin);
-router.post('/server/logout', middlewareAuth, ctr_adm.serverLogout);
-router.get('/server',middlewareAuth, ctr_adm.serverUsersGet);
+router.post('/server/logout', middlewareAuth, userRole, ctr_adm.serverLogout);
+router.get('/server', userRole, ctr_adm.serverUsersGet);
 router.get('/server/:requestId', ctr_adm.serverUserGet);
-router.put('/server/:requestId',middlewareAuth, ctr_adm.serverUserPut);
-router.put('/server/lock', middlewareAuth, ctr_adm.serverUserLock);
-router.put('/server/unlock', middlewareAuth, ctr_adm.serverUserUnlock);
-router.delete('/server', middlewareAuth, ctr_adm.serverUserDelete);
-
+router.put('/server/:requestId',middlewareAuth, userRole, ctr_adm.serverUserPut);
+router.put('/server/lock', middlewareAuth, userRole, ctr_adm.serverUserLock);
+router.put('/server/unlock', middlewareAuth, userRole, ctr_adm.serverUserUnlock);
+router.delete('/server', middlewareAuth, userRole, ctr_adm.serverUserDelete);
 
 // API CLIENT
 router.post('/member/signup', ctr_members.memberSignup);

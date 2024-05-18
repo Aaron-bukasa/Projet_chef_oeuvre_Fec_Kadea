@@ -718,6 +718,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -831,6 +835,10 @@ video {
   grid-template-rows: max-content auto max-content;
 }
 
+.grid-rows-\[max-content\2c fit-content\2c max-content\] {
+  grid-template-rows: max-content fit-content max-content;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -883,6 +891,14 @@ video {
 
 .gap-y-8 {
   row-gap: 2rem;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .rounded-full {
