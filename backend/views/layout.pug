@@ -6,8 +6,8 @@ html
     script(src="/javascripts/auth.js", defer)
     script(src="/javascripts/main.js", defer)
   body
-    div(id='container' class='grid grid-cols-[max-content,1fr] grid-rows-[max-content,auto,max-content] gap-6 min-h-screen max-w-screen')
-      div(class="col-start-1 col-end-3 row-start-1 row-end-2 bg-secondary-blue p-6 text-white")
+    div(id='container' class='grid grid-cols-[max-content,1fr] grid-rows-[max-content,fit-content,max-content] gap-6 min-h-screen max-w-screen h-screen overflow-y-hidden')
+      div(class="col-start-1 col-end-3 row-start-1 row-end-2 bg-secondary-blue p-3 text-white")
         div(class="flex justify-between") 
           div(class="logo")
             img(src="/images/logoFec.svg" alt="logo de la fec" class="w-20")
@@ -34,9 +34,9 @@ html
           a(href="/rapport" class="flex items-center gap-x-2") 
             img(src="/images/monitoring.svg" class="flex items-center gap-x-2")
             span Rapport
-      div(class="col-start-1 col-end-3 row-start-3 row-end-4 bg-secondary-blue text-white p-6") 
+      div(class="col-start-1 col-end-3 row-start-3 row-end-4 bg-secondary-blue text-white p-3") 
         div
           img(src="/images/logoFec.svg" alt="logo de la féderation des entreprises" class="w-20 mb-3")
         div &copy; 2024 - Fédération des Entreprises du Congo. Tous droits réservés
-      div(class="col-start-2 col-end-3 row-start-2 row-end-3 w-[98%] roboto-regular")
+      div(class="col-start-2 col-end-3 row-start-2 row-end-3 w-[98%] roboto-regular overflow-y-scroll")
         block content

@@ -1,89 +1,44 @@
-
-
-// bloquer.addEventListener('click', async() => {
-//     const loading = document.querySelector('.loading');
-//     loading.style.display = 'block'
-
-//     const id = document.querySelector('.identifiant');
-//     const idValue = id.textContent;
-
-//     const postData = {
-//         id: idValue
-//     };
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(postData)
-//     };
-
-//     try {
-//         const response = await fetch('users/server/lock', requestOptions);
-
-//         console.log(response);
-//         loading.style.display = 'none'
-
-//         if(response.status === 200) {
-//             return alert(response.data);
-//         } else {
-//             alert(response.data)
-//         }
-
-//     } catch (error) {
-//         loading.style.display = 'none'
-//         return alert(response.data)
-//     }
-// });
-
-// action(
-//     document.querySelector('.valider'),
-//     'validée',
-//     'PUT',
-//     '/demandes',
-//     'Demande validée avec succès',
-//     'Erreur lors de la validation de la demande'
-// )
-
-// action(
-//     document.querySelector('.rejeter'),
-//     'rejetée',
-//     'PUT',
-//     '/demandes',
-//     'Demande rejetée avec succès',
-//     'Erreur lors du rejet de la demande'
-// )
-
-// action(
-//     document.querySelector('.supprimer'),
-//     'supprimée',
-//     undefined,
-//     '/users/server',
-//     'Demande supprimée avec succès',
-//     'Erreur lors de la suppression de la demande'
-// )
-
 action(
-    document.querySelector('.supprimerUser'), 
-    undefined, 
-    'DELETE', 
-    '/users/server'
+    document.querySelector('.valider'),
+    'validée',
+    'PUT',
+    '/demandes',
+    'Demande validée avec succès',
+    'Erreur lors de la validation de l\'utilisateur'
 )
 
-// suiviActions(
-//     document.querySelector('.btnSuiviCreate'),
-//     document.querySelector('.suiviCreate'),
-//     'POST',
-//     '/suivi_demande',
-//     'Suivi de demande créé avec succès',
-//     'Erreur lors de l\'ajout du nouveau suivi'
-// )
+action(
+    document.querySelector('.rejeter'),
+    'rejetée',
+    'PUT',
+    '/demandes',
+    'Demande rejetée avec succès',
+    'Erreur lors du rejet de l\'utilisateur'
+)
+
+action(
+    document.querySelector('.supprimer'),
+    'supprimée',
+    'DELETE',
+    '/demandes',
+    'Utilisateur supprimée avec succès',
+    'Erreur lors de la suppression de l\'utiulisateur'
+)
+
+suiviActions(
+    document.querySelector('.btnSuiviCreate'),
+    document.querySelector('.suiviCreate'),
+    'POST',
+    '/suivi_demande',
+    'Suivi de demande créé avec succès',
+    'Erreur lors de l\'ajout du nouveau suivi'
+)
 
 
-function action(element, statut, method, route) {
+function action(element, statut, method, route, succefullMessage, errorMessage) {
 
     element.addEventListener('click', async() => {
-        
+    
         const postData = {
             requestId: element.dataset.id,
             statut: statut && statut
@@ -100,19 +55,19 @@ function action(element, statut, method, route) {
             const response = await fetch(route, requestOptions);
             if(response.status === 200) {
                
-                if(statut !== 'bloqué' && statut !== 'debloqué') {
-                    const message = await response.data;
-                    alert(message)
-                    window.location.href = `/users/server/${element.dataset.id}`;
-                } else  {
-                    const message = await response.data;
-                    alert(message)
-                    window.location.href = '/users/server'
-                    // emailSignupMember(element, succefullMessage, errorMessage);
+                if(statut === 'rejetée') {
+                    alert(succefullMessage)
+                    window.location.href = `/demandes/${element.dataset.id}`;
+                } else if(statut === 'validée') {
+                    emailSignupMember(element, succefullMessage, errorMessage);
+                } else if(statut === 'supprimée') {
+                    alert(succefullMessage)
+                    window.location.href = '/demandes';
+                    return;
                 }
             }
         } catch (error) {
-            return alert('erreur server')
+            return alert(errorMessage)
         }
     
     })
