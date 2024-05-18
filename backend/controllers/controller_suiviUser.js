@@ -9,7 +9,7 @@ exports.suiviUserPost = async (req, res) => {
       data: {
         user: {
           connect: {
-            id: userId
+            requestId: use
           }
         },
         notifications: notifications 

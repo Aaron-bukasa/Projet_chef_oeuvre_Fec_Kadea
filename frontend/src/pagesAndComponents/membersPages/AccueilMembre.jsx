@@ -1,4 +1,4 @@
-import MessageMembre from "../components/MessageMembre";
+import MessageMembre from "../membersPages/MessageMembre";
 
 export default function AccueilMembre() {
   return (

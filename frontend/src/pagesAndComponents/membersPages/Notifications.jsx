@@ -5,33 +5,68 @@ export default function Notifications() {
 
     const [notifications, setNotifications] = useState([])
 
-    const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
+//     const [user, setUser] = useState(window.localStorage.getItem("isLogin"));
 
-    useEffect(() => {
-      const handleStorageChange = () => {
-        setUser(localStorage.getItem('isLogin'));
-      };
+//     useEffect(() => {
+//       const handleStorageChange = () => {
+//         setUser(localStorage.getItem('isLogin'));
+//       };
     
-      window.addEventListener('storage', handleStorageChange);
+//       window.addEventListener('storage', handleStorageChange);
     
-      return () => {
-        window.removeEventListener('storage', handleStorageChange);
-      };
-    }, []);
+//       return () => {
+//         window.removeEventListener('storage', handleStorageChange);
+//       };
+//     }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
-                email: user.split(',')[2]
-            });
+//     useEffect(() => {
+//         const fetchData = async () => {
+//             const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
+//                 email: user.split(',')[2]
+//             });
 
-            if(response.status === 200) {
-                setNotifications(response.data);
-            }
-        };
+//             if(response.status === 200) {
+//                 setNotifications(response.data);
+//             }
+//         };
     
-        fetchData();
-      }, []);
+//         fetchData();
+//       }, []);
+// console.log(notifications);
+
+const userId = localStorage.getItem('userId');
+
+useEffect(() => {
+  const verifiedRole = async () => {
+    try {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.error('Token non trouvé dans le localStorage');
+        return;
+      }
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      const response = await axios.get(
+        "http://localhost:3000/users/server/:requestId",
+        {
+          requestId: userId
+        }
+      );
+
+      if (response.status === 200) {
+        setNotifications(response.data);
+      } else {
+        console.error(response.data);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la connexion au serveur :", error);
+    }
+  };
+
+  verifiedRole();
+}, [userId]);
 
   return (
     <div className="mx-auto border-2 border-gray-400 px-[10%] py-8 rounded-lg bg-gray-100">
