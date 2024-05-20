@@ -9,7 +9,7 @@ datasource db {
 
 // DEFINITION DES MODELES
 
-// DEMANDE ET SUIVI DEMANDE
+// DEMANDE
 
 model Demande {
   id                Int         @id @default(autoincrement())
@@ -21,19 +21,7 @@ model Demande {
   forme_juridique   String
   secteur_activite String
   province_activite String
-  confirmed   Boolean @default(false)
-  statut            String      @default("en attente")  // en attente, validée, rejetée
   date_soumission   DateTime    @default(now())
-  suivi_demande  SuiviDemande[]
-}
-
-model SuiviDemande {
-  id          Int       @id @default(autoincrement())
-  requestId         String    @unique
-  evenement   String
-  date        DateTime  @default(now())
-  demande     Demande   @relation(fields: [demandeRequestId], references: [requestId])
-  demandeRequestId   String
 }
 
 // user, PROFIL, SUIVI ET CONFIRMATION

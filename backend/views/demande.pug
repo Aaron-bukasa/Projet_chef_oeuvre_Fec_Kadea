@@ -1,55 +1,58 @@
 extends layout
   
 block content
-    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Validation de la demande
-    div.validation-demande
-        div(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
-            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-[50%]")
-                h2(class='text-lg font-bold mb-2') Information sur la démande
-                p Numero : #{demande.id}
-                p Identification : #{demande.requestId}
-                p Nom : #{demande.nom}
-                p Email : #{demande.email}
-                p Telephone : #{demande.telephone}
-                p Organisation : #{demande.nom_organisation}
-                p Forme juridique : #{demande.forme_juridique}
-                p Secteur d'activité  : #{demande.secteur_activite}
-                p Province d'activité  : #{demande.province_activite}
-                p Statut de la demande : #{demande.statut}
-                p Date de création : #{demande.date_soumission.toLocaleString('en-GB', { timeZone: 'UTC' })}
-            div(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                div(class='lg:flex lg:gap-x-6 relative')
-                    div.actions(class='2/4') 
-                        h2(class='text-lg font-bold mb-2') Actions
-                        div(class='flex flex-col gap-y-2')
-                            input.valider(type='button' data-id=demande.requestId data-name=demande.nom data-email=demande.email value='valider' class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.rejeter(type='button' data-id=demande.resquestId value='rejeter' class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.supprimer(type='button' data-id=demande.requestId value='supprimer' class='text-white bg-red-600 rounded-lg font-bold p-1')
-                    form(class='w-2/4')
-                        label(for="commentaire") Ajouter état de la demande
-                        textarea.suiviCreate(name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
-                        input.btnSuiviCreate(type="submit" data-id=demande.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full cursor-pointer")
-                    div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
-                        div(class='text-center py-12') 
-                            span loading
-                            span .....
-        div 
-            h2(class="font-bold text-xl mb-3") Etat de la demande
-            table(class="w-full border-2 p-2 mb-6")
-                thead
-                    tr(class="py-2 bg-gray-200")
-                        th(class="text-center") Id
-                        th(class="text-center") Date
-                        th(class="text-center") Etat
-                        th(class="text-center") Actions
-                tbody
-                    each suivi in demande.suivi_demande
-                        tr(class="relative")
-                            td(class="text-center")= suivi.id
-                            td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td(class="text-center")= suivi.evenement
-                            td.actionsTD(class="text-center")
-                                input(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue cursor-pointer")
-                                input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3 cursor-pointer") 
+    div(class="relative bg-gray-50 min-h-full p-12 w-[800px] mx-auto")
+        div(class="flex justify-between border-b-2 pb-3") 
+            div 
+                p REPUBLIQUE DEMOCRATIQUE DU CONGO 
+                P(class="font-bold") FEDERATION DES ENTREPRISES DU CONGO 
+            div 
+                img(src="/images/logoFec.svg", alt="logo")
+        div(class="my-6")
+            h1(class="text-center font-extrabold text-lg md:text-xl lg:text-2xl uppercase mb-12") Démande d'adhésion
+            ul(class="flex justify-between font-bold mx-6") 
+                li N° ordre : #{demande.id}
+                li N° Id : #{demande.requestId}
+            div.validation-demande(class="p-6 flex flex-col my-3 rounded-lg text-md")
+                div
+                    h2(class='font-bold mb-2 text-xl') Information sur le demandeur
+                    ul(class="flex flex-col gap-y-2 ml-6 text-md")
+                        li Nom : 
+                            span(class="capitalize") #{demande.nom}
+                        li Email : #{demande.email}
+                        li Telephone : #{demande.telephone}
+                        li Organisation : #{demande.nom_organisation}
+                        li Forme juridique : #{demande.forme_juridique}
+                        li Secteur d'activité  : #{demande.secteur_activite}
+                        li Province d'activité  : #{demande.province_activite}
+                        li Date de création : #{demande.date_soumission.toLocaleString()}
+                div(class="mt-3")
+                    h2(class='font-bold mb-2 text-xl') Notice
+                    div(class="ml-6")
+                        p.my-2
+                            strong(class="text-red-600") Article 5 :
+                            |  Peut devenir membre de la Fédération, toute personne physique commerçante ou morale régulièrement constituée en entreprise de droit privé ou public ou toute autre organisation structurée d’entreprises dûment revêtue de la personnalité juridique, qui exploite légalement sur le territoire de la République Démocratique du Congo une activité commerciale, industrielle, minière, agricole, artisanale, sociale ou libérale.
+                        p.my-2
+                            strong(class="text-red-600") Article 6 :
+                            |  Le dossier de demande d’affiliation est constitué d’une lettre de demande d’affiliation de l’impétrant, du bulletin d’adhésion dûment rempli, des preuves de la constitution régulière de l’entité (personne morale) ou de qualité de commerçant (personne physique) et de la preuve de parrainage d’un membre en ordre de cotisation. L’impétrant peut faire recours auprès du Conseil d’Administration en cas de refus de sa demande d’affiliation. La qualité de membre se concrétise par le paiement d’une cotisation annuelle à la Fédération et la signature du Code d’éthique. Toute entreprise, nonobstant l’appartenance à un groupe, s’affilie et s’acquitte de sa cotisation individuellement.
+                        p.my-2
+                            strong(class="text-red-600") Article 7 :
+                            |  Le membre s’engage à observer le Code d’éthique et les décisions prises par les organes statutaires de la Fédération. Il veille à communiquer à celle-ci toutes les informations utiles à la réalisation de son objet social.
+                        p.my-2
+                            strong(class="text-red-600") Article 8 :
+                            |  Tout membre peut démissionner de la Fédération. Il adressera à cet effet à la Fédération un courrier recommandé avec accusé de réception auquel la Fédération répondra par une prise d’acte. Il reste tenu d’acquitter les cotisations échues. Toute cotisation versée reste acquise à la Fédération.
+                        p.my-2
+                            strong(class="text-red-600") Article 9 :
+                            |  Le Conseil d’Administration peut prononcer l’exclusion d’un membre en cas de violation des statuts et règlements de la Fédération, du Code éthique ou pour un motif grave lié à l’exercice de son activité. De même, le Conseil d’Administration peut prononcer la déchéance du mandat, au sein de la Fédération, de toute personne, pour les mêmes motifs cités ci avant. Le membre exclu reste tenu d’acquitter les cotisations échues.
+                        p.my-2
+                            strong(class="text-red-600") Article 74 :
+                            |  Le régime des cotisations est arrêté annuellement par l’Assemblée Générale Ordinaire, sur proposition du Conseil d’Administration. Le montant de la cotisation est déterminé suivant des critères arrêtés par le Conseil d’Administration, compte tenu de la dimension économique du membre. Le membre est tenu de communiquer à la Fédération toutes les justifications utiles à la vérification de la hauteur de la cotisation à verser. Les cotisations sont payables au lieu et dans les délais fixés par le Conseil d’Administration.
+                div(class="flex flex-col gap-y-6 fixed bottom-12 right-24")
+                    input.supprimer(type='button' data-id=demande.requestId value='supprimer' class='text-white bg-red-600 rounded-lg font-bold py-2 px-4 h-max w-max cursor-pointer')
+                    button(class="text-white bg-red-600 rounded-lg font-bold py-2 px-4 h-max w-max") Télecharger le PDF
+            div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
+                div(class='text-center py-12') 
+                    span loading
+                    span ...
         
     script(src="/javascripts/demande.js")
