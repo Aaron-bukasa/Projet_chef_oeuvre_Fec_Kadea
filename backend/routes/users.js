@@ -6,10 +6,10 @@ const ctr_adm = require('../controllers/controller_adm');
 const ctr_members = require('../controllers/controller_members');
 
 // API SERVER
-router.post('/server/signup', userRole, ctr_adm.serverSignup);
+router.post('/server/signup', middlewareAuth, userRole, ctr_adm.serverSignup);
 router.post('/server/login', ctr_adm.serverLogin);
 router.post('/server/logout', middlewareAuth, userRole, ctr_adm.serverLogout);
-router.get('/server', userRole, ctr_adm.serverUsersGet);
+router.get('/server', middlewareAuth, userRole, ctr_adm.serverUsersGet);
 router.get('/server/:requestId', ctr_adm.serverUserGet);
 router.put('/server/:requestId',middlewareAuth, userRole, ctr_adm.serverUserPut);
 router.put('/server/lock', middlewareAuth, userRole, ctr_adm.serverUserLock);

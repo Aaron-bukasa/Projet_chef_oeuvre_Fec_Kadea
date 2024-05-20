@@ -13,6 +13,7 @@ import Commentaire from "./membersPages/Commentaire";
 import MessageMembre from "./membersPages/MessageMembre";
 import SuiviDmd from "./membersPages/SuiviDmd";
 import axios from "axios";
+import bg_icon from "../assets/images/bg-icon-gray.jpg"
 
 export default function MemberPage({ setIsUser }) {
   const location = useLocation();
@@ -61,7 +62,10 @@ export default function MemberPage({ setIsUser }) {
   return (
     <div className="min-h-screen grid grid-rows-[max-content,auto,max-content] relative roboto-regular w-screen">
       <NavigationMember currentPath={currentPath} setIsUser={setIsUser} />
-      <div className="w-screen">
+      <div className="relative w-screen">
+        <div className="absolute top-0 left-0 w-full h-full z-[-999]">
+          <img src={bg_icon} alt="" className="object-cover w-full h-full"/>
+        </div>
         <Routes>
           <Route path="/" element={isRole === 'administrateur' || isRole === 'member' ? <AccueilMembre /> : <MessageMembre />} />
           <Route path="/actuAnnonces" element={isRole === 'administrateur' || isRole === 'member' ? <ActuAnnonces /> : <MessageMembre />} />

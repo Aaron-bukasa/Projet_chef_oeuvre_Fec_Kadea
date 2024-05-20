@@ -35,9 +35,6 @@ exports.demandeGet = async(req, res) => {
   
       const demande = await prisma.demande.findUnique({
         where: { requestId: requestId },
-        include: {
-          suivi_demande: true
-        }
       });
   
       if (!demande) {
