@@ -1,63 +1,40 @@
 extends layout
   
 block content
-    div(class="newsletter")
-        h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Abonnés et Newsletters
-        section(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
-            div(class="border-2 p-3 my-3 w-2/4")
-                h2(class="font-bold text-xl mb-3") Nouvelle newsletter
-                form.create_newsletter(method='post' class="flex flex-col")
-                    input.objet(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
-                    textarea.content(name="message", cols="30", rows="5" placeholder="newsletter" class="border-2 rounded-lg p-2 my-1")
-                    button(type='submit' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-max") Envoyer
-            ul.statistic(class="border-4 border-dashed w-2/4 p-3 flex flex-col my-3 w-full gap-y-4")
-                h2(class='text-lg font-bold mb-2') Les statistiques
-                li Nombre total de newsletters : 
-                    if abonnes.newsletter
-                        span abonnes.newsletter.length
-                    else 
-                        span 0
-                li Nombre total d'abonnés: !{abonnes.length}
-                li(class="my-4 xl:flex") 
-                    a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
-                    a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
-        section(class="md:flex md:gap-x-5") 
-            div(class="border-2 md:w-3/5 p-3")
-                h2(class="font-bold text-xl mb-3 text-center") Listes des newsletters envoyés
-                table(class="w-full border-2 p-2 mb-6")
-                    thead
-                        tr(class="py-2 bg-gray-200 px-1")
-                            th(class="text-center") id
-                            th(class="text-center") Date
-                            th(class="text-center") contenu
-                    tbody
-                        if abonnes.newsletter
-                            each newsletter in abonnes.newsletter
-                                tr(class="border-b-2 py-2 px-1")
-                                    td(class="text-center")= newsletter.id
-                                    td(class="text-center")= newsletter.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                                    td(class="text-center")=  newsletter.newsletter
-                        else 
-                            tr(class="border-b-2 py-2 px-1")
-                                    td(class="text-center")
-                                    td(class="text-center")
-                                    td(class="text-center")
-            div(class="border-2 md:w-2/5 p-3")
-                h2(class="font-bold text-xl mb-3 text-center") Listes d'abonnés
-                table(class="w-full border-2 p-2 mb-6")
-                    thead
-                        tr(class="py-2 bg-gray-200 px-1")
-                            th(class="text-center") id
-                            th(class="text-center") Date
-                            th(class="text-center") Email
-                            th(class="text-center") statut
-                    tbody
-                        each abonne in abonnes
-                            tr(class="border-b-2 py-2 px-1")
-                                td(class="text-center")= abonne.id
-                                td(class="text-center")= abonne.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                                td(class="text-center")= abonne.email
-                                td(class="text-center")= abonne.confirmed
+    div(class="h-full grid grid-cols-3 grid-rows-[max-content,repeat(3,auto)] gap-12 px-6 mb-3")
+        h1(class="col-start-1 col-end-4 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Abonnés à la newletter
+        ul.statistic(class="col-start-1 col-end-2 row-start-3 row-end-4 bg-gray-50 p-6 text-lg flex flex-col justify-center my-3 gap-y-4 rounded-lg")
+            h2(class='text-3xl font-bold mb-3 text-center') Les statistiques
+            li
+                span.font-semibold  Nombre total de tous les abonnés : 
+                | !{abonnes.length}
+            li 
+                span.font-semibold Nombre total de nouveaux abonnés : 
+                | !{abonnes.length}
+            li 
+                span.font-semibold Nombre total des abonnements non confirmés: 
+                | !{abonnes.length}
+            li 
+                span.font-semibold Nombre total des abonnements confirmés : 
+                | !{abonnes.length}
+            li(class="my-4 xl:flex") 
+                a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+        div(class="col-start-2 col-end-4 row-start-2 row-end-5 bg-gray-50 p-3 overflow-y-scroll rounded-lg")
+            h2(class="font-bold text-3xl py-3 mb-3 text-center") Listes d'abonnés
+            table(class="w-full border-2 p-2 mb-6")
+                thead
+                    tr(class="py-2 bg-slate-200  border-b-2 border-slate-600")
+                        th(class="text-center py-2 px-1") id
+                        th(class="text-center py-2 px-1") Date
+                        th(class="text-center py-2 px-1") Email
+                        th(class="text-center py-2 px-1") statut
+                tbody
+                    each abonne in abonnes
+                        tr(class="even:bg-slate-200 border-b-2 border-slate-600")
+                            td(class="text-center py-2 px-1")= abonne.id
+                            td(class="text-center py-2 px-1")= abonne.date.toLocaleString()
+                            td(class="text-center py-2 px-1")= abonne.email
+                            td(class="text-center py-2 px-1")= abonne.confirmed
 
     script(src="/javascripts/newsletters.js")
                         

@@ -1,40 +1,40 @@
 extends layout
   
 block content
-    div(class="message")
-        h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Liste des messages
-        section(class="w-full md:flex p-3 gap-4 lg:border-2 my-6")
-            div(class="border-4 border-dashed p-3 my-3 w-full flex justify-center items-center")
-                h1(class="rounded-full p-5 w-12 h-12 w-32 h-32 text-xl font-bold border-2 bg-red-200 flex justify-center items-center") !{messages.filter(message => message.read === false).length}
-            ul.statistic(class="border-4 border-dashed p-3 flex flex-col my-3 w-full gap-y-4")
-                h2(class='text-lg font-bold mb-2') Les statistiques
-                li Nombre total de nessages: !{messages.length}
-                li Nombre de messages non lus: !{messages.filter(message => message.read === false).length}
-                li Nombre de messages lus: !{messages.filter(message => message.read === true).length}
-                li(class="my-4 xl:flex") 
-                    a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
-                    a(href="/demandes" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
-        section.liste-messages
-            h2(class="font-bold text-xl mb-3") Listes des dmessages
+    div(class="h-full grid grid-cols-2 grid-rows-[repeat(2,max-content),repeat(2,auto)] gap-12 px-6")
+        h1(class="col-start-1 col-end-3 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Liste des messages
+        div(class="col-start-1 col-end-2 row-start-2 row-end-3 bg-gray-50 p-3 my-3 flex flex-col items-center justify-center")
+            h2(class="text-2xl font-semibold py-3") Nouveux messages
+            p(class="rounded-full p-5 w-12 h-12 w-32 h-32 text-xl font-bold border-2 bg-slate-200 border-2 border-slate-300 flex justify-center items-center") !{messages.filter(message => message.read === false).length}
+        ul.statistic(class="col-start-2 col-end-3 row-start-2 row-end-3 bg-gray-50 p-3 flex flex-col my-3 gap-y-4")
+            h2(class='text-2xl font-bold mb-2') Les statistiques
+            li.ml-6 Nombre total de nessages: !{messages.length}
+            li.ml-6 Nombre de messages non lus: !{messages.filter(message => message.read === false).length}
+            li.ml-6 Nombre de messages lus: !{messages.filter(message => message.read === true).length}
+            li.ml-6(class="my-4 xl:flex") 
+                a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
+                a(href="/demandes" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+        div.liste-messages(class="bg-gray-50 p-6 col-start-1 col-end-3 row-start-3 row-end-5")
+            h2(class="font-bold text-2xl mb-3 py-3") Listes des messages
             table(class="w-full border-2 p-2 mb-6")
                 thead
-                    tr(class="py-2 bg-gray-200 px-1")
-                        th(class="text-center") id
-                        th(class="text-center") Date
-                        th(class="text-center") Nom
-                        th(class="text-center") Email
-                        th(class="text-center") Message
-                        th(class="text-center") statut
-                        th(class="text-center") Actions
+                    tr(class="py-2 bg-slate-200  border-b-2 border-slate-600")
+                        th(class="text-center py-2 px-1") id
+                        th(class="text-center py-2 px-1") Date
+                        th(class="text-center py-2 px-1") Nom
+                        th(class="text-center py-2 px-1") Email
+                        th(class="text-center py-2 px-1") Message
+                        th(class="text-center py-2 px-1") statut
+                        th(class="text-center py-2 px-1") Actions
                 tbody
                     each message in messages
-                        tr(class="border-b-2 py-2 px-1")
-                            td(class="text-center")= message.id
-                            td(class="text-center")= message.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td(class="text-center")= message.nom
-                            td(class="text-center")= message.email
-                            td(class='pl-2')= message.message
-                            td(class='pl-2')= message.read
-                            td(class="text-center")
+                        tr(class="even:bg-slate-200 border-b-2 border-slate-600")
+                            td(class="text-center py-2 px-1")= message.id
+                            td(class="text-center py-2 px-1")= message.date.toLocaleString()
+                            td(class="text-center py-2 px-1")= message.nom
+                            td(class="text-center py-2 px-1")= message.email
+                            td(class="text-center py-2 px-1")= message.message
+                            td(class="text-center py-2 px-1")= message.read
+                            td(class="text-center py-2 px-1")
                                 a(href=`/messages/${message.id}` class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue") Voir
 

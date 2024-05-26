@@ -2,50 +2,67 @@ extends layout
   
 block content
     div.utilisateur(class="h-full grid gap-12 grid-cols-5 grid-rows-[max-content,repeat(2, 1fr),max-content]")
-        h1(class="col-start-1 col-end-6 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") #{user.role} #{user.profil_user.nom}
-        div.userInfo(class="col-start-1 col-end-3 row-start-2 row-end-4 bg-gray-50 text-lg") 
-            div(class="p-3 flex flex-col my-3 w-[50%] ")
-                div(class="px-3")
-                    h2(class='text-2xl font-bold mb-2') Profil utilisateur
-                    p Identification : #{user.id}
-                    p requestId : #{user.requestId}
-                    p Nom : #{user.profil_user.nom}
-                    p Email : #{user.email}
-                    p Role : #{user.role}
-                    p Verified : #{user.verified}
-                    p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
-                    p Date d'adhésion : #{user.profil_user.date_adhesion}
-                    p Status d'adhésion : #{user.profil_user.status_adhesion}
+        h1(class="col-start-1 col-end-6 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl first-letter:uppercase pt-3") #{user.role} #{user.profil_user.nom}
+        div.userInfo(class="col-start-1 col-end-3 row-start-2 row-end-4 bg-gray-50 text-lg mt-12") 
+            div(class="p-3 flex flex-col justify-between h-full py-12 px-6")
+                div(class="px-3 flex flex-col gap-y-3")
+                    h2(class='text-3xl font-bold mb-2 text-center mb-6') Profil utilisateur
+                    p 
+                        span.font-semibold Identification : 
+                        | #{user.id}
+                    p 
+                        span.font-semibold requestId : 
+                        | #{user.requestId}
+                    p 
+                        span.font-semibold Nom : 
+                        | #{user.profil_user.nom}
+                    p 
+                        span.font-semibold Email : 
+                        | #{user.email}
+                    p 
+                        span.font-semibold Role : 
+                        | #{user.role}
+                    p 
+                        span.font-semibold Verified : 
+                        | #{user.verified}
+                    p 
+                        span.font-semibold Date de création : 
+                        | #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                    p 
+                        span.font-semibold Date d'adhésion : 
+                        | #{user.profil_user.date_adhesion}
+                    p 
+                        span.font-semibold Status d'adhésion : 
+                        | #{user.profil_user.status_adhesion}
                 div.actions 
-                    h2(class='text-lg font-bold mb-2') Actions
                     div(class='flex gap-x-3')
-                        input.modifier(type="button" value="Modifier" class='text-white bg-blue-800 rounded-lg font-bold p-1')
-                        input.supprimer(type="button" value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold p-1')
+                        input.modifier(type="button" value="Modifier" class='text-white bg-blue-800 rounded-lg font-bold py-2 px-3')
+                        input.supprimer(type="button" value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold py-2 px-3')
         div.suiviUtilisateur(class="col-start-3 col-end-6 row-start-2 row-end-3 relative bg-gray-50 p-6")
             form(class='w-2/4' action="/suivi_utilisateur", method="POST")
-                label(for="commentaire" class="font-semibold text-xl") Envoyer une notification
-                textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full bg-slate-300")
+                label(for="commentaire" class="font-semibold text-2xl") Envoyer une notification
+                textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-3 w-full bg-slate-300")
                 input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full")
             div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
                 div(class='text-center py-12') 
                     span loading
                     span .....
         div(class="col-start-3 col-end-6 row-start-3 row-end-5 bg-gray-50 p-3 rounded-lg") 
-            h2(class="font-bold text-2xl mb-3") Suivi Utilisateur
+            h2(class="font-bold text-3xl mb-3 text-center") Suivi Utilisateur
             table(class="w-full border-2 p-2 mb-6")
                 thead
-                    tr(class="py-2 bg-gray-200")
-                        th(class="text-center") Id
-                        th(class="text-center") Date
-                        th(class="text-center") Notifications
-                        th(class="text-center") Actions
+                    tr(class="py-2 bg-slate-200 border-b-2 border-slate-600")
+                        th(class="text-center py-2 px-1") Id
+                        th(class="text-center py-2 px-1") Date
+                        th(class="text-center py-2 px-1") Notifications
+                        th(class="text-center py-2 px-1") Actions
                 tbody
                     each suivi in user.suivi_user
-                        tr
-                            td(class="text-center")= suivi.id
-                            td(class="text-center")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                            td(class="text-center")= suivi.notifications
-                            td.actionsTD(class="text-center")
+                        tr(class="even:bg-slate-200 border-b-2 border-slate-600")
+                            td(class="text-center py-2 px-1")= suivi.id
+                            td(class="text-center py-2 px-1")= suivi.date.toLocaleString('en-GB', { timeZone: 'UTC' })
+                            td(class="text-center py-2 px-1")= suivi.notifications
+                            td.actionsTD(class="text-center py-2 px-1")
                                 input(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue cursor-pointer")
                                 input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3 cursor-pointer") 
             
