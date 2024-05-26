@@ -1,10 +1,10 @@
 extends layout
   
 block content
-    div.utilisateur(class="h-full grid gap-12 grid-cols-5 grid-rows-[max-content,repeat(2, 1fr),max-content]")
+    div.utilisateur(class="h-full grid gap-8 grid-cols-5 grid-rows-[max-content,repeat(2, 1fr),max-content]")
         h1(class="col-start-1 col-end-6 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl first-letter:uppercase pt-3") #{user.role} #{user.profil_user.nom}
-        div.userInfo(class="col-start-1 col-end-3 row-start-2 row-end-4 bg-gray-50 text-lg mt-12") 
-            div(class="p-3 flex flex-col justify-between h-full py-12 px-6")
+        div.userInfo(class="col-start-1 col-end-3 row-start-2 row-end-4 bg-gray-50 text-lg mt-12 rounded-lg") 
+            div(class="p-3 flex flex-col justify-between h-full py-8 px-6")
                 div(class="px-3 flex flex-col gap-y-3")
                     h2(class='text-3xl font-bold mb-2 text-center mb-6') Profil utilisateur
                     p 
@@ -34,15 +34,14 @@ block content
                     p 
                         span.font-semibold Status d'adhésion : 
                         | #{user.profil_user.status_adhesion}
-                div.actions 
-                    div(class='flex gap-x-3')
-                        input.modifier(type="button" value="Modifier" class='text-white bg-blue-800 rounded-lg font-bold py-2 px-3')
-                        input.supprimer(type="button" value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold py-2 px-3')
-        div.suiviUtilisateur(class="col-start-3 col-end-6 row-start-2 row-end-3 relative bg-gray-50 p-6")
-            form(class='w-2/4' action="/suivi_utilisateur", method="POST")
+                div(class='flex gap-x-3 mt-6')
+                    input.modifier(type="button" value="Modifier" class='text-white hover:opacity-80 cursor-pointer bg-slate-500 rounded-lg font-bold py-2 px-3')
+                    input.supprimer(type="button" value="Supprimer" class='text-white cursor-pointer hover:opacity-80 bg-red-500 rounded-lg font-bold py-2 px-3')
+        div.suiviUtilisateur(class="col-start-3 col-end-6 row-start-2 row-end-3 relative bg-gray-50 p-6 rounded-lg")
+            form(class='' action="/suivi_utilisateur", method="POST")
                 label(for="commentaire" class="font-semibold text-2xl") Envoyer une notification
                 textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-3 w-full bg-slate-300")
-                input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full")
+                input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-slate-500 cursor-pointer hover:opacity-80 p-2 font-bold text-white rounded-lg my-2 w-full")
             div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
                 div(class='text-center py-12') 
                     span loading

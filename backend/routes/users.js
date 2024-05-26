@@ -9,13 +9,14 @@ const ctr_members = require('../controllers/controller_members');
 router.post('/server/signup', ctr_adm.serverSignup);
 router.post('/server/login', ctr_adm.serverLogin);
 router.post('/server/logout', middlewareAuth, userRole, ctr_adm.serverLogout);
-router.get('/server', ctr_adm.serverUsersGet);
+router.get('/server', middlewareAuth, userRole, ctr_adm.serverUsersGet);
 router.get('/server/data', middlewareAuth, userRole, ctr_adm.serverUsersJson);
-router.get('/server/create', middlewareAuth, userRole, ctr_adm.serverUserCreate);
+router.get('/server/create', ctr_adm.serverUserCreate);
 router.get('/server/:requestId', middlewareAuth, userRole, ctr_adm.serverUserGet);
 router.get('/server/data/:requestId', middlewareAuth, userRole, ctr_adm.serverUserGetJson);
 router.put('/server/:requestId',middlewareAuth, userRole, ctr_adm.serverUserPut);
 router.delete('/server/:requestId', middlewareAuth, userRole, ctr_adm.serverUserDelete);
+router.post('/', middlewareAuth, userRole, ctr_adm.serverUsersEmpty);
 
 // API CLIENT
 router.post('/member/signup', ctr_members.memberSignup);

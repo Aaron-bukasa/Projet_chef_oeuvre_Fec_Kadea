@@ -1,24 +1,24 @@
 extends layout
   
 block content
-    div(class="h-full grid grid-cols-3 grid-rows-[max-content,repeat(3,auto)] gap-12 px-6 mb-3")
+    div(class="h-[98%] grid grid-cols-3 grid-rows-[max-content,repeat(3,auto)] gap-12 px-6")
         h1(class="col-start-1 col-end-4 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Abonnés à la newletter
         ul.statistic(class="col-start-1 col-end-2 row-start-3 row-end-4 bg-gray-50 p-6 text-lg flex flex-col justify-center my-3 gap-y-4 rounded-lg")
             h2(class='text-3xl font-bold mb-3 text-center') Les statistiques
             li
-                span.font-semibold  Nombre total de tous les abonnés : 
+                span.font-semibold  Tous les abonnés : 
                 | !{abonnes.length}
             li 
-                span.font-semibold Nombre total de nouveaux abonnés : 
+                span.font-semibold Nouveaux abonnés : 
                 | !{abonnes.length}
             li 
-                span.font-semibold Nombre total des abonnements non confirmés: 
+                span.font-semibold Abonnements non confirmés : 
                 | !{abonnes.length}
             li 
-                span.font-semibold Nombre total des abonnements confirmés : 
+                span.font-semibold Abonnements confirmés : 
                 | !{abonnes.length}
             li(class="my-4 xl:flex") 
-                a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+                a(href="/newsletters" class="p-3 bg-slate-500 rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
         div(class="col-start-2 col-end-4 row-start-2 row-end-5 bg-gray-50 p-3 overflow-y-scroll rounded-lg")
             h2(class="font-bold text-3xl py-3 mb-3 text-center") Listes d'abonnés
             table(class="w-full border-2 p-2 mb-6")
