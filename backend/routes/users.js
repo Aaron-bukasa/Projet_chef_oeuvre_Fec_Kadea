@@ -10,6 +10,7 @@ router.post('/server/signup', middlewareAuth, userRole, ctr_adm.serverSignup);
 router.post('/server/login', ctr_adm.serverLogin);
 router.post('/server/logout', middlewareAuth, userRole, ctr_adm.serverLogout);
 router.get('/server', middlewareAuth, userRole, ctr_adm.serverUsersGet);
+router.get('/server/data', middlewareAuth, userRole, ctr_adm.serverUsersJson);
 router.get('/server/create', middlewareAuth, userRole, ctr_adm.serverUserCreate);
 router.get('/server/:requestId', ctr_adm.serverUserGet);
 router.get('/server/data/:requestId', ctr_adm.serverUserGetJson);

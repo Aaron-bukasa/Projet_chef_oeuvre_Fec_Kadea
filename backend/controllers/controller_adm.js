@@ -123,6 +123,24 @@ exports.serverUsersGet = async (req, res) => {
   }
 };
 
+exports.serverUsersJson = async (req, res) => {
+  try {
+    const users = await prisma.user.findMany({
+      include: {
+        profil_user: true,
+        suivi_user: true,
+      },
+    });
+
+    res.status(200).json({users: users });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la récupération des utilisateurs" });
+  }
+};
+
 exports.serverUserGet = async (req, res) => {
   try {
     const { requestId } = req.params;

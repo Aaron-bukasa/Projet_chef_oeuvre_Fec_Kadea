@@ -169,10 +169,29 @@ putUser();
 
 function usersSearch() {
   const search = document.querySelector('.search');
+  let users;
+
+  search?.addEventListener('click', tabUsers);
   
-  search?.addEventListener('change', () => {
-    
+  search?.addEventListener('input', (event) => {
+  
+    const userString = users.map((user) => Object.values(user).map((data) => typeof data === 'object' ? Object.values(data).join(' ') : data));
+console.log(userString);
+    userString.filter((user) => user.search(event.target.value) !== '-1' ? user : '')
   })
+
+  async function tabUsers() {
+    try {
+      const response = await fetch(`/users/server/data`);
+  
+      if (response.status === 200) {
+        const data = await response.json();
+        users = data.users;
+      }
+    } catch (error) {
+      return alert(error);
+    }
+  }
 }
 usersSearch()
 
