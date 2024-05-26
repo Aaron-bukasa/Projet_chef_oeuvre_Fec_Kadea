@@ -1,40 +1,37 @@
 extends layout
   
 block content
-    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") #{user.role} #{user.profil_user.nom}
-    div.utilisateur
-        div.userInfo(class="w-full md:flex p-3 gap-4 lg:border-2 my-6") 
-            div(class="border-4 border-dashed p-3 flex flex-col my-3 w-[50%]")
-                h2(class='text-lg font-bold mb-2') Profil utilisateur
-                p Identification : #{user.id}
-                p requestId : #{user.requestId}
-                p Nom : #{user.profil_user.nom}
-                p Email : #{user.email}
-                p Role : #{user.role}
-                p Statut : #{user.statut}
-                p adresse : #{user.profil_user.adress}
-                p adresse : #{user.profil_user.ville}
-                p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
-                p Date d'adhésion : #{user.profil_user.date_adhesion}
-                p Status d'adhésion : #{user.profil_user.status_adhesion}
-            div.suiviUtilisateur(class="border-4 border-dashed p-3 flex flex-col justify-between my-3 w-[50%]")
-                div(class='lg:flex lg:gap-x-6 relative')
-                    div.actions(class='2/4') 
-                        h2(class='text-lg font-bold mb-2') Actions
-                        div(class='flex flex-col gap-y-2')
-                            input.bloquer(type='button' data-id=user.requestId value="Bloquer" class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.debloquer(type="button" data-id=user.requestId value="Débloquer" class='text-white bg-red-600 rounded-lg font-bold p-1')
-                            input.supprimerUser(type="button" data-id=user.requestId value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold p-1')
-                    form(class='w-2/4' action="/suivi_utilisateur", method="POST")
-                        label(for="commentaire") Commentaire (facultatif)
-                        textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full")
-                        input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full")
-                    div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
-                        div(class='text-center py-12') 
-                            span loading
-                            span .....
-        div 
-            h2(class="font-bold text-xl mb-3") Suivi Utilisateur
+    div.utilisateur(class="h-full grid gap-12 grid-cols-5 grid-rows-[max-content,repeat(2, 1fr),max-content]")
+        h1(class="col-start-1 col-end-6 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") #{user.role} #{user.profil_user.nom}
+        div.userInfo(class="col-start-1 col-end-3 row-start-2 row-end-4 bg-gray-50 text-lg") 
+            div(class="p-3 flex flex-col my-3 w-[50%] ")
+                div(class="px-3")
+                    h2(class='text-2xl font-bold mb-2') Profil utilisateur
+                    p Identification : #{user.id}
+                    p requestId : #{user.requestId}
+                    p Nom : #{user.profil_user.nom}
+                    p Email : #{user.email}
+                    p Role : #{user.role}
+                    p Verified : #{user.verified}
+                    p Date de création : #{user.date_inscription.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                    p Date d'adhésion : #{user.profil_user.date_adhesion}
+                    p Status d'adhésion : #{user.profil_user.status_adhesion}
+                div.actions 
+                    h2(class='text-lg font-bold mb-2') Actions
+                    div(class='flex gap-x-3')
+                        input.modifier(type="button" value="Modifier" class='text-white bg-blue-800 rounded-lg font-bold p-1')
+                        input.supprimer(type="button" value="Supprimer" class='text-white bg-red-600 rounded-lg font-bold p-1')
+        div.suiviUtilisateur(class="col-start-3 col-end-6 row-start-2 row-end-3 relative bg-gray-50 p-6")
+            form(class='w-2/4' action="/suivi_utilisateur", method="POST")
+                label(for="commentaire" class="font-semibold text-xl") Envoyer une notification
+                textarea(id="commentaire", name="commentaire", rows="5" class="border-2 rounded-lg p-2 my-1 w-full bg-slate-300")
+                input.btnSuiviCreate(type="submit" data-id=user.requestId value='Valider' class="bg-sky-blue p-2 font-bold text-white rounded-lg my-2 w-full")
+            div.loading(class="hidden absolute top-2/4 right-2/4 bg-red-200 w-2/4 rounded-lg")
+                div(class='text-center py-12') 
+                    span loading
+                    span .....
+        div(class="col-start-3 col-end-6 row-start-3 row-end-5 bg-gray-50 p-3 rounded-lg") 
+            h2(class="font-bold text-2xl mb-3") Suivi Utilisateur
             table(class="w-full border-2 p-2 mb-6")
                 thead
                     tr(class="py-2 bg-gray-200")
@@ -51,5 +48,5 @@ block content
                             td.actionsTD(class="text-center")
                                 input(type='button' data-id=suivi.id value='Modifier' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue cursor-pointer")
                                 input.suiviDelete(type="button" data-id=suivi.id value='Supprimer' class="font-semibold text-sky-blue hover:text-sky-blue visited:text-sky-blue ml-3 cursor-pointer") 
-        
+            
     script(src="/javascripts/user.js")
