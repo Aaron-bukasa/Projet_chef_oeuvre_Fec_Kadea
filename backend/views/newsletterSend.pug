@@ -11,14 +11,14 @@ block content
                 button(type='submit' class="bg-slate-500 py-2 px-3 font-bold text-white rounded-lg mb-2 mt-6 w-max") Envoyer
         ul.statistic(class="col-start-1 col-end-2 row-start-3 row-end-4 bg-gray-50 p-6")
             h2(class='font-bold mb-2 text-2xl text-center') Les statistiques
-            li Nombre total de newsletters : 
+            li Total de newsletters : 
                 if newsletters
                     span newsletters.length
                 else 
                     span 0
             li(class="my-4 xl:flex") 
-                a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
-                a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+                a(class="p-3 bg-slate-500 rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
+                a(href="/newsletters" class="p-3 bg-slate-500 rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
         div(class="col-start-2 col-end-4 row-start-2 row-end-4 bg-gray-50 p-6")
             h2(class="font-bold text-3xl mb-3 text-center") Listes des newsletters envoyés
             table(class="w-full border-2 p-2 mb-6")

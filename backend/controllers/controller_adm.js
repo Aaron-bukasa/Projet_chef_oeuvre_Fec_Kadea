@@ -272,3 +272,7 @@ exports.serverUserCreate = async(req, res) => {
     res.status(500).json({message: error})
   }
 }
+
+exports.serverUsersEmpty = async(req, res) => {
+  res.json("not implement")
+}
