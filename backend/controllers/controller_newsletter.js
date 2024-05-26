@@ -75,8 +75,17 @@ exports.abonnementConfirm = async(req, res) => {
   }
 }
 
+exports.newsletterSendGet = async(req, res) => {
+  try {
+    const newsletters = await prisma.newsLetter.findMany();
+    res.status(200).render('newsletterSend', {newsletters});
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
 
-exports.newsletterSend = async (req, res) => {
+
+exports.newsletterSendPost = async (req, res) => {
 
   const { objet, newsletter } = req.body;
 
@@ -139,9 +148,8 @@ exports.abonnesGet = async(req, res) => {
 
   try {
     const abonnes = await prisma.abonnement.findMany();
-    const newsletters = await prisma.newsLetter.findMany();
     
-    res.status(200).render('newsletters', {abonnes, newsletters});
+    res.status(200).render('newsletters', {abonnes});
 
   } catch (error) {
     console.error(error);

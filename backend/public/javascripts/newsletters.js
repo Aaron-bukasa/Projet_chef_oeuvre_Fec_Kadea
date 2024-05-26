@@ -3,7 +3,7 @@ const objet = document.querySelector('.objet');
 const newsletter = document.querySelector('.content');
 
 
-createNewsletter.addEventListener('submit', async(event) => {
+createNewsletter?.addEventListener('submit', async(event) => {
     event.preventDefault();
 
     try {

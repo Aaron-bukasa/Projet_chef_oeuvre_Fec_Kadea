@@ -60,7 +60,6 @@ async function filterDemandes() {
         }
       }
     });
-    console.log(demandesDateFilter);
 
     demandesDateFilter.filter((element) => {
       tableDemandes(element);

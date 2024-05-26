@@ -1,0 +1,45 @@
+extends layout
+  
+block content
+    div(class="h-[98%] grid grid-cols-3 grid-rows-[max-content,repeat(2,auto)] gap-12 px-6 mb-3")
+        h1(class="col-start-1 col-end-4 row-start-1 row-end-2 text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Newsletters
+        div(class="col-start-1 col-end-2 row-start-2 row-end-3 bg-gray-50 p-6 my-auto")
+            h2(class="font-bold mb-6 text-2xl text-center") Envoyer la newsletter
+            form.create_newsletter(method='post' class="flex flex-col")
+                input.objet(type="text" placeholder='Objet' class="border-2 bg-slate-200 rounded-lg p-2 my-1")
+                textarea.content(name="message", cols="30", rows="5" placeholder="newsletter" class="border-2 bg-slate-200 rounded-lg p-2 my-1")
+                button(type='submit' class="bg-slate-500 py-2 px-3 font-bold text-white rounded-lg mb-2 mt-6 w-max") Envoyer
+        ul.statistic(class="col-start-1 col-end-2 row-start-3 row-end-4 bg-gray-50 p-6")
+            h2(class='font-bold mb-2 text-2xl text-center') Les statistiques
+            li Nombre total de newsletters : 
+                if newsletters
+                    span newsletters.length
+                else 
+                    span 0
+            li(class="my-4 xl:flex") 
+                a(class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block text-center w-max")  Exporter les données
+                a(href="/newsletters" class="p-3 bg-sky-blue rounded-lg text-white hover:opacity-80 mr-4 font-semibold block my-4 text-center w-max xl:my-0")  Actualiser la page
+        div(class="col-start-2 col-end-4 row-start-2 row-end-4 bg-gray-50 p-6")
+            h2(class="font-bold text-3xl mb-3 text-center") Listes des newsletters envoyés
+            table(class="w-full border-2 p-2 mb-6")
+                thead
+                    tr(class="py-2 bg-slate-200  border-b-2 border-slate-600")
+                        th(class="text-center py-2 px-1") id
+                        th(class="text-center py-2 px-1") Date
+                        th(class="text-center py-2 px-1") contenu
+                tbody
+                    if newsletters
+                        each newsletter in newsletters
+                            tr(class="even:bg-slate-200 border-b-2 border-slate-600")
+                                td(class="text-center py-2 px-1")= newsletter.id
+                                td(class="text-center py-2 px-1")= newsletter.date.toLocaleString()
+                                td(class="text-center py-2 px-1")=  newsletter.newsletter
+                    else 
+                        tr(class="even:bg-slate-200 border-b-2 border-slate-600")
+                                td(class="text-center py-2 px-1")
+                                td(class="text-center py-2 px-1")
+                                td(class="text-center py-2 px-1")
+
+    script(src="/javascripts/newsletters.js")
+                        
+
