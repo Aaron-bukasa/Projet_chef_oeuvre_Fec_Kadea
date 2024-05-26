@@ -28,7 +28,7 @@ const CompteRebours = ({ onResendCode }) => {
   };
 
   return (
-    <div className="flex gap-x-3 my-3 sm:mt-6">
+    <div className="flex gap-x-3 my-3 sm:mt-6 ml-3">
       <button disabled={boutonDesactive} onClick={gererClicRenvoyerCode} className="underline text-secondary-blue font-semibold hover:opacity-70">
         Renvoyer le code
       </button>

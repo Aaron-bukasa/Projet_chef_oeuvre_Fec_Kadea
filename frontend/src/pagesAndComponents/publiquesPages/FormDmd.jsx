@@ -38,7 +38,7 @@ export default function FormDmd() {
         return navigate(`/signup/${response.data.id}`);
       } else {
         setIsError(true);
-        return setIsData("Inscription échouée");
+        return setIsData("Demande d'adhésion échouée");
       }
     } catch (error) {
       setIsError(true);

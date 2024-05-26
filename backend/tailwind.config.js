@@ -19,7 +19,8 @@ module.exports = {
         "2xl": "1386px"
       },
       backgroundImage: {
-        'bg_desktop': "url('/images/bg-desktop.jpg')"
+        'bg_desktop': "url('/images/bg-desktop.jpg')",
+        'bg_fecLogo': "url('/images/logofec02.jpg')"
       },
     },
   },

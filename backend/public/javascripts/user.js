@@ -1,78 +1,106 @@
-action(
-    document.querySelector('.valider'),
-    'validée',
-    'PUT',
-    '/demandes',
-    'Demande validée avec succès',
-    'Erreur lors de la validation de l\'utilisateur'
-)
+const supprimer = document.querySelector('.supprimer');
+const modifier = document.querySelector('.modifier');
 
-action(
-    document.querySelector('.rejeter'),
-    'rejetée',
-    'PUT',
-    '/demandes',
-    'Demande rejetée avec succès',
-    'Erreur lors du rejet de l\'utilisateur'
-)
+const url = window.location.href;
+const requestId = url.match(/(?<=.+\/server\/).+/)[0];
 
-action(
-    document.querySelector('.supprimer'),
-    'supprimée',
-    'DELETE',
-    '/demandes',
-    'Utilisateur supprimée avec succès',
-    'Erreur lors de la suppression de l\'utiulisateur'
-)
+modifier.addEventListener('click', () => {
+    window.localStorage.setItem('userId', requestId);
+    window.location.href = "/users/server/create";
+})
 
-suiviActions(
-    document.querySelector('.btnSuiviCreate'),
-    document.querySelector('.suiviCreate'),
-    'POST',
-    '/suivi_demande',
-    'Suivi de demande créé avec succès',
-    'Erreur lors de l\'ajout du nouveau suivi'
-)
+supprimer.addEventListener('click', () => {
+    confirmation()
+})
 
+async function actionValider() {
 
-function action(element, statut, method, route, succefullMessage, errorMessage) {
-
-    element.addEventListener('click', async() => {
-    
-        const postData = {
-            requestId: element.dataset.id,
-            statut: statut && statut
-        };
-        const requestOptions = {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        };
-    
-        try {
-            const response = await fetch(route, requestOptions);
-            if(response.status === 200) {
-               
-                if(statut === 'rejetée') {
-                    alert(succefullMessage)
-                    window.location.href = `/demandes/${element.dataset.id}`;
-                } else if(statut === 'validée') {
-                    emailSignupMember(element, succefullMessage, errorMessage);
-                } else if(statut === 'supprimée') {
-                    alert(succefullMessage)
-                    window.location.href = '/demandes';
-                    return;
-                }
-            }
-        } catch (error) {
-            return alert(errorMessage)
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
         }
-    
-    })
+    };
+
+    try {
+        const response = await fetch(`/users/server/${requestId}`, requestOptions);
+
+        if(response.status === 200) {
+            const message = await response.json();
+            window.localStorage.setItem("userDelete", message.message);
+            return window.location.href = '/users/server';
+        }
+    } catch (error) {
+        return alert(error)
+    }
 }
 
+function actionAnnuler() {
+    document.querySelector('.confirmation').remove()
+    document.querySelector('.backdrop').remove()
+}
+
+
+function confirmation() {
+    const container = document.createElement('div');
+    const p = document.createElement('p');
+    const div = document.createElement('div');
+    const annuler = document.createElement('button');
+    const valider = document.createElement('button')
+    const backdrop = document.createElement('div')
+  
+
+    p.textContent = "Voulez-vous vraiment supprimer cet utilisateur ?"
+    annuler.textContent = "Annuler";
+    valider.textContent = "valider";
+
+    p.style.marginBottom = '6px';
+
+    annuler.style.padding = '3px'
+    annuler.classList.add('annuler')
+    valider.style.padding = '4px'
+    valider.classList.add('valider')
+
+    div.style.display = 'flex';
+    div.style.justifyContent = 'space-between'
+    div.style.marginTop = '6px'
+
+    container.style.padding = '16px'
+    container.style.borderRadius = '12px'
+    container.style.backgroundColor = 'red'
+    container.style.color = "white"
+    container.style.fontWeight = "500"
+    container.style.fontSize = "18px"
+    container.classList.add('confirmation')
+
+    div.appendChild(annuler);
+    div.appendChild(valider);
+
+    container.appendChild(p);
+    container.appendChild(div)
+
+    container.style.position = "absolute";
+    container.style.top = "50%";
+    container.style.left = "50%";
+    container.style.transform = 'translate(-25%, -50%)'
+    container.style.zIndex = '999'
+
+    backdrop.style.backgroundColor = '#5757577a';
+    backdrop.style.position = 'absolute';
+    backdrop.style.left = 0;
+    backdrop.style.top = 0;
+    backdrop.style.width = '100%';
+    backdrop.style.height = '100%';
+    backdrop.style.zIndex = '995';
+    backdrop.classList.add('backdrop');
+
+    document.body.append(backdrop);
+    document.body.append(container);
+
+    annuler && annuler.addEventListener('click', actionAnnuler)
+    valider && valider.addEventListener('click', actionValider)
+
+}
 
 function suiviActions(submit, textarea, method, route, succefullMessage, errorMessage) {
 

@@ -1,5 +1,7 @@
-let nameAvatar = document.querySelector('.name');
-nameAvatar.textContent = localStorage.getItem('descendRemonte').match(/(?<=PSSR)[a-zA-Z]+/)[0].split('').reverse().join('').toLowerCase();
+let nameAvatar = document.querySelectorAll('.name');
+nameAvatar.forEach((name) => {
+    name.textContent = localStorage.getItem('descendRemonte').match(/(?<=PSSR)[a-zA-Z]+/)[0].split('').reverse().join('').toLowerCase();
+})
 
 /* BAR DE NAVIGATION */
 const handleNavbarServer = () => {
@@ -28,92 +30,92 @@ handleNavbarServer()
 
 
 
-const SuiviDmd = () => {
-    const formSuiviDmd = document.querySelector('.createSuiviDmd');
-    const id = document.querySelector('.createSuiviDmd p');
-    const commentaire = document.querySelector('#commentaire');
-    const validation = document.querySelector('#validation');
+// const SuiviDmd = () => {
+//     const formSuiviDmd = document.querySelector('.createSuiviDmd');
+//     const id = document.querySelector('.createSuiviDmd p');
+//     const commentaire = document.querySelector('#commentaire');
+//     const validation = document.querySelector('#validation');
     
-    formSuiviDmd?.addEventListener('submit', (e) => {
+//     formSuiviDmd?.addEventListener('submit', (e) => {
     
-        e.preventDefault();
-        const demandeId = Number(id.textContent);
+//         e.preventDefault();
+//         const demandeId = Number(id.textContent);
 
-        if(validation) {
-            const valid = suivi(validation);
-            const divValid = document.querySelector('.valid');
-            const selectBtn = document.querySelector('.selectBtn');
-            divValid.setAttribute("disabled", "");
-            selectBtn.setAttribute("disabled", "");
-            return valid;
-        } else {
-            const comment = suivi(commentaire);
-            commentaire.value = '';
-            return  comment;
-        }
+//         if(validation) {
+//             const valid = suivi(validation);
+//             const divValid = document.querySelector('.valid');
+//             const selectBtn = document.querySelector('.selectBtn');
+//             divValid.setAttribute("disabled", "");
+//             selectBtn.setAttribute("disabled", "");
+//             return valid;
+//         } else {
+//             const comment = suivi(commentaire);
+//             commentaire.value = '';
+//             return  comment;
+//         }
 
-        async function suivi(evenement) {
-            try {
-                if(evenement.value === "") {
-                    return console.error("veiullez choisir une option");
-                }
-                const postData = {
-                    demandeId: demandeId,
-                    evenement: evenement.value === "valider" ? "Votre demande a été validée; vous pouvez suivre son évolution sur notre plateforme" : evenement.value === "rejeter" ? "Votre demande a été rejetée; vous pouvez nous contacter pour plus informations" : evenement.value,
-                };
+//         async function suivi(evenement) {
+//             try {
+//                 if(evenement.value === "") {
+//                     return console.error("veiullez choisir une option");
+//                 }
+//                 const postData = {
+//                     demandeId: demandeId,
+//                     evenement: evenement.value === "valider" ? "Votre demande a été validée; vous pouvez suivre son évolution sur notre plateforme" : evenement.value === "rejeter" ? "Votre demande a été rejetée; vous pouvez nous contacter pour plus informations" : evenement.value,
+//                 };
             
-                const requestOptions = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postData)
-                };
+//                 const requestOptions = {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(postData)
+//                 };
     
-                const response =  await fetch('/suivi_demande', requestOptions);
+//                 const response =  await fetch('/suivi_demande', requestOptions);
     
-                if(!response.ok) {
-                    throw new Error('Erreur lors de la requête : ' + response.statusText);
-                }
+//                 if(!response.ok) {
+//                     throw new Error('Erreur lors de la requête : ' + response.statusText);
+//                 }
 
-                if(evenement.value === "rejeter") {
-                    demandeStatut('rejetée')
-                } else if(evenement.value === "valider") {
-                    demandeStatut('validéé')
-                }
+//                 if(evenement.value === "rejeter") {
+//                     demandeStatut('rejetée')
+//                 } else if(evenement.value === "valider") {
+//                     demandeStatut('validéé')
+//                 }
 
-                function demandeStatut(statut) {
-                    try {
-                        const postData = {
-                            statut: statut
-                        };
+//                 function demandeStatut(statut) {
+//                     try {
+//                         const postData = {
+//                             statut: statut
+//                         };
                       
-                        const requestOptions = {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(postData)
-                        };
+//                         const requestOptions = {
+//                             method: 'PUT',
+//                             headers: {
+//                                 'Content-Type': 'application/json'
+//                             },
+//                             body: JSON.stringify(postData)
+//                         };
             
-                        const response = fetch(`/demandes/${demandeId}`, requestOptions);
+//                         const response = fetch(`/demandes/${demandeId}`, requestOptions);
             
-                        if(!response.ok) {
-                            throw new Error('Erreur lors de la requête : ' + response.statusText);
-                        }  
-                    } catch (error) {
-                        console.error(error);
-                    }
-                }
-                return response.json();
-            } catch (error) {
-                console.error(error)
-            }
-        }
-    })
+//                         if(!response.ok) {
+//                             throw new Error('Erreur lors de la requête : ' + response.statusText);
+//                         }  
+//                     } catch (error) {
+//                         console.error(error);
+//                     }
+//                 }
+//                 return response.json();
+//             } catch (error) {
+//                 console.error(error)
+//             }
+//         }
+//     })
 
-}
-SuiviDmd()
+// }
+// SuiviDmd()
 
 
 const suiviUtilisateur = () => {

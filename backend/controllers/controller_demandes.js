@@ -61,14 +61,6 @@ exports.demandePost = async (req, res) => {
         forme_juridique,
         secteur_activite,
         province_activite,
-        suivi_demande: {
-          create: [
-            { 
-              requestId: uuid.v4(),
-              evenement: "Demande d'adhésion en attente" 
-            },
-          ]
-        }
       }
     });
 
@@ -186,22 +178,16 @@ exports.demandeDelete = async (req, res) => {
   const { requestId } = req.body;
 
   try {
-    await prisma.suiviDemande.deleteMany({
-      where: {
-        demandeRequestId: requestId,
-      },
-    });
-
     await prisma.demande.delete({
       where: {
         requestId: requestId,
       },
     });
 
-    res.status(200).send("Demande supprimée avec succès");
+    res.status(200).json("Demande supprimée avec succès");
   } catch (error) {
     console.error('Erreur lors de la suppression de la demande :', error);
-    res.status(500).send("Une erreur s'est produite lors de la suppression de la demande.");
+    res.status(500).json("Une erreur s'est produite lors de la suppression de la demande.");
   }
 };
 

@@ -4,6 +4,13 @@ const button = document.querySelector("button.filter");
 const dateDebut = document.querySelector("input.date_debut");
 const dateFin = document.querySelector("input.date_fin");
 const tbody = document.querySelector("tbody.demandes");
+const demandeDelete = localStorage.getItem("demandeDelete");
+
+demandeDelete && demandeDelete === 'Demande supprimée avec succès' && messageAlerte(demandeDelete);
+setTimeout(function() {
+  document.querySelector(".confirmation")?.remove();
+  window.localStorage.removeItem("demandeDelete");
+}, 3000);
 
 async function filterDemandes() {
   const response = await fetch("/demandes/json");
@@ -22,7 +29,9 @@ async function filterDemandes() {
         ? demandes
         : demandes.filter((demande) => demande[title] === value);
 
-    selectValue.map((element) => {tableDemandes(element)});
+    selectValue.map((element) => {
+      tableDemandes(element);
+    });
   });
 
   button.addEventListener("click", () => {
@@ -53,12 +62,13 @@ async function filterDemandes() {
     });
     console.log(demandesDateFilter);
 
-    demandesDateFilter.filter((element) => {tableDemandes(element)})
+    demandesDateFilter.filter((element) => {
+      tableDemandes(element);
+    });
   });
 }
 
 filterDemandes();
-
 
 function tableDemandes(element) {
   const tr = document.createElement("tr");
@@ -125,4 +135,52 @@ function tableDemandes(element) {
   tr.appendChild(td10);
 
   tbody.appendChild(tr);
+}
+
+function messageAlerte(data) {
+  const container = document.createElement("div");
+  const p = document.createElement("p");
+  const div = document.createElement("div");
+  const annuler = document.createElement("button");
+
+  p.textContent = data;
+  annuler.textContent = "Ok";
+
+  p.style.marginBottom = "6px";
+
+  annuler.style.padding = "3px 4px";
+  annuler.style.border = "2px solid white"
+  annuler.classList.add("annuler");
+
+  div.style.display = "flex";
+  div.style.justifyContent = "center";
+  div.style.marginTop = "6px";
+
+  container.style.padding = "16px";
+  container.style.borderRadius = "12px";
+  container.style.backgroundColor = "#fb7185";
+  container.style.color = "white";
+  container.style.fontWeight = "500";
+  container.style.fontSize = "18px";
+  container.classList.add("confirmation");
+
+  div.appendChild(annuler);
+
+  container.appendChild(p);
+  container.appendChild(div);
+
+  container.style.position = "absolute";
+  container.style.top = "50%";
+  container.style.left = "50%";
+  container.style.transform = "translate(-25%, -50%)";
+  container.style.zIndex = "999";
+
+  document.body.append(container);
+
+  annuler && annuler.addEventListener("click", actionAnnuler);
+
+  function actionAnnuler() {
+    document.querySelector(".confirmation").remove();
+    window.localStorage.removeItem("demandeDelete");
+  }
 }

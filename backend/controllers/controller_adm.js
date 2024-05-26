@@ -145,6 +145,27 @@ exports.serverUserGet = async (req, res) => {
   }
 };
 
+exports.serverUserGetJson = async (req, res) => {
+  try {
+    const { requestId } = req.params;
+
+    const user = await prisma.user.findUnique({
+      where: { requestId: requestId },
+      include: {
+        suivi_user: true,
+        profil_user: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Erreur server" });
+  }
+};
+
 exports.serverUserPut = async (req, res) => {
   try {
     const { requestId } = req.params;
@@ -185,79 +206,9 @@ exports.serverUserPut = async (req, res) => {
   }
 };
 
-exports.serverUserLock = async (req, res) => {
-  console.log("salut");
-  try {
-    const { requestId } = req.body;
-    const lock = "EDN.ICM.PSSR";
-    console.log(id);
-    const user = await prisma.user.findUnique({
-      where: { requestId: requestId },
-    });
-    console.log(user);
-    if (!user) {
-      return res.status(404).json("Utilisateur non trouvé");
-    }
-
-    const userUpdate = await prisma.user.update({
-      where: { requestId: requestId },
-      data: {
-        nom: lock + user.nom + lock,
-        email: lock + user.email + lock,
-        profil_user: {
-          update: {
-            data: {
-              status_adhesion: "bloqué",
-            },
-          },
-        },
-      },
-    });
-
-    return res.status(200).json("Utilisateur bloqué avec succès");
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Erreur lors de la modification du profil" });
-  }
-};
-
-exports.serverUserUnlock = async (req, res) => {
-  try {
-    const { requestId } = req.params;
-
-    const user = await prisma.user.findUnique({
-      where: { requestId: requestId },
-    });
-    if (!user) {
-      return res.status(404).json({ message: "Utilisateur non trouvé" });
-    }
-
-    const userUpdate = await prisma.user.update({
-      where: { requestId: requestId },
-      data: {
-        nom: user.nom.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
-        email: user.email.match(/(?<=EDN.ICM.PSSR)[a-zA-Z ]+(?=EDN.ICM.PSSR)/),
-        profil_user: {
-          update: {
-            data: {
-              status_adhesion: "inactif",
-            },
-          },
-        },
-      },
-    });
-
-    res.status(200).json("Utilisateur debloqué avec succès");
-    alert("Utilisateur debloqué avec succès");
-  } catch (error) {
-    res.status(500).json("Erreur lors de la modification du profil");
-  }
-};
-
 exports.serverUserDelete = async (req, res) => {
   try {
-    const { requestId } = req.body;
+    const { requestId } = req.params;
 
     await prisma.suiviUser.deleteMany({
       where: {
@@ -281,9 +232,7 @@ exports.serverUserDelete = async (req, res) => {
       where: { requestId: requestId },
     });
 
-    res
-      .status(200)
-      .render("users", { message: "Utilisateur supprimé avec succès" });
+    res.status(200).json({message : "Utilisateur supprimé avec succès"});
   } catch (error) {
     console.error(error);
     res
@@ -291,3 +240,17 @@ exports.serverUserDelete = async (req, res) => {
       .json({ message: "Erreur lors de la suppression de l'utilisateur" });
   }
 };
+
+exports.serverUserCreate = async(req, res) => {
+  try {
+    const users = await prisma.user.findMany({
+      include: {
+        profil_user: true,
+        suivi_user: true,
+      },
+    });
+    res.status(200).render("userCreate", {users});
+  } catch (error) {
+    res.status(500).json({message: error})
+  }
+}

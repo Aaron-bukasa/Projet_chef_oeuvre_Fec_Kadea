@@ -40,20 +40,22 @@ export default function Signup({ usernameEmail }) {
       setIsLoading(false);
       setIsResponse(true);
 
-      if (response.status !== 201) {
-        setIsError(true);
-        return setIsData("Inscription échouée");
-
-      } else {
+      if (response.status === 201) {
         setIsResponse(false);
         setIsError(false);
         const requestIdUser = response.data.id;
         localStorage.removeItem('userDmd');
-        navigate(`/confirmUser/${requestIdUser}`);
+        return navigate(`/confirmUser/${requestIdUser}`);
+
+      } else {
+        setIsError(true);
+        return setIsData("Inscription échouée");
       }
     } catch (error) {
       setIsError(true);
-      return setIsData("Erreur lors de la connexion au serveur");
+      setIsLoading(false);
+      setIsResponse(true);
+      return setIsData("Erreur lors de l'envoi des données au serveur");
     }
   };
 
