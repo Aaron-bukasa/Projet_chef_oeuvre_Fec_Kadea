@@ -4,31 +4,12 @@ const prisma = new PrismaClient();
 const { google } = require('googleapis');
 const { OAuth2Client } = require('google-auth-library');
 const nodemailer = require('nodemailer');
+const uuid = require("uuid");
+const requestId = uuid.v4();
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
-// exports.messageReceive = async(req, res) => {
-//     try {
-//         const { nom, email, objet, message } = req.body;
-    
-//         const newMessage = await prisma.message.create({
-//           data: {
-//             nom,
-//             email,
-//             objet,
-//             message
-//           }
-//         });
-//         res.status(201).json('message envoyé avec succès');
-
-//       } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'Erreur lors de l\'envoie du message' });
-//       }
-// }
-
 
 exports.messageReceive = async (req, res) => {
   const { nom, email, objet, message } = req.body;
@@ -36,6 +17,7 @@ exports.messageReceive = async (req, res) => {
   try {
     const nouveauMessage = await prisma.message.create({
       data: {
+        requestId,
         nom,
         email,
         objet,
@@ -69,7 +51,7 @@ exports.messageReceive = async (req, res) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
       to: email,
       subject: 'Confirmation de réception de votre message',
       text: `Nous avons bien reçu votre message. Veuillez confirmer en répondant à cet e-mail.`
@@ -99,7 +81,7 @@ exports.confirmerReceptionMessage = async (req, res) => {
 
     if (message) {
       await prisma.message.update({
-        where: { id: message.id },
+        where: { messageRequestId: message.messageRequestId },
         data: { confirmed: true }
       });
 
@@ -119,7 +101,7 @@ exports.confirmerReceptionMessage = async (req, res) => {
 
 exports.messageSend = async (req, res) => {
 
-  const { messageId, objet, email, reponse } = req.body;
+  const { messageRequestId, objet, email, reponse } = req.body;
 
   if (!isValidEmail(email)) {
     res.status(400).json({ message: 'Adresse email invalide' });
@@ -148,7 +130,7 @@ exports.messageSend = async (req, res) => {
     })
 
     const mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
       to: req.body.email,
       subject: req.body.objet,
       text: req.body.message
@@ -161,7 +143,7 @@ exports.messageSend = async (req, res) => {
         data: {
           message: {
             connect: {
-              id: messageId
+              requestId: messageRequestId
             }
           },
           objet: objet,
@@ -191,7 +173,7 @@ exports.messageGet = async(req, res) => {
       const { id } = req.params;
   
       const message = await prisma.message.findUnique({
-        where: { id: parseInt(id) },
+        where: { requestId: requestId },
         include: {
          message_reponse: true
         }

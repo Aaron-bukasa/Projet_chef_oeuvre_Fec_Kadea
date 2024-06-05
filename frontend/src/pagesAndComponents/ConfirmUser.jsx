@@ -25,7 +25,7 @@ export default function confirmUser({ setIsUser }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/member/checkCode",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/checkCode",
         { requestId: requestId, code: code }
       );
 
@@ -58,7 +58,7 @@ export default function confirmUser({ setIsUser }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/member/resendCodeConfirmation",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/resendCodeConfirmation",
         { requestId: requestId }
       );
 

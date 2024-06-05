@@ -30,7 +30,7 @@ export default function Signup({ usernameEmail }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/member/signup",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/signup",
         {
           password: data.password,
           requestId: requestId,

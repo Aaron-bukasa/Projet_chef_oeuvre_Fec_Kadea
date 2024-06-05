@@ -26,7 +26,7 @@ export default function FormDmd() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/demandes", data);
+      const response = await axios.post("https://projet-chef-oeuvre-fec-kadea.onrender.com/demandes", data);
 
       setIsLoading(false);
       setIsResponse(true);

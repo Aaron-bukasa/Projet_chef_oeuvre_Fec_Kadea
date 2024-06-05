@@ -1,30 +1,32 @@
 extends layout
   
 block content
-    h1(class="text-center font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Message recu
-    div(class="w-full md:flex p-3 gap-4")
-        div(class="border-2 p-3 flex flex-col my-3 w-[50%]")
-            h2(class='text-lg font-bold mb-2') Information sur le message
-            p Identification : #{message.id}
-            p Date de reception : #{message.date.toLocaleString('en-GB', { timeZone: 'UTC' })}
-            p Nom : #{message.nom}
-            p Email : #{message.email}
-            div(class='border-4 border-dashed p-3 mt-3')
-                p Objet : #{message.objet}
-                p(class='mt-3') Message : #{message.message}
-        div(class="border-2 p-3 my-3 w-[50%]")
-            h2(class="font-bold text-xl mb-3") Repondre
-            form(class="flex flex-col")
-                input(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
-                textarea(name="message", cols="30", rows="5" placeholder="message" class="border-2 rounded-lg p-2 my-1")
-                button(type='submit' class="bg-slate-500 cursor-pointer hover:opacity-80 p-2 font-bold text-white rounded-lg my-2 w-max") Envoyer
-    div.liste-messages
-        h2(class="font-bold text-xl mb-3") Conversation
-        table(class="w-full border-2 p-2 mb-6")
-            tbody
-                each message in message
-                    tr
-                        td(class="text-center")= response.date.toLocaleString('en-GB', { timeZone: 'UTC' })
-                        td(class="text-center")= response.nom
-                        td(class="text-center")= response.email
-                        td(class="text-center")= response.message
+    div(class="demandes h-full grid grid-cols-1 grid-rows-[max-content,auto] gap-y-6")
+        div(class="col-start-1 col-end-2 row-start-1 row-end-2")
+            h1(class="text-center mb-3 font-extrabold text-xl md:text-2xl lg:text-3xl xl:text-4xl") Message recu
+            div(class="flex justify-between gap-x-6")
+                div(class="border-4 p-3 my-3 h-max bg-gray-50 rounded-lg w-1/2")
+                    h2(class='text-lg font-bold mb-2') Information sur le message
+                    p Identification : #{message.id}
+                    p Date de reception : #{message.date.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                    p Nom : #{message.nom}
+                    p Email : #{message.email}
+                    div(class='border-4 border-dashed p-3 mt-3')
+                        p Objet : #{message.objet}
+                        p(class='mt-3') Message : #{message.message}
+                div(class="p-3 flex flex-col my-3 gap-y-4 bg-gray-50 rounded-lg w-1/2")
+                    h2(class="font-bold text-xl mb-3") Repondre
+                    form(class="flex flex-col")
+                        input(type="text" placeholder='Objet' class="border-2 rounded-lg p-2 my-1")
+                        textarea(name="message", cols="30", rows="5" placeholder="message" class="border-2 rounded-lg p-2 my-1")
+                        button(type='submit' class="bg-slate-500 cursor-pointer hover:opacity-80 p-2 font-bold text-white rounded-lg my-2 w-max") Envoyer
+        div(class="bg-gray-50 p-3 rounded-lg col-start-1 col-end-2 row-start-2 row-end-3")
+            h2(class="font-bold text-xl mb-3") Conversation
+            table(class="w-full border-2 p-2 mb-6")
+                tbody
+                    //- each element in message
+                    //-     tr
+                    //-         td(class="text-center")= element.date.toLocaleString()
+                    //-         td(class="text-center")= element.nom
+                    //-         td(class="text-center")= element.email
+                    //-         td(class="text-center")= element.message

@@ -19,7 +19,7 @@ export default function SuiviDmd() {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
         const response = await axios.get(
-          `http://localhost:3000/users/member/${userId}`
+          `https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/${userId}`
         );
 
         if (response.status === 200) {

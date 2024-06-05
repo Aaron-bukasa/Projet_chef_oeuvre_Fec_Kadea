@@ -34,7 +34,7 @@ export default function Contact() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/messages/receive",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/messages/receive",
         data
       );
 

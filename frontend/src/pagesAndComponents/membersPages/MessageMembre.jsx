@@ -20,7 +20,7 @@ export default function MessageMembre() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         const response = await axios.post(
-          "http://localhost:3000/users/member",
+          "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member",
           {
             requestId: user
           }
