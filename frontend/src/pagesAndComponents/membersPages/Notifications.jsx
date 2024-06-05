@@ -21,7 +21,7 @@ export default function Notifications() {
 
 //     useEffect(() => {
 //         const fetchData = async () => {
-//             const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
+//             const response = await axios.post(`https://projet-chef-oeuvre-fec-kadea.onrender.com/suivi_user/${user.split(',')[0]}`, {
 //                 email: user.split(',')[2]
 //             });
 
@@ -49,7 +49,7 @@ useEffect(() => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const response = await axios.get(
-        "http://localhost:3000/users/server/:requestId",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/server/:requestId",
         {
           requestId: userId
         }

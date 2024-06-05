@@ -16,7 +16,7 @@ function App() {
     if (user !== null) {
       const verifiedRole = async () => {
         const response = await axios.post(
-          "http://localhost:3000/users/member/role",
+          "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/role",
           { requestId: user }
         );
 

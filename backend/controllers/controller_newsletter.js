@@ -5,6 +5,8 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const prisma = new PrismaClient();
 const { OAuth2Client } = require('google-auth-library');
+const uuid = require("uuid");
+const requestId = uuid.v4();
 
 
 exports.abonnementPost = async (req, res) => {
@@ -13,7 +15,8 @@ exports.abonnementPost = async (req, res) => {
   try {
     const subscription = await prisma.abonnement.create({
       data: {
-        email
+        email,
+        requestId: requestId
       }
     });
 
@@ -42,10 +45,10 @@ exports.abonnementPost = async (req, res) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: `"Fédération des entreprises du Congo (FEC)" <${process.env.EMAIL_HOST}>`,
       to: email,
       subject: 'Confirmation de votre abonnement à la newsletter',
-      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/newsletters/abonnement/confirm/${subscription.id}`
+      text: `Cliquez sur ce lien pour confirmer votre abonnement : ${process.env.WEBSITE_URL}/newsletters/abonnement/confirm/${subscription.requestId}`
     };
 
     await transporter.sendMail(mailOptions);
@@ -60,11 +63,11 @@ exports.abonnementPost = async (req, res) => {
 
 exports.abonnementConfirm = async(req, res) => {
 
-  const { id } = req.params;
+  const { requestId } = req.params;
 
   try {
     await prisma.abonnement.update({
-      where: { id: parseInt(id) },
+      where: { requestId: requestId },
       data: { confirmed: true },
     });
 

@@ -14,7 +14,7 @@ export default function Profil(props) {
     const handleLogout = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/users/member/logout"
+          "https://projet-chef-oeuvre-fec-kadea.onrender.com/users/member/logout"
         );
         if (response.status === 200) {
           localStorage.removeItem("userId");

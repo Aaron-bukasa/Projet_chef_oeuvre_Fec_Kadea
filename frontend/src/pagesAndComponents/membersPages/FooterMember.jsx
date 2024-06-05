@@ -22,7 +22,7 @@ export default function FooterMember(props) {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/newsletters/abonnement",
+        "https://projet-chef-oeuvre-fec-kadea.onrender.com/newsletters/abonnement",
         {
           email: data.email,
         }

@@ -28,7 +28,7 @@ export default function NavbarUtilisateur() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.post(`http://localhost:3000/suivi_user/${user.split(',')[0]}`, {
+      const response = await axios.post(`https://projet-chef-oeuvre-fec-kadea.onrender.com/suivi_user/${user.split(',')[0]}`, {
         email: user.split(',')[2]
       });
 
@@ -51,7 +51,7 @@ export default function NavbarUtilisateur() {
 
   const logout = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/users/client/logout');
+      const response = await axios.post('https://projet-chef-oeuvre-fec-kadea.onrender.com/users/client/logout');
       if (response.status === 200) {
         localStorage.removeItem("isLogin");
         window.location.href = "/login";

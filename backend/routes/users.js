@@ -6,17 +6,17 @@ const ctr_adm = require('../controllers/controller_adm');
 const ctr_members = require('../controllers/controller_members');
 
 // API SERVER
-router.post('/server/signup', ctr_adm.serverSignup);
+router.post('/server/signup', middlewareAuth, userRole, ctr_adm.serverSignup);
 router.post('/server/login', ctr_adm.serverLogin);
-router.post('/server/logout', ctr_adm.serverLogout);
-router.get('/server', ctr_adm.serverUsersGet);
-router.get('/server/data', ctr_adm.serverUsersJson);
-router.get('/server/create', ctr_adm.serverUserCreate);
-router.get('/server/:requestId', ctr_adm.serverUserGet);
-router.get('/server/data/:requestId', ctr_adm.serverUserGetJson);
-router.put('/server/:requestId', ctr_adm.serverUserPut);
-router.delete('/server/:requestId', ctr_adm.serverUserDelete);
-router.post('/', ctr_adm.serverUsersEmpty);
+router.post('/server/logout', middlewareAuth, ctr_adm.serverLogout);
+router.get('/server', middlewareAuth, userRole, ctr_adm.serverUsersGet);
+router.get('/server/data', middlewareAuth, userRole, ctr_adm.serverUsersJson);
+router.get('/server/create', middlewareAuth, userRole, ctr_adm.serverUserCreate);
+router.get('/server/:requestId', middlewareAuth, userRole, ctr_adm.serverUserGet);
+router.get('/server/data/:requestId', middlewareAuth, userRole, ctr_adm.serverUserGetJson);
+router.put('/server/:requestId', middlewareAuth, userRole, ctr_adm.serverUserPut);
+router.delete('/server/:requestId', middlewareAuth, userRole, ctr_adm.serverUserDelete);
+router.post('/', middlewareAuth, userRole, ctr_adm.serverUsersEmpty);
 
 // API CLIENT
 router.post('/member/signup', ctr_members.memberSignup);
